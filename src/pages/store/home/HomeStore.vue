@@ -1,6 +1,6 @@
 <template lang="">
     <div style ="height: 100vh; display:flex; justify-content: center; align-items: center">
-        <ProductCard></ProductCard>
+        <ProductCard uid='123'></ProductCard>
         <ButtonPrimary message="Xem tất cả"></ButtonPrimary>
     </div>
 </template>

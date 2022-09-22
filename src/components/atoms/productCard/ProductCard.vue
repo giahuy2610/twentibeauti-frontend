@@ -1,21 +1,24 @@
 <template lang="">
-  <div class="product-card">
+  <div
+    @click="$router.push({ path: '/product/{{}}', replace: true })"
+    class="product-card"
+  >
     <div class="product-card__img">
       <img :src="imgScr" alt="" />
     </div>
     <div class="product-card__detail">
-      <h5>{{ brandName }}</h5>
+      <h5 class="brand-name--hover">{{ brandName }}</h5>
       <p>{{ productName }}</p>
       <div class="product-card__detail__price-row">
-        <h4>{{ retailPrice }}</h4>
+        <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
         <p
           v-if="retailPrice !== listPrice"
-          style="text-decoration: line-through"
+          style="text-decoration: line-through; margin: 0 20px 0 10px;"
         >
-          {{ listPrice }}
+          {{ Intl.NumberFormat().format(listPrice) }}đ
         </p>
         <div v-if="retailPrice !== listPrice" class="discount-tag">
-          {{ calcDiscount }}
+          {{ -calcDiscount }}%
         </div>
       </div>
       <Rating
@@ -23,12 +26,11 @@
         :readonly="true"
         :stars="5"
         :cancel="false"
-        style="color:#94c83d"
       />
       <ProgressBar v-if="isCountingStock" :value="value">
         còn {{ countingStock }} sản phẩm</ProgressBar
       >
-      <div class="add-cart-button">Mua ngay</div>
+      <div class="add-cart-button" @click.stop=""><p>Mua ngay</p></div>
     </div>
   </div>
 </template>
@@ -37,7 +39,9 @@ import { computed } from "@vue/runtime-core";
 export default {
   props: {
     uid: {
-      type: String,
+      type: Number,
+      required: true,
+      default: 0,
     },
   },
   data() {
@@ -48,8 +52,8 @@ export default {
       brandName: "THE FACE SHOP",
       productName:
         "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
-      listPrice: 0,
-      retailPrice: 0,
+      listPrice: 100000,
+      retailPrice: 110000,
       discountPercent: 0,
       ratingStar: 5,
       isCountingStock: false,
@@ -68,12 +72,16 @@ export default {
 
   computed: {
     calcDiscount() {
-      return parseInt((this.listPrice / this.retailPrice) * 100);
+      return parseInt((1 - this.retailPrice / this.listPrice) * 100);
     },
   },
 };
 </script>
 <style lang="scss">
+.brand-name--hover:hover {
+  color: #94c83d;
+  text-decoration: underline;
+}
 .product-card {
   width: 230px;
   height: 400px;
@@ -83,6 +91,7 @@ export default {
   box-sizing: border-box;
   text-align: center;
   font-size: smaller;
+  cursor: pointer;
 
   &__img img {
     max-width: 100%;
@@ -90,14 +99,25 @@ export default {
     object-fit: cover;
   }
 
-  &__detail p {
+  &__detail {
     overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* number of lines to show */
-    line-clamp: 2;
-    -webkit-box-orient: vertical;
+    &__price-row {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
 
+    p {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* number of lines to show */
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
   }
 
   &:hover {
@@ -105,30 +125,68 @@ export default {
     box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
     transition: all 0.3s ease 0s;
   }
+
+  &:hover .add-cart-button {
+    display: block;
+  }
 }
 .discount-tag {
+  position: relative;
   width: fit-content;
+  padding: 2px;
   border-radius: 2px;
   background-color: #94c83d;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #fff;
 
-  ::before {
+  &::before {
+    content: "";
+    float: left;
     position: absolute;
+    top: 0px;
+    left: -9px;
     width: 0;
     height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-right: 10px solid blue;
+    border-color: transparent #94c83d transparent transparent;
+    border-style: solid;
+    border-width: 10px 10px 10px 0;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 45%;
+    left: -3px;
+    float: left;
+    width: 4px;
+    height: 4px;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    background: #fff;
   }
 }
 .add-cart-button {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100px;
   height: 50px;
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-weight: bolder;
 
-  :hover {
+  &:hover {
     background-color: #94c83d;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 </style>
