@@ -1,10 +1,10 @@
 <template lang="">
   <div class="product-card">
     <div class="product-card__img">
-      <img src="" alt="" />
+      <img :src="imgScr" alt="" />
     </div>
     <div class="product-card__detail">
-      <h3>{{ brandName }}</h3>
+      <h5>{{ brandName }}</h5>
       <p>{{ productName }}</p>
       <div class="product-card__detail__price-row">
         <h4>{{ retailPrice }}</h4>
@@ -23,29 +23,35 @@
         :readonly="true"
         :stars="5"
         :cancel="false"
+        style="color:#94c83d"
       />
       <ProgressBar v-if="isCountingStock" :value="value">
         còn {{ countingStock }} sản phẩm</ProgressBar
       >
-      <div class="add-cart-button">
-        Mua ngay
-      </div>
+      <div class="add-cart-button">Mua ngay</div>
     </div>
   </div>
 </template>
 <script>
 import { computed } from "@vue/runtime-core";
 export default {
+  props: {
+    uid: {
+      type: String,
+    },
+  },
   data() {
     return {
-      imgScr: "",
+      imgScr:
+        "https://file.hstatic.net/1000036599/file/55_24eeae81610d42e1be5114ca815d7ba6.png",
       brandPath: "",
-      brandName: "",
-      productName: "",
+      brandName: "THE FACE SHOP",
+      productName:
+        "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
       listPrice: 0,
       retailPrice: 0,
       discountPercent: 0,
-      ratingStar: 0,
+      ratingStar: 5,
       isCountingStock: false,
       countingStock: 99,
       isSoldOut: false,
@@ -72,10 +78,32 @@ export default {
   width: 230px;
   height: 400px;
   padding: 10px;
+  border-radius: 10px;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  text-align: center;
+  font-size: smaller;
 
-  :hover {
-    transform: translate(0px, 50px);
-    box-shadow: inset 0px 0px 0px;
+  &__img img {
+    max-width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  &__detail p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+
+  }
+
+  &:hover {
+    transform: translate3d(0px, -10px, 0px);
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
+    transition: all 0.3s ease 0s;
   }
 }
 .discount-tag {
@@ -96,12 +124,11 @@ export default {
   width: 100px;
   height: 50px;
   border-radius: 10px;
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
 
   :hover {
     background-color: #94c83d;
   }
-
 }
 </style>

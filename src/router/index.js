@@ -3,6 +3,10 @@ import { createRouter, createWebHistory } from "vue-router";
 import AppLayout from "../layouts/AppLayout.vue";
 import HomeStore from "../pages/store/home/HomeStore.vue";
 import NotFound from "../pages/404/404.vue";
+import BrandsPage from "../pages/store/brands/Brands.vue";
+import CategoriesPage from "../pages/store/categories/Categories.vue"
+import CollectionsPage from "../pages/store/collections/Collections.vue";
+
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -25,6 +29,21 @@ const routes = [
         path: "",
         component: HomeStore,
       },
+      {
+        name: "brands",
+        path: "/brands",
+        component: BrandsPage,
+      },
+      {
+        name: "categories",
+        path: "/categories/{id}",
+        components: CategoriesPage,
+      },
+      {
+        name: "collections",
+        path: "/collections/{id}",
+        components: CollectionsPage,
+      }
     ],
   },
   {
