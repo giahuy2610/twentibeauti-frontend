@@ -28,9 +28,9 @@
           <i
             @click="count++"
             class="pi pi-user ml-3"
-            style="font-size: 20px;"
+            style="font-size: 20px"
           ></i>
-          
+
           <i
             @click="count++"
             class="pi pi-heart mx-3"
@@ -46,7 +46,28 @@
       </div>
     </div>
     <div class="header-wrapper__sub-nav">
-      <div class="header-wrapper__sub-nav__content">f</div>
+      <ul>
+        <a href="">Khuyến mãi</a>
+        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, margin-left:2px; margin-right:20 addpx"></i>
+      </ul>
+      <ul>
+        <a href="">Thương hiệu</a>
+      </ul>
+      <ul>
+        <a href="">Sản phẩm mới</a>
+      </ul>
+      <ul>
+        <a href="">Trang điểm</a>
+      </ul>
+      <ul>
+        <a href="">Dưỡng da</a>
+      </ul>
+      <ul>
+        <a href="">Chăm sóc cơ thể</a>
+      </ul>
+      <ul>
+        <a href="">Nhận mã ưu đãi</a>
+      </ul>
     </div>
   </div>
 
@@ -101,6 +122,34 @@ i {
   }
 }
 
+.header-wrapper__sub-nav ul a {
+  width: 68px;
+  height: 28px;
+  
+  text-decoration: none;
+
+  /* Link */
+
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 28px;
+  /* identical to box height, or 175% */
+
+  text-align: center;
+  letter-spacing: 0.2px;
+
+  /* text */
+
+  color: #252b42;
+
+  /* Inside auto layout */
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
 .header-wrapper__sub-nav {
   width: 100vw;
   height: 50px;
