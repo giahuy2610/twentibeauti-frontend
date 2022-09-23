@@ -18,7 +18,8 @@ import TabPanel from 'primevue/tabpanel';
 import Tree from 'primevue/tree';
 import Divider from 'primevue/divider';
 
-import 'primevue/resources/themes/saga-blue/theme.css';
+import './scss/_theme.scss';
+//import 'primevue/resources/themes/saga-green/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';   
 

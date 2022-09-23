@@ -25,10 +25,17 @@
         Xem tất cả
       </div>
     </div>
+    <HorizontalScroller></HorizontalScroller>
   </div>
 </template>
 <script>
+import HorizontalScroller from "./HorizontalScroller.vue";
+
+
 export default {
+  components: {
+    HorizontalScroller
+  },
   data() {
     return {
       timeLeft: {
@@ -45,7 +52,7 @@ export default {
 .flash-sale {
   width: 100%;
   border-radius: 20px;
-  background-color: orange;
+  background-color: rgb(201, 101, 95);
   padding: 20px;
 
   &__top {

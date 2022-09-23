@@ -7,7 +7,7 @@
       <img :src="imgScr" alt="" />
     </div>
     <div class="product-card__detail">
-      <h5 class="brand-name--hover">{{ brandName }}</h5>
+      <h5 class="brand-name--hover"><router-link :to="brandPath" class="brand-name--hover">{{ brandName }}</router-link></h5>
       <p>{{ productName }}</p>
       <div class="product-card__detail__price-row">
         <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
@@ -31,7 +31,6 @@
       <ProgressBar v-if="isCountingStock" :value="value">
         còn {{ countingStock }} sản phẩm</ProgressBar
       >
-      <div class="add-cart-button" @click.stop=""><p>Mua ngay</p></div>
     </div>
   </div>
 </template>
@@ -49,11 +48,11 @@ export default {
     return {
       imgScr:
         "https://file.hstatic.net/1000036599/file/55_24eeae81610d42e1be5114ca815d7ba6.png",
-      brandPath: "",
+      brandPath: "/categories/the-face-shop",
       brandName: "THE FACE SHOP",
       productName:
         "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
-      listPrice: 100000,
+      listPrice: 1100000,
       retailPrice: 110000,
       discountPercent: 0,
       ratingStar: 5,

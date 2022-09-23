@@ -1,4 +1,8 @@
-# primevue-quickstart-vite
+#TWENTI BEAUTI 
+
+## About Twenti
+## Features
+## Technical
 
 
 ## Project setup
