@@ -52,7 +52,7 @@ export default {
 .flash-sale {
   width: 100%;
   border-radius: 20px;
-  background-color: rgb(201, 101, 95);
+  background-color: rgb(227, 113, 113);
   padding: 20px;
 
   &__top {

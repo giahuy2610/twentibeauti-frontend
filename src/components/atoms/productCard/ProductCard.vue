@@ -7,7 +7,14 @@
       <img :src="imgScr" alt="" />
     </div>
     <div class="product-card__detail">
-      <h5 class="brand-name--hover"><router-link :to="brandPath" class="brand-name--hover">{{ brandName }}</router-link></h5>
+      <h5
+        class="brand-name--hover"
+        @click="
+          $router.push({ path: '/categories/{{brandPath}}', replace: true })
+        "
+      >
+        {{ brandName }}
+      </h5>
       <p>{{ productName }}</p>
       <div class="product-card__detail__price-row">
         <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
@@ -41,7 +48,6 @@ export default {
     uid: {
       type: Number,
       required: true,
-      default: 0,
     },
   },
   data() {
@@ -75,6 +81,7 @@ export default {
       return parseInt((1 - this.retailPrice / this.listPrice) * 100);
     },
   },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
