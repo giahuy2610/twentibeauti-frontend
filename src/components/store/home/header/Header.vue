@@ -71,18 +71,18 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 i {
   cursor: pointer;
 }
 .header-wrapper {
-  width: 100vw;
   min-height: 80px;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   padding: 0 50px;
+  background-color: red;
 
   &__content {
     width: 100%;
@@ -91,6 +91,7 @@ i {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    background-color: gray;
 
     &__left {
       display: flex;
@@ -119,6 +120,7 @@ i {
     align-items: center;
     justify-content: space-between;
     overflow: hidden;
+    background-color: gray;
   }
 }
 </style>

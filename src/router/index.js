@@ -1,11 +1,20 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+//store
 import AppLayout from "../layouts/AppLayout.vue";
+
 import HomeStore from "../pages/store/home/HomeStore.vue";
 import NotFound from "../pages/404/404.vue";
 import BrandsPage from "../pages/store/brands/Brands.vue";
-import CategoriesPage from "../pages/store/categories/Categories.vue"
+import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
+
+//admin
+import AdminLayout from "../layouts/AdminLayout.vue";
+
+import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
+import Products from "../pages/admin/products/Products.vue";
+import ProductDetail from "../pages/admin/products/ProductDetail.vue";
 
 const routes = [
   {
@@ -43,18 +52,28 @@ const routes = [
         name: "collections",
         path: "/collections/{id}",
         components: CollectionsPage,
-      }
+      },
     ],
   },
   {
     name: "admin",
     path: "/admin",
-    component: AppLayout,
+    component: AdminLayout,
     children: [
       {
         name: "dashboard",
         path: "",
-        component: HomeStore,
+        component: Dashboard,
+      },
+      {
+        name: "products",
+        path: "/products",
+        component: Products,
+      },
+      {
+        name: "product details",
+        path: "/products/{id}",
+        component: ProductDetail,
       },
     ],
   },

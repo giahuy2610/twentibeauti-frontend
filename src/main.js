@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
+
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import SelectButton from 'primevue/selectbutton';
@@ -12,7 +13,10 @@ import Card from 'primevue/card';
 import Rating from 'primevue/rating';
 import ProgressBar from 'primevue/progressbar';
 import BadgeDirective from 'primevue/badgedirective';       
-
+import TabView from 'primevue/tabview';
+import TabPanel from 'primevue/tabpanel';
+import Tree from 'primevue/tree';
+import Divider from 'primevue/divider';
 
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -30,5 +34,12 @@ app.component('Sidebar', Sidebar);
 app.component('Card', Card);
 app.component('Rating', Rating);
 app.component('ProgressBar', ProgressBar);
+app.component('TabView', TabView);
+app.component('TabPanel', TabPanel);
+app.component('Divider', Divider);
+app.component('Tree', Tree);
+
+
 app.directive('badge', BadgeDirective);
+
 app.mount('#app');

@@ -13,7 +13,7 @@
         <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
         <p
           v-if="retailPrice !== listPrice"
-          style="text-decoration: line-through; margin: 0 20px 0 10px;"
+          style="text-decoration: line-through; margin: 0 20px 0 10px"
         >
           {{ Intl.NumberFormat().format(listPrice) }}đ
         </p>
@@ -26,6 +26,7 @@
         :readonly="true"
         :stars="5"
         :cancel="false"
+        style="width: fit-content"
       />
       <ProgressBar v-if="isCountingStock" :value="value">
         còn {{ countingStock }} sản phẩm</ProgressBar
@@ -77,7 +78,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .brand-name--hover:hover {
   color: #94c83d;
   text-decoration: underline;
@@ -100,7 +101,11 @@ export default {
   }
 
   &__detail {
-    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
     &__price-row {
       display: flex;
       flex-direction: row;

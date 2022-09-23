@@ -12,7 +12,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .button {
   display: flex;
   text-align: center;

@@ -22,7 +22,7 @@ export default {
   },
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
     .cart {
         display: flex;
         background-color: #94c83d ;

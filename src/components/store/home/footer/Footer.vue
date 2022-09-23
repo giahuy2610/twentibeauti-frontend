@@ -29,7 +29,7 @@
 <script>
 export default {};
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 $desktop:1280px;
 $lg:1024px;
 $md:768px;
