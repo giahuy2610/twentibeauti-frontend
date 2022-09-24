@@ -60,6 +60,7 @@ export default {
   justify-content: space-between;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  padding-top: 15px;
 
   &::-webkit-scrollbar {
     display: none;
@@ -68,13 +69,13 @@ export default {
   .btn-right {
     position: absolute;
     top: 50%;
-    z-index: 99;
+    z-index: 45;
     transform: translateX(-50%);
   }
   .btn-left {
     position: absolute;
     top: 50%;
-    z-index: 99;
+    z-index: 45;
     right: 0;
     transform: translateX(50%);
   }

@@ -1,5 +1,6 @@
 <template lang="">
   <div class="home__wrapper">
+    <div class="" style="height:1000px"></div>
     <AdsSlider></AdsSlider>
     <div class="home__wrapper__content">
       <ProductCard uid="123"></ProductCard>
@@ -35,14 +36,17 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 50px;
+  padding: 0 70px;
+  overflow: hidden;
 
   &__content {
+    width: 100%;
     max-width: 1300px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin: 0 10px;
   }
 }
 </style>

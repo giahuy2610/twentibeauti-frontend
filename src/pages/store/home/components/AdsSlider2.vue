@@ -23,19 +23,18 @@ export default {
 </script>
 <style lang="scss" scoped>
 .wrapper {
-  display: flex-box;
-  flex-wrap: nowrap;
-  flex-direction: row;
+  display: flex;
   width: 100%;
-  //background-color: gray;
   box-sizing: border-box;
   justify-content: space-between;
+  
 
   img {
-    width: auto;
     max-width: 32%;
-    object-fit: cover;
+    background-size: contain;
+    object-fit: contain;
     border-radius: 10px;
+    flex: 1;
 
     &:hover {
       transform: translate3d(0px, -5px, 0px);

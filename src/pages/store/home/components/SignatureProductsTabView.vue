@@ -1,63 +1,90 @@
 <template lang="">
   <div class="wrapper">
-    <h3>{{message}}</h3>
-
-
-
-    <TabView ref="tabview1">
-      <TabPanel header="Header I">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </TabPanel>
-      <TabPanel header="Header II">
-        <p>
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-          ab illo inventore veritatis et quasi architecto beatae vitae dicta
-          sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-          aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos
-          qui ratione voluptatem sequi nesciunt. Consectetur, adipisci velit,
-          sed quia non numquam eius modi.
-        </p>
-      </TabPanel>
-      <TabPane header="Header III">
-        <p>
-          At vero eos et accusamus et iusto odio dignissimos ducimus qui
-          blanditiis praesentium voluptatum deleniti atque corrupti quos dolores
-          et quas molestias excepturi sint occaecati cupiditate non provident,
-          similique sunt in culpa qui officia deserunt mollitia animi, id est
-          laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita
-          distinctio. Nam libero tempore, cum soluta nobis est eligendi optio
-          cumque nihil impedit quo minus.
-        </p>
-      </TabPane>
-    </TabView>
+    <h3>{{ message }}</h3>
+    <div class="wrapper__tabs">
+      <p
+        v-for="(item, index) in tabs"
+        :class="[index === tabActived ? 'active' : '']"
+        @click="tabActived = index"
+      >
+        {{ item.category }}
+      </p>
+    </div>
+    <div class="wrapper__products">
+      <ProductCard
+        v-for="(item, index) in tabs[tabActived].products"
+      ></ProductCard>
+    </div>
   </div>
 </template>
 <script>
+import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
 export default {
-    props: {
-        message: {
-            type: String,
-            default: "head",
-        }
-    }
+  components: {
+    ProductCard,
+  },
+  props: {
+    message: {
+      type: String,
+      default: "head",
+    },
+  },
+  data() {
+    return {
+      tabActived: 1,
+      tabs: [
+        {
+          category: "Chăm sóc cơ thể",
+          path: "/categories/cham-soc-co-the",
+          products: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        },
+        {
+          category: "Trang điểm",
+          path: "/categories/trang-diem",
+          products: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        },
+        {
+          category: "Dưỡng da",
+          path: "/categories/duong-da",
+          products: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+        },
+      ],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
-    .wrapper {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  &__tabs {
+    display: flex;
+    gap: 1rem;
+
+    p {
+      cursor: pointer;
+
+      &:hover {
+        color: var(--primary-color);
+        text-decoration: underline;
+      }
     }
 
+    .active {
+      color: var(--primary-color);
+      font-weight: bold;
+      text-decoration: none !important;
+    }
+  }
 
+  &__products {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+}
 </style>
