@@ -90,7 +90,7 @@ export default {
   text-decoration: underline;
 }
 .product-card {
-  width: 230px;
+  max-width: 230px;
   height: 400px;
   padding: 10px;
   border-radius: 10px;

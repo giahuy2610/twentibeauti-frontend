@@ -4,7 +4,8 @@
   <router-view></router-view>
 </template>
 
-<style>
+<style lang="scss">
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -13,7 +14,7 @@
   box-sizing: border-box;
 }
 router-link {
-  text-decoration: none !important;;
+  text-decoration: none !important;
   color: inherit;
 }
 </style>

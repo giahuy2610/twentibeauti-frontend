@@ -1,6 +1,6 @@
 <template lang="">
   <div class="wrapper">
-    <h3>{{ message }}</h3>
+    <h3>SẢN PHẨM NỔI BẬT</h3>
     <div class="wrapper__tabs">
       <p
         v-for="(item, index) in tabs"
@@ -15,13 +15,21 @@
         v-for="(item, index) in tabs[tabActived].products"
       ></ProductCard>
     </div>
+    <ButtonPrimary
+      message="Xem tất cả sản phẩm"
+      :pathRoute="tabs[tabActived].path"
+      style="margin: 2rem 0"
+    ></ButtonPrimary>
   </div>
 </template>
 <script>
 import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
+import ButtonPrimary from "@/components/atoms/buttonPrimary/ButtonPrimary.vue";
+
 export default {
   components: {
     ProductCard,
+    ButtonPrimary,
   },
   props: {
     message: {
@@ -31,7 +39,7 @@ export default {
   },
   data() {
     return {
-      tabActived: 1,
+      tabActived: 0,
       tabs: [
         {
           category: "Chăm sóc cơ thể",
@@ -85,6 +93,8 @@ export default {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
   }
 }
 </style>
