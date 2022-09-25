@@ -13,7 +13,9 @@
         icon="pi pi-angle-right"
         class="btn-left p-button-rounded p-button-success p-button-outlined"
       />
-
+      <div class="item">
+        
+      </div>
       <ProductCard
         class="appear"
         v-for="item in allProducts"
@@ -81,6 +83,7 @@ export default {
   }
 
   .appear {
+    width: 230px;
     margin: 0 10px;
     display: block;
     animation: fadeIn 0.8s;

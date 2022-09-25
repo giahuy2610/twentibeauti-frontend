@@ -11,9 +11,9 @@
       </p>
     </div>
     <div class="wrapper__products">
-      <ProductCard
-        v-for="(item, index) in tabs[tabActived].products"
-      ></ProductCard>
+      <div class="item" v-for="(item, index) in tabs[tabActived].products">
+        <ProductCard></ProductCard>
+      </div>
     </div>
     <ButtonPrimary
       message="Xem tất cả sản phẩm"
@@ -62,6 +62,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .wrapper {
   display: flex;
   justify-content: center;
@@ -92,9 +93,23 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
+    justify-content: flex-start;
     padding: 1rem 0;
+
+    .item {
+      max-width: 25%;
+      padding: 0.5rem;
+
+      @include mobile {
+        max-width: 50%;
+      }
+      @include mini-tablet {
+        max-width: 50%;
+      }
+      @include tablet {
+        max-width: 33.33%;
+      }
+    }
   }
 }
 </style>

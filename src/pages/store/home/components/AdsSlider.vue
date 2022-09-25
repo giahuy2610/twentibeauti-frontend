@@ -27,6 +27,7 @@
         src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
         :uid="item"
         :key="item"
+        @click="$router.push({ path: '/collections/flash-sale', replace: true })"
       />
     </div>
   </div>

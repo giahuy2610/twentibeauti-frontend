@@ -57,8 +57,8 @@ export default {
 
     img {
       max-width: 100%;
-      height: 100px;
-      object-fit: contain;
+      height: 120px;
+      object-fit: fill;
       border-radius: 10px;
     }
   }

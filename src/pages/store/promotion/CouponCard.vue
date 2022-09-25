@@ -78,7 +78,6 @@ export default {
 <style lang="scss" scoped>
 
 .coupon-card {
-  flex: 1 1 20%;
   padding: 1rem;
   border-radius: 10px;
 

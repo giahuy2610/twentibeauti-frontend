@@ -75,6 +75,13 @@ export default {
       max-width: 80%;
       margin-left: 1rem;
 
+      @include mobile {
+        max-width: 100%;
+      }
+      @include mini-tablet {
+        max-width: 100%;
+      }
+
       &__top {
         display: flex;
         align-content: space-between;
@@ -87,31 +94,23 @@ export default {
       }
 
       &__content {
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
 
-        @include mobile {
-          width: 100%;
-        }
-        @include mini-tablet {
-          width: 100%;
-        }
-
         .item {
-          margin: 0.8rem 0;
-          display: flex;
-          width: 25%;
-          justify-content: center;
+          padding: 0.5rem;
+          max-width: 25%;
 
           @include mobile {
-            width: 50%;
+            max-width: 50%;
           }
           @include mini-tablet {
-            width: 50%;
+            max-width: 50%;
           }
           @include tablet {
-            width: 33.33%;
+            max-width: 33.33%;
           }
         }
       }
