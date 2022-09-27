@@ -17,6 +17,7 @@ import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import Tree from 'primevue/tree';
 import Divider from 'primevue/divider';
+import AutoComplete from 'primevue/autocomplete';
 
 import './scss/_theme.scss';
 //import 'primevue/resources/themes/saga-green/theme.css';
@@ -39,7 +40,7 @@ app.component('TabView', TabView);
 app.component('TabPanel', TabPanel);
 app.component('Divider', Divider);
 app.component('Tree', Tree);
-
+app.component('AutoComplete',AutoComplete);
 
 app.directive('badge', BadgeDirective);
 
