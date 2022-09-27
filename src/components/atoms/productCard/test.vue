@@ -1,6 +1,6 @@
 <template lang="">
     <div>
-        đây là trang admin
+        
     </div>
 </template>
 <script>

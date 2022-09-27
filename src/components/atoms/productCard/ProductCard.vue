@@ -7,14 +7,14 @@
       <img :src="imgScr" alt="" />
     </div>
     <div class="product-card__detail">
-      <h5
+      <h4
         class="brand-name--hover"
         @click="
           $router.push({ path: '/categories/{{brandPath}}', replace: true })
         "
       >
         {{ brandName }}
-      </h5>
+      </h4>
       <p>{{ productName }}</p>
       <div class="product-card__detail__price-row">
         <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
@@ -58,8 +58,8 @@ export default {
       brandName: "THE FACE SHOP",
       productName:
         "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
-      listPrice: 1100000,
-      retailPrice: 110000,
+      listPrice: 1000000,
+      retailPrice: 560000,
       discountPercent: 0,
       ratingStar: 5,
       isCountingStock: false,
@@ -90,8 +90,6 @@ export default {
   text-decoration: underline;
 }
 .product-card {
-  width: 230px;
-  height: 400px;
   padding: 10px;
   border-radius: 10px;
   background-color: #fafafa;
@@ -112,13 +110,13 @@ export default {
     text-align: center;
     justify-content: center;
     align-items: center;
+
     &__price-row {
       display: flex;
       flex-direction: row;
       width: 100%;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
     }
 
     p {

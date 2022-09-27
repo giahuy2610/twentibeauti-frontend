@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import PrimeVue from 'primevue/config';
+import ToastService from 'primevue/toastservice';
 
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
@@ -27,6 +28,8 @@ import 'primeicons/primeicons.css';
 const app = createApp(App);
 app.use(PrimeVue);
 app.use(router);
+app.use(ToastService);
+
 app.component('Button', Button);
 app.component('SelectButton', SelectButton);
 app.component('InputText', InputText);

@@ -9,6 +9,7 @@ import BrandsPage from "../pages/store/brands/Brands.vue";
 import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
 import Payment from "../pages/store/payment/Payment.vue";
+import PromotionsPage from "../pages/store/promotion/Promotion.vue";
 
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
@@ -45,14 +46,19 @@ const routes = [
         component: BrandsPage,
       },
       {
-        name: "categories",
-        path: "/categories/{id}",
-        components: CategoriesPage,
+        name: "collections",
+        path: "/collections",
+        component: CollectionsPage,
       },
       {
-        name: "collections",
-        path: "/collections/{id}",
-        components: CollectionsPage,
+        name: "promotions",
+        path: "/promotions",
+        component: PromotionsPage,
+      },
+      {
+        name: "categories",
+        path: "/categories",
+        component: CategoriesPage,
       },
       {
         name: "payment",

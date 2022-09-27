@@ -1,6 +1,6 @@
 <template lang="">
   <div class="wrapper">
-    <h3>{{ message }}</h3>
+    <h3>SẢN PHẨM NỔI BẬT</h3>
     <div class="wrapper__tabs">
       <p
         v-for="(item, index) in tabs"
@@ -11,17 +11,25 @@
       </p>
     </div>
     <div class="wrapper__products">
-      <ProductCard
-        v-for="(item, index) in tabs[tabActived].products"
-      ></ProductCard>
+      <div class="item" v-for="(item, index) in tabs[tabActived].products">
+        <ProductCard></ProductCard>
+      </div>
     </div>
+    <ButtonPrimary
+      message="Xem tất cả sản phẩm"
+      :pathRoute="tabs[tabActived].path"
+      style="margin: 2rem 0"
+    ></ButtonPrimary>
   </div>
 </template>
 <script>
 import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
+import ButtonPrimary from "@/components/atoms/buttonPrimary/ButtonPrimary.vue";
+
 export default {
   components: {
     ProductCard,
+    ButtonPrimary,
   },
   props: {
     message: {
@@ -31,7 +39,7 @@ export default {
   },
   data() {
     return {
-      tabActived: 1,
+      tabActived: 0,
       tabs: [
         {
           category: "Chăm sóc cơ thể",
@@ -54,6 +62,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .wrapper {
   display: flex;
   justify-content: center;
@@ -84,7 +93,23 @@ export default {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: flex-start;
+    padding: 1rem 0;
+
+    .item {
+      max-width: 25%;
+      padding: 0.5rem;
+
+      @include mobile {
+        max-width: 50%;
+      }
+      @include mini-tablet {
+        max-width: 50%;
+      }
+      @include tablet {
+        max-width: 33.33%;
+      }
+    }
   }
 }
 </style>

@@ -27,6 +27,7 @@
         src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
         :uid="item"
         :key="item"
+        @click="$router.push({ path: '/collections/flash-sale', replace: true })"
       />
     </div>
   </div>
@@ -52,29 +53,29 @@ export default {
         this.currentPage++;
         this.$refs.wrapper.scrollLeft += screen.width;
       } else {
-        this.$refs.wrapper.scrollLeft -= screen.width*this.allProducts.length;
+        this.$refs.wrapper.scrollLeft -= screen.width * this.allProducts.length;
         this.currentPage = 1;
-        
       }
     },
     scrollRight: function () {
       if (this.currentPage != 1) {
-      this.currentPage--;
-      this.$refs.wrapper.scrollLeft -= screen.width;
-      }
-      else {
+        this.currentPage--;
+        this.$refs.wrapper.scrollLeft -= screen.width;
+      } else {
         this.currentPage = this.allProducts.length;
-        this.$refs.wrapper.scrollLeft += screen.width*this.allProducts.length;
+        this.$refs.wrapper.scrollLeft += screen.width * this.allProducts.length;
       }
       //this.$refs.wrapper.scrollLeft -= (screen.width - this.$refs.image[0].offsetWidth) ;
     },
     scrollTo: function (pageNum) {
-      this.$refs.wrapper.scrollLeft += (pageNum - this.currentPage) * screen.width;      
+      this.$refs.wrapper.scrollLeft +=
+        (pageNum - this.currentPage) * screen.width;
       this.currentPage = pageNum;
-
-    }
+    },
   },
-  mounted() {},
+  mounted() {
+    setInterval(this.scrollLeft, 3000);
+  },
 };
 </script>
 <style lang="scss" scoped>

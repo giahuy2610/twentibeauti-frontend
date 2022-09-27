@@ -1,14 +1,19 @@
 <template lang="">
-  <div class="button">{{ message }}</div>
+  <div class="button" @click="$router.push({ path: pathRoute, replace: true })">
+    {{ message }}
+  </div>
 </template>
 <script>
 export default {
   props: {
     message: {
-        type: String,
-        default: "Xem thêm sản phẩm",        
-    }
-
+      type: String,
+      default: "Xem thêm sản phẩm",
+    },
+    pathRoute: {
+      type: String,
+      default: "/",
+    },
   },
 };
 </script>
