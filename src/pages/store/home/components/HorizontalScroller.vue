@@ -2,33 +2,26 @@
   <div class="over">
     <div class="scroll-wrapper" ref="wrapper">
       <Button
+        v-show="currentPage > 1"
         @click="scrollRight"
         icon="pi pi-angle-left"
         class="btn-right p-button-rounded p-button-success p-button-outlined"
       />
       <Button
+        v-show="currentPage < Math.ceil(allProducts.length / 5)"
         @click="scrollLeft"
         icon="pi pi-angle-right"
         class="btn-left p-button-rounded p-button-success p-button-outlined"
       />
-      <div class="pag">
-        <div
-          v-for="index in allProducts"
-          class="circle-pag"
-          :style="[index === currentPage ? ' background-color:white ' : '']"
-          @click="scrollTo(index)"
-        ></div>
+      <div class="item">
+        
       </div>
-
-      <img
-        ref="image"
+      <ProductCard
         class="appear"
         v-for="item in allProducts"
-        src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
         :uid="item"
         :key="item"
-        @click="$router.push({ path: '/collections/flash-sale', replace: true })"
-      />
+      ></ProductCard>
     </div>
   </div>
 </template>
@@ -49,91 +42,55 @@ export default {
   },
   methods: {
     scrollLeft: function () {
-      if (this.currentPage != this.allProducts.length) {
-        this.currentPage++;
-        this.$refs.wrapper.scrollLeft += screen.width;
-      } else {
-        this.$refs.wrapper.scrollLeft -= screen.width * this.allProducts.length;
-        this.currentPage = 1;
-      }
+      this.currentPage++;
+      this.$refs.wrapper.scrollLeft += this.$refs.wrapper.offsetWidth;
     },
     scrollRight: function () {
-      if (this.currentPage != 1) {
-        this.currentPage--;
-        this.$refs.wrapper.scrollLeft -= screen.width;
-      } else {
-        this.currentPage = this.allProducts.length;
-        this.$refs.wrapper.scrollLeft += screen.width * this.allProducts.length;
-      }
-      //this.$refs.wrapper.scrollLeft -= (screen.width - this.$refs.image[0].offsetWidth) ;
-    },
-    scrollTo: function (pageNum) {
-      this.$refs.wrapper.scrollLeft +=
-        (pageNum - this.currentPage) * screen.width;
-      this.currentPage = pageNum;
+      this.currentPage--;
+      this.$refs.wrapper.scrollLeft -= this.$refs.wrapper.offsetWidth;
     },
   },
-  mounted() {
-    setInterval(this.scrollLeft, 3000);
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .over {
   position: relative;
-  width: 100vw;
 }
 .scroll-wrapper {
   display: flex;
   justify-content: space-between;
   overflow-x: scroll;
   scroll-behavior: smooth;
+  padding-top: 15px;
 
   &::-webkit-scrollbar {
     display: none;
-  }
-
-  .pag {
-    position: absolute;
-    width: fit-content;
-    display: flex;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    gap: 0.5rem;
-
-    .circle-pag {
-      width: 1rem;
-      height: 1rem;
-      border-radius: 50%;
-      border: 1px solid white;
-      cursor: pointer;
-    }
   }
 
   .btn-right {
     position: absolute;
     top: 50%;
     z-index: 45;
-    transform: translateX(50%);
+    transform: translateX(-50%);
   }
   .btn-left {
     position: absolute;
     top: 50%;
     z-index: 45;
     right: 0;
-    transform: translateX(-50%);
+    transform: translateX(50%);
   }
 
   .appear {
-    max-width: 100%;
+    width: 230px;
+    margin: 0 10px;
     display: block;
     animation: fadeIn 0.8s;
     -webkit-animation: fadeIn 0.8s;
     -moz-animation: fadeIn 0.8s;
     -o-animation: fadeIn 0.8s;
     -ms-animation: fadeIn 0.8s;
-    cursor: pointer;
 
     @keyframes fadeIn {
       0% {

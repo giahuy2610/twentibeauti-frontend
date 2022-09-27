@@ -7,7 +7,14 @@
       <img :src="imgScr" alt="" />
     </div>
     <div class="product-card__detail">
-      <h5 class="brand-name--hover">{{ brandName }}</h5>
+      <h4
+        class="brand-name--hover"
+        @click="
+          $router.push({ path: '/categories/{{brandPath}}', replace: true })
+        "
+      >
+        {{ brandName }}
+      </h4>
       <p>{{ productName }}</p>
       <div class="product-card__detail__price-row">
         <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
@@ -31,7 +38,6 @@
       <ProgressBar v-if="isCountingStock" :value="value">
         còn {{ countingStock }} sản phẩm</ProgressBar
       >
-      <div class="add-cart-button" @click.stop=""><p>Mua ngay</p></div>
     </div>
   </div>
 </template>
@@ -42,19 +48,18 @@ export default {
     uid: {
       type: Number,
       required: true,
-      default: 0,
     },
   },
   data() {
     return {
       imgScr:
         "https://file.hstatic.net/1000036599/file/55_24eeae81610d42e1be5114ca815d7ba6.png",
-      brandPath: "",
+      brandPath: "/categories/the-face-shop",
       brandName: "THE FACE SHOP",
       productName:
         "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
-      listPrice: 100000,
-      retailPrice: 110000,
+      listPrice: 1000000,
+      retailPrice: 560000,
       discountPercent: 0,
       ratingStar: 5,
       isCountingStock: false,
@@ -76,6 +81,7 @@ export default {
       return parseInt((1 - this.retailPrice / this.listPrice) * 100);
     },
   },
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>
@@ -84,8 +90,6 @@ export default {
   text-decoration: underline;
 }
 .product-card {
-  width: 230px;
-  height: 400px;
   padding: 10px;
   border-radius: 10px;
   background-color: #fafafa;
@@ -106,13 +110,13 @@ export default {
     text-align: center;
     justify-content: center;
     align-items: center;
+
     &__price-row {
       display: flex;
       flex-direction: row;
       width: 100%;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
     }
 
     p {

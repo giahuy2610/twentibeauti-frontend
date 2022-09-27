@@ -46,29 +46,36 @@
       </div>
     </div>
     <div class="header-wrapper__sub-nav">
-      <ul>
-        <a href="">Khuyến mãi</a>
-        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, margin-left:2px; margin-right:20 addpx"></i>
+     
+  </div> 
+  
+
+      <!-- <ul>
+        <button class=""
       </ul>
       <ul>
         <a href="">Thương hiệu</a>
+        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
       </ul>
       <ul>
         <a href="">Sản phẩm mới</a>
       </ul>
       <ul>
         <a href="">Trang điểm</a>
+        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
       </ul>
       <ul>
         <a href="">Dưỡng da</a>
+        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
       </ul>
       <ul>
         <a href="">Chăm sóc cơ thể</a>
+        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
       </ul>
       <ul>
         <a href="">Nhận mã ưu đãi</a>
-      </ul>
-    </div>
+      </ul> -->
+    
   </div>
 
   <Sidebar v-model:visible="visibleCart" :baseZIndex="10000" position="right">
@@ -96,6 +103,16 @@ export default {
 i {
   cursor: pointer;
 }
+
+.header-wrapper__sub-nav-add {
+  position: absolute;
+  background-color: #333;
+}
+.header-wrapper__sub-nav-add li {
+  // position: absolute;
+  text-decoration: none;
+}
+
 .header-wrapper {
   min-height: 80px;
   display: flex;
@@ -125,7 +142,7 @@ i {
 .header-wrapper__sub-nav ul a {
   width: 68px;
   height: 28px;
-  
+
   text-decoration: none;
 
   /* Link */
@@ -151,6 +168,7 @@ i {
   flex-grow: 0;
 }
 .header-wrapper__sub-nav {
+  position: relative;
   width: 100vw;
   height: 50px;
   display: flex;
@@ -172,4 +190,5 @@ i {
     background-color: gray;
   }
 }
+
 </style>

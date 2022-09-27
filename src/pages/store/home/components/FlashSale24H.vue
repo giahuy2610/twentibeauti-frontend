@@ -8,13 +8,45 @@
       </div>
 
       <div v-else class="count-down">
-        <div>{{(timeLeft.days).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}} NGÀY</div>
+        <div>
+          {{
+            timeLeft.days.toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false,
+            })
+          }}
+          NGÀY
+        </div>
         <div class="divider"></div>
-        <div>{{(timeLeft.hours).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}} GIỜ</div>
+        <div>
+          {{
+            timeLeft.hours.toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false,
+            })
+          }}
+          GIỜ
+        </div>
         <div class="divider"></div>
-        <div>{{(timeLeft.minutes).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}} PHÚT</div>
+        <div>
+          {{
+            timeLeft.minutes.toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false,
+            })
+          }}
+          PHÚT
+        </div>
         <div class="divider"></div>
-        <div>{{(timeLeft.seconds).toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false})}} GIÂY</div>
+        <div>
+          {{
+            timeLeft.seconds.toLocaleString("en-US", {
+              minimumIntegerDigits: 2,
+              useGrouping: false,
+            })
+          }}
+          GIÂY
+        </div>
       </div>
       <div
         class="button-more"
@@ -25,27 +57,44 @@
         Xem tất cả
       </div>
     </div>
+    <HorizontalScroller></HorizontalScroller>
+    <div class="flash-sale__bottom">
+      <div
+        class="button-more--small-screen"
+        @click="
+          $router.push({ path: '/collections/flash-sale', replace: true })
+        "
+      >
+        Xem tất cả
+      </div>
+    </div>
   </div>
 </template>
 <script>
+import HorizontalScroller from "./HorizontalScroller.vue";
+
 export default {
+  components: {
+    HorizontalScroller,
+  },
   data() {
     return {
       timeLeft: {
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 1
-      }
+        seconds: 1,
+      },
     };
   },
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .flash-sale {
   width: 100%;
   border-radius: 20px;
-  background-color: orange;
+  background-color: rgb(227, 113, 113);
   padding: 20px;
 
   &__top {
@@ -58,6 +107,10 @@ export default {
       max-width: 100px;
     }
 
+    @include mobile {
+      flex-direction: column;
+    }
+
     .button-more {
       padding: 10px;
       border-radius: 10px;
@@ -65,6 +118,13 @@ export default {
       text-align: center;
       cursor: pointer;
       font-weight: bold;
+
+      @include mobile {
+        display: none;
+      }
+      @include mini-tablet {
+        display: none;
+      }
     }
 
     .count-down {
@@ -82,6 +142,27 @@ export default {
         height: inherit;
         border: 1px solid gray;
       }
+    }
+  }
+  &__bottom {
+    margin-top: 1rem;
+    display: none;
+    justify-content: center;
+    .button-more--small-screen {
+      width: 50%;
+      padding: 10px;
+      border-radius: 10px;
+      background-color: #fff;
+      text-align: center;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    @include mobile {
+      display: flex;
+    }
+    @include mini-tablet {
+      display: flex;
     }
   }
 }

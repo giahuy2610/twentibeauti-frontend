@@ -1,13 +1,15 @@
 <template lang="">
   <div class="home__wrapper">
+    <div class="" style="height: 500px"></div>
     <AdsSlider></AdsSlider>
-    <div class="home__wrapper__content">
-      <ProductCard uid="123"></ProductCard>
-      <ButtonPrimary message="Xem tất cả"></ButtonPrimary>
-      <AdsSlider2></AdsSlider2>
-      <SignatureProductsTabView></SignatureProductsTabView>
-      <FlashSale24H></FlashSale24H>
-    </div>
+    <Wrapper>
+      <div class="home__wrapper__content">
+        <BrandsSlider></BrandsSlider>
+        <FlashSale24H></FlashSale24H>
+        <AdsSlider2 style="margin: 2rem 0"></AdsSlider2>
+        <SignatureProductsTabView></SignatureProductsTabView>
+      </div>
+    </Wrapper>
   </div>
 </template>
 <script>
@@ -17,6 +19,8 @@ import AdsSlider from "./components/AdsSlider.vue";
 import AdsSlider2 from "./components/AdsSlider2.vue";
 import SignatureProductsTabView from "./components/SignatureProductsTabView.vue";
 import FlashSale24H from "./components/FlashSale24H.vue";
+import BrandsSlider from "./components/BrandsSlider.vue";
+import Wrapper from "../../Wrapper.vue";
 export default {
   components: {
     ProductCard,
@@ -25,6 +29,8 @@ export default {
     AdsSlider2,
     SignatureProductsTabView,
     FlashSale24H,
+    BrandsSlider,
+    Wrapper,
   },
 };
 </script>
@@ -35,14 +41,10 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 50px;
+  overflow: hidden;
 
   &__content {
-    max-width: 1300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 100%;
   }
 }
 </style>
