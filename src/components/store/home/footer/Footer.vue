@@ -1,66 +1,75 @@
-<template lang="">
-  <div class="footer-wrapper">
-    <div class="footer-wrapper__subscribe">
-      <div class="footer-wrapper__subscribe__content">
-        <div class="footer-wrapper__subscribe__content__left">
-          <h3>NHẬN BẢN TIN LÀM ĐẸP</h3>
-          <h5>Đừng bỏ lỡ hàng ngàn sản phẩm và khuyến mãi siêu hấp dẫn</h5>
-        </div>
-        <div class="footer-wrapper__subscribe__content__right">
-          <span class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <InputText
-              type="text"
-              v-model="value3"
-              placeholder="Email của bạn iu là"
-              style="border-radius: 10000px"
-            />
-          </span>
-        </div>
-      </div>
-    </div>
 
-    <div class="footer">
-      <div class="contain">
-        <div class="col">
-          <h1>THE FACE SHOP</h1>
-          <ul>
-            <li>Về chúng tôi</li>
-            <li>Câu chuyện thương hiệu</li>
-            <li>Liên hệ với chúng tôi</li>
-          </ul>
+<template lang="">
+  <Wrapper>
+
+    <div class="footer-wrapper">
+      <div class="footer-wrapper__subscribe">
+        <div class="footer-wrapper__subscribe__content">
+          <div class="footer-wrapper__subscribe__content__left">
+            <h3>NHẬN BẢN TIN LÀM ĐẸP</h3>
+            <h5>Đừng bỏ lỡ hàng ngàn sản phẩm và khuyến mãi siêu hấp dẫn</h5>
+          </div>
+          <div class="footer-wrapper__subscribe__content__right">
+            <span class="p-input-icon-left">
+              <i class="pi pi-search" />
+              <InputText
+                type="text"
+                v-model="value3"
+                placeholder="Email của bạn iu là"
+                style="border-radius: 10000px"
+              />
+            </span>
+          </div>
         </div>
-        <div class="col">
-          <h1>CHĂM SÓC KHÁCH HÀNG</h1>
-          <ul>
-            <li>Đăng kí tài khoản thành viên</li>
-            <li>Hướng dẫn mua hàng online</li>
-            <li>Chính sách khách hàng thân thiết</li>
-            <li>Giao hàng và thanh toán</li>
-            <li>Chinha sách đổi hàng</li>
-            <li>Điều khoản mua bán hàng hoá</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h1>ĐỐI TÁC-LIÊN KẾT</h1>
-          <ul>
-            <li>Beauty-box</li>
-          </ul>
-        </div>
-        <div class="col social">
-          <h1>Social</h1>
-          <ul>
-            <li><img src="1.png" width="32" style="width: 32px" /></li>
-            <li><img src="2.png" width="32" style="width: 32px" /></li>
-            <li><img src="3.png" width="32" style="width: 32px" /></li>
-          </ul>
+      </div>
+  
+      <div class="footer">
+        <div class="contain">
+          <div class="col">
+            <h1>THE FACE SHOP</h1>
+            <ul>
+              <li>Về chúng tôi</li>
+              <li>Câu chuyện thương hiệu</li>
+              <li>Liên hệ với chúng tôi</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h1>CHĂM SÓC KHÁCH HÀNG</h1>
+            <ul>
+              <li>Đăng kí tài khoản thành viên</li>
+              <li>Hướng dẫn mua hàng online</li>
+              <li>Chính sách khách hàng thân thiết</li>
+              <li>Giao hàng và thanh toán</li>
+              <li>Chinha sách đổi hàng</li>
+              <li>Điều khoản mua bán hàng hoá</li>
+            </ul>
+          </div>
+          <div class="col">
+            <h1>ĐỐI TÁC-LIÊN KẾT</h1>
+            <ul>
+              <li>Beauty-box</li>
+            </ul>
+          </div>
+          <div class="col social">
+            <h1>Social</h1>
+            <ul>
+              <li><img src="1.png" width="32" style="width: 32px" /></li>
+              <li><img src="2.png" width="32" style="width: 32px" /></li>
+              <li><img src="3.png" width="32" style="width: 32px" /></li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </Wrapper>
 </template>
 <script>
-export default {};
+  import Wrapper from "@/pages/Wrapper.vue"
+export default {
+components: {
+  Wrapper
+}
+};
 </script>
 <style lang="scss" scoped>
 $desktop: 1280px;

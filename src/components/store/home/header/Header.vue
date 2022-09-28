@@ -1,7 +1,7 @@
 <template lang="">
-  <div style="position: fixed; z-index: 99; background-color: #ffff">
-    <div class="header-wrapper">
-      <div class="header-wrapper__content">
+  <div style="width: 100vw;position: fixed; z-index: 99; background-color: #ffff">
+    <Wrapper>
+      <div class="main-content">        
         <div to="/" class="no-underline header-wrapper__content__left">
           <router-link to="/" class="header-wrapper__content__left"
             ><img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
@@ -42,227 +42,229 @@
             style="font-size: 20px"
             v-badge="2"
           ></i>
-        </div>
-      </div>
-    </div>
+        </div></div>
+      </Wrapper>
    
 
      <!--navigation here-->
-	
-	<nav class="navigation">
-		
-		<li class="navigation__item navigation__item--has-submenu">
-      <div>
+	<Wrapper style="border-top: 2px solid black;border-bottom: 2px solid black;">
 
-        <a href="#" class="navigation__link"> Khuyến mãi
+    <nav class="navigation">
+      
+      <li class="navigation__item navigation__item--has-submenu">
+        <div>
+  
+          <a href="#" class="navigation__link"> Khuyến mãi
+            <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
+          </a>
+          
+        </div>
+        <div class="submenu">
+          <div class="submenu__content">
+            <div class="submenu__box">
+              <ul class="submenu-navigation">
+                <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    
+                    <span class="submenu-navigation__title">Tháng 9 rực rỡ- rạng ngời da yêu</span>
+                    
+                  </a>
+                </li>
+                
+                
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
+      </li>
+  
+      <!--navigation 2-->
+      <li class="navigation__item navigation__item--has-submenu">
+        <a href="#" class="navigation__link"> Thương hiệu 
           <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
         </a>
-        
-      </div>
-			<div class="submenu">
-				<div class="submenu__content">
-					<div class="submenu__box">
-						<ul class="submenu-navigation">
-							<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									
-									<span class="submenu-navigation__title">Tháng 9 rực rỡ- rạng ngời da yêu</span>
-									
-								</a>
-							</li>
-							
-							
-							
-						</ul>
-					</div>
-					
-				</div>
-				
-			</div>
-		</li>
-
-    <!--navigation 2-->
-    <li class="navigation__item navigation__item--has-submenu">
-			<a href="#" class="navigation__link"> Thương hiệu 
-        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
-      </a>
-			<div class="submenu">
-				<div class="submenu__content">
-					<div class="submenu__box">
-						<ul class="submenu-navigation">
-							<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Tất cả thương hiệu</span>
-						<span class="submenu-navigation__subtitle">The face shop </span>
-									<span class="submenu-navigation__subtitle">CPN  </span>
-									<span class="submenu-navigation__subtitle">
-										FMGT </span><span class="submenu-navigation__subtitle">Belif</span><span class="submenu-navigation__subtitle">Cocoon </span>
-									
-								</a>
-							</li>
-							
-						</ul>
-					</div>
-					
-				</div>
-				
-			</div>
-		</li>
-    <!--navigation 3: san pham moi -->
-    <li class="navigation__item navigation__item--has-submenu">
-			<a href="#" class="navigation__link"> Sản phẩm mới
-       
-      </a>
+        <div class="submenu">
+          <div class="submenu__content">
+            <div class="submenu__box">
+              <ul class="submenu-navigation">
+                <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Tất cả thương hiệu</span>
+              <span class="submenu-navigation__subtitle">The face shop </span>
+                    <span class="submenu-navigation__subtitle">CPN  </span>
+                    <span class="submenu-navigation__subtitle">
+                      FMGT </span><span class="submenu-navigation__subtitle">Belif</span><span class="submenu-navigation__subtitle">Cocoon </span>
+                    
+                  </a>
+                </li>
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
       </li>
-    <!--navigation 4 : sản phẩm mới-->
-    <li class="navigation__item navigation__item--has-submenu">
-			<a href="#" class="navigation__link">Trang điểm
-       <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
-      </a>
-			<div class="submenu">
-				<div class="submenu__content">
-					<div class="submenu__box">
-						<ul class="submenu-navigation">
-							<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Trang điểm mặt</span>
-						<span class="submenu-navigation__subtitle">Kem nền</span>
-									<span class="submenu-navigation__subtitle">Kem lót </span>
-									<span class="submenu-navigation__subtitle">
-										Kem che khuyết điểm </span><span class="submenu-navigation__subtitle">Má hồng</span><span class="submenu-navigation__subtitle">Phẩn phủ</span>
-									
-								</a>
-									<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Trang điểm môi</span>
-						<span class="submenu-navigation__subtitle">Son thỏi </span>
-									<span class="submenu-navigation__subtitle">Son bóng  </span>
-									<span class="submenu-navigation__subtitle">
-										Son dưỡng môi</span><span class="submenu-navigation__subtitle">Son trị khô môi</span>
-									
-								</a>
-							</li>
-							</li>
-							
-							
-						
-							
-						</ul>
-					</div>
-					
-				</div>
-				
-			</div>
-		</li>
-		
-        <!--navigation 5: dưỡng da-->
-        <li class="navigation__item navigation__item--has-submenu">
-			<a href="#" class="navigation__link"> Dưỡng da
-
-
-        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
-         </a>
-			<div class="submenu">
-				<div class="submenu__content">
-					<div class="submenu__box">
-						<ul class="submenu-navigation">
-							<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Làm mặt</span>
-						<span class="submenu-navigation__subtitle">Nước cân bằng</span>
-									<span class="submenu-navigation__subtitle">Xịt khoáng</span>
-									<span class="submenu-navigation__subtitle">
-										Sữa dưỡng </span><span class="submenu-navigation__subtitle">Tinh chất dưỡng</span><span class="submenu-navigation__subtitle">	Kem dưỡng mắt</span>
-									
-								</a>
-									<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Làm sạch</span>
-						<span class="submenu-navigation__subtitle">Sửa rửa mặt </span>
-									<span class="submenu-navigation__subtitle">Tẩy trang da mắt  </span>
-									<span class="submenu-navigation__subtitle">
-										Tẩy tế bào chết</span><span class="submenu-navigation__subtitle">Phụ kiện làm sạch</span>
-									
-								</a>
-							</li>
-							</li>
-							
-							
-						
-							
-						</ul>
-					</div>
-					
-				</div>
-				
-			</div>
-		</li>
-            <!--navigation 6 : cham sóc cơ thể-->
-            <li class="navigation__item navigation__item--has-submenu">
-			<a href="#" class="navigation__link"> Chăm sóc cơ thể 
-        <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
-      </a>
-			<div class="submenu">
-				<div class="submenu__content">
-					<div class="submenu__box">
-						<ul class="submenu-navigation">
-							<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Chăm sóc body </span>
-						<span class="submenu-navigation__subtitle">Sữa tắm </span>
-									<span class="submenu-navigation__subtitle">Dưỡng thể</span>
-									<span class="submenu-navigation__subtitle">
-										Nước hoa/Xịt thơm </span><span class="submenu-navigation__subtitle">Nước cân bằng da</span><span class="submenu-navigation__subtitle">	Kem bảo vệ da</span>
-									
-								</a>
-									<li class="submenu-navigation__item">
-								<a href="#" class="submenu-navigation__link">
-									<span class="submenu-navigation__icon" data-feather="hexagon"></span>
-									<span class="submenu-navigation__title">Chăm sóc tóc</span>
-						<span class="submenu-navigation__subtitle">Dầu gội </span>
-									<span class="submenu-navigation__subtitle">Dầu dưỡng tóc  </span>
-									<span class="submenu-navigation__subtitle">
-										Dầu xả</span><span class="submenu-navigation__subtitle">Tinh dầu dưỡng tóc</span>
-									
-								</a>
-							</li>
-							</li>
-							
-							
-						
-							
-						</ul>
-					</div>
-					
-				</div>
-				
-			</div>
-		</li>
-                <!--navigation 7: -->
-                <li class="navigation__item navigation__item--has-submenu">
-			<a href="#" class="navigation__link"> Nhận mã ưu đãi
-        
-      </a>
+      <!--navigation 3: san pham moi -->
+      <li class="navigation__item navigation__item--has-submenu">
+        <a href="#" class="navigation__link"> Sản phẩm mới
+         
+        </a>
+        </li>
+      <!--navigation 4 : sản phẩm mới-->
+      <li class="navigation__item navigation__item--has-submenu">
+        <a href="#" class="navigation__link">Trang điểm
+         <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
+        </a>
+        <div class="submenu">
+          <div class="submenu__content">
+            <div class="submenu__box">
+              <ul class="submenu-navigation">
+                <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Trang điểm mặt</span>
+              <span class="submenu-navigation__subtitle">Kem nền</span>
+                    <span class="submenu-navigation__subtitle">Kem lót </span>
+                    <span class="submenu-navigation__subtitle">
+                      Kem che khuyết điểm </span><span class="submenu-navigation__subtitle">Má hồng</span><span class="submenu-navigation__subtitle">Phẩn phủ</span>
+                    
+                  </a>
+                    <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Trang điểm môi</span>
+              <span class="submenu-navigation__subtitle">Son thỏi </span>
+                    <span class="submenu-navigation__subtitle">Son bóng  </span>
+                    <span class="submenu-navigation__subtitle">
+                      Son dưỡng môi</span><span class="submenu-navigation__subtitle">Son trị khô môi</span>
+                    
+                  </a>
+                </li>
+                </li>
+                
+                
+              
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
       </li>
-                    <!---->    
-		
-		
-	</nav>
-
-
-
+      
+          <!--navigation 5: dưỡng da-->
+          <li class="navigation__item navigation__item--has-submenu">
+        <a href="#" class="navigation__link"> Dưỡng da
   
-  </div>
+  
+          <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
+           </a>
+        <div class="submenu">
+          <div class="submenu__content">
+            <div class="submenu__box">
+              <ul class="submenu-navigation">
+                <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Làm mặt</span>
+              <span class="submenu-navigation__subtitle">Nước cân bằng</span>
+                    <span class="submenu-navigation__subtitle">Xịt khoáng</span>
+                    <span class="submenu-navigation__subtitle">
+                      Sữa dưỡng </span><span class="submenu-navigation__subtitle">Tinh chất dưỡng</span><span class="submenu-navigation__subtitle">	Kem dưỡng mắt</span>
+                    
+                  </a>
+                    <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Làm sạch</span>
+              <span class="submenu-navigation__subtitle">Sửa rửa mặt </span>
+                    <span class="submenu-navigation__subtitle">Tẩy trang da mắt  </span>
+                    <span class="submenu-navigation__subtitle">
+                      Tẩy tế bào chết</span><span class="submenu-navigation__subtitle">Phụ kiện làm sạch</span>
+                    
+                  </a>
+                </li>
+                </li>
+                
+                
+              
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
+      </li>
+              <!--navigation 6 : cham sóc cơ thể-->
+              <li class="navigation__item navigation__item--has-submenu">
+        <a href="#" class="navigation__link"> Chăm sóc cơ thể 
+          <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
+        </a>
+        <div class="submenu">
+          <div class="submenu__content">
+            <div class="submenu__box">
+              <ul class="submenu-navigation">
+                <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Chăm sóc body </span>
+              <span class="submenu-navigation__subtitle">Sữa tắm </span>
+                    <span class="submenu-navigation__subtitle">Dưỡng thể</span>
+                    <span class="submenu-navigation__subtitle">
+                      Nước hoa/Xịt thơm </span><span class="submenu-navigation__subtitle">Nước cân bằng da</span><span class="submenu-navigation__subtitle">	Kem bảo vệ da</span>
+                    
+                  </a>
+                    <li class="submenu-navigation__item">
+                  <a href="#" class="submenu-navigation__link">
+                    <span class="submenu-navigation__icon" data-feather="hexagon"></span>
+                    <span class="submenu-navigation__title">Chăm sóc tóc</span>
+              <span class="submenu-navigation__subtitle">Dầu gội </span>
+                    <span class="submenu-navigation__subtitle">Dầu dưỡng tóc  </span>
+                    <span class="submenu-navigation__subtitle">
+                      Dầu xả</span><span class="submenu-navigation__subtitle">Tinh dầu dưỡng tóc</span>
+                    
+                  </a>
+                </li>
+                </li>
+                
+                
+              
+                
+              </ul>
+            </div>
+            
+          </div>
+          
+        </div>
+      </li>
+                  <!--navigation 7: -->
+                  <li class="navigation__item navigation__item--has-submenu">
+        <a href="#" class="navigation__link"> Nhận mã ưu đãi
+          
+        </a>
+        </li>
+                      <!---->    
+      
+      
+    </nav>
+  
+  
+  
+    
+  </Wrapper>
+    </div>
 </template>
 
 <script>
 import Cart from "@/components/store/home/cart/Cart.vue";
+import Wrapper from "@/pages/Wrapper.vue";
 
 export default {
   data() {
@@ -273,6 +275,7 @@ export default {
   },
   components: {
     Cart,
+    Wrapper
   },
 };
 </script>
@@ -283,32 +286,26 @@ i {
 }
 
 
-.header-wrapper {
-  width: 1600px;
-  min-height: 80px;
+.main-content {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  padding: 0 50px;
-  background-color: red;
+  justify-content:space-between;
 
-  &__content {
-    width: 100%;
-    max-width: 1300px;
+  .header-wrapper {
+
+
+&__content {
+
+
+  &__left {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    background-color: gray;
-
-    &__left {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    justify-content: center;
   }
 }
+}
+}
+
+
 
 .header-wrapper__sub-nav ul a {
   width: 68px;
@@ -391,11 +388,13 @@ ul {
 
 .navigation {
 	$bem-block: &;
-  border: 1px solid black;
+  display: flex;
+  justify-content:space-between;
+  
+  
 
 	&__item {
 		display: inline-block;
-		margin: 0 15px;
 		position: relative;
 		transition: 0.2s ease-in-out;
 
@@ -597,6 +596,7 @@ ul {
 .navigation__link{
   font-family: 'Montserrat';
   font-weight: 500px;
+  font-size: 1rem;
 }
 .navigation__item navigation__item--has-submenu{
   display: relative;
