@@ -1,11 +1,18 @@
-<script setup></script>
-
 <template>
+  <OverlayAds class="overlay-ads"></OverlayAds>
   <router-view></router-view>
 </template>
 
-<style lang="scss">
+<script>
+import OverlayAds from "./components/store/overlayAds/overlayAds.vue";
+export default {
+  components: {
+    OverlayAds
+  }
+};
+</script>
 
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

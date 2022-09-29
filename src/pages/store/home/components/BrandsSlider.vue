@@ -60,6 +60,10 @@ export default {
       height: 120px;
       object-fit: fill;
       border-radius: 10px;
+
+      &:hover {
+        border: 1px solid black;
+      }
     }
   }
 }
