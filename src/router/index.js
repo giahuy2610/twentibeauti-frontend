@@ -8,6 +8,7 @@ import NotFound from "../pages/404/404.vue";
 import BrandsPage from "../pages/store/brands/Brands.vue";
 import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
+import Payment from "../pages/store/payment/Payment.vue";
 import PromotionsPage from "../pages/store/promotion/Promotion.vue";
 
 //admin
@@ -59,6 +60,11 @@ const routes = [
         path: "/categories",
         component: CategoriesPage,
       },
+      {
+        name: "payment",
+        path: "/payment",
+        component: Payment,
+      }
     ],
   },
   {
