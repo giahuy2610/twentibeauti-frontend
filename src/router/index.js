@@ -63,7 +63,7 @@ const routes = [
       {
         name: "payment",
         path: "/payment",
-        components: Payment,
+        component: Payment,
       }
     ],
   },
