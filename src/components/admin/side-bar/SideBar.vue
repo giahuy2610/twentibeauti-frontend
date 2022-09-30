@@ -1,46 +1,52 @@
-<template>
-    <div>
-        <Tree :value="nodes"></Tree>
+<template lang="">
+  <div class="wrapper">
+    <div class="wrapper__header">
+      <span>TWENTI</span>
     </div>
+    <div class="wrapper__body">
+      <Accordion :activeIndex="0">
+        <AccordionTab header="Header I"> </AccordionTab>
+        <AccordionTab header="Header II"> </AccordionTab>
+        <AccordionTab header="Header III"> </AccordionTab>
+      </Accordion>
+    </div>
+  </div>
 </template>
-
 <script>
-import NodeService from './NodeService';
-
 export default {
-    data() {
-        return {
-            nodes: null,
-            expandedKeys: {}
-        }
-    },
-    nodeService: null,
-    created() {
-        this.nodeService = new NodeService();
-    },
-    mounted() {
-        this.nodeService.getTreeNodes().then(data => this.nodes = data);
-    },
-    methods: {
-        expandAll() {
-            for (let node of this.nodes) {
-                this.expandNode(node);
-            }
-
-            this.expandedKeys = {...this.expandedKeys};
+  data() {
+    return {
+      sideItems: [
+        {
+          name: "Tổng quan",
+          icon: "pi-home",
+          children: [],
         },
-        collapseAll() {
-            this.expandedKeys = {};
-        },
-        expandNode(node) {
-            if (node.children && node.children.length) {
-                this.expandedKeys[node.key] = true;
-
-                for (let child of node.children) {
-                    this.expandNode(child);
-                }
-            }
-        }
-    }
-}
+      ],
+    };
+  },
+};
 </script>
+<style lang="scss" scoped>
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  background-color: #162818;
+  border-right: 2px solid gray;
+
+  &__header {
+    width: 100%;
+    height: 100px;
+    border-bottom: 1px solid gray;
+    font-size: 2rem;
+    font-weight: bolder;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__body {
+  }
+}
+</style>
