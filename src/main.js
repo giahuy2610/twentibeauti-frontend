@@ -22,16 +22,18 @@ import AutoComplete from 'primevue/autocomplete';
 import Dropdown from 'primevue/dropdown';
 import Checkbox from 'primevue/checkbox';
 import RadioButton from 'primevue/radiobutton';
-
+import InputNumber from 'primevue/inputnumber';
 import './scss/_theme.scss';
 //import 'primevue/resources/themes/saga-green/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';   
+import InputSwitch from 'primevue/inputswitch';
 
 const app = createApp(App);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
+app.component("InputNumber",InputNumber)
 app.component("RadioButton",RadioButton)
 app.component("Checkbox",Checkbox);
 app.component("Dropdown",Dropdown);
@@ -50,7 +52,7 @@ app.component('TabPanel', TabPanel);
 app.component('Divider', Divider);
 app.component('Tree', Tree);
 app.component('AutoComplete',AutoComplete);
-
+app.component('InputSwitch',InputSwitch)
 app.directive('badge', BadgeDirective);
 
 app.mount('#app');
