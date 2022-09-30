@@ -506,14 +506,18 @@ products= [
 { 
 id: 1000, 
 productName: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g", 
-brand: {name: "The Face Shop", id: 100 },
+brand: {name: "The Face Shop", id: 100, path: "/collections/the-face-shop", country: "Hàn Quốc" },
 createdOn: "2015-09-13", status: "unqualified", 
 stock: 20,
 images: ['abc.png','bcd.png'], 
 listprice: 80000, 
 saleprice: 75000, 
 description: 'Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da', 
-
+category: {
+  name: "",
+  id: "",
+  path: "",
+}
 review: 
 [
 { id: 111, user: 1112, rating: 4, content: 'Sản phẩm tốt', createdOn: '2015-09-13', invoice: {id: 152} },
