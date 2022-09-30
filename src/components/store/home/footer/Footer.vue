@@ -1,7 +1,5 @@
-
 <template lang="">
   <Wrapper>
-
     <div class="footer-wrapper">
       <div class="footer-wrapper__subscribe">
         <div class="footer-wrapper__subscribe__content">
@@ -22,7 +20,7 @@
           </div>
         </div>
       </div>
-  
+
       <div class="footer">
         <div class="contain">
           <div class="col">
@@ -51,11 +49,11 @@
             </ul>
           </div>
           <div class="col social">
-            <h1>Social</h1>
+            <h1>Social media</h1>
             <ul>
-              <li><img src="1.png" width="32" style="width: 32px" /></li>
-              <li><img src="2.png" width="32" style="width: 32px" /></li>
-              <li><img src="3.png" width="32" style="width: 32px" /></li>
+              <li><i class="pi pi-facebook" style="font-size: 2rem" ></i></li>
+              <li><i class="pi pi-twitter" style="font-size: 2rem"></i></li>
+              <li><i class="pi pi-instagram" style="font-size: 2rem"></i></li>
             </ul>
           </div>
         </div>
@@ -64,11 +62,11 @@
   </Wrapper>
 </template>
 <script>
-  import Wrapper from "@/pages/Wrapper.vue"
+import Wrapper from "@/pages/Wrapper.vue";
 export default {
-components: {
-  Wrapper
-}
+  components: {
+    Wrapper,
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -109,12 +107,12 @@ $sm: 568px;
     background-color: rgb(219, 205, 205);
     padding: 0 50px;
 
-    &__content {
+    &__contain {
       width: 100%;
-      max-width: 1300px;
+      max-width: 1400px;
       display: flex;
-      justify-content: space-around;
-      align-items: center;
+      justify-content: space-between;
+   
     }
   }
 }
@@ -125,7 +123,7 @@ $sm: 568px;
   background-color: #fff;
 }
 .footer .col {
-  width: 500px;
+  width: 433px;
   height: auto;
   float: left;
   box-sizing: border-box;
