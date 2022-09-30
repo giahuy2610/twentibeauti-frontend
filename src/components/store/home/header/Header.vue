@@ -5,12 +5,12 @@
         <div to="/" class="no-underline header-wrapper__content__left">
           <router-link to="/" class="header-wrapper__content__left"
             ><img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
-            <h2>TWENTI</h2>
+            <h2>TWENTI BEAUTY</h2>
           </router-link>
 
-          <span class="searcher p-input-icon-left mr-3 ml-3">
+          <span class="searcher p-input-icon-left mr-3 ml-3 ">
             <InputText
-              style="border-radius: 1000px"
+              style="border-radius: 30px; width: 21rem"
               type="text"
               v-model="value2"
               placeholder="Mặt nạ, dưỡng da, son môi, dưỡng ẩm,..."
@@ -289,6 +289,7 @@ i {
 .main-content {
   display: flex;
   justify-content:space-between;
+ 
 
   .header-wrapper {
 
@@ -600,5 +601,12 @@ ul {
 }
 .navigation__item navigation__item--has-submenu{
   display: relative;
+}
+h2{
+  text-decoration: none;
+}
+.header-wrapper__content__right-group-buttons{
+  display: flex;
+  align-items: center;
 }
 </style>
