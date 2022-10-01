@@ -8,6 +8,7 @@ import NotFound from "../pages/404/404.vue";
 import BrandsPage from "../pages/store/brands/Brands.vue";
 import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
+import Checkout from "../pages/store/check-out/Checkout.vue";
 import PromotionsPage from "../pages/store/promotion/Promotion.vue";
 import Account from "../pages/store/account/Account.vue";
 import Order from "../pages/store/order/Order.vue";
@@ -19,7 +20,7 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
 import ProductDetail from "../pages/admin/products/ProductDetail.vue";
-
+33
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -82,7 +83,7 @@ const routes = [
   },
   {
     name: "admin",
-    path: "/admin",
+    path: "/admin/",
     component: AdminLayout,
     children: [
       {
@@ -92,7 +93,7 @@ const routes = [
       },
       {
         name: "products",
-        path: "/products",
+        path: "products",
         component: Products,
       },
       {

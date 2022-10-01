@@ -1,10 +1,10 @@
 <template>
-  <OverlayAds class="overlay-ads"></OverlayAds>
+  <!-- <OverlayAds class="overlay-ads"></OverlayAds> -->
   <router-view></router-view>
 </template>
 
 <script>
-import OverlayAds from "./components/store/overlayAds/overlayAds.vue";
+import OverlayAds from "./components/store/overlayAds/OverlayAds.vue"
 export default {
   components: {
     OverlayAds

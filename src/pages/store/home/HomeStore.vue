@@ -1,6 +1,5 @@
 <template lang="">
   <div class="home__wrapper">
-    <div class="" style="height: 500px"></div>
     <AdsSlider></AdsSlider>
     <Wrapper>
       <div class="home__wrapper__content">
