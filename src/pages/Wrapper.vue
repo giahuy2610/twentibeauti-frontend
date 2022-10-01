@@ -31,5 +31,6 @@
   @include tablet {
     padding: 2rem;
   }
+  
 }
 </style>

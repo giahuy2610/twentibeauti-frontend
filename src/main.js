@@ -5,6 +5,7 @@ import ToastService from 'primevue/toastservice';
 
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import AutoComplete from 'primevue/autocomplete';
 import SelectButton from 'primevue/selectbutton';
 import MegaMenu from 'primevue/megamenu';
 import router from './router'
@@ -23,7 +24,8 @@ import Toast from 'primevue/toast';
 import Accordion from 'primevue/accordion';
 import AccordionTab from 'primevue/accordiontab';
 import Checkbox from 'primevue/checkbox';
-
+import Dialog from 'primevue/dialog';
+import ScrollPanel from 'primevue/scrollpanel';
 import './scss/_theme.scss';
 //import 'primevue/resources/themes/saga-green/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -34,6 +36,7 @@ app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
 
+app.component('ScrollPanel',ScrollPanel);
 app.component('Button', Button);
 app.component('SelectButton', SelectButton);
 app.component('InputText', InputText);
@@ -51,7 +54,8 @@ app.component('Message', Message);
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);
 app.component('Checkbox', Checkbox);
-
+app.component('AutoComplete',AutoComplete);
+app.component('Dialog', Dialog);
 app.directive('badge', BadgeDirective);
 
 app.mount('#app');
