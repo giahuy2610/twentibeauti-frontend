@@ -48,12 +48,12 @@ export default {
 .left {
   margin-left: 20px;
   padding-right: 10pt;
-  width: 70%;
+  width: 90%;
   .leftfooter {
     width: 100%;
     display: flex;
     flex-direction: column;
-    margin-right: 40px;
+    margin: 20px;
     .infinvoice {
       display: flex;
       flex-direction: row;
