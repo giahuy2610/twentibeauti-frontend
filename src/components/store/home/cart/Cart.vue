@@ -6,7 +6,7 @@
 
     <div class="cart__body">
       <ScrollPanel style="width: 100%; height: 100%">
-        <ProductItem class="mb-1" v-for="item in 19"></ProductItem>
+        <ProductItem class="mb-1" v-for="item in 7"></ProductItem>
       </ScrollPanel>
     </div>
 
