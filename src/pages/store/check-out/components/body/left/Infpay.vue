@@ -1,0 +1,83 @@
+<template lang="">
+  <div class="payment shadow-5">
+    <div class="h2">
+      <b>Phương thức thanh toán</b>
+      <br />
+    </div>
+    <div class="atm" v-for="(item, index) in array">
+      <div class="field-radiobutton1">
+        <RadioButton
+          :inputId="item.id"
+          name="pay"
+          :value="item.label"
+          v-model="pay1"
+        />
+        <label class="ml-1" :for="item.id">{{ item.label }}</label>
+      </div>
+
+      <img :src="item.img" style="width: 90px; height: 40px" />
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data() {
+    return {
+        pay1:null,
+      array: [
+        {
+          label: "Thẻ tín dụng / ATM",
+          img: "https://inkythuatso.com/uploads/images/2021/12/payoo-logo-inkythuatso-02-15-47-06.jpg",
+          id: "id1",
+        },
+        {
+          label: "Ví momo",
+          img: "https://play-lh.googleusercontent.com/dQbjuW6Jrwzavx7UCwvGzA_sleZe3-Km1KISpMLGVf1Be5N6hN6-tdKxE5RDQvOiGRg",
+          id: "id2",
+        },
+        {
+          label: "Trả góp Flik - MoMo",
+          img: "https://static.mservice.io/fileuploads/svg/momo-file-220802114354.svg",
+          id: "id3",
+        },
+        {
+          label: "Trả tiền mặt khi nhận hàng",
+          img: "https://cdn.pixabay.com/photo/2013/07/13/12/03/banknotes-159085_960_720.png",
+          id: "id4",
+        },
+      ],
+    };
+  },
+};
+</script>
+<style lang="scss" scoped>
+.payment {
+  border: 1px solid #aaa;
+  border-radius: 10px;
+
+  -moz-box-flex: 1;
+  -webkit-box-flex: 1;
+  margin-top: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  .atm {
+    width: 100%;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    display: flex;
+    margin: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    .field-radiobutton1 {
+      -moz-box-flex: 1;
+      -webkit-box-flex: 1;
+      padding: 20px;
+      width: 70%;
+    }
+  }
+}
+</style>
