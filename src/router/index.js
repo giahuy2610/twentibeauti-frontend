@@ -73,11 +73,17 @@ const routes = [
         path:"/order",
         component:Order,
       },
+
       {
         name:"change_address",
         path:"/change_address",
         component:Change_Address,
       },
+      {
+        name:"checkout",
+        path:"/checkout",
+        component:Checkout,
+      }
 
     ],
   },
