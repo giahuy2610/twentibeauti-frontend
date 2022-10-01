@@ -1,5 +1,4 @@
 <template lang="">
-  <Wrapper>
     <div class="footer-wrapper">
       <div class="footer-wrapper__subscribe">
         <div class="footer-wrapper__subscribe__content">
@@ -21,10 +20,10 @@
         </div>
       </div>
 
-      <div class="footer">
+      <Wrapper class="footer">
         <div class="contain">
           <div class="col">
-            <h1>THE FACE SHOP</h1>
+            <h1>TWENTI BEAUTI</h1>
             <ul>
               <li>Về chúng tôi</li>
               <li>Câu chuyện thương hiệu</li>
@@ -57,9 +56,8 @@
             </ul>
           </div>
         </div>
-      </div>
+      </Wrapper>
     </div>
-  </Wrapper>
 </template>
 <script>
 import Wrapper from "@/pages/Wrapper.vue";
@@ -149,7 +147,7 @@ $sm: 568px;
   padding: 0;
 }
 .footer .col ul li {
-  color: #999999;
+  color: #464242;
   font-size: 14px;
   font-family: inherit;
   font-weight: bold;
@@ -165,7 +163,7 @@ $sm: 568px;
 }
 
 .footer .col ul li:hover {
-  color: #ffffff;
+  color: black;
   transition: 0.1s;
   -webkit-transition: 0.1s;
   -moz-transition: 0.1s;

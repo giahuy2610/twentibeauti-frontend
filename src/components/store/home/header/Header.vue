@@ -1,11 +1,11 @@
 <template lang="">
-  <div style="width: 100vw;position: fixed; z-index: 99; background-color: #ffff">
+  <div class="shadow-2" style="top:0;width: 100vw;position: fixed; z-index: 9999; background-color: #ffff">
     <Wrapper>
       <div class="main-content">        
         <div to="/" class="no-underline header-wrapper__content__left">
-          <router-link to="/" class="header-wrapper__content__left"
+          <router-link to="/" class="header-wrapper__content__left" 
             ><img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
-            <h2>TWENTI BEAUTY</h2>
+            <h2>TWENTI</h2>
           </router-link>
 
           <span class="searcher p-input-icon-left mr-3 ml-3 ">
@@ -47,7 +47,7 @@
    
 
      <!--navigation here-->
-	<Wrapper style="border-top: 2px solid black;border-bottom: 2px solid black;">
+	<Wrapper  style="height: 50px;padding-top: 0!important;padding-bottom: 0!important; border-top: 1px solid #d3d7d3">
 
     <nav class="navigation">
       
