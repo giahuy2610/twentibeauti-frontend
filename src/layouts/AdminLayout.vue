@@ -1,7 +1,9 @@
 <template lang="">
-  <div class="wrapper">
-    <SideBar></SideBar>
-    <div class="main-content">
+  <div class="wrapper-c">
+    <div class="side-bar-c">
+      <SideBar></SideBar>
+    </div>
+    <div class="main-content-c">
       <router-view></router-view>
     </div>
   </div>
@@ -16,9 +18,25 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.wrapper {
+.wrapper-c {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: yellow;
+  overflow: hidden;
+
+  .side-bar-c {
+    width: 100%;
+    max-width: 200px;
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: red;
+  }
+  .main-content-c {
+    width: 100%;
+    height: 100vh;
+    background-color: blue;
+    overflow-y: scroll;
+  }
 }
 </style>
