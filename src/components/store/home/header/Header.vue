@@ -64,20 +64,13 @@
             <div class="submenu__box">
               <ul class="submenu-navigation">
                 <li class="submenu-navigation__item">
-                  <a href="#" class="submenu-navigation__link">
-                    
-                    <span class="submenu-navigation__title">Tháng 9 rực rỡ- rạng ngời da yêu</span>
-                    
+                  <a href="#" class="submenu-navigation__link">                   
+                    <span class="submenu-navigation__title">Tháng 9 rực rỡ- rạng ngời da yêu</span>                   
                   </a>
-                </li>
-                
-                
-                
+                </li>         
               </ul>
-            </div>
-            
-          </div>
-          
+            </div>           
+          </div>        
         </div>
       </li>
   
@@ -160,7 +153,7 @@
       
           <!--navigation 5: dưỡng da-->
           <li class="navigation__item navigation__item--has-submenu">
-        <a href="#" class="navigation__link"> Dưỡng da
+        <a href="/bra" class="navigation__link"> Dưỡng da
   
   
           <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
