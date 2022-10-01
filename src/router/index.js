@@ -10,6 +10,9 @@ import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
 import Checkout from "../pages/store/check-out/Checkout.vue";
 import PromotionsPage from "../pages/store/promotion/Promotion.vue";
+import Account from "../pages/store/account/Account.vue";
+import Order from "../pages/store/order/Order.vue";
+import Change_Address from "../pages/store/change_address/Change_Address.vue";
 
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
@@ -61,10 +64,21 @@ const routes = [
         component: CategoriesPage,
       },
       {
-        name: "checkout",
-        path: "/checkout",
-        component: Checkout,
-      }
+        name: "account",
+        path: "/account",
+        component: Account,
+      },
+      {
+        name:"order",
+        path:"/order",
+        component:Order,
+      },
+      {
+        name:"change_address",
+        path:"/change_address",
+        component:Change_Address,
+      },
+
     ],
   },
   {
