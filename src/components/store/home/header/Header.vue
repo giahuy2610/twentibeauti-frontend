@@ -1,4 +1,8 @@
 <template lang="">
+
+        <Sidebar v-model:visible="visibleCart" :baseZIndex="10000" position="right" class="p-sidebar-md">
+    <Cart></Cart>
+  </Sidebar>
   <div class="shadow-2" style="top:0;width: 100vw;position: fixed; z-index: 9999; background-color: #ffff">
     <Wrapper style="height:80px;padding-top: 0!important;padding-bottom: 0!important;">
       <div class="main-content">        
@@ -602,4 +606,5 @@ h2{
   display: flex;
   align-items: center;
 }
+
 </style>
