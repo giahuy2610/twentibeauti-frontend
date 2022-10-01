@@ -9,7 +9,7 @@
 
           <div class="selectbutton">
             <SelectButton
-              v-model="value"
+              v-model="item.value"
               :options="options"
               aria-labelledby="single"
             />

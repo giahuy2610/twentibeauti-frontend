@@ -1,12 +1,12 @@
 <template lang="">
-  <div style="width: 100vw;position: fixed; z-index: 99; background-color: #ffff">
-    <Wrapper>
+  <div class="shadow-2" style="top:0;width: 100vw;position: fixed; z-index: 9999; background-color: #ffff">
+    <Wrapper style="height:80px;padding-top: 0!important;padding-bottom: 0!important;">
       <div class="main-content">        
-        <div to="/" class="no-underline header-wrapper__content__left">
-          <router-link to="/" class="header-wrapper__content__left"
+        <div class="no-underline header-wrapper__content__left">
+          <div @click="$router.push({ path: '/', replace: true })" class="header-wrapper__content__left cursor-pointer" 
             ><img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
-            <h2>TWENTI BEAUTY</h2>
-          </router-link>
+            <h2>TWENTI</h2>
+          </div>
 
           <span class="searcher p-input-icon-left mr-3 ml-3 ">
             <InputText
@@ -47,7 +47,7 @@
    
 
      <!--navigation here-->
-	<Wrapper style="border-top: 2px solid black;border-bottom: 2px solid black;">
+	<Wrapper  style="height: 50px;padding-top: 0!important;padding-bottom: 0!important; border-top: 1px solid #d3d7d3">
 
     <nav class="navigation">
       
@@ -64,26 +64,19 @@
             <div class="submenu__box">
               <ul class="submenu-navigation">
                 <li class="submenu-navigation__item">
-                  <a href="#" class="submenu-navigation__link">
-                    
-                    <span class="submenu-navigation__title">Tháng 9 rực rỡ- rạng ngời da yêu</span>
-                    
+                  <a href="#" class="submenu-navigation__link">                   
+                    <span class="submenu-navigation__title">Tháng 9 rực rỡ- rạng ngời da yêu</span>                   
                   </a>
-                </li>
-                
-                
-                
+                </li>         
               </ul>
-            </div>
-            
-          </div>
-          
+            </div>           
+          </div>        
         </div>
       </li>
   
       <!--navigation 2-->
       <li class="navigation__item navigation__item--has-submenu">
-        <a href="#" class="navigation__link"> Thương hiệu 
+        <a  class="navigation__link cursor-pointer" @click="$router.push({ path: '/brands', replace: true })"> Thương hiệu 
           <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
         </a>
         <div class="submenu">
@@ -111,13 +104,13 @@
       </li>
       <!--navigation 3: san pham moi -->
       <li class="navigation__item navigation__item--has-submenu">
-        <a href="#" class="navigation__link"> Sản phẩm mới
+        <a class="navigation__link cursor-pointer" @click="$router.push({ path: '/brands', replace: true })"> Sản phẩm mới
          
         </a>
         </li>
       <!--navigation 4 : sản phẩm mới-->
       <li class="navigation__item navigation__item--has-submenu">
-        <a href="#" class="navigation__link">Trang điểm
+        <a class="navigation__link  cursor-pointer" @click="$router.push({ path: '/brands', replace: true })">Trang điểm
          <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
         </a>
         <div class="submenu">
@@ -160,7 +153,7 @@
       
           <!--navigation 5: dưỡng da-->
           <li class="navigation__item navigation__item--has-submenu">
-        <a href="#" class="navigation__link"> Dưỡng da
+        <a href="/bra" class="navigation__link"> Dưỡng da
   
   
           <i class="pi pi-angle pi-angle-down" style="font-size: 2rem, padding: 0"></i>
@@ -316,7 +309,7 @@ i {
 
   /* Link */
 
-  font-family: "Montserrat";
+
   font-style: normal;
   font-weight: 600;
   font-size: 16px;
@@ -431,7 +424,7 @@ ul {
 		color: #333;
 		font-size: 1.25rem;
 		font-weight: 500;
-		font-family: "Noto Sans JP", sans-serif;
+
 	}
 }
 
@@ -541,7 +534,7 @@ ul {
 	&__title,
 	&__subtitle {
 		display: block;
-		font-family: "Noto Sans JP", sans-serif;
+
 	}
 
 	&__title {
@@ -585,7 +578,7 @@ ul {
 	bottom: 10px;
 	padding: 20px;
 	color: #c5c5c5;
-	font-family: "Noto Sans JP", sans-serif;
+
 	font-weight: 300;
 	font-size: 12px;
 
@@ -595,7 +588,7 @@ ul {
 }
 
 .navigation__link{
-  font-family: 'Montserrat';
+
   font-weight: 500px;
   font-size: 1rem;
 }

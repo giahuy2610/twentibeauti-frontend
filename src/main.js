@@ -55,4 +55,4 @@ app.component('AutoComplete',AutoComplete);
 app.component('InputSwitch',InputSwitch)
 app.directive('badge', BadgeDirective);
 
-app.mount('#app');
+app.mount("#app");

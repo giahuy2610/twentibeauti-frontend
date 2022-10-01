@@ -1,5 +1,5 @@
 <template>
-  <OverlayAds class="overlay-ads"></OverlayAds>
+  <!-- <OverlayAds class="overlay-ads"></OverlayAds> -->
   <router-view></router-view>
 </template>
 
