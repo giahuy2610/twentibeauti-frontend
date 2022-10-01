@@ -6,13 +6,11 @@
             <div class="modal">
                
                 <div class="modal-content">
-                    
+                    <div class="modal-title">abc</div>
                     <slot name="title"></slot>
                     <slot name="context"></slot>
                     <slot name="footer"></slot>
                     <slot name="button"></slot>
-                    oinfnfonfof
-                
                 </div>
            
             </div>
@@ -44,7 +42,8 @@
     align-items: center;
     overscroll-behavior: contain;
     height: 200vh;
-  
+
+
     .modal {
         position:fixed;
         width: 500px;
@@ -63,6 +62,7 @@
         outline: none;
         border-radius: 10px;
         height: 700vh;
+
     }
     }
   }

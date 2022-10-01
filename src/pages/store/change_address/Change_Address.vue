@@ -1,7 +1,7 @@
 <template lang="">
   <Form v-if="modal1">
     <template v-slot:title>
-      <div>AAAAAAA</div>
+      <div class="title"></div>
     </template>
     <template v-slot:context>
       <div>BBBBB</div>
