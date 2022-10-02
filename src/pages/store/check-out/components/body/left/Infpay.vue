@@ -15,7 +15,7 @@
         <label class="ml-1" :for="item.id">{{ item.label }}</label>
       </div>
 
-      <img :src="item.img" style="width: 90px; height: 40px" />
+      <img :src="item.img" style="width: 90px; height: 40px;object-fit:contain" />
     </div>
   </div>
 </template>
@@ -68,7 +68,7 @@ export default {
     -moz-box-flex: 1;
     -webkit-box-flex: 1;
     display: flex;
-    margin: 10px;
+    margin: 10px 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

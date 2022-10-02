@@ -1,9 +1,6 @@
 <template lang="">
   <div class="infcus shadow-5">
     <div class="h2">
-      <b>Thông tin người mua hàng</b>
-      <br />
-      <br />
       <b>Thông tin liên lạc</b>
     </div>
     <br />
@@ -76,7 +73,7 @@
         </span>
       </div>
       <br />
-      <div class="fillinf">
+      <div class="fillinf" style="margin: 0 !important">
         <div class="nameinf">
           <span class="p-fluid"
             ><Dropdown
@@ -133,13 +130,12 @@
   </div>
 </template>
 <script>
-
 export default {
-    data(){
-        return{
-            checked: false,
-        }
-    }
+  data() {
+    return {
+      checked: false,
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -157,12 +153,12 @@ export default {
   .fillinf {
     display: flex;
     flex-direction: row;
-    margin-bottom: 10pt;
+    margin-bottom: 10px;
     width: 100%;
+    gap: 5px;
 
     .nameinf {
       width: 50%;
-      margin-right: 5px;
     }
   }
   .deliveryinf {
