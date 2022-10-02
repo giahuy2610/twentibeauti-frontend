@@ -66,7 +66,22 @@
           <div class="test">...</div>
         </div>
       
-      <div class="left-column"></div>
+      <div class="left-column">
+        <div class="sidebar-account">
+          <p>
+            <li><a href="#">Tài khoản</a></li>
+          </p>
+          <p>
+            <li><a href="#">Đơn hàng</a></li>
+          </p>
+          <p>
+            <li><a href="#">Địa chỉ giao nhận</a></li>
+          </p>
+          <p>
+            <li><a href="#">Ưu đãi của tôi</a></li>
+          </p>
+        </div>
+      </div>
     </div>
    
   </div>
@@ -338,6 +353,20 @@ ul.breadcrumb li a:hover {
   display: flex;
   float: left;
   width: 30%;
+  list-style-type: none;
+  .sidebar-account a {
+    padding: 14px;
+    text-decoration: none;
+    color: #333;
+    h4 {
+      margin-bottom: 20px;
+    }
+  }
+  .sidebar-account a:hover {
+    text-decoration: underline;
+    color: #aed56b;
+  }
+
 }
 
 </style>
