@@ -10,6 +10,7 @@ import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
 import Checkout from "../pages/store/check-out/Checkout.vue";
 import PromotionsPage from "../pages/store/promotion/Promotion.vue";
+import Product from "../pages/store/product/Product.vue";
 
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
@@ -64,6 +65,16 @@ const routes = [
         name: "checkout",
         path: "/checkout",
         component: Checkout,
+      },
+      {
+        name: "checkout",
+        path: "/checkout",
+        component: Checkout,
+      },
+      {
+        name: "product",
+        path: "/product",
+        component: Product,
       }
     ],
   },
