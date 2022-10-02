@@ -1,0 +1,182 @@
+{
+    "05854": {
+        "name": "Bãi Bông",
+        "type": "phuong",
+        "slug": "bai-bong",
+        "name_with_type": "Phường Bãi Bông",
+        "path": "Bãi Bông, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Bãi Bông, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05854",
+        "parent_code": "172"
+    },
+    "05857": {
+        "name": "Bắc Sơn",
+        "type": "phuong",
+        "slug": "bac-son",
+        "name_with_type": "Phường Bắc Sơn",
+        "path": "Bắc Sơn, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Bắc Sơn, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05857",
+        "parent_code": "172"
+    },
+    "05860": {
+        "name": "Ba Hàng",
+        "type": "phuong",
+        "slug": "ba-hang",
+        "name_with_type": "Phường Ba Hàng",
+        "path": "Ba Hàng, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Ba Hàng, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05860",
+        "parent_code": "172"
+    },
+    "05863": {
+        "name": "Phúc Tân",
+        "type": "xa",
+        "slug": "phuc-tan",
+        "name_with_type": "Xã Phúc Tân",
+        "path": "Phúc Tân, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Xã Phúc Tân, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05863",
+        "parent_code": "172"
+    },
+    "05866": {
+        "name": "Phúc Thuận",
+        "type": "xa",
+        "slug": "phuc-thuan",
+        "name_with_type": "Xã Phúc Thuận",
+        "path": "Phúc Thuận, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Xã Phúc Thuận, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05866",
+        "parent_code": "172"
+    },
+    "05869": {
+        "name": "Hồng Tiến",
+        "type": "phuong",
+        "slug": "hong-tien",
+        "name_with_type": "Phường Hồng Tiến",
+        "path": "Hồng Tiến, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Hồng Tiến, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05869",
+        "parent_code": "172"
+    },
+    "05872": {
+        "name": "Minh Đức",
+        "type": "xa",
+        "slug": "minh-duc",
+        "name_with_type": "Xã Minh Đức",
+        "path": "Minh Đức, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Xã Minh Đức, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05872",
+        "parent_code": "172"
+    },
+    "05875": {
+        "name": "Đắc Sơn",
+        "type": "phuong",
+        "slug": "dac-son",
+        "name_with_type": "Phường Đắc Sơn",
+        "path": "Đắc Sơn, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Đắc Sơn, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05875",
+        "parent_code": "172"
+    },
+    "05878": {
+        "name": "Đồng Tiến",
+        "type": "phuong",
+        "slug": "dong-tien",
+        "name_with_type": "Phường Đồng Tiến",
+        "path": "Đồng Tiến, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Đồng Tiến, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05878",
+        "parent_code": "172"
+    },
+    "05881": {
+        "name": "Thành Công",
+        "type": "xa",
+        "slug": "thanh-cong",
+        "name_with_type": "Xã Thành Công",
+        "path": "Thành Công, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Xã Thành Công, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05881",
+        "parent_code": "172"
+    },
+    "05884": {
+        "name": "Tiên Phong",
+        "type": "phuong",
+        "slug": "tien-phong",
+        "name_with_type": "Phường Tiên Phong",
+        "path": "Tiên Phong, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Tiên Phong, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05884",
+        "parent_code": "172"
+    },
+    "05887": {
+        "name": "Vạn Phái",
+        "type": "xa",
+        "slug": "van-phai",
+        "name_with_type": "Xã Vạn Phái",
+        "path": "Vạn Phái, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Xã Vạn Phái, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05887",
+        "parent_code": "172"
+    },
+    "05890": {
+        "name": "Nam Tiến",
+        "type": "phuong",
+        "slug": "nam-tien",
+        "name_with_type": "Phường Nam Tiến",
+        "path": "Nam Tiến, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Nam Tiến, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05890",
+        "parent_code": "172"
+    },
+    "05893": {
+        "name": "Tân Hương",
+        "type": "phuong",
+        "slug": "tan-huong",
+        "name_with_type": "Phường Tân Hương",
+        "path": "Tân Hương, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Tân Hương, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05893",
+        "parent_code": "172"
+    },
+    "05896": {
+        "name": "Đông Cao",
+        "type": "phuong",
+        "slug": "dong-cao",
+        "name_with_type": "Phường Đông Cao",
+        "path": "Đông Cao, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Đông Cao, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05896",
+        "parent_code": "172"
+    },
+    "05899": {
+        "name": "Trung Thành",
+        "type": "phuong",
+        "slug": "trung-thanh",
+        "name_with_type": "Phường Trung Thành",
+        "path": "Trung Thành, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Trung Thành, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05899",
+        "parent_code": "172"
+    },
+    "05902": {
+        "name": "Tân Phú",
+        "type": "phuong",
+        "slug": "tan-phu",
+        "name_with_type": "Phường Tân Phú",
+        "path": "Tân Phú, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Tân Phú, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05902",
+        "parent_code": "172"
+    },
+    "05905": {
+        "name": "Thuận Thành",
+        "type": "phuong",
+        "slug": "thuan-thanh",
+        "name_with_type": "Phường Thuận Thành",
+        "path": "Thuận Thành, Phổ Yên, Thái Nguyên",
+        "path_with_type": "Phường Thuận Thành, Thành phố Phổ Yên, Tỉnh Thái Nguyên",
+        "code": "05905",
+        "parent_code": "172"
+    }
+}

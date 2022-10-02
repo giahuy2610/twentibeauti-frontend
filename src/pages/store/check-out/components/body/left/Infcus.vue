@@ -38,6 +38,7 @@
             @complete="searchCountry($event)"
             optionLabel="name"
             placeholder="Số điện thoại"
+            class="p-invalid"
           />
         </span>
       </div>
