@@ -10,26 +10,31 @@
         <RadioButton
           :inputId="item.id"
           name="patransporty"
-          :value="item.label"
-          v-model="transport"
+          :value="item.id"
+          v-model="selectedTransport"
         />
-        <label for="vc1">{{item.label}}</label>
+        <label :for="item.id">{{ item.label }}</label>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-    
   data() {
     return {
-        transport:null,
+      selectedTransport: null,
       array: [
-        { label: "Giao hàng tiêu chuẩn (3 - 6 ngày) (Giao giờ hành chính)", id: "id1" },
-        { label: "Giao hàng trong 24h", id: "id2" },
-        { label: "[NOW] Giao hàng nhanh trong 24h ", id: "id3" },
+        {
+          label: "Giao hàng tiêu chuẩn (3 - 6 ngày) (Giao giờ hành chính)",
+          id: "idTransport1",
+        },
+        { label: "Giao hàng trong 24h", id: "idTransport2" },
+        { label: "[NOW] Giao hàng nhanh trong 24h ", id: "idTransport3" },
       ],
     };
+  },
+  mounted() {
+    this.selectedTransport = this.array[0].id;
   },
 };
 </script>
