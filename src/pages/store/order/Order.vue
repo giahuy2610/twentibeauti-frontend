@@ -17,10 +17,12 @@
           <a href="#support">Đơn không thành công</a>
         </div>
         <div class="search">
-          <div class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <InputText type="text" v-model="value3" placeholder="Tìm kiếm" />
-          </div>
+          <span class="p-fluid">
+            <div class="p-input-icon-left">
+              <i class="pi pi-search" />
+              <InputText type="text" v-model="value3" placeholder="Tìm kiếm" />
+            </div>
+          </span>
         </div>
       </div>
       <div class="left-column">
@@ -98,11 +100,6 @@ ul.breadcrumb li a:hover {
     box-sizing: border-box;
   }
 
-  .search {
-    display: block;
-    background-color: #aed56b;
-    width: 100%;
-    display: flex;
     .p-input-icon-left {
       width: 100%;
     }
@@ -124,7 +121,6 @@ ul.breadcrumb li a:hover {
     color: #aed56b;
     font-weight: 600;
   }
-}
 
   .left-column {
     display: flex;
