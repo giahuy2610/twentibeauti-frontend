@@ -25,7 +25,8 @@ import RadioButton from "primevue/radiobutton";
 import InputNumber from "primevue/inputnumber";
 import InputSwitch from "primevue/inputswitch";
 import ScrollPanel from "primevue/scrollpanel";
-
+import Breadcrumb from 'primevue/breadcrumb';
+import InputMask from 'primevue/inputmask';
 import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
@@ -35,6 +36,8 @@ const app = createApp(App);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
+app.component('InputMask',InputMask);
+app.component('Breadcrumb',Breadcrumb);
 app.component("InputNumber", InputNumber);
 app.component("RadioButton", RadioButton);
 app.component("Checkbox", Checkbox);
