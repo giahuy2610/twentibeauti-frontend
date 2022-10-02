@@ -144,4 +144,7 @@ export default {
     flex-direction: column;
   }
 }
+::v-deep(.p-scrollpanel-content) {
+  padding: 0;
+}
 </style>
