@@ -13,6 +13,7 @@ import PromotionsPage from "../pages/store/promotion/Promotion.vue";
 import Account from "../pages/store/account/Account.vue";
 import Order from "../pages/store/order/Order.vue";
 import Change_Address from "../pages/store/change_address/Change_Address.vue";
+import Product from "../pages/store/product/Product.vue";
 
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
@@ -83,6 +84,19 @@ const routes = [
         name:"checkout",
         path:"/checkout",
         component:Checkout,
+        name: "checkout",
+        path: "/checkout",
+        component: Checkout,
+      },
+      {
+        name: "checkout",
+        path: "/checkout",
+        component: Checkout,
+      },
+      {
+        name: "product",
+        path: "/product",
+        component: Product,
       }
 
     ],
