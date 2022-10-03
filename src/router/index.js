@@ -21,7 +21,7 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
 import ProductDetail from "../pages/admin/products/ProductDetail.vue";
-33
+
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -70,23 +70,15 @@ const routes = [
         component: Account,
       },
       {
-        name:"order",
-        path:"/order",
-        component:Order,
+        name: "order",
+        path: "/order",
+        component: Order,
       },
 
       {
-        name:"change_address",
-        path:"/change_address",
-        component:Change_Address,
-      },
-      {
-        name:"checkout",
-        path:"/checkout",
-        component:Checkout,
-        name: "checkout",
-        path: "/checkout",
-        component: Checkout,
+        name: "change_address",
+        path: "/change_address",
+        component: Change_Address,
       },
       {
         name: "checkout",
@@ -97,8 +89,7 @@ const routes = [
         name: "product",
         path: "/product",
         component: Product,
-      }
-
+      },
     ],
   },
   {
@@ -119,6 +110,11 @@ const routes = [
       {
         name: "product details",
         path: "/products/{id}",
+        component: ProductDetail,
+      },
+      {
+        name: "product details",
+        path: "/products/create",
         component: ProductDetail,
       },
     ],
