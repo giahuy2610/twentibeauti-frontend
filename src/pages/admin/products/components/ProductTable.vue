@@ -1,7 +1,7 @@
 <template>
   <div class="product-table-wrapper">
     <DataTable
-      :value="customers"
+      :value="products"
       :paginator="true"
       class="p-datatable-customers"
       :rows="10"
@@ -61,10 +61,10 @@
         <template #body="{ data }">
           <img
             src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-            :class="'flag flag-' + data.country.code"
+            :class="'flag flag-' + data.brand.code"
             width="30"
           />
-          <span class="image-text">{{ data.country.name }}</span>
+          <span class="image-text">{{ data.brand.name }}</span>
         </template>
         <template #filter="{ filterModel }">
           <InputText
@@ -86,12 +86,12 @@
       >
         <template #body="{ data }">
           <img
-            :alt="data.representative.name"
+            :alt="data.category.name"
             src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
             width="32"
             style="vertical-align: middle"
           />
-          <span class="image-text">{{ data.representative.name }}</span>
+          <span class="image-text">{{ data.category.name }}</span>
         </template>
         <template #filter="{ filterModel }">
           <div class="mb-3 font-bold">Agent Picker</div>
@@ -124,7 +124,7 @@
         style="min-width: 8rem"
       >
         <template #body="{ data }">
-          {{ formatDate(data.date) }}
+          {{ data.createdOn }}
         </template>
         <template #filter="{ filterModel }">
           <Calendar
@@ -142,7 +142,7 @@
         style="min-width: 8rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.balance) }}
+          {{ formatCurrency(data.salePrice) }}
         </template>
         <template #filter="{ filterModel }">
           <InputNumber
@@ -194,7 +194,7 @@
         style="min-width: 10rem"
       >
         <template #body="{ data }">
-          <ProgressBar :value="data.activity" :showValue="false" />
+          <ProgressBar :value="data.stock" :showValue="false" />
         </template>
         <template #filter="{ filterModel }">
           <Slider v-model="filterModel.value" range class="m-3"></Slider>
@@ -217,7 +217,6 @@
 </template>
 
 <script>
-import CustomerService from "./CustomerService";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 export default {
@@ -276,161 +275,56 @@ export default {
         "renewal",
         "proposal",
       ],
+      products: [
+        {
+          id: 1000,
+          name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
+          brand: {
+            name: "The Face Shop",
+            id: 100,
+            path: "/collections/the-face-shop",
+            country: "Hàn Quốc",
+          },
+          createdOn: "2015-09-13",
+          status: "unqualified",
+          stock: 20,
+          images: ["abc.png", "bcd.png"],
+          listprice: 80000,
+          salePrice: 75000,
+          description:
+            "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
+          category: {
+            name: "Trang điểm",
+            id: "1",
+            path: "/categories/trang-diem",
+          },
+          review: [
+            {
+              id: 111,
+              userId: 1112,
+              rating: 4,
+              content: "Sản phẩm tốt",
+              createdOn: "2015-09-13",
+              invoice: { id: 152 },
+            },
+            {
+              id: 115,
+              userId: 1113,
+              rating: 2,
+              content: "Sản phẩm tốt",
+              createdOn: "2015-09-14",
+              invoice: { id: 165 },
+            },
+          ],
+        },
+      ],
     };
   },
-  created() {
-    this.customerService = new CustomerService();
-  },
+  created() {},
   mounted() {
-    this.customers = [
-      {
-        id: 1000,
-        name: "James Butt",
-        country: {
-          name: "Algeria",
-          code: "dz",
-        },
-        company: "Benton, John B Jr",
-        date: "2015-09-13",
-        status: "unqualified",
-        verified: true,
-        activity: 17,
-        representative: {
-          name: "Ioni Bowcher",
-          image: "ionibowcher.png",
-        },
-        balance: 70663,
-      },
-      {
-        id: 1001,
-        name: "Josephine Darakjy",
-        country: {
-          name: "Egypt",
-          code: "eg",
-        },
-        company: "Chanay, Jeffrey A Esq",
-        date: "2019-02-09",
-        status: "proposal",
-        verified: true,
-        activity: 0,
-        representative: {
-          name: "Amy Elsner",
-          image: "amyelsner.png",
-        },
-        balance: 82429,
-      },
-      {
-        id: 1002,
-        name: "Art Venere",
-        country: {
-          name: "Panama",
-          code: "pa",
-        },
-        company: "Chemel, James L Cpa",
-        date: "2017-05-13",
-        status: "qualified",
-        verified: false,
-        activity: 63,
-        representative: {
-          name: "Asiya Javayant",
-          image: "asiyajavayant.png",
-        },
-        balance: 28334,
-      },
-      {
-        id: 1003,
-        name: "Lenna Paprocki",
-        country: {
-          name: "Slovenia",
-          code: "si",
-        },
-        company: "Feltz Printing Service",
-        date: "2020-09-15",
-        status: "new",
-        verified: false,
-        activity: 37,
-        representative: {
-          name: "Xuxue Feng",
-          image: "xuxuefeng.png",
-        },
-        balance: 88521,
-      },
-      {
-        id: 1004,
-        name: "Donette Foller",
-        country: {
-          name: "South Africa",
-          code: "za",
-        },
-        company: "Printing Dimensions",
-        date: "2016-05-20",
-        status: "proposal",
-        verified: true,
-        activity: 33,
-        representative: {
-          name: "Asiya Javayant",
-          image: "asiyajavayant.png",
-        },
-        balance: 93905,
-      },
-      {
-        id: 1005,
-        name: "Simona Morasca",
-        country: {
-          name: "Egypt",
-          code: "eg",
-        },
-        company: "Chapman, Ross E Esq",
-        date: "2018-02-16",
-        status: "qualified",
-        verified: false,
-        activity: 68,
-        representative: {
-          name: "Ivan Magalhaes",
-          image: "ivanmagalhaes.png",
-        },
-        balance: 50041,
-      },
-      {
-        id: 1006,
-        name: "Mitsue Tollner",
-        country: {
-          name: "Paraguay",
-          code: "py",
-        },
-        company: "Morlong Associates",
-        date: "2018-02-19",
-        status: "renewal",
-        verified: true,
-        activity: 54,
-        representative: {
-          name: "Ivan Magalhaes",
-          image: "ivanmagalhaes.png",
-        },
-        balance: 58706,
-      },
-      {
-        id: 1007,
-        name: "Leota Dilliard",
-        country: {
-          name: "Serbia",
-          code: "rs",
-        },
-        company: "Commercial Press",
-        date: "2019-08-13",
-        status: "renewal",
-        verified: true,
-        activity: 69,
-        representative: {
-          name: "Onyama Limba",
-          image: "onyamalimba.png",
-        },
-        balance: 26640,
-      },
-    ];
-    this.customers.forEach(
-      (customer) => (customer.date = new Date(customer.date))
-    );
+    // this.products.forEach(
+    //   (products) => (products.createdOn = new Date(products.createdOn))
+    // );
     this.loading = false;
   },
   methods: {
@@ -501,27 +395,3 @@ export default {
   }
 }
 </style>
-<!-- 
-products= [ 
-{ 
-id: 1000, 
-productName: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g", 
-brand: {name: "The Face Shop", id: 100, path: "/collections/the-face-shop", country: "Hàn Quốc" },
-createdOn: "2015-09-13", status: "unqualified", 
-stock: 20,
-images: ['abc.png','bcd.png'], 
-listprice: 80000, 
-saleprice: 75000, 
-description: 'Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da', 
-category: {
-  name: "",
-  id: "",
-  path: "",
-}
-review: 
-[
-{ id: 111, user: 1112, rating: 4, content: 'Sản phẩm tốt', createdOn: '2015-09-13', invoice: {id: 152} },
-{ id: 115, user: 1113, rating: 2, content: 'Sản phẩm tốt', createdOn: '2015-09-14', invoice: {id: 165} }
-]
-
-] -->
