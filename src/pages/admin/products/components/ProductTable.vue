@@ -501,7 +501,7 @@ export default {
   }
 }
 </style>
-
+<!-- 
 products= [ 
 { 
 id: 1000, 
@@ -524,4 +524,4 @@ review:
 { id: 115, user: 1113, rating: 2, content: 'Sản phẩm tốt', createdOn: '2015-09-14', invoice: {id: 165} }
 ]
 
-]
+] -->

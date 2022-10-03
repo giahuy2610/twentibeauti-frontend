@@ -25,6 +25,11 @@ import RadioButton from "primevue/radiobutton";
 import InputNumber from "primevue/inputnumber";
 import InputSwitch from "primevue/inputswitch";
 import ScrollPanel from "primevue/scrollpanel";
+import DataTable from "primevue/datatable";
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
+import Row from 'primevue/row';  
+
 
 import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
@@ -56,6 +61,12 @@ app.component("Tree", Tree);
 app.component("AutoComplete", AutoComplete);
 app.component("InputSwitch", InputSwitch);
 app.component("ScrollPanel", ScrollPanel);
+app.component("DataTable", DataTable);
+app.component("ColumnGroup", ColumnGroup);
+app.component("Column", Column);
+app.component("Row", Row);
+
+
 
 app.directive("badge", BadgeDirective);
 
