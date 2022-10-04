@@ -12,7 +12,7 @@
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="price"
-              numberformat="0"
+              placeholder="0"
             />
           </span>
         </div>

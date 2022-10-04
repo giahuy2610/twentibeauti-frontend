@@ -2,7 +2,7 @@
   <div>
     <Toast />
 
-    <h5>Advanced</h5>
+    <!-- <h5>Advanced</h5> -->
     <FileUpload
       name="demo[]"
       url="./assets"

@@ -71,6 +71,11 @@
           </span>
         </div>
       </div>
+      <div class="ProductDescription">
+        <PanelMenu />
+        <h5>Mô tả sản phẩm</h5>
+        <Editor v-model="value1" editorStyle="height: 320px"/>
+      </div>
       
         
   </div>
@@ -78,7 +83,8 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+    };
   },
 };
 </script>
