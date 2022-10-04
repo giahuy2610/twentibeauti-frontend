@@ -15,14 +15,14 @@
                 </button>
             </div>
             <div class="confirm-add">
-                <Button type="button" class="p-button-rounded p-button-secondary flex-row">
+                <Button type="button" class="btn-add-cart p-button-rounded p-button-secondary flex-row">
                     <span class="cart"></span>
                     <span class="ml-2 font-bold">Thêm vào giỏ hàng</span>
                 </Button>
             </div>
             <div class="buy">
                 <Button type="button" class="p-button-rounded p-button-success flex-row">
-                    <span class="ml-1 font-bold">Mua ngay</span>
+                    <span class="ml-1 font-bold">MUA NGAY</span>
                 </Button>
             </div>
             <div class="add-favourite">
@@ -47,7 +47,7 @@ export default {
 {
     .item
     {
-        gap : 2rem;
+        gap : 1rem;
         Button
         {
             height: 3rem;
@@ -88,11 +88,10 @@ export default {
         }
         .confirm-add
         {
-
-            .icon-cart
+            
+            .btn-add-cart
             {
-                width : 2rem;
-                height: 2rem;
+                padding : 14px 23px;
             }
             .cart:before
             {
