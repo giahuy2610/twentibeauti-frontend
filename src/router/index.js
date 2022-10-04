@@ -112,6 +112,11 @@ const routes = [
         path: "products/create",
         component: ProductCreate,
       },
+      {
+        name: "product details",
+        path: "/products/create",
+        component: ProductDetail,
+      },
     ],
   },
 ];
