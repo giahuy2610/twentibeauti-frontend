@@ -1,4 +1,7 @@
 <template lang="">
+    <div class="price">
+        <p><b>{{ Intl.NumberFormat().format(listPrice) }} đ</b></p>
+    </div>
     <div class="add-cart-align">
         <div class="item flex-row">
             <div class="quantity flex-row">
@@ -33,10 +36,19 @@
 </template>
 <script>
 export default {
+    data(){
+        return{
+            listPrice: 369000,
+        }
+    }
     
 }
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
+.price
+{
+    font-size: 1.5rem;
+}
 .flex-row
 {
     display: flex;
@@ -47,7 +59,7 @@ export default {
 {
     .item
     {
-        gap : 2rem;
+        gap : 1.5rem;
         Button
         {
             height: 3rem;
