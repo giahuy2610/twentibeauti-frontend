@@ -33,6 +33,10 @@ import Chart from 'primevue/chart';
 import FileUpload from 'primevue/fileupload';
 
 
+import { createPinia } from 'pinia';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
+
+
 
 
 import "./scss/_theme.scss";
@@ -41,6 +45,8 @@ import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
 const app = createApp(App);
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);

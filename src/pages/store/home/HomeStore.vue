@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="home__wrapper">
+  <div class="home__wrapper" ref="more">
     <AdsSlider></AdsSlider>
     <Wrapper>
       <div class="home__wrapper__content">
@@ -31,6 +31,7 @@ export default {
     BrandsSlider,
     Wrapper,
   },
+
 };
 </script>
 <style lang="scss" scoped>
