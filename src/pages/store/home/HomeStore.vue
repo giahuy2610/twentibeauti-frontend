@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="home__wrapper" ref="more">
+  <div class="home__wrapper">
     <AdsSlider></AdsSlider>
     <Wrapper>
       <div class="home__wrapper__content">
