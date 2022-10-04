@@ -31,7 +31,8 @@ import ColumnGroup from 'primevue/columngroup';     //optional for column groupi
 import Row from 'primevue/row';  
 import Chart from 'primevue/chart';
 import FileUpload from 'primevue/fileupload';
-
+import Editor from 'primevue/editor';
+import PanelMenu from 'primevue/panelmenu';
 
 import { createPinia } from 'pinia';
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
@@ -77,7 +78,8 @@ app.component("Column", Column);
 app.component("Row", Row);
 app.component("Chart", Chart);
 app.component("FileUpload", FileUpload);
-
+app.component("Editor",Editor);
+app.component("PanelMenu",PanelMenu)
 
 app.directive("badge", BadgeDirective);
 

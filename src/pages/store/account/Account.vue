@@ -1,6 +1,12 @@
 <template lang="">
   <Wrapper>
     <div class="content">
+      <div class="header">
+        <ul class="breadcrumb">
+          <li><a href="/">Trang chủ</a></li>
+          <li>Tài khoản</li>
+        </ul>
+      </div>
       <div class="right-column">
         <div class="info">
           <h2>Tài khoản</h2>
@@ -15,6 +21,7 @@
                     @complete="searchFName($event)"
                     optionLabel="text"
                     placeholder="Nhập Tên"
+                    
                   />
                 </span>
               </form>
@@ -69,7 +76,14 @@
           </div>
         </div>
       </div>
-      <div class="left-column"></div>
+      <div class="left-column">
+        <div class="sidebar-account">
+          <p><li><a href="#">Tài khoản</a></li></p>
+          <p><li><a href="#">Đơn hàng</a></li></p>
+          <p><li><a href="#">Địa chỉ giao nhận</a></li></p>
+          <p><li><a href="#">Ưu đãi của tôi</a></li></p>
+        </div>
+      </div>
     </div>
   </Wrapper>
 </template>
@@ -79,10 +93,48 @@ export default {
   components: {
     Wrapper,
   },
+  data() {
+    return {
+      
+      position: "center",
+    };
+  },
+
 };
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+ // background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 14px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: #797979;
+  content: ">\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #797979;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #797979 ;
+  font-weight: 600;
+  text-decoration: underline;
+}
 .right-column {
   width: 60%;
   min-height: 200px;
@@ -151,6 +203,23 @@ export default {
   width: 40%;
   height: 150px;
   float: left;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  
+  .sidebar-account a {
+    
+    padding:14px;
+    text-decoration: none;
+    color: #333;
+    h4 {
+      margin-bottom: 20px;
+    }
+  }
+  .sidebar-account a:hover {
+    text-decoration: underline;
+    color: #aed56b;
+  }
 }
 ::selection {
   background:#94C83D ;

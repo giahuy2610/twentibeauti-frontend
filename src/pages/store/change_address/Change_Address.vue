@@ -4,25 +4,33 @@
       <div class="title"></div>
     </template>
     <template v-slot:context>
-      <div>BBBBB</div>
+      <div></div>
     </template>
     <template v-slot:footer>
-      <div>CCCCC</div>
+      <div></div>
     </template>
     <template v-slot:button>
-      <button @click="close()">close</button>
+      <div class="btn_save">
+      <button @click="close()">Lưu</button>
+    </div>
     </template>
   </Form>
   <Wrapper>
     <div class="content">
+      <div class="header">
+        <div class="bread">
+          <ul class="breadcrumb">
+            <li><a href="/">Trang chủ</a></li>
+            <li>Tài khoản</li>
+          </ul>
+        </div>
       <div class="right-column">
         <div class="header">Địa chỉ giao nhận</div>
         <div class="flex_column">
           <div class="box_add">
             <div class="plus">
-              <button @click="modal1 = true">Open</button>
-
-              <!-- <div class="add">Thêm địa chỉ</div> -->
+              <button class="pi pi-plus" @click="modal1 = true"></button>
+              <div class="add">Thêm địa chỉ</div>
             </div>
           </div>
           <div class="test">
@@ -51,14 +59,33 @@
                     44/37/1/3, HT43, phường Hiệp Thành, Quận 12, Hồ Chí Minh
                   </div>
                 </div>
+                </div>
               </div>
             </div>
           </div>
           <div class="test">...</div>
         </div>
+      
+      <div class="left-column">
+        <div class="sidebar-account">
+          <p>
+            <li><a href="#">Tài khoản</a></li>
+          </p>
+          <p>
+            <li><a href="#">Đơn hàng</a></li>
+          </p>
+          <p>
+            <li><a href="#">Địa chỉ giao nhận</a></li>
+          </p>
+          <p>
+            <li><a href="#">Ưu đãi của tôi</a></li>
+          </p>
+        </div>
       </div>
-      <div class="left-column"></div>
     </div>
+   
+  </div>
+  
   </Wrapper>
 </template>
 <script>
@@ -74,13 +101,6 @@ export default {
   data() {
     return {
       modal1: false,
-      // displayBasic: false,
-      // displayBasic2: false,
-      // displayModal: false,
-      // displayResponsive: false,
-      // displayConfirmation: false,
-      // displayMaximizable: false,
-      // displayPosition: false,
       position: "center",
     };
   },
@@ -137,6 +157,50 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+.btn_save {
+  button {
+    background: #94C83D;
+    text-align: center;
+    border: none;
+    border-radius: 38px;
+    width: 100%;
+    height: 50px;
+    font-weight: 700;
+    font-size: 22px;
+    color: #fff;
+  }
+}
+ul.breadcrumb {
+  padding: 10px 16px;
+  list-style: none;
+ // background-color: #eee;
+}
+
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 14px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: #797979;
+  content: ">\00a0";
+}
+
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #797979;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #797979 ;
+  font-weight: 600;
+  text-decoration: underline;
+}
 .right-column {
   display: flex;
   float: right;
@@ -273,6 +337,9 @@ export default {
 
           //text-justify: center;
         }
+        button {
+          background: none;
+        }
 
         .add {
           margin-top: 20px;
@@ -286,5 +353,20 @@ export default {
   display: flex;
   float: left;
   width: 30%;
+  list-style-type: none;
+  .sidebar-account a {
+    padding: 14px;
+    text-decoration: none;
+    color: #333;
+    h4 {
+      margin-bottom: 20px;
+    }
+  }
+  .sidebar-account a:hover {
+    text-decoration: underline;
+    color: #aed56b;
+  }
+
 }
+
 </style>
