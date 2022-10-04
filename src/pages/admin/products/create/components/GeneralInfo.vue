@@ -1,43 +1,45 @@
 <template lang="">
-  <div class="generalInfo">
-    <h2>Thông tin chung</h2>
-    <hr width="100%" align="center" />
-    <p>Tên sản phẩm</p>
-    <div class="nameprod">
-      <div class="nameinf">
-        <span class="p-fluid">
-          <AutoComplete
-            style="color: blue"
-            v-model="text1"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
-            placeholder="Nhập tên sản phẩm"
-          />
-        </span>
-      </div>
-    </div>
-    <br />
-    <div class="codemass">
-      <div class="code">
-        <p>Nhập mã sản phẩm</p>
-      <div class="fillinf" style="margin: 0 !important">
+  
+    <div class="generalInfo">
+      <Card style="width: 70%;">
+        <template #title> Thông tin chung </template>
+    <template #content>
+      <p>Tên sản phẩm</p>
+      <div class="nameprod">
         <div class="nameinf">
-          <span class="p-fluid"
-            ><AutoComplete
+          <span class="p-fluid">
+            <AutoComplete
               style="color: blue"
               v-model="text1"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="name"
+              placeholder="Nhập tên sản phẩm"
             />
           </span>
         </div>
       </div>
-      </div>
-      <div class="mass">
-        <p>Khối lượng</p>
-        <div class="fillinf">
+      <br />
+      <div class="codemass">
+        <div class="code">
+          <p>Nhập mã sản phẩm</p>
+          <div class="fillinf" style="margin: 0 !important">
+            <div class="nameinf">
+              <span class="p-fluid"
+                ><AutoComplete
+                  style="color: blue"
+                  v-model="text1"
+                  :suggestions="filteredCountries"
+                  @complete="searchCountry($event)"
+                  optionLabel="name"
+                />
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="mass">
+          <p>Khối lượng</p>
+          <div class="fillinf">
             <AutoComplete
               style="color: blue"
               v-model="text1"
@@ -53,8 +55,8 @@
               placeholder=""
               :editable="true"
             />
+          </div>
         </div>
-      </div>
       </div>
       <p>Đơn vị tính</p>
       <div class="nameprod">
@@ -74,17 +76,17 @@
       <div class="ProductDescription">
         <PanelMenu />
         <h5>Mô tả sản phẩm</h5>
-        <Editor v-model="value1" editorStyle="height: 320px"/>
+        <Editor v-model="value1" editorStyle="height: 320px" />
       </div>
-      
-        
-  </div>
+    </template>
+  </Card>
+    </div>
+    
 </template>
 <script>
 export default {
   data() {
-    return {
-    };
+    return {};
   },
 };
 </script>
@@ -92,33 +94,25 @@ export default {
 .generalInfo {
   display: flex;
   flex-direction: column;
-  border: 1px solid #aaa;
-  border-radius: 10px;
-  padding: 20px;
-  width: 60%;
-  margin-top: 10px;
-  .codemass{
+  .codemass {
     display: flex;
     width: 100%;
     flex-direction: row;
-    .code{
-        display: flex;
-        flex-direction: column;
-        width: 50%;
-        margin-right: 10px;
+    .code {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-right: 10px;
     }
-    .mass{
+    .mass {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      .fillinf {
         display: flex;
-        flex-direction: column;
-        width: 50%;
-        .fillinf{
-            display: flex;
-            flex-direction: row;
-        }
-
+        flex-direction: row;
+      }
     }
-    
-    
   }
 }
 </style>

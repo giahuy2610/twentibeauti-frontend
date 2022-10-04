@@ -1,6 +1,6 @@
 <template lang="">
-    <div>
-        chưa làm
+    <div class="addinfo">
+        
     </div>
 </template>
 <script>
