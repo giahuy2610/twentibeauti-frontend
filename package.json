@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "chart.js": "^3.9.1",
     "pinia": "^2.0.22",
     "primeflex": "^3.2.1",
     "primeicons": "^5.0.0",
