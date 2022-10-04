@@ -21,7 +21,7 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
 import ProductDetail from "../pages/admin/products/ProductDetail.vue";
-33;
+import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -108,9 +108,9 @@ const routes = [
         component: Products,
       },
       {
-        name: "product details",
-        path: "/products/{id}",
-        component: ProductDetail,
+        name: "product create",
+        path: "products/create",
+        component: ProductCreate,
       },
     ],
   },

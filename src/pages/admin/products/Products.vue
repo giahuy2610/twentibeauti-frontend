@@ -11,6 +11,7 @@
             icon="pi pi-plus"
             class="p-button-info ml-2"
             badgeClass="p-badge-danger"
+            @click="$router.push({path:'/admin/products/create',replace:true})"
           />
         </div>
       </div>
@@ -39,7 +40,7 @@ export default {
   },
   data() {
     return {};
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>
