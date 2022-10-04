@@ -31,6 +31,7 @@ export default {
     BrandsSlider,
     Wrapper,
   },
+
 };
 </script>
 <style lang="scss" scoped>

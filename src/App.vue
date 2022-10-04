@@ -24,4 +24,5 @@ router-link {
   text-decoration: none !important;
   color: inherit;
 }
+
 </style>
