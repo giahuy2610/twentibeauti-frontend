@@ -7,6 +7,10 @@
             <HeaderProduct></HeaderProduct>
           </div>
             <RatingProduct></RatingProduct>
+            <div class="price">
+              <p>{{ Intl.NumberFormat().format(listPrice) }}đ</p>
+            </div>
+            <AddCart></AddCart>
         </div>
     </div>
 </template>
@@ -14,15 +18,25 @@
 import ImageProduct from "@/pages/store/product/components/ImageProduct.vue";
 import Breadcrumb from "@/pages/store/product/components/Breadcrumb.vue";
 import HeaderProduct from "@/pages/store/product/components/HeaderProduct.vue";
-import RatingProduct from "@/pages/store/product/components/RatingProduct.vue"
+import RatingProduct from "@/pages/store/product/components/RatingProduct.vue";
+import AddCart from "@/pages/store/product/components/AddCart.vue"
 export default {
     components: {
         ImageProduct,
         Breadcrumb,
         HeaderProduct,
         RatingProduct,
+        AddCart,
+    },
+    data() 
+    {
+      return 
+      {
+        listPrice: 369000
+      };
     },
 };
+
 </script>
 
 

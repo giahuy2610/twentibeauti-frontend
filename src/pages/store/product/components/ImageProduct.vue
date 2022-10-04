@@ -19,7 +19,9 @@
 </template>
 <script>
 export default {
-
+    methods: {
+        
+    }
 };
 </script>
 <style lang="scss">
@@ -51,7 +53,7 @@ export default {
     }
     .pag-down 
     {
-        top: 40% !important;
+        top: 35% !important;
     }
     .btn-up {
         position: absolute;
