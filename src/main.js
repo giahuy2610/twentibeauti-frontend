@@ -29,6 +29,10 @@ import DataTable from "primevue/datatable";
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
 import Row from 'primevue/row';  
+import Chart from 'primevue/chart';
+import FileUpload from 'primevue/fileupload';
+
+
 
 
 import "./scss/_theme.scss";
@@ -65,7 +69,8 @@ app.component("DataTable", DataTable);
 app.component("ColumnGroup", ColumnGroup);
 app.component("Column", Column);
 app.component("Row", Row);
-
+app.component("Chart", Chart);
+app.component("FileUpload", FileUpload);
 
 
 app.directive("badge", BadgeDirective);
