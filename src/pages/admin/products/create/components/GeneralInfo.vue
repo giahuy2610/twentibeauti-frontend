@@ -1,7 +1,7 @@
 <template lang="">
   
     <div class="generalInfo">
-      <Card style="width: 70%;">
+      <Card>
         <template #title> Thông tin chung </template>
     <template #content>
       <p>Tên sản phẩm</p>
@@ -10,7 +10,7 @@
           <span class="p-fluid">
             <AutoComplete
               style="color: blue"
-              v-model="text1"
+              v-model="nameproduct"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="name"
@@ -28,7 +28,7 @@
               <span class="p-fluid"
                 ><AutoComplete
                   style="color: blue"
-                  v-model="text1"
+                  v-model="codeproduct"
                   :suggestions="filteredCountries"
                   @complete="searchCountry($event)"
                   optionLabel="name"
@@ -42,7 +42,7 @@
           <div class="fillinf">
             <AutoComplete
               style="color: blue"
-              v-model="text1"
+              v-model="mass"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="name"
@@ -63,7 +63,7 @@
         <div class="nameinf">
           <span class="p-fluid">
             <Dropdown
-              v-model="selectedWard"
+              v-model="unit"
               :options="wards"
               optionLabel="name"
               optionValue="code"
@@ -76,7 +76,7 @@
       <div class="ProductDescription">
         <PanelMenu />
         <h5>Mô tả sản phẩm</h5>
-        <Editor v-model="value1" editorStyle="height: 320px" />
+        <Editor v-model="description" editorStyle="height: 320px" />
       </div>
     </template>
   </Card>

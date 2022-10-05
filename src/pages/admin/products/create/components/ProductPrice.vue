@@ -1,6 +1,6 @@
 <template lang="">
   <div class="productprice">
-    <Card style="width: 70%;">
+    <Card>
       <template #title> Giá sản phẩm</template>
     <template #content>
     <div class="price">
@@ -9,7 +9,7 @@
           <span class="p-fluid">
             <AutoComplete
               style="color: blue"
-              v-model="text1"
+              v-model="retailprice"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="price"
@@ -21,7 +21,7 @@
             <p>Giá nhập</p>
           <span class="p-fluid">
             <AutoComplete
-              v-model="text2"
+              v-model="importprice"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="price"

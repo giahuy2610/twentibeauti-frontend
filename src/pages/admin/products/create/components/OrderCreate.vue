@@ -1,6 +1,6 @@
 <template lang="">
   <div class="addinfo">
-    <Card style="width: 70%;">
+    <Card>
       <template #title> Khởi tạo kho hàng</template>
       <template #subtitle>
         Ghi nhận số lượng Tồn kho ban đầu và Giá vốn của sản phẩm
@@ -12,7 +12,7 @@
           <span class="p-fluid">
             <AutoComplete
               style="color: blue"
-              v-model="text1"
+              v-model="order"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="price"
@@ -24,7 +24,7 @@
             <p>Giá vốn</p>
           <span class="p-fluid">
             <AutoComplete
-              v-model="text2"
+              v-model="pricepro"
               :suggestions="filteredCountries"
               @complete="searchCountry($event)"
               optionLabel="price"

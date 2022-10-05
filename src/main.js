@@ -33,8 +33,8 @@ import Chart from 'primevue/chart';
 import FileUpload from 'primevue/fileupload';
 import Editor from 'primevue/editor';
 import PanelMenu from 'primevue/panelmenu';
-
-
+import Dialog from 'primevue/dialog';
+import Toast from 'primevue/toast';
 
 import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
@@ -74,7 +74,8 @@ app.component("Chart", Chart);
 app.component("FileUpload", FileUpload);
 app.component("Editor",Editor);
 app.component("PanelMenu",PanelMenu)
-
+app.component("Dialog",Dialog);
+app.component("Toast",Toast);
 app.directive("badge", BadgeDirective);
 
 app.mount("#app");

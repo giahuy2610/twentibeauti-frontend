@@ -4,16 +4,19 @@
       <GeneralInfoVue></GeneralInfoVue>
       <ProductPrice></ProductPrice>
       <div class="photos">
-        <Card style="width: 70%">
+        <Card >
             <template #title> Ảnh sản phẩm </template>
             <template #content>
-              <div class="">
+              <div >
                 <AddFile></AddFile>
               </div>
             </template>
           </Card>
       </div>
       <OrderCreate></OrderCreate>
+      
+    </div>
+    <div class="right">
       <AddInfoVue></AddInfoVue>
     </div>
   </div>
@@ -37,15 +40,21 @@ export default {
 <style lang="scss" scoped>
 .main_content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
   margin-top: 10px;
   .left {
-    width: 100%;
+    width: 70%;
+    margin: 10px;
     .photos{
         margin-top: 20px;
     }
 
     }
+    .right{
+      width: 30%;
+      margin: 10px;
+    }
+
 }
 </style>
