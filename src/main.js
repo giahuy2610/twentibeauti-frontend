@@ -29,6 +29,7 @@ import DataTable from "primevue/datatable";
 import Column from 'primevue/column';
 import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
 import Row from 'primevue/row';  
+// import ButtonModule from 'primeng/button';
 
 
 import "./scss/_theme.scss";

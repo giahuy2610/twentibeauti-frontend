@@ -8,8 +8,8 @@
                 </div>
             </div>
             <div class="right-col">
-                <div class="product-content">
-                    <div class="shorten-html-content">
+                <div @click="showingFullText = !showingFullText" class="product-content">
+                    <div  :class="{ shorten: showingFullText }">
                         <p class="p1">
                             <span>
                                 <strong>Tẩy Tế Bào Chết Toàn Thân YEHWADAM BODY PEELING</strong>
@@ -47,24 +47,45 @@
                         <p><span>Bạn có thể sử dụng sản phẩm trên cơ thể khô hoặc ướt.&nbsp;</span></p>
                         <p><span>Lấy 1 lượng vừa đủ thoa lên vùng da cần loại bỏ tế bào chết, sau đó massage nhẹ nhàng khoảng 5 phút sau đó tắm sạch lại.&nbsp;</span></p>
                         <p><span>Bạn nên tẩy tế bào chết 1 -2 lần/tuần để giúp da luôn tươi sáng khỏe mạnh.</span></p>
+                        
                     </div>
-                    <div class="centered btn-hide-content">
-                        <Button label="Ẩn bớt nội dung" class="p-button-outlined p-button-success p-button-rounded" />
+                    <div :class="{'background-cover': showingFullText}"></div>
+                    <div class="centered btn-showingFullText">
+                        <Button class="p-button-secondary p-button-outlined p-button-rounded">
+                            {{showMoreContent}}
+                        </Button>    
                     </div>
-                    <div class="centered btn-show-content">
-                        <Button label="Xem thêm nội dung" class="p-button-outlined p-button-success p-button-rounded" />
-                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 </template>
 <script>
-export default {
-    
+import { computed } from '@vue/runtime-core';
+export default 
+{
+    data() 
+    {
+        return {
+            showingFullText: false,
+        };
+    },
+    computed:{
+        showMoreContent() 
+        {
+        return this.showingFullText? "Xem thêm nội dung" : "Ẩn bớt nội dung";
+        }
+    }
 }
 </script>
 <style lang="scss" scoped>
+.shorten
+{
+    height: 12.5rem;
+    overflow: hidden;
+}
+
 .inline
 {
     display: inline-block;
@@ -100,7 +121,18 @@ export default {
         .right-col
         {
             .product-content
-            {
+            {   
+                position: relative;
+                cursor: pointer;
+                .background-cover
+                {
+                    position: absolute;
+                    background-image: linear-gradient(transparent, rgb(255, 255, 255));
+                    width: 100%;
+                    height: 100%;
+                    top : 0px;
+                    
+                }
                 .centered
                 {
                     display: flex;
