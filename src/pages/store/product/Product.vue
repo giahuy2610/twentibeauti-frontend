@@ -1,32 +1,67 @@
 <template lang="">
-    <div class="over">
+  <div class="wrap-container">
+      <div class="over row-component">
         <ImageProduct></ImageProduct>
         <div class="infor">
           <Breadcrumb></Breadcrumb>
           <div class="product-header-wrapper">
             <HeaderProduct></HeaderProduct>
           </div>
-            <RatingProduct></RatingProduct>
+          <RatingProduct></RatingProduct>
+          <AddCart></AddCart>
         </div>
     </div>
+    <div class="seperator"> <br><br> </div>
+    <div class="Ads row-component">
+      <AdsSlider2></AdsSlider2>
+    </div>
+    <div class="about row-component">
+      <AboutProduct></AboutProduct>
+    </div>
+  </div>
+    
 </template>
 <script>
 import ImageProduct from "@/pages/store/product/components/ImageProduct.vue";
 import Breadcrumb from "@/pages/store/product/components/Breadcrumb.vue";
 import HeaderProduct from "@/pages/store/product/components/HeaderProduct.vue";
-import RatingProduct from "@/pages/store/product/components/RatingProduct.vue"
+import RatingProduct from "@/pages/store/product/components/RatingProduct.vue";
+import AddCart from "@/pages/store/product/components/AddCart.vue";
+import AdsSlider2 from "@/pages/store/home/components/AdsSlider2.vue";
+import AboutProduct from "@/pages/store/product/components/AboutProduct.vue";
+
 export default {
     components: {
         ImageProduct,
         Breadcrumb,
         HeaderProduct,
         RatingProduct,
+        AddCart,
+        AdsSlider2,
+        AboutProduct,
+    },
+    data() 
+    {
+      return 
+      {
+        listPrice: 369000
+      };
     },
 };
+
 </script>
 
 
 <style lang="scss" scoped>
+.wrap-container
+{
+  box-sizing: content-box;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1300px;
+  position: relative;
+  width: 90%;
+}
 .over {
   display: flex;
   flex-direction: row;
