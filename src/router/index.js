@@ -20,6 +20,8 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
 import ProductDetail from "../pages/admin/products/ProductDetail.vue";
+import CreateOrders from "../pages/admin/orders/CreateOrders.vue";
+import ListOrders from "../pages/admin/orders/ListOrders.vue";
 33
 const routes = [
   {
@@ -100,6 +102,16 @@ const routes = [
         name: "product details",
         path: "/products/{id}",
         component: ProductDetail,
+      },
+      {
+        name: "create orders",
+        path: "createorders",
+        component: CreateOrders,
+      },
+      {
+        name: "list orders",
+        path: "listorders",
+        component: ListOrders,
       },
     ],
   },
