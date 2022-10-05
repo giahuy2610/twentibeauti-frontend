@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="wrap-container">
+  <Wrapper>
       <div class="over row-component">
         <ImageProduct></ImageProduct>
         <div class="infor">
@@ -18,7 +18,7 @@
     <div class="about row-component">
       <AboutProduct></AboutProduct>
     </div>
-  </div>
+  </Wrapper>
     
 </template>
 <script>
@@ -29,6 +29,8 @@ import RatingProduct from "@/pages/store/product/components/RatingProduct.vue";
 import AddCart from "@/pages/store/product/components/AddCart.vue";
 import AdsSlider2 from "@/pages/store/home/components/AdsSlider2.vue";
 import AboutProduct from "@/pages/store/product/components/AboutProduct.vue";
+import Wrapper from "../../Wrapper.vue";
+
 
 export default {
     components: {
@@ -39,6 +41,7 @@ export default {
         AddCart,
         AdsSlider2,
         AboutProduct,
+        Wrapper,
     },
     data() 
     {
@@ -53,20 +56,11 @@ export default {
 
 
 <style lang="scss" scoped>
-.wrap-container
-{
-  box-sizing: content-box;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1300px;
-  position: relative;
-  width: 90%;
-}
+
 .over {
   display: flex;
   flex-direction: row;
   position: relative;
-  width: 100vw;
 }
 
 

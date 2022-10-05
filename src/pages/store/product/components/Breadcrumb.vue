@@ -38,11 +38,7 @@ export default {
         li {
         span
         {
-            .twenti-breadcrum-seperator {
-            margin-left: 4px;
-            margin-right: 4px;
-            }
-    
+            margin: 0px 2px;
             p {
             display: inline;
             color: #797979;
