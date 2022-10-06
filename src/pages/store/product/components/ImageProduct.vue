@@ -26,7 +26,7 @@
         <img src="https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp" alt="Ảnh sản phẩm">
     </div>
 </template>
-<script>
+<script> 
 export default {
   methods: {
     scrollDown() {
@@ -37,7 +37,6 @@ export default {
         this.$refs.slide.scrollTop += this.$refs.slide.offsetHeight * 0.75;
         this.currentIllust = this.illustProducts.length;
       }
-      console.log(this.currentIllust)
     },
     scrollUp() {
       console.log(this.$refs.btn[0].offsetHeight);
@@ -48,7 +47,6 @@ export default {
         this.$refs.slide.scrollTop -= this.$refs.slide.offsetHeight;
         this.currentIllust = 1;
       }
-      console.log(this.currentIllust)
     },
   },
   data() {
