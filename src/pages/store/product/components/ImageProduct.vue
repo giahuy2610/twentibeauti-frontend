@@ -34,7 +34,7 @@ export default {
         this.currentIllust--;
         this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight;
       } else {
-        this.$refs.slide.scrollTop += this.$refs.slide.offsetHeight * 0.75;
+        this.$refs.slide.scrollTop += this.$refs.btn[0].offsetHeight * (this.illustProducts.length -1 );
         this.currentIllust = this.illustProducts.length;
       }
       console.log(this.currentIllust)
@@ -45,7 +45,7 @@ export default {
         this.currentIllust++;
         this.$refs.slide.scrollTop += this.$refs.btn[0].offsetHeight;
       } else {
-        this.$refs.slide.scrollTop -= this.$refs.slide.offsetHeight;
+        this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight * (this.illustProducts.length -1);
         this.currentIllust = 1;
       }
       console.log(this.currentIllust)
@@ -53,7 +53,7 @@ export default {
   },
   data() {
     return {
-      illustProducts: [1, 2, 3, 4, 5],
+      illustProducts: [1, 2, 3, 4, 5, 6, 7, 8],
       currentIllust: 1,
       image: null,
       links: [
