@@ -1,7 +1,7 @@
 <template lang="">
     <div class="scroll-wrapper" ref="wrapper" >
         <Button
-            @click="scrollUp"
+            @click="scrollUp(), isClick = !isClick"
             icon="pi pi-angle-up "
             class="pag__btn btn__up p-button p-button-rounded p-button-outlined"
         />
@@ -10,19 +10,19 @@
                 <div class="slick-list" >
                     <div class="slick-track">
                         <div ref="btn" v-for="(item,index) in illustProducts" :key="index">
-                          <Button @click="scrollTo(index), click= !click" class="pag__size pag__btn p-button-lg p-button-rounded p-button-outlined" :style="{backgroundImage : `url(${this.illustProducts[index]})`}"/>
+                          <Button @click="scrollTo(index), isClick = !isClick" class="pag__size pag__btn p-button-lg p-button-rounded p-button-outlined" :style="{backgroundImage : `url(${this.illustProducts[index]})`}"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <Button
-          @click="scrollDown"
+          @click="scrollDown(), isClick = !isClick"
           icon="pi pi-angle-down"
           class="pag__btn btn__down p-button p-button-rounded p-button-outlined"
         />
     </div>
-    <div class="img__size" :class="{img__appear : click}" >
+    <div ref="image" class="img__size" :class="{ img__appear : isClick}"  >
       <img :src="currentImg" alt="Ảnh sản phẩm">
     </div>
     
@@ -39,7 +39,8 @@ export default {
           this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = this.illustProducts.length;
       }
-      console.log(this.currentIllust);
+      console.log(this.isClick);
+      console.log(this.isClick_1);
     },
     scrollUp() {
       if (this.currentIllust != this.illustProducts.length) {
@@ -50,19 +51,22 @@ export default {
           this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = 1;
       }
-      console.log(this.currentIllust);
+      console.log(this.isClick);
     },
     scrollTo(index) {
-      console.log(index);
       this.$refs.slide.scrollTop +=
         this.$refs.btn[0].offsetHeight * (index + 1 - this.currentIllust);
       this.currentIllust = index + 1;
-      console.log(this.currentIllust);
+      console.log(this.isClick);
     },
+    // reset() {
+    //   this.isClick = !this.isClick;
+    // }
   },
   data() {
     return {
-      click : false,
+      isClick : false,
+      isClick_1 : true,
       currentIllust: 1,
       imageid: 1,
       illustProducts: [
@@ -81,6 +85,9 @@ export default {
       ];
     },
   },
+  // mounted() {
+  //   setInterval(this.scrollUp, 6000);
+  // },
 };
 </script>
 <style lang="scss" scoped>
@@ -151,11 +158,11 @@ export default {
   &__appear {
     max-width: 100%;
     display: block;
-    animation: fadeIn 3s;
-    -webkit-animation: fadeIn 0.8s;
-    -moz-animation: fadeIn 0.8s;
-    -o-animation: fadeIn 0.8s;
-    -ms-animation: fadeIn 0.8s;
+    animation: fadeIn s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
     cursor: pointer;
 
     @keyframes fadeIn {
