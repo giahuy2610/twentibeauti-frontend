@@ -58,7 +58,7 @@ export default {
 .main-wrapper {
   .product-table {
     width: 100%;
-    overflow: hidden;
+
   }
 }
 

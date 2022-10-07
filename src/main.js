@@ -27,6 +27,17 @@ import InputSwitch from "primevue/inputswitch";
 import ScrollPanel from "primevue/scrollpanel";
 import Breadcrumb from 'primevue/breadcrumb';
 import InputMask from 'primevue/inputmask';
+import DataTable from "primevue/datatable";
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
+import Row from 'primevue/row';  
+import SplitButton from 'primevue/splitbutton';
+import Steps from 'primevue/steps';
+import Avatar from 'primevue/avatar';
+import Dialog from 'primevue/dialog';
+// import ButtonModule from 'primeng/button';
+
+
 import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
@@ -36,6 +47,10 @@ const app = createApp(App);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
+app.component('Dialog',Dialog);
+app.component('Avatar',Avatar);
+app.component('Steps',Steps);
+app.component('SplitButton',SplitButton);
 app.component('InputMask',InputMask);
 app.component('Breadcrumb',Breadcrumb);
 app.component("InputNumber", InputNumber);
@@ -59,6 +74,12 @@ app.component("Tree", Tree);
 app.component("AutoComplete", AutoComplete);
 app.component("InputSwitch", InputSwitch);
 app.component("ScrollPanel", ScrollPanel);
+app.component("DataTable", DataTable);
+app.component("ColumnGroup", ColumnGroup);
+app.component("Column", Column);
+app.component("Row", Row);
+
+
 
 app.directive("badge", BadgeDirective);
 

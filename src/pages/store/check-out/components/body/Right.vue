@@ -1,181 +1,150 @@
 <template lang="">
-  <div class="right shadow-6" >
-    <div class="h2">
-      <b>Đơn hàng</b>
+  <div class="right">
+    <div class="righttop shadow-3">
+      <h2>Đơn hàng</h2>
+      <div class="cart__body">
+        <ScrollPanel style="width: 100%; height: 700px">
+          <ProductItem class="mb-1" v-for="item in 17"></ProductItem>
+        </ScrollPanel>
+      </div>
+      <div class="cart__footer">
+        <div class="flex justify-content-between">
+          <h4>Tổng giá trị đơn hàng</h4>
+          <h4>{{ total }}</h4>
+        </div>
+        <div class="coupon">
+          <div class="flex justify-content-between">
+            <h4>Giảm giá</h4>
+            <h4>{{ discount }}</h4>
+          </div>
+          <div class="idcoupon">
+            <p>magiamgia</p>
+            <i class="pi pi-times"></i>
+          </div>
+        </div>
+        <div class="flex justify-content-between">
+          <h4>Tổng tiền ship</h4>
+          <h4>{{ total }}</h4>
+        </div>
+
+        <div class="flex justify-content-between">
+          <h4>Tổng (đã bao gồm VAT)</h4>
+          <h4>{{ total }}</h4>
+        </div>
+
+        <div class="order">
+          <span class="p-fluid">
+            <Button label="Đặt hàng" class="p-button-rounded" />
+          </span>
+        </div>
+        <div class="footer">
+          <p>
+            Khi tiếp tục, bạn đồng ý với các điều khoản & điều kiện và Chính
+            sách
+          </p>
+        </div>
+      </div>
     </div>
-    <br />
-    <div class="cart">
-      <div class="giohang">
-        <div class="left">
-          <img
-            src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7"
+    <div class="rightbottom shadow-3">
+      <p>Coupon & Voucher</p>
+      <span class="p-fluid">
+        <div class="apply">
+          <div class="grid p-fluid">
+            <div class="p-inputgroup p-fluid">
+              <InputText placeholder="Nhập mã giảm giá (nếu có)" />
+              <Button label="Áp dụng" />
+            </div>
+          </div>
+        </div>
+      </span>
+
+      <p>Bạn có phiếu mua quà?</p>
+      <span class="p-fluid">
+        <div class="dropdown">
+          <Dropdown
+            v-model="selectedCity1"
+            :options="cities"
+            optionLabel="name"
+            optionValue="code"
+            placeholder="Chọn chương trình"
           />
         </div>
-        <div class="rightpro">
-          <div class="nameslotpro">
-            <div class="name"> Trịnh Gia Huy</div>
-            <div class="masp">MSP:1234</div>
-            <div class="count">
-              <input class="minus is-form" type="button" value="-" />
-              <input
-                aria-label="quantity"
-                class="input-qty"
-                max="100"
-                min="1"
-                name=""
-                type="number"
-                value=""
-              />
-              <input class="plus is-form" type="button" value="+" />
-            </div>
-          </div>
-          <div class="deletemoney">
-            <div class="delete">
-              <input class="node" type="button" value="-" />
-            </div>
-            <div class="money">330.000đ</div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <br />
-    <hr width="80%" align="center" />
-    <div class="summoney">
-      <div class="contenttotal">
-        <div class="valuecard">Tổng giá trị đơn hàng</div>
-        <div class="discount">
-          <p>Giảm giá</p>
-          <div class="code">CODEGIAMGIA</div>
-        </div>
-        <p>Tiền ship</p>
-      </div>
-      <div class="count">
-        <div class="valuemoney">12000000đ</div>
-        <div class="discount">
-          <p>0đ</p>
-        </div>
-        <br />
-        <p>0đ</p>
-      </div>
-    </div>
-    <hr width="80%" align="center" />
-    <div class="sum">
-      <div class="contentsum">Tổng (đã bao gồm VAT)</div>
-      <div class="money">120000000đ</div>
-    </div>
-    <hr width="80%" align="center" />
-    <br>
-    <div class="order">
-      <span class="p-fluid">
-        <Button label="Đặt hàng" class="p-button-rounded" />
       </span>
     </div>
-   
-    
   </div>
 </template>
 <script>
-export default {};
+import ProductItem from "../../../../../components/store/home/cart/ProductItem.vue";
+export default {
+  components: {
+    ProductItem,
+  },
+  data() {
+    return {
+      total: 0,
+      discount: 0,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
 .right {
-  -moz-box-flex: 1;
-  -webkit-box-flex: 1;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  border: 1px solid white;
-  border-radius: 10px;
-
-  .h2 {
-    font-size: 20px;
-    width: 100%;
-  }
-  .cart {
-    width: 100%;
-    border: 1px solid black;
+  width: 50%;
+  .righttop {
+    height: 84%;
+    border: 1px solid rgb(235, 224, 224);
     border-radius: 10px;
-
-    .giohang {
-      width: 100%;
-      //margin-left: 10px;
-      display: flex;
-      flex-direction: row;
-
-      overflow: hidden;
-      width: 100%;
-
-      .left {
-        width: 30%;
-
-        img {
-          width: 100%;
-          object-fit: contain;
-          padding-bottom: 0pc;
-        }
-      }
-      .rightpro {
-        display: flex;
-        flex-direction: row;
-        width: 70%;
-        .nameslotpro {
-          width: 70%;
-          display: flex;
-          flex-direction: column;
-        }
-        .deletemoney {
-          width: 30%;
-          display: flex;
-          flex-direction: column;
-          .delete {
-            padding-right: 0px;
-            margin: 10px 20px 20px 40px;
-            text-align: right;
-            .node {
-              border: 1px solid black;
-              border-radius: 100px;
-            }
-          }
-        }
-      }
-    }
-  }
-  .summoney {
-    width: 100%;
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-    .contenttotal {
-      width: 70%;
-      display: flex;
-      flex-direction: column;
-      .discount {
-        .code {
-          border: 1px solid black;
-          border-radius: 100px;
-        }
+    flex-direction: column;
+    .cart__body {
+      border-top: 1px solid rgb(235, 224, 224);
+      border-bottom: 1px solid rgb(235, 224, 224);
+    }
+
+    .cart__footer {
+      h4 {
+        margin: 0.5rem 0;
       }
     }
-    .count {
-      text-align: right;
+
+    .idcoupon {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      padding: 5px;
+      border: 1px solid rgb(207, 206, 206);
+      background-color: rgb(242, 241, 241);
+      border-radius: 10px;
+      cursor: pointer;
+
+      p {
+        margin: 0;
+      }
+
+      i:hover {
+        color: rgb(176, 157, 157);
+      }
+
+      &:hover {
+        background-color: rgb(237, 236, 236);
+      }
+    }
+    .footer {
+      text-align: center;
+      font-size: 0.75rem;
     }
   }
-  .sum {
-    width: 100%;
+  .rightbottom {
+    border: 1px solid rgb(235, 224, 224);
+    border-radius: 10px;
+    padding: 10px;
     display: flex;
-    flex-direction: row;
-    .contentsum {
-      width: 70%;
-      text-align: left;
-    }
-    .money {
-      width: 30%;
-      text-align: right;
-    }
+    margin-top: 10px;
+    flex-direction: column;
   }
-  .order{
-    width: 100%;
-  }
+}
+::v-deep(.p-scrollpanel-content) {
+  padding: 0;
 }
 </style>

@@ -9,13 +9,16 @@
         <RadioButton
           :inputId="item.id"
           name="pay"
-          :value="item.label"
-          v-model="pay1"
+          :value="item.id"
+          v-model="selectedPayment"
         />
         <label class="ml-1" :for="item.id">{{ item.label }}</label>
       </div>
 
-      <img :src="item.img" style="width: 90px; height: 40px" />
+      <img
+        :src="item.img"
+        style="width: 90px; height: 40px; object-fit: contain"
+      />
     </div>
   </div>
 </template>
@@ -23,31 +26,35 @@
 export default {
   data() {
     return {
-        pay1:null,
+      selectedPayment: null,
       array: [
         {
           label: "Thẻ tín dụng / ATM",
           img: "https://inkythuatso.com/uploads/images/2021/12/payoo-logo-inkythuatso-02-15-47-06.jpg",
-          id: "id1",
+          id: "idpay1",
         },
         {
           label: "Ví momo",
           img: "https://play-lh.googleusercontent.com/dQbjuW6Jrwzavx7UCwvGzA_sleZe3-Km1KISpMLGVf1Be5N6hN6-tdKxE5RDQvOiGRg",
-          id: "id2",
+          id: "idpay2",
         },
         {
           label: "Trả góp Flik - MoMo",
           img: "https://static.mservice.io/fileuploads/svg/momo-file-220802114354.svg",
-          id: "id3",
+          id: "idpay3",
         },
         {
           label: "Trả tiền mặt khi nhận hàng",
           img: "https://cdn.pixabay.com/photo/2013/07/13/12/03/banknotes-159085_960_720.png",
-          id: "id4",
+          id: "idpay4",
         },
       ],
     };
   },
+  mounted() {
+    //set default
+    this.selectedPayment = this.array[3].id;
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -68,7 +75,7 @@ export default {
     -moz-box-flex: 1;
     -webkit-box-flex: 1;
     display: flex;
-    margin: 10px;
+    margin: 10px 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;

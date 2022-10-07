@@ -13,6 +13,7 @@ import PromotionsPage from "../pages/store/promotion/Promotion.vue";
 import Account from "../pages/store/account/Account.vue";
 import Order from "../pages/store/order/Order.vue";
 import Change_Address from "../pages/store/change_address/Change_Address.vue";
+import Product from "../pages/store/product/Product.vue";
 
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
@@ -20,9 +21,9 @@ import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
 import ProductDetail from "../pages/admin/products/ProductDetail.vue";
-import CreateOrders from "../pages/admin/orders/CreateOrders.vue";
 import ListOrders from "../pages/admin/orders/ListOrders.vue";
-33
+import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
+import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -71,16 +72,26 @@ const routes = [
         component: Account,
       },
       {
-        name:"order",
-        path:"/order",
-        component:Order,
-      },
-      {
-        name:"change_address",
-        path:"/change_address",
-        component:Change_Address,
+        name: "order",
+        path: "/order",
+        component: Order,
       },
 
+      {
+        name: "change_address",
+        path: "/change_address",
+        component: Change_Address,
+      },
+      {
+        name: "checkout",
+        path: "/checkout",
+        component: Checkout,
+      },
+      {
+        name: "product",
+        path: "/product",
+        component: Product,
+      },
     ],
   },
   {
@@ -104,14 +115,19 @@ const routes = [
         component: ProductDetail,
       },
       {
-        name: "create orders",
-        path: "createorders",
-        component: CreateOrders,
-      },
-      {
         name: "list orders",
         path: "listorders",
         component: ListOrders,
+      },
+      {
+        name: "order details",
+        path: "orderdetails",
+        component: OrderDetails,
+      },
+      {
+        name: "form address",
+        path: "/formaddress",
+        components: FormAddress,
       },
     ],
   },

@@ -64,7 +64,7 @@ export default {
   },
   methods: {
     save() {
-      console.log("1");
+      navigator.clipboard.writeText(this.couponValue);
       this.$toast.add({
         severity: "success",
         summary: "Đã lưu vào bộ nhớ đệm",

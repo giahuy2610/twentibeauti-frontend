@@ -660,8 +660,8 @@
     border-color: var(--primary-color);
   }
   .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-    border-color: #0b7ad1;
-    background: #0b7ad1;
+    border-color: #7ca43b;
+    background: #7ca43b;
     color: #ffffff;
   }
   .p-checkbox.p-invalid > .p-checkbox-box {
@@ -678,7 +678,7 @@
     background-color: #f8f9fa;
   }
   .p-input-filled .p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box.p-highlight:hover {
-    background: #0b7ad1;
+    background: #7ca43b;
   }
   
   .p-chips:not(.p-disabled):hover .p-chips-multiple-container {
@@ -1069,7 +1069,7 @@
     background: #ffffff;
   }
   .p-inputswitch.p-inputswitch-checked:not(.p-disabled):hover .p-inputswitch-slider {
-    background: #0d89ec;
+    background: #7ca43b;
   }
   .p-inputswitch.p-invalid {
     border-color: #f44336;
@@ -1452,8 +1452,8 @@
     background: var(--primary-color);
   }
   .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover {
-    border-color: #0b7ad1;
-    background: #0b7ad1;
+    border-color: #7ca43b;
+    background: #7ca43b;
     color: #ffffff;
   }
   .p-radiobutton.p-invalid > .p-radiobutton-box {
@@ -1532,8 +1532,8 @@
     color: #ffffff;
   }
   .p-selectbutton .p-button.p-highlight:hover {
-    background: #0d89ec;
-    border-color: #0d89ec;
+    background: #7ca43b;
+    border-color: #7ca43b;
     color: #ffffff;
   }
   .p-selectbutton .p-button.p-highlight:hover .p-button-icon-left,
@@ -1683,8 +1683,8 @@
     color: #ffffff;
   }
   .p-togglebutton.p-button.p-highlight:hover {
-    background: #0d89ec;
-    border-color: #0d89ec;
+    background: #7ca43b;
+    border-color: #7ca43b;
     color: #ffffff;
   }
   .p-togglebutton.p-button.p-highlight:hover .p-button-icon-left,
@@ -1705,14 +1705,14 @@
     border-radius: 3px;
   }
   .p-button:enabled:hover {
-    background: #0d89ec;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0d89ec;
+    border-color: #7ca43b;
   }
   .p-button:enabled:active {
-    background: #0b7ad1;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0b7ad1;
+    border-color: #7ca43b;
   }
   .p-button.p-button-outlined {
     background-color: transparent;
@@ -2142,13 +2142,13 @@
   }
   
   .p-button.p-button-link {
-    color: #0b7ad1;
+    color: #7ca43b;
     background: transparent;
     border: transparent;
   }
   .p-button.p-button-link:enabled:hover {
     background: transparent;
-    color: #0b7ad1;
+    color: #7ca43b;
     border-color: transparent;
   }
   .p-button.p-button-link:enabled:hover .p-button-label {
@@ -2161,7 +2161,7 @@
   }
   .p-button.p-button-link:enabled:active {
     background: transparent;
-    color: #0b7ad1;
+    color: #7ca43b;
     border-color: transparent;
   }
   
@@ -2942,8 +2942,8 @@
     border-right: 1px solid #dee2e6;
   }
   .fc.fc-unthemed .fc-view-container .fc-event {
-    background: #0d89ec;
-    border: 1px solid #0d89ec;
+    background: #7ca43b;
+    border: 1px solid #7ca43b;
     color: #ffffff;
   }
   .fc.fc-unthemed .fc-view-container .fc-divider {
@@ -2961,14 +2961,14 @@
     align-items: center;
   }
   .fc.fc-unthemed .fc-toolbar .fc-button:enabled:hover {
-    background: #0d89ec;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0d89ec;
+    border-color: #7ca43b;
   }
   .fc.fc-unthemed .fc-toolbar .fc-button:enabled:active {
-    background: #0b7ad1;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0b7ad1;
+    border-color: #7ca43b;
   }
   .fc.fc-unthemed .fc-toolbar .fc-button:enabled:active:focus {
     outline: 0 none;
@@ -3013,8 +3013,8 @@
     color: #ffffff;
   }
   .fc.fc-unthemed .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active:hover, .fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active:hover, .fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active:hover {
-    background: #0d89ec;
-    border-color: #0d89ec;
+    background: #7ca43b;
+    border-color: #7ca43b;
     color: #ffffff;
   }
   .fc.fc-unthemed .fc-toolbar .fc-button.fc-dayGridMonth-button:focus, .fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridWeek-button:focus, .fc.fc-unthemed .fc-toolbar .fc-button.fc-timeGridDay-button:focus {
@@ -3097,15 +3097,15 @@
   }
   .fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event {
     color: #ffffff;
-    background: #0d89ec;
-    border-color: #0d89ec;
+    background: #7ca43b;
+    border-color: #7ca43b;
   }
   .fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-block-event .fc-event-main {
     color: #ffffff;
   }
   .fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-dot-event .fc-daygrid-event-dot {
-    background: #0d89ec;
-    border-color: #0d89ec;
+    background: #7ca43b;
+    border-color: #7ca43b;
   }
   .fc.fc-theme-standard .fc-view-harness .fc-event.fc-daygrid-dot-event:hover {
     background: #e9ecef;
@@ -3123,14 +3123,14 @@
     border-radius: 3px;
   }
   .fc.fc-theme-standard .fc-toolbar .fc-button:enabled:hover {
-    background: #0d89ec;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0d89ec;
+    border-color: #7ca43b;
   }
   .fc.fc-theme-standard .fc-toolbar .fc-button:enabled:active {
-    background: #0b7ad1;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0b7ad1;
+    border-color: #7ca43b;
   }
   .fc.fc-theme-standard .fc-toolbar .fc-button:enabled:active:focus {
     outline: 0 none;
@@ -3181,8 +3181,8 @@
     color: #ffffff;
   }
   .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button.fc-button-active:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button.fc-button-active:hover, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button.fc-button-active:hover {
-    background: #0d89ec;
-    border-color: #0d89ec;
+    background: #7ca43b;
+    border-color: #7ca43b;
     color: #ffffff;
   }
   .fc.fc-theme-standard .fc-toolbar .fc-button.fc-dayGridMonth-button:not(:disabled):focus, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridWeek-button:not(:disabled):focus, .fc.fc-theme-standard .fc-toolbar .fc-button.fc-timeGridDay-button:not(:disabled):focus {
@@ -4188,7 +4188,7 @@
     right: -1rem;
   }
   .p-overlaypanel .p-overlaypanel-close:enabled:hover {
-    background: #0d89ec;
+    background: #7ca43b;
     color: #ffffff;
   }
   .p-overlaypanel:after {
@@ -4302,14 +4302,14 @@
   }
   
   .p-fileupload-choose:not(.p-disabled):hover {
-    background: #0d89ec;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0d89ec;
+    border-color: #7ca43b;
   }
   .p-fileupload-choose:not(.p-disabled):active {
-    background: #0b7ad1;
+    background: #7ca43b;
     color: #ffffff;
-    border-color: #0b7ad1;
+    border-color: #7ca43b;
   }
   
   .p-breadcrumb {
