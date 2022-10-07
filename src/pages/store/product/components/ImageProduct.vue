@@ -22,9 +22,10 @@
           class="pag__btn btn__down p-button p-button-rounded p-button-outlined"
         />
     </div>
-    <div ref="image" class="img__size" :class="{ img__appear : isClick}"  >
+    <div ref="image" class="img__margin" :class="[ isClick ? 'img__appear' : 'img__show']"  >
       <img :src="currentImg" alt="Ảnh sản phẩm">
     </div>
+    
     
 </template>
 <script>
@@ -65,8 +66,8 @@ export default {
   },
   data() {
     return {
-      isClick : false,
-      isClick_1 : true,
+      isClick: false,
+      isClick_1: true,
       currentIllust: 1,
       imageid: 1,
       illustProducts: [
@@ -92,6 +93,10 @@ export default {
 </script>
 <style lang="scss" scoped>
 .scroll-wrapper {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -150,15 +155,21 @@ export default {
   }
 }
 .img {
-  &__size {
+  &__margin {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    margin-top: 10px;
     object-fit: contain;
-    height: 50vh;
     margin-right: 3rem;
+    height: 50vh;
+    overflow: hidden;
   }
   &__appear {
     max-width: 100%;
     display: block;
     animation: fadeIn s;
+
     -webkit-animation: fadeIn 2s;
     -moz-animation: fadeIn 2s;
     -o-animation: fadeIn 2s;
@@ -207,6 +218,21 @@ export default {
       }
       100% {
         opacity: 1;
+      }
+    }
+  }
+  &__show {
+    max-width: 100%;
+    display: block;
+    animation: 2s slidein;
+    @keyframes slidein {
+      from {
+        margin-top: 5%;
+        height: 120%;
+      }
+      to {
+        margin-top: 0%;
+        height: 100%;
       }
     }
   }
