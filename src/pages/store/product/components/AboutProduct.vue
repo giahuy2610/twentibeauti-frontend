@@ -68,7 +68,7 @@ export default
     data() 
     {
         return {
-            showingFullText: false,
+            showingFullText: true,
         };
     },
     computed:{
