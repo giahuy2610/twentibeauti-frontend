@@ -55,7 +55,6 @@
         </div>
       </div>
     </div>
-    <div class="test">...</div>
   </div>
 </template>
 <script>

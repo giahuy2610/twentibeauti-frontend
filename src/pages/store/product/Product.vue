@@ -1,7 +1,7 @@
 <template lang="">
   <Wrapper>
-    <div class="over row-component">
-      <ImageProduct></ImageProduct>
+    <div class="over">
+      <ImageProduct class="sticky"></ImageProduct>
       <div class="infor">
         <Breadcrumb></Breadcrumb>
         <div class="product-header-wrapper">
@@ -12,11 +12,14 @@
       </div>
     </div>
     <div class="seperator"><br /><br /></div>
-    <div class="Ads row-component">
+    <div class="Ads">
       <AdsSlider2></AdsSlider2>
     </div>
-    <div class="about row-component">
+    <div class="about">
       <AboutProduct></AboutProduct>
+    </div>
+    <div class="detail-rating">
+      <RatingDetail></RatingDetail>
     </div>
   </Wrapper>
 </template>
@@ -57,60 +60,10 @@ export default {
   position: relative;
 }
 
-.appear {
-  max-width: 100%;
-  display: block;
-  animation: fadeIn 0.8s;
-
-  -webkit-animation: fadeIn 0.8s;
-  -moz-animation: fadeIn 0.8s;
-  -o-animation: fadeIn 0.8s;
-  -ms-animation: fadeIn 0.8s;
-  cursor: pointer;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-webkit-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-o-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-ms-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  margin-top: 10px;
 }
 </style>

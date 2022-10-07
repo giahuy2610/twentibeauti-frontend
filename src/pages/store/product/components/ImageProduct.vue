@@ -1,30 +1,32 @@
 <template lang="">
     <div class="scroll-wrapper" ref="wrapper" >
         <Button
-            @click="scrollUp"
+            @click="scrollUp(), isClick = !isClick"
             icon="pi pi-angle-up "
-            class="btn-gap btn-up p-button p-button-rounded p-button-outlined"
+            class="pag__btn btn__up p-button p-button-rounded p-button-outlined"
         />
         <div class="container-slide" ref="slide">
             <div class="slick-slider">
                 <div class="slick-list" >
                     <div class="slick-track">
-                        <div ref="btn" v-for="item in illustProducts">
-                          <Button class="pag btn-gap p-button-lg p-button-rounded p-button-outlined" />
+                        <div ref="btn" v-for="(item,index) in illustProducts" :key="index">
+                          <Button @click="scrollTo(index), isClick = !isClick" class="pag__size pag__btn p-button-lg p-button-rounded p-button-outlined" :style="{backgroundImage : `url(${this.illustProducts[index]})`}"/>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <Button
-          @click="scrollDown"
+          @click="scrollDown(), isClick = !isClick"
           icon="pi pi-angle-down"
-          class="btn-gap btn-down p-button p-button-rounded p-button-outlined"
+          class="pag__btn btn__down p-button p-button-rounded p-button-outlined"
         />
     </div>
-    <div class="img">
-        <img src="https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp" alt="Ảnh sản phẩm">
+    <div ref="image" class="img__margin" :class="[ isClick ? 'img__appear' : 'img__show']"  >
+      <img :src="currentImg" alt="Ảnh sản phẩm">
     </div>
+    
+    
 </template>
 <script>
 export default {
@@ -34,45 +36,67 @@ export default {
         this.currentIllust--;
         this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight;
       } else {
-        this.$refs.slide.scrollTop += this.$refs.btn[0].offsetHeight * (this.illustProducts.length -1 );
+        this.$refs.slide.scrollTop +=
+          this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = this.illustProducts.length;
       }
-      console.log(this.currentIllust)
+      console.log(this.isClick);
+      console.log(this.isClick_1);
     },
     scrollUp() {
-      console.log(this.$refs.btn[0].offsetHeight);
       if (this.currentIllust != this.illustProducts.length) {
         this.currentIllust++;
         this.$refs.slide.scrollTop += this.$refs.btn[0].offsetHeight;
       } else {
-        this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight * (this.illustProducts.length -1);
+        this.$refs.slide.scrollTop -=
+          this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = 1;
       }
-      console.log(this.currentIllust)
+      console.log(this.isClick);
     },
+    scrollTo(index) {
+      this.$refs.slide.scrollTop +=
+        this.$refs.btn[0].offsetHeight * (index + 1 - this.currentIllust);
+      this.currentIllust = index + 1;
+      console.log(this.isClick);
+    },
+    // reset() {
+    //   this.isClick = !this.isClick;
+    // }
   },
   data() {
     return {
-      illustProducts: [1, 2, 3, 4, 5, 6, 7, 8],
+      isClick: false,
+      isClick_1: true,
       currentIllust: 1,
-      image: null,
-      links: [
-        "https://image.hsv-tech.io/400x0/tfs/common/ad6ea494-de27-4f5b-98fe-82f5d77f3281.webp",
-        "https://image.hsv-tech.io/400x0/tfs/common/a1d0ef20-e5d7-4e6e-96c1-31f541bf916e.webp",
-      ],
-      imgs: [
+      imageid: 1,
+      illustProducts: [
         "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
+        "https://image.hsv-tech.io/0x400/tfs/common/1c7d5f29-0e3b-48d6-805f-deeafc29a01a.webp",
+        "https://image.hsv-tech.io/0x400/tfs/common/4622d29c-9c01-4a30-9ba2-6a4756b69514.webp",
+        "https://image.hsv-tech.io/0x400/tfs/common/27c2301d-ac0a-457a-b866-253dbf3a814e.webp",
+        "https://image.hsv-tech.io/0x400/tfs/common/2d266998-c491-4354-ad70-e3dd2954a80b.webp",
       ],
     };
   },
+  computed: {
+    currentImg() {
+      return this.illustProducts[
+        Math.abs(this.currentIllust - 1) % this.illustProducts.length
+      ];
+    },
+  },
+  // mounted() {
+  //   setInterval(this.scrollUp, 6000);
+  // },
 };
 </script>
 <style lang="scss" scoped>
 .scroll-wrapper {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
@@ -108,27 +132,109 @@ export default {
       }
     }
   }
-  .btn-gap
-  {
-    margin: 0.5rem;
-  }
   .pag {
-    background-image: url("https://image.hsv-tech.io/400x0/tfs/common/db6c3fd2-2d35-41c3-83ae-af6289768918.webp");
-    background-size: 165%;
-    background-size: contain;
-  }
-  .btn-up {
-    position: relative;
-    z-index: 100;
-  }
-  .btn-down {
-    position: relative;
-    z-index: 100;
+    &__btn {
+      margin: 0.5rem;
+    }
+    &__size {
+      background-size: 165%;
+      background-size: contain;
+    }
   }
 
-  .img {
+  .btn {
+    &__up {
+      position: relative;
+      z-index: 100;
+    }
+
+    &__down {
+      position: relative;
+      z-index: 100;
+    }
+  }
+}
+.img {
+  &__margin {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    margin-top: 10px;
     object-fit: contain;
+    margin-right: 3rem;
     height: 50vh;
+    overflow: hidden;
+  }
+  &__appear {
+    max-width: 100%;
+    display: block;
+    animation: fadeIn s;
+
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
+    cursor: pointer;
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-moz-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-webkit-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-o-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @-ms-keyframes fadeIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  }
+  &__show {
+    max-width: 100%;
+    display: block;
+    animation: 2s slidein;
+    @keyframes slidein {
+      from {
+        margin-top: 5%;
+        height: 120%;
+      }
+      to {
+        margin-top: 0%;
+        height: 100%;
+      }
+    }
   }
 }
 </style>
