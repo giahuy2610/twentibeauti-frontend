@@ -10,11 +10,11 @@ import CategoriesPage from "../pages/store/categories/Categories.vue";
 import CollectionsPage from "../pages/store/collections/Collections.vue";
 import Checkout from "../pages/store/check-out/Checkout.vue";
 import PromotionsPage from "../pages/store/promotion/Promotion.vue";
-import Account from "../pages/store/account/Account.vue";
-import Order from "../pages/store/order/Order.vue";
-import Change_Address from "../pages/store/change_address/Change_Address.vue";
+import Account from "../pages/store/account/AccountPage.vue";
 import Product from "../pages/store/product/Product.vue";
-
+import AccountProfile from "../pages/store/account/components/Profile.vue";
+import AccountOrders from "../pages/store/account/components/Orders.vue";
+import AccountAddress from "../pages/store/account/components/Address.vue";
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
 
@@ -68,17 +68,24 @@ const routes = [
         name: "account",
         path: "/account",
         component: Account,
-      },
-      {
-        name: "order",
-        path: "/order",
-        component: Order,
-      },
-
-      {
-        name: "change_address",
-        path: "/change_address",
-        component: Change_Address,
+        children: [
+          {
+            path: "profile",
+            component: AccountProfile,
+          },
+          {
+            path: "orders",
+            component: AccountOrders,
+          },
+          {
+            path: "address",
+            component: AccountAddress,
+          },
+          {
+            path: "my-promotions",
+            component: AccountProfile,
+          },
+        ],
       },
       {
         name: "checkout",
@@ -123,6 +130,12 @@ const routes = [
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { top: 0, left: 0 };
+  },
   //  mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
   routes,
 });
