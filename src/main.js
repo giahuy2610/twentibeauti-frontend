@@ -26,19 +26,17 @@ import InputNumber from "primevue/inputnumber";
 import InputSwitch from "primevue/inputswitch";
 import ScrollPanel from "primevue/scrollpanel";
 import DataTable from "primevue/datatable";
-import Column from "primevue/column";
-import ColumnGroup from "primevue/columngroup"; //optional for column grouping
-import Row from "primevue/row";
-import Chart from "primevue/chart";
-import FileUpload from "primevue/fileupload";
-import Editor from "primevue/editor";
-import PanelMenu from "primevue/panelmenu";
-
-// import Accordion from 'primevue/accordion';
-// import AccordionTab from 'primevue/accordiontab';
+import Column from 'primevue/column';
+import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
+import Row from 'primevue/row';  
+import Chart from 'primevue/chart';
+import FileUpload from 'primevue/fileupload';
+import Editor from 'primevue/editor';
+import PanelMenu from 'primevue/panelmenu';
+import Dialog from 'primevue/dialog';
+import Toast from 'primevue/toast';
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-
 import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
@@ -77,11 +75,10 @@ app.component("Column", Column);
 app.component("Row", Row);
 app.component("Chart", Chart);
 app.component("FileUpload", FileUpload);
-app.component("Editor", Editor);
-app.component("PanelMenu", PanelMenu);
-// app.component("Accordion", Accordion);
-// app.component("AccordionTab", AccordionTab);
-
+app.component("Editor",Editor);
+app.component("PanelMenu",PanelMenu)
+app.component("Dialog",Dialog);
+app.component("Toast",Toast);
 app.directive("badge", BadgeDirective);
 
 app.mount("#app");

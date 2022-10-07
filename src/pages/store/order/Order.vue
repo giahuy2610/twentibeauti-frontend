@@ -100,46 +100,52 @@ ul.breadcrumb li a:hover {
     box-sizing: border-box;
   }
 
-    .p-input-icon-left {
-      width: 100%;
-    }
+  .p-input-icon-left {
+    width: 100%;
   }
-  .scrollmenu {
-    background-color: #fff;
-    overflow: auto;
-    white-space: nowrap;
+}
+.scrollmenu {
+  background-color: #fff;
+  overflow: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
-  .scrollmenu a {
-    display: inline-block;
-    color: #333;
-    text-align: center;
+}
+.scrollmenu a {
+  display: inline-block;
+  color: #333;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}
+.scrollmenu a:hover {
+  background: rgb(228, 241, 205);
+  color: #aed56b;
+  font-weight: 600;
+}
+
+.left-column {
+  display: flex;
+  float: left;
+  width: 40%;
+  list-style-type: none;
+  flex-direction: column;
+
+  .sidebar-account a {
     padding: 14px;
     text-decoration: none;
+    color: #333;
+    h4 {
+      margin-bottom: 20px;
+    }
   }
-  .scrollmenu a:hover {
-    background: rgb(228, 241, 205);
+  .sidebar-account a:hover {
+    text-decoration: underline;
     color: #aed56b;
-    font-weight: 600;
   }
-
-  .left-column {
-    display: flex;
-    float: left;
-    width: 40%;
-    list-style-type: none;
-    flex-direction: column;
-    .sidebar-account a {
-      padding: 14px;
-      text-decoration: none;
-      color: #333;
-      h4 {
-        margin-bottom: 20px;
-      }
-    }
-    .sidebar-account a:hover {
-      text-decoration: underline;
-      color: #aed56b;
-    }
-  
 }
 </style>

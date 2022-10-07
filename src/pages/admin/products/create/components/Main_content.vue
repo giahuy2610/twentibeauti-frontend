@@ -4,10 +4,20 @@
       <GeneralInfoVue></GeneralInfoVue>
       <ProductPrice></ProductPrice>
       <div class="photos">
-        <h2>Ảnh sản phẩm</h2>
-        <AddFile></AddFile>
+        <Card >
+            <template #title> Ảnh sản phẩm </template>
+            <template #content>
+              <div >
+                <AddFile></AddFile>
+              </div>
+            </template>
+          </Card>
       </div>
       <OrderCreate></OrderCreate>
+      
+    </div>
+    <div class="right">
+      <AddInfoVue></AddInfoVue>
     </div>
   </div>
 </template>
@@ -16,29 +26,35 @@ import GeneralInfoVue from "./GeneralInfo.vue";
 import ProductPrice from "./ProductPrice.vue";
 import AddFile from "../../components/AddFile.vue";
 import OrderCreate from "./OrderCreate.vue";
+import AddInfoVue from "./AddInfo.vue";
 export default {
   components: {
     GeneralInfoVue,
     ProductPrice,
     AddFile,
     OrderCreate,
+    AddInfoVue,
   },
 };
 </script>
 <style lang="scss" scoped>
 .main_content {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   width: 100%;
+  margin-top: 10px;
   .left {
-    width: 100%;
-    .photos {
-      width: 60%;
-      border: 1px solid #aaa;
-      border-radius: 10px;
-      margin-top: 10px;
-      padding: 20px;
+    width: 70%;
+    margin: 10px;
+    .photos{
+        margin-top: 20px;
     }
-  }
+
+    }
+    .right{
+      width: 30%;
+      margin: 10px;
+    }
+
 }
 </style>
