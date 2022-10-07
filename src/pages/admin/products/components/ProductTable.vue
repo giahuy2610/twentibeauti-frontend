@@ -25,6 +25,17 @@
       <template #header>
         <div class="flex justify-content-between align-items-center">
           <h5 class="m-0">Sản phẩm</h5>
+          <span v-show="selectedCustomers.length > 0">
+            Chọn thao tác
+            <Dropdown
+              v-model="selectedCity1"
+              :options="cities"
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Select a City"
+            />
+          </span>
+
           <span class="p-input-icon-left">
             <i class="pi pi-search" />
             <InputText
@@ -135,8 +146,27 @@
         </template>
       </Column>
       <Column
+        field="listPrice"
+        header="Giá gốc"
+        sortable
+        dataType="numeric"
+        style="min-width: 8rem"
+      >
+        <template #body="{ data }">
+          {{ formatCurrency(data.listPrice) }}
+        </template>
+        <template #filter="{ filterModel }">
+          <InputNumber
+            v-model="filterModel.value"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+          />
+        </template>
+      </Column>
+      <Column
         field="balance"
-        header="Giá"
+        header="Giá bán"
         sortable
         dataType="numeric"
         style="min-width: 8rem"
@@ -223,7 +253,7 @@ export default {
   data() {
     return {
       customers: null,
-      selectedCustomers: null,
+      selectedCustomers: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: {
@@ -289,7 +319,7 @@ export default {
           status: "unqualified",
           stock: 20,
           images: ["abc.png", "bcd.png"],
-          listprice: 80000,
+          listPrice: 80000,
           salePrice: 75000,
           description:
             "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
@@ -318,6 +348,14 @@ export default {
           ],
         },
       ],
+      cities: [
+        { name: "New York", code: "NY" },
+        { name: "Rome", code: "RM" },
+        { name: "London", code: "LDN" },
+        { name: "Istanbul", code: "IST" },
+        { name: "Paris", code: "PRS" },
+      ],
+      selectedCity1: null,
     };
   },
   created() {},
