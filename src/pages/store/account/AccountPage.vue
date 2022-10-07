@@ -59,10 +59,12 @@ export default {
   min-height: 100vh;
   .left-column {
     width: 30%;
+    height: 100%;
     float: left;
     list-style-type: none;
     display: flex;
     flex-direction: column;
+    border-right: 1px solid gray;
 
     ul.breadcrumb {
       padding: 10px 16px;
