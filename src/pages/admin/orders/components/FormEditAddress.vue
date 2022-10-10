@@ -1,5 +1,4 @@
-<template lang="">
-    
+<template lang="">    
     <Toast position="bottom-right" group="br" />
     <div class="wrapper" :style="[isHidden ? 'display: none' : '']">
       <ScrollPanel style="width: 100%; height: 700px">
@@ -11,7 +10,7 @@
             </a>
             <div class="modal-title">
               <div class="m-head">
-                Thêm địa chỉ giao hàng
+                Sửa địa chỉ
                 <slot name="title"></slot>
               </div>
             </div>
@@ -106,7 +105,7 @@
                 <div class="btn">
                    <!-- <Button class="btn-save" label="Lưu" /> -->
                   
-                   <Button label="Thêm" class="p-button-success" @click="showSuccess" />
+                   <Button label="Lưu" class="p-button-success" @click="showSuccess" />
 
                 </div>
                 
@@ -250,6 +249,7 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
+        color:#333;
         .row_namephone{
             margin-top:10px;
           display: flex;

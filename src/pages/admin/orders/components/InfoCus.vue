@@ -27,10 +27,10 @@
                     <a class="overlay-close" href="#"></a>
                     <div class="dialog-body">
                       <div class="dialog-header">
-                        <button class="dialog-close-btn" @click="basic=true">Thêm mới</button>
-                        <FormAddress v-if="basic">
-                         
-                        </FormAddress>
+                        <button class="dialog-close-btn" @click="basic = true">
+                          Thêm mới
+                        </button>
+                        <FormAddress v-if="basic"> </FormAddress>
                         <div class="dialog-title">Thay đổi địa chỉ</div>
                       </div>
                       <ul class="list-body">
@@ -53,29 +53,19 @@
                             class="address-list edit"
                             style="margin-left: 8px; color: #0088ff"
                           >
-                            Sửa
-                          </div>
-                        </li>
-                        <li class="list-item">
-                          <div class="item-address">
-                            <div
-                              class="address-list-phone"
-                              style="font-weight: 500; line-height: 20px"
+                            <button
+                              class="dialog-edit-btn"
+                              style="
+                                color: #0088ff;
+                                border: none;
+                                background-color: #fff;
+                                cursor: pointer;
+                              "
+                              @click="basic1 = true"
                             >
-                              094594553
-                            </div>
-                            <div
-                              class="address-list-home"
-                              style="font-weight: 400; line-height: 20px"
-                            >
-                              Quảng Bình, Phường Phúc Xá, Quận Ba Đình, Hà Nội
-                            </div>
-                          </div>
-                          <div
-                            class="address-list edit"
-                            style="margin-left: 8px; color: #0088ff"
-                          >
-                            Sửa
+                              Sửa
+                            </button>
+                            <FormEditAddress v-if="basic1"> </FormEditAddress>
                           </div>
                         </li>
                       </ul>
@@ -128,8 +118,7 @@
         </div>
       </template>
       <template #content>
-        <div class="product-table">
-        </div>
+        <div class="product-table"></div>
       </template>
     </Card>
   </div>
@@ -137,15 +126,18 @@
 <script>
 import FormAddress from "./FormAddress.vue";
 import Wrapper from "../../../Wrapper.vue";
+import FormEditAddress from "./FormEditAddress.vue";
 export default {
   components: {
     FormAddress,
     Wrapper,
+    FormEditAddress,
   },
   data() {
     return {
       displayBasic: false,
       basic: false,
+      basic1:false,
       position: "center",
     };
   },
@@ -165,6 +157,7 @@ export default {
     display: flex;
     flex-direction: row;
     gap: 50px;
+    margin-bottom: -30px;
     .left-info {
       width: 50%;
       .header {
@@ -201,7 +194,7 @@ export default {
             flex-direction: row;
             text-decoration: none;
             color: #0088ff;
-            margin-top: -40px;
+            margin-top: -25px;
             margin-left: 10px;
             .phone-cus {
               color: #333;
@@ -255,7 +248,7 @@ export default {
             }
             .dialog-body {
               border-radius: 5px;
-              width: 450px;
+              width: 500px;
               position: relative;
               padding-bottom: 16px;
               background-color: #fff;
@@ -275,6 +268,8 @@ export default {
                   text-decoration: none;
                   color: #0088ff;
                   cursor: pointer;
+                  border: none;
+                  background-color: #fff;
                 }
                 .dialog-title {
                   width: 50%;
@@ -310,12 +305,14 @@ export default {
                     margin: 0;
                   }
                   .address-list-edit {
-                    width: 50%;
-                    background-color: #0088ff;
+                    button {
+                      color: #0088ff;
+                      border: none;
+                    }
                   }
                 }
                 .list-item:hover {
-                  color:#0088ff;
+                  color: #0088ff;
                   background-color: #e6f5ff;
                 }
               }

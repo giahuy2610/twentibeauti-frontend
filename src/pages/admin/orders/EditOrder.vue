@@ -31,7 +31,7 @@
             </div>
           </div>
           <div class="info-product">
-            <InfoProductTable></InfoProductTable>
+            <OrderTableEdit></OrderTableEdit>
           </div>
           
         </div>
@@ -43,15 +43,15 @@
   import ProductTable from "./../products/components/ProductTable.vue";
   import InfoGeneral from "./components/InfoGeneral.vue";
   import InfoCus from "./components/InfoCus.vue";
-  import InfoProductTable from "./components/InfoProductTable.vue";
   import InfoPlus from "./components/InfoPlus.vue";
+  import OrderTableEdit from "./componentsedit/OrderTableEdit.vue";
   export default {
     components: {
       AdminBlankPage,
       ProductTable,
       InfoGeneral,
       InfoCus,
-      InfoProductTable,
+      OrderTableEdit,
       InfoPlus,
     },
     data() {

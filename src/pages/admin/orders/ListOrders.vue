@@ -93,6 +93,7 @@
 import AdminBlankPage from "../AdminBlankPage.vue";
 import ProductTable from "../products/components/ProductTable.vue";
 import OrderTable from "./components/OrderTable.vue";
+
 export default {
   components: {
     AdminBlankPage,
@@ -245,7 +246,7 @@ export default {
     .status-unsuccess:hover,
     .status-cancel:hover {
       background-color: #e6f5ff;
-      
+
     }
   }
 }

@@ -1,0 +1,99 @@
+<template lang="">
+  <div class="info-ticket">
+    <div class="info-cus">
+      <Card style="width: 25rem; margin-bottom: 2em">
+        <template #title>
+          <div class="header">Thông tin phiếu</div>
+        </template>
+        <template #content>
+          <div class="body">
+            <div class="customer">
+              <div class="label">Khách hàng</div>
+              <div class="name-phone">
+                <div class="name">Chị Oanh</div>
+                <div class="phone">0945945453</div>
+              </div>
+            </div>
+            <div class="orderid">
+              <div class="label">Mã đơn hàng gốc</div>
+              <div class="id">SS001</div>
+            </div>
+          </div>
+        </template>
+      </Card>
+    </div>
+    <div class="info-plus">
+      <Card style="width: 25rem; margin-bottom: 2em">
+        <template #title>
+          <div class="header">Thông tin bổ sung</div>
+        </template>
+        <template #content>
+          <div class="body">
+            <div class="label">Ghi chú</div>
+            <div class="text">
+               <Textarea v-model="value2" :autoResize="true" rows="1" cols="40" />
+            </div>
+          </div>
+        </template>
+      </Card>
+    </div>
+  </div>
+</template>
+<script></script>
+<style lang="scss" scoped>
+.info-ticket {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  gap:70px;
+  .info-cus {
+    width: 50%;
+
+    .header {
+      font-size: 18px;
+      font-weight: 500;
+      border-bottom: 1px solid #f2f2f2;
+      padding-bottom: 1rem;
+    }
+    .body {
+      display: flex;
+      flex-direction: row;
+      width: 100%;
+      gap: 40px;
+      .customer,
+      .orderid {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        width: 50%;
+        .name-phone {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          cursor:pointer;
+          .name {
+            color: #0088ff;
+          }
+        }
+      }
+      .orderid > .id {
+        color: #0088ff;
+        cursor: pointer;
+      }
+    }
+  }
+  .info-plus {
+    .header {
+        font-size: 18px;
+        font-weight: 500;
+        border-bottom: 1px solid #f2f2f2;
+      padding-bottom: 1rem;
+    }
+    .body {
+        display:flex;
+        flex-direction: column;
+        gap:5px;
+    }
+  }
+}
+</style>

@@ -1,25 +1,27 @@
 <template lang="">
   <Wrapper>
-      <div class="over row-component">
-        <ImageProduct></ImageProduct>
-        <div class="infor">
-          <Breadcrumb></Breadcrumb>
-          <div class="product-header-wrapper">
-            <HeaderProduct></HeaderProduct>
-          </div>
-          <RatingProduct></RatingProduct>
-          <AddCart></AddCart>
+    <div class="over">
+      <ImageProduct class="sticky"></ImageProduct>
+      <div class="infor">
+        <Breadcrumb></Breadcrumb>
+        <div class="product-header-wrapper">
+          <HeaderProduct></HeaderProduct>
         </div>
+        <RatingProduct></RatingProduct>
+        <AddCart></AddCart>
+      </div>
     </div>
-    <div class="seperator"> <br><br> </div>
-    <div class="Ads row-component">
+    <div class="seperator"><br /><br /></div>
+    <div class="Ads">
       <AdsSlider2></AdsSlider2>
     </div>
-    <div class="about row-component">
+    <div class="about">
       <AboutProduct></AboutProduct>
     </div>
+    <div class="detail-rating">
+      <RatingDetail></RatingDetail>
+    </div>
   </Wrapper>
-    
 </template>
 <script>
 import ImageProduct from "@/pages/store/product/components/ImageProduct.vue";
@@ -31,94 +33,37 @@ import AdsSlider2 from "@/pages/store/home/components/AdsSlider2.vue";
 import AboutProduct from "@/pages/store/product/components/AboutProduct.vue";
 import Wrapper from "../../Wrapper.vue";
 
-
 export default {
-    components: {
-        ImageProduct,
-        Breadcrumb,
-        HeaderProduct,
-        RatingProduct,
-        AddCart,
-        AdsSlider2,
-        AboutProduct,
-        Wrapper,
-    },
-    data() 
+  components: {
+    ImageProduct,
+    Breadcrumb,
+    HeaderProduct,
+    RatingProduct,
+    AddCart,
+    AdsSlider2,
+    AboutProduct,
+    Wrapper,
+  },
+  data() {
+    return;
     {
-      return 
-      {
-        listPrice: 369000
-      };
-    },
+      listPrice: 369000;
+    }
+  },
 };
-
 </script>
 
-
 <style lang="scss" scoped>
-
 .over {
   display: flex;
   flex-direction: row;
   position: relative;
 }
 
-
-.appear {
-  max-width: 100%;
-  display: block;
-  animation: fadeIn 0.8s;
-
-  -webkit-animation: fadeIn 0.8s;
-  -moz-animation: fadeIn 0.8s;
-  -o-animation: fadeIn 0.8s;
-  -ms-animation: fadeIn 0.8s;
-  cursor: pointer;
-
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-moz-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-webkit-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-o-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-
-  @-ms-keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+.sticky {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  margin-top: 10px;
 }
-
 </style>

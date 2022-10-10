@@ -118,7 +118,9 @@ export default {
             width:60%;
             margin-left:15rem;
             background-color: none;
-
+            border: 1px solid #fff;
+            background: #fff;
+            border-radius: 5px;
         }
     }
 </style>

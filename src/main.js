@@ -35,19 +35,31 @@ import SplitButton from 'primevue/splitbutton';
 import Steps from 'primevue/steps';
 import Avatar from 'primevue/avatar';
 import Dialog from 'primevue/dialog';
+import Calendar from 'primevue/calendar';
+import Textarea from 'primevue/textarea';
 // import ButtonModule from 'primeng/button';
 
 
+import Chart from 'primevue/chart';
+import FileUpload from 'primevue/fileupload';
+import Editor from 'primevue/editor';
+import PanelMenu from 'primevue/panelmenu';
+import Toast from 'primevue/toast';
+import { createPinia } from "pinia";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 
 const app = createApp(App);
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
-app.component('Dialog',Dialog);
+app.component('Textarea',Textarea);
+app.component('Calendar',Calendar);
 app.component('Avatar',Avatar);
 app.component('Steps',Steps);
 app.component('SplitButton',SplitButton);
@@ -78,9 +90,12 @@ app.component("DataTable", DataTable);
 app.component("ColumnGroup", ColumnGroup);
 app.component("Column", Column);
 app.component("Row", Row);
-
-
-
+app.component("Chart", Chart);
+app.component("FileUpload", FileUpload);
+app.component("Editor",Editor);
+app.component("PanelMenu",PanelMenu)
+app.component("Dialog",Dialog);
+app.component("Toast",Toast);
 app.directive("badge", BadgeDirective);
 
 app.mount("#app");

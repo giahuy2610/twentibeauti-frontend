@@ -24,4 +24,13 @@ router-link {
   text-decoration: none !important;
   color: inherit;
 }
+::-moz-selection { /* Code for Firefox */
+  color: white;
+  background: var(--primary-color);
+}
+
+::selection {
+  color: white;
+  background: var(--primary-color);
+}
 </style>
