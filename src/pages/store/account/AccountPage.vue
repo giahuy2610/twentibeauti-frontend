@@ -8,6 +8,10 @@
             <li>Tài khoản</li>
           </ul>
         </div>
+        <div class="sidebar-heading">
+          <SavePointCard></SavePointCard>
+        </div>
+        
         <div class="sidebar-account">
           <p>
             <li>
@@ -42,13 +46,26 @@
 <script>
 import Wrapper from "../../Wrapper.vue";
 import SideBar from "./components/SideBar.vue";
+import SavePointCard from "./components/SavePointCard.vue";
 export default {
   components: {
     Wrapper,
     SideBar,
+    SavePointCard,
   },
   data() {
-    return {};
+    return {
+      routeLink: [
+        {
+          title: "Tài khoản",
+          path: "account/profile",
+        },
+        {
+          title: "Đơn hàng",
+          path: "account/profile",
+        },
+      ],
+    };
   },
 };
 </script>
@@ -109,6 +126,9 @@ export default {
     .sidebar-account a:hover {
       text-decoration: underline;
       color: #aed56b;
+    }
+
+    .sidebar-heading {
     }
   }
   .right-column {

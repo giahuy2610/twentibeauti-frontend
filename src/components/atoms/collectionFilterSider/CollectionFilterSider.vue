@@ -1,7 +1,7 @@
 <template lang="">
   <div class="wrapper">
     <div class="wrapper__content">
-      <Accordion :multiple="true" :activeIndex="[0,1,2]">
+      <Accordion :multiple="true" :activeIndex="[0, 1, 2]">
         <AccordionTab header="Giá sản phẩm">
           <div
             class="field-checkbox"

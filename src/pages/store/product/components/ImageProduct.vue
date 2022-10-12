@@ -1,32 +1,40 @@
 <template lang="">
-    <div class="scroll-wrapper" ref="wrapper" >
-        <Button
-            @click="scrollUp(), isClick = !isClick"
-            icon="pi pi-angle-up "
-            class="pag__btn btn__up p-button p-button-rounded p-button-outlined"
-        />
-        <div class="container-slide" ref="slide">
-            <div class="slick-slider">
-                <div class="slick-list" >
-                    <div class="slick-track">
-                        <div ref="btn" v-for="(item,index) in illustProducts" :key="index">
-                          <Button @click="scrollTo(index), isClick = !isClick" class="pag__size pag__btn p-button-lg p-button-rounded p-button-outlined" :style="{backgroundImage : `url(${this.illustProducts[index]})`}"/>
-                        </div>
-                    </div>
-                </div>
+  <div class="scroll-wrapper" ref="wrapper">
+    <Button
+      @click="scrollUp(), (isClick = !isClick)"
+      icon="pi pi-angle-up "
+      class="pag__btn btn__up p-button p-button-rounded p-button-outlined"
+    />
+    <div class="container-slide" ref="slide">
+      <div class="slick-slider">
+        <div class="slick-list">
+          <div class="slick-track">
+            <div ref="btn" v-for="(item, index) in illustProducts" :key="index">
+              <Button
+                @click="scrollTo(index), (isClick = !isClick)"
+                class="pag__size pag__btn p-button-lg p-button-rounded p-button-outlined"
+                :style="{
+                  backgroundImage: `url(${this.illustProducts[index]})`,
+                }"
+              />
             </div>
+          </div>
         </div>
-        <Button
-          @click="scrollDown(), isClick = !isClick"
-          icon="pi pi-angle-down"
-          class="pag__btn btn__down p-button p-button-rounded p-button-outlined"
-        />
+      </div>
     </div>
-    <div ref="image" class="img__margin" :class="[ isClick ? 'img__appear' : 'img__show']"  >
-      <img :src="currentImg" alt="Ảnh sản phẩm">
-    </div>
-    
-    
+    <Button
+      @click="scrollDown(), (isClick = !isClick)"
+      icon="pi pi-angle-down"
+      class="pag__btn btn__down p-button p-button-rounded p-button-outlined"
+    />
+  </div>
+  <div
+    ref="image"
+    class="img__margin"
+    :class="[isClick ? 'img__appear' : 'img__show']"
+  >
+    <img :src="currentImg" alt="Ảnh sản phẩm" />
+  </div>
 </template>
 <script>
 export default {
@@ -163,7 +171,6 @@ export default {
     object-fit: contain;
     margin-right: 3rem;
     height: 50vh;
-    overflow: hidden;
   }
   &__appear {
     max-width: 100%;
@@ -227,12 +234,12 @@ export default {
     animation: 2s slidein;
     @keyframes slidein {
       from {
-        margin-top: 5%;
-        height: 120%;
+        margin-top: 4%;
+        height: 100%;
       }
       to {
         margin-top: 0%;
-        height: 100%;
+        height: 80%;
       }
     }
   }

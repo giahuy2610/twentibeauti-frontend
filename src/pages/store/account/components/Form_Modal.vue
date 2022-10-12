@@ -1,16 +1,13 @@
 <template lang="">
   <div class="wrapper" :style="[isHidden ? 'display: none' : '']">
-    <ScrollPanel style="width: 100%; height: 700px">
+    <ScrollPanel>
       <div class="modal">
         <div class="modal-content">
           <div class="m-icon">
-            <i class="pi pi-times" @click="close()"></i>
+            <i class="pi pi-times" @click="close"></i>
           </div>
           <div class="modal-title">
-            <div class="m-head">
-              Thêm địa chỉ
-              <slot name="title"></slot>
-            </div>
+            <div class="m-head">Thêm địa chỉ</div>
           </div>
           <div class="modal-context">
             <div class="row_home">
@@ -94,27 +91,25 @@
                     placeholder="Quận/Huyện"
                   />
                 </span>
-              </div>           
+              </div>
             </div>
             <div class="row_home">
-                <span class="p-fluid">
-                  <AutoComplete
-                    v-model="home_add"
-                    :suggestions="filteredHome"
-                    @complete="searchHome($event)"
-                    optionLabel="home"
-                    placeholder="Nhập địa chỉ"
-                  />
-                </span>
-              </div>
-              <div class="field-checkbox">
-                <Checkbox inputId="binary" v-model="checked" :binary="true" />
-                <label for="binary">Đặt làm địa chỉ mặc định</label>
-              </div>
-            <slot name="context"></slot>
+              <span class="p-fluid">
+                <AutoComplete
+                  v-model="home_add"
+                  :suggestions="filteredHome"
+                  @complete="searchHome($event)"
+                  optionLabel="home"
+                  placeholder="Nhập địa chỉ"
+                />
+              </span>
+            </div>
+            <div class="field-checkbox">
+              <Checkbox inputId="binary" v-model="checked" :binary="true" />
+              <label for="binary">Đặt làm địa chỉ mặc định</label>
+            </div>
           </div>
           <div class="modal-footer">
-            <slot name="footer"></slot>
             <slot name="button"></slot>
           </div>
         </div>
@@ -131,10 +126,10 @@ export default {
   },
   methods: {
     close() {
-      this.modal1 = false;
-    }
-}
-}
+      this.isHidden = false;
+    },
+  },
+};
 </script>
 <style lang="scss" scoped>
 .wrapper {
@@ -143,7 +138,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 1111;
   overflow-y: scroll;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
@@ -222,7 +217,6 @@ export default {
         margin: 0;
         color: rgba(0, 0, 0, 0.85);
         box-sizing: inherit;
-        
       }
     }
     .modal-context {

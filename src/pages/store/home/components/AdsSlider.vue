@@ -27,7 +27,7 @@
         src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
         :uid="item"
         :key="item"
-        @click="$router.push({ path: '/collections/flash-sale', replace: true })"
+        @click="$router.push({ path: '/collections/flash-sale'})"
       />
     </div>
   </div>
@@ -114,13 +114,13 @@ export default {
   .btn-right {
     position: absolute;
     top: 50%;
-    z-index: 45;
+    z-index: 4;
     transform: translateX(50%);
   }
   .btn-left {
     position: absolute;
     top: 50%;
-    z-index: 45;
+    z-index: 4;
     right: 0;
     transform: translateX(-50%);
   }

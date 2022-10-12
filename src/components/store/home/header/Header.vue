@@ -13,7 +13,7 @@
       top: 0;
       width: 100vw;
       position: fixed;
-      z-index: 9999;
+      z-index: 33;
       background-color: #ffff;
     "
   >
@@ -24,6 +24,7 @@
         padding-bottom: 0 !important;
       "
     >
+      <ProgressTopBar></ProgressTopBar>
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">
           <div
@@ -117,6 +118,7 @@
 <script>
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
+import ProgressTopBar from "@/components/atoms/progressTopBar/ProgressTopBar.vue";
 
 export default {
   data() {
@@ -206,6 +208,7 @@ export default {
   components: {
     Cart,
     Wrapper,
+    ProgressTopBar,
   },
 };
 </script>
