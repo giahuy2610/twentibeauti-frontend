@@ -3,12 +3,15 @@
     <!-- <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
     </Skeleton> -->
     <img
-      @click="$router.push({ path: '/collections/', replace: true })"
-      v-for="item in arrThumbnailScr"
+      @click="$router.push({ path: '/collections/'})"
+      v-for="(item, index) in arrThumbnailScr"
       :src="item"
       alt="sale thumbnail"
-      @load="isLoaded = true"
+      @load="isLoaded = index"
       v-show="isLoaded"
+      @mouseenter="hover = index"
+      @mouseleave="hover = false"
+      :class="{ 'shadow-6': hover === index }"
     />
   </div>
 </template>
@@ -16,6 +19,7 @@
 export default {
   data() {
     return {
+      hover: null,
       isLoaded: false,
       arrThumbnailScr: [
         "https://image.hsv-tech.io/1920x640/tfs/common/40f3e5d3-f5ec-4f5f-8d12-245298586d04.webp",
