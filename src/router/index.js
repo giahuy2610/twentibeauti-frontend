@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 
 //store
 import AppLayout from "../layouts/AppLayout.vue";
-
 import HomeStore from "../pages/store/home/HomeStore.vue";
 import NotFound from "../pages/404/404.vue";
 import BrandsPage from "../pages/store/brands/Brands.vue";
@@ -17,11 +16,16 @@ import AccountOrders from "../pages/store/account/components/Orders.vue";
 import AccountAddress from "../pages/store/account/components/Address.vue";
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
-
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
 import ProductDetail from "../pages/admin/products/ProductDetail.vue";
+import ListOrders from "../pages/admin/orders/ListOrders.vue";
+import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
+import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
 import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
+import EditOrder from "../pages/admin/orders/EditOrder.vue";
+import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
+import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -120,9 +124,34 @@ const routes = [
         component: ProductCreate,
       },
       {
-        name: "product details",
-        path: "/products/create",
-        component: ProductDetail,
+        name: "list orders",
+        path: "listorders",
+        component: ListOrders,
+      },
+      {
+        name: "order details",
+        path: "orderdetails",
+        component: OrderDetails,
+      },
+      {
+        name: "form address",
+        path: "formaddress",
+        component: FormAddress,
+      },
+      {
+        name: "edit",
+        path: "orderdetails/editorder",
+        component: EditOrder,
+      },
+      {
+        name: "customer refund",
+        path: "order_return",
+        component: OrderReturn,
+      },
+      {
+        name: "create return",
+        path: "create_return",
+        component: CreateReturn,
       },
     ],
   },

@@ -6,20 +6,33 @@
 
     <div class="cart__body">
       <ScrollPanel style="width: 100%; height: 100%">
-        <ProductItem class="mb-1" v-for="item in productArr"></ProductItem>
+        <ProductItem
+          class="mb-1"
+          v-for="item in getCartItems"
+          :name="item.name"
+          :SKU="item.SKU"
+          :imagePath="item.imagePath"
+          :routePath="item.routePath"
+          :retailPrice="item.retailPrice"
+          :quantity="item.quantity"
+        ></ProductItem>
       </ScrollPanel>
     </div>
 
     <div class="cart__footer">
       <div class="flex justify-content-between">
         <h4>Tổng giá trị đơn hàng</h4>
-        <h4>{{ total }}</h4>
+        <h4>{{ Intl.NumberFormat().format(total) }}đ</h4>
       </div>
 
       <p>Bạn có thể xem các chương trình khuyến mãi ở màn hình kế tiếp</p>
       <div class="order">
         <span class="p-fluid">
-          <Button label="Đặt hàng" class="p-button-rounded" />
+          <Button
+            label="Đặt hàng"
+            class="p-button-rounded"
+            @click="increaseTotal"
+          />
         </span>
       </div>
     </div>
@@ -27,10 +40,12 @@
 </template>
 <script>
 import ProductItem from "./ProductItem.vue";
+import { useCartStorePinia } from "@/stores/cart.js";
+import { mapState, mapActions } from "pinia";
+
 export default {
   data() {
     return {
-      total: 0,
       productArr: [
         {
           id: 100,
@@ -61,6 +76,23 @@ export default {
   },
   components: {
     ProductItem,
+  },
+  computed: {
+    ...mapState(useCartStorePinia, {
+      getCartItems: "getCartItems",
+    }),
+    total() {
+      let totaltemp = 0;
+      this.getCartItems.forEach((element) => {
+        totaltemp += element.retailPrice*element.quantity
+      });
+      return totaltemp;
+    },
+  },
+  methods: {
+    ...mapActions(useCartStorePinia, {
+      increaseTotal: "increaseTotal",
+    }),
   },
 };
 </script>

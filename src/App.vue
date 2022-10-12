@@ -4,10 +4,11 @@
 </template>
 
 <script>
-import OverlayAds from "./components/store/overlayAds/OverlayAds.vue"
+import OverlayAds from "./components/store/overlayAds/OverlayAds.vue";
+
 export default {
   components: {
-    OverlayAds
+    OverlayAds,
   }
 };
 </script>

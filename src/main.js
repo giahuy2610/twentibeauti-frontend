@@ -1,13 +1,24 @@
 import { createApp } from "vue";
 import App from "./App.vue";
+
 import PrimeVue from "primevue/config";
+import router from "./router";
+import axios from "axios";
+import VueAxios from "vue-axios";
+import { createPinia } from "pinia";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import "./scss/_theme.scss";
+//import 'primevue/resources/themes/saga-green/theme.css';
+import "primevue/resources/primevue.min.css";
+import "primeicons/primeicons.css";
+
+
+import InputText from "primevue/inputtext";
+import SelectButton from "primevue/selectbutton";
 import ToastService from "primevue/toastservice";
 import MultiSelect from "primevue/multiselect";
 import Button from "primevue/button";
-import InputText from "primevue/inputtext";
-import SelectButton from "primevue/selectbutton";
 import MegaMenu from "primevue/megamenu";
-import router from "./router";
 import Badge from "primevue/badge";
 import Sidebar from "primevue/sidebar";
 import Card from "primevue/card";
@@ -25,29 +36,53 @@ import RadioButton from "primevue/radiobutton";
 import InputNumber from "primevue/inputnumber";
 import InputSwitch from "primevue/inputswitch";
 import ScrollPanel from "primevue/scrollpanel";
+import Breadcrumb from "primevue/breadcrumb";
+import InputMask from "primevue/inputmask";
 import DataTable from "primevue/datatable";
-import Column from 'primevue/column';
-import ColumnGroup from 'primevue/columngroup';     //optional for column grouping
-import Row from 'primevue/row';  
-import Chart from 'primevue/chart';
-import FileUpload from 'primevue/fileupload';
-import Editor from 'primevue/editor';
-import PanelMenu from 'primevue/panelmenu';
-import Dialog from 'primevue/dialog';
-import Toast from 'primevue/toast';
-import { createPinia } from "pinia";
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-import "./scss/_theme.scss";
-//import 'primevue/resources/themes/saga-green/theme.css';
-import "primevue/resources/primevue.min.css";
-import "primeicons/primeicons.css";
+import Column from "primevue/column";
+import ColumnGroup from "primevue/columngroup"; //optional for column grouping
+import Row from "primevue/row";
+import Chart from "primevue/chart";
+import FileUpload from "primevue/fileupload";
+import Editor from "primevue/editor";
+import PanelMenu from "primevue/panelmenu";
+import Dialog from "primevue/dialog";
+import Toast from "primevue/toast";
+import Skeleton from "primevue/skeleton";
+
+import SplitButton from "primevue/splitbutton";
+import Steps from "primevue/steps";
+import Avatar from "primevue/avatar";
+import Calendar from "primevue/calendar";
+import Textarea from "primevue/textarea";
+// import ButtonModule from 'primeng/button';
+
+
+
+
+
+
+
+
+
+
 
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
+app.use(pinia);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
+app.use(VueAxios, axios);
+
+app.component("Textarea", Textarea);
+app.component("Calendar", Calendar);
+app.component("Avatar", Avatar);
+app.component("Steps", Steps);
+app.component("SplitButton", SplitButton);
+app.component("InputMask", InputMask);
+app.component("Breadcrumb", Breadcrumb);
 app.component("InputNumber", InputNumber);
 app.component("RadioButton", RadioButton);
 app.component("Checkbox", Checkbox);
@@ -75,10 +110,12 @@ app.component("Column", Column);
 app.component("Row", Row);
 app.component("Chart", Chart);
 app.component("FileUpload", FileUpload);
-app.component("Editor",Editor);
-app.component("PanelMenu",PanelMenu)
-app.component("Dialog",Dialog);
-app.component("Toast",Toast);
+app.component("Editor", Editor);
+app.component("PanelMenu", PanelMenu);
+app.component("Dialog", Dialog);
+app.component("Toast", Toast);
+app.component("Skeleton", Skeleton);
+
 app.directive("badge", BadgeDirective);
 
 app.mount("#app");

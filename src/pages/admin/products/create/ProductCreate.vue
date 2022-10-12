@@ -4,8 +4,8 @@
         <div class="header-wrapper">
           <div class="header-wrapper__left" @click="$router.push({path:'/admin/products',replace:true})">Quay lại</div>
           <div class="header-wrapper__right">
-            <Button label="Thoát" class="p-button-outlined p-button-info" />
-            <Button label="Lưu và in mã vạch" class="p-button-outlined p-button-info" />
+            <Button label="Hủy" class="p-button-outlined p-button-danger" />
+            <Button label="Xem trước" class="p-button-outlined p-button-success" @click="$router.push({path:'/products',replace:true})" />
             <Button label="Lưu" class="p-button-outlined p-button-info" />
             
           </div>

@@ -1,14 +1,5 @@
 <template lang="">
   <Form v-if="modal1">
-    <template v-slot:title>
-      <div class="title"></div>
-    </template>
-    <template v-slot:context>
-      <div></div>
-    </template>
-    <template v-slot:footer>
-      <div></div>
-    </template>
     <template v-slot:button>
       <div class="btn_save">
         <button @click="modal1 = false">Lưu</button>
@@ -75,7 +66,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
-
 .right-column {
   display: flex;
   float: right;

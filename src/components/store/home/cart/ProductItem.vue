@@ -1,58 +1,89 @@
 <template lang="">
   <div class="product-wrapper">
     <div class="product-wrapper__left">
+      <Skeleton
+        shape="square"
+        size="80px"
+        v-show="!isLoaded"
+      >
+      </Skeleton>
       <img
-        src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7"
+        :src="imagePath"
         alt=""
         style="width: 80px; height: 80px; object-fit: fill; border-radius: 10px"
+        @load="isLoaded = true"
+        v-show="isLoaded"
       />
     </div>
     <div class="product-wrapper__right">
       <div class="product-wrapper__right__info">
         <div class="product-wrapper__right__info__main">
-          <p class="font-semibold">{{ name }}</p>
+          <p
+            class="font-semibold under-hover"
+            @click="$router.push({ path: routePath })"
+          >
+            {{ name }}
+          </p>
           <p>SKU: {{ SKU }}</p>
         </div>
         <div class="product-wrapper__right__info__delete">
-          <i class="icon pi pi-minus"></i>
+          <i class="icon pi pi-minus" @click="removeItem(SKU)"></i>
         </div>
       </div>
       <div class="product-wrapper__right__quantity-price">
         <div class="quantity-selector">
           <div class="custom-input">
-            <i class="pi pi-minus button" @click="quantity--"></i>
+            <i class="pi pi-minus button" @click="decreaseQuantity(SKU)"></i>
             <div class="number">{{ quantity }}</div>
-            <i class="button pi pi-plus" @click="quantity++"></i>
+            <i class="button pi pi-plus" @click="increaseQuantity(SKU)"></i>
           </div>
         </div>
         <p class="font-semibold">
-          {{ Intl.NumberFormat().format(listPrice) }}đ
+          {{ Intl.NumberFormat().format(retailPrice) }}đ
         </p>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { useCartStorePinia } from "@/stores/cart.js";
+import { mapActions } from "pinia";
 export default {
+  props: {
+    name: String,
+    SKU: Number,
+    retailPrice: Number,
+    quantity: Number,
+    imagePath: String,
+    routePath: String,
+  },
+  methods: {
+    ...mapActions(useCartStorePinia, {
+      increaseQuantity: "increaseQuantity",
+      decreaseQuantity: "decreaseQuantity",
+      removeItem: "removeItem",
+    }),
+  },
   data() {
     return {
-      name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-      SKU: 30700710,
-      listPrice: 289000,
-      quantity: 1,
-    };
-  },
-  mounted() {},
+      isLoaded: false
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
+.under-hover:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
 .product-wrapper {
   width: 100%;
   display: flex;
   align-items: center;
   gap: 1rem;
   height: 100px;
-
+  cursor: pointer;
   font-size: 0.7rem;
   overflow: hidden;
 
