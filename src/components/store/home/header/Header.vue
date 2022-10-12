@@ -28,7 +28,7 @@
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">
           <div
-            @click="$router.push({ path: '/', replace: true })"
+            @click="$router.push({ path: '/' })"
             class="header-wrapper__content__left cursor-pointer"
           >
             <img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
@@ -67,7 +67,14 @@
             @click="visibleCart = true"
             class="pi pi-shopping-bag"
             style="font-size: 20px"
-            v-badge="2"
+            v-badge="getCartItemsNumber"
+            v-if="getCartItemsNumber > 0"
+          ></i>
+          <i
+            @click="visibleCart = true"
+            class="pi pi-shopping-bag"
+            style="font-size: 20px"
+            v-else
           ></i>
         </div>
       </div>
@@ -119,6 +126,8 @@
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import ProgressTopBar from "@/components/atoms/progressTopBar/ProgressTopBar.vue";
+import { useCartStorePinia } from "@/stores/cart.js";
+import { mapState, mapActions } from "pinia";
 
 export default {
   data() {
@@ -209,6 +218,11 @@ export default {
     Cart,
     Wrapper,
     ProgressTopBar,
+  },
+  computed: {
+    ...mapState(useCartStorePinia, {
+      getCartItemsNumber: "getCartItemsNumber",
+    }),
   },
 };
 </script>

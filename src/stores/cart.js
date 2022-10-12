@@ -38,6 +38,9 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     getCartItems(state) {
       return state.cartItems;
     },
+    getCartItemsNumber(state) {
+      return state.cartItems.length;
+    },
   },
   actions: {
     increaseTotal() {
@@ -77,7 +80,7 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
       }
     },
     removeItem(SKU) {
-      this.cartItems =  this.cartItems.filter((e) => e.SKU !== SKU);
+      this.cartItems = this.cartItems.filter((e) => e.SKU !== SKU);
     },
   },
   persist: true,

@@ -1,16 +1,29 @@
 <template lang="">
-  <div class="product-wrapper" >
+  <div class="product-wrapper">
     <div class="product-wrapper__left">
+      <Skeleton
+        shape="square"
+        size="80px"
+        v-show="!isLoaded"
+      >
+      </Skeleton>
       <img
         :src="imagePath"
         alt=""
         style="width: 80px; height: 80px; object-fit: fill; border-radius: 10px"
+        @load="isLoaded = true"
+        v-show="isLoaded"
       />
     </div>
     <div class="product-wrapper__right">
       <div class="product-wrapper__right__info">
         <div class="product-wrapper__right__info__main">
-          <p class="font-semibold under-hover"  @click="$router.push({ path: routePath })">{{ name }}</p>
+          <p
+            class="font-semibold under-hover"
+            @click="$router.push({ path: routePath })"
+          >
+            {{ name }}
+          </p>
           <p>SKU: {{ SKU }}</p>
         </div>
         <div class="product-wrapper__right__info__delete">
@@ -48,10 +61,14 @@ export default {
     ...mapActions(useCartStorePinia, {
       increaseQuantity: "increaseQuantity",
       decreaseQuantity: "decreaseQuantity",
-      removeItem: 'removeItem'
-
+      removeItem: "removeItem",
     }),
   },
+  data() {
+    return {
+      isLoaded: false
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
@@ -69,7 +86,6 @@ export default {
   cursor: pointer;
   font-size: 0.7rem;
   overflow: hidden;
-
 
   &__left {
   }

@@ -1,10 +1,14 @@
 <template lang="">
   <div class="wrapper">
+    <!-- <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
+    </Skeleton> -->
     <img
       @click="$router.push({ path: '/collections/', replace: true })"
       v-for="item in arrThumbnailScr"
       :src="item"
       alt="sale thumbnail"
+      @load="isLoaded = true"
+      v-show="isLoaded"
     />
   </div>
 </template>
@@ -12,6 +16,7 @@
 export default {
   data() {
     return {
+      isLoaded: false,
       arrThumbnailScr: [
         "https://image.hsv-tech.io/1920x640/tfs/common/40f3e5d3-f5ec-4f5f-8d12-245298586d04.webp",
         "https://image.hsv-tech.io/1920x640/tfs/common/7c5ef3a6-3067-4be0-98cc-6a71f5b36ccc.webp",
@@ -27,7 +32,6 @@ export default {
   width: 100%;
   box-sizing: border-box;
   justify-content: space-between;
-  
 
   img {
     max-width: 32%;
