@@ -66,7 +66,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
-
 .right-column {
   display: flex;
   float: right;

@@ -5,6 +5,13 @@ import PrimeVue from "primevue/config";
 import router from "./router";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import { createPinia } from "pinia";
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import "./scss/_theme.scss";
+//import 'primevue/resources/themes/saga-green/theme.css';
+import "primevue/resources/primevue.min.css";
+import "primeicons/primeicons.css";
+
 
 import InputText from "primevue/inputtext";
 import SelectButton from "primevue/selectbutton";
@@ -29,6 +36,8 @@ import RadioButton from "primevue/radiobutton";
 import InputNumber from "primevue/inputnumber";
 import InputSwitch from "primevue/inputswitch";
 import ScrollPanel from "primevue/scrollpanel";
+import Breadcrumb from "primevue/breadcrumb";
+import InputMask from "primevue/inputmask";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import ColumnGroup from "primevue/columngroup"; //optional for column grouping
@@ -41,23 +50,39 @@ import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
 import Skeleton from "primevue/skeleton";
 
-import { createPinia } from "pinia";
-import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-import "./scss/_theme.scss";
-//import 'primevue/resources/themes/saga-green/theme.css';
-import "primevue/resources/primevue.min.css";
-import "primeicons/primeicons.css";
+import SplitButton from "primevue/splitbutton";
+import Steps from "primevue/steps";
+import Avatar from "primevue/avatar";
+import Calendar from "primevue/calendar";
+import Textarea from "primevue/textarea";
+// import ButtonModule from 'primeng/button';
+
+
+
+
+
+
+
+
+
+
 
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
-
 app.use(pinia);
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
 app.use(VueAxios, axios);
 
+app.component("Textarea", Textarea);
+app.component("Calendar", Calendar);
+app.component("Avatar", Avatar);
+app.component("Steps", Steps);
+app.component("SplitButton", SplitButton);
+app.component("InputMask", InputMask);
+app.component("Breadcrumb", Breadcrumb);
 app.component("InputNumber", InputNumber);
 app.component("RadioButton", RadioButton);
 app.component("Checkbox", Checkbox);
