@@ -18,6 +18,7 @@
     </div>
     <div class="right">
       <AddInfoVue></AddInfoVue>
+      <FooterVue></FooterVue>
     </div>
   </div>
 </template>
@@ -27,6 +28,7 @@ import ProductPrice from "./ProductPrice.vue";
 import AddFile from "../../components/AddFile.vue";
 import OrderCreate from "./OrderCreate.vue";
 import AddInfoVue from "./AddInfo.vue";
+import FooterVue from "./Footer.vue";
 export default {
   components: {
     GeneralInfoVue,
@@ -34,6 +36,7 @@ export default {
     AddFile,
     OrderCreate,
     AddInfoVue,
+    FooterVue,
   },
 };
 </script>
