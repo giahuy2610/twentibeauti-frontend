@@ -126,7 +126,7 @@
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import ProgressTopBar from "@/components/atoms/progressTopBar/ProgressTopBar.vue";
-import { useCartStorePinia } from "@/stores/cart.js";
+import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 
 export default {

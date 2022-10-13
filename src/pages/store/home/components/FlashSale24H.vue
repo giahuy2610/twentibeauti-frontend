@@ -54,7 +54,7 @@
           $router.push({ path: '/collections/flash-sale', replace: true })
         "
       >
-        Xem tất cả
+        Xem tất cả {{ timeInSeconds }}
       </div>
     </div>
     <HorizontalScroller></HorizontalScroller>
@@ -85,7 +85,14 @@ export default {
         minutes: 0,
         seconds: 1,
       },
+      timeInSeconds: 10,
     };
+  },
+  created() {
+    setInterval(() => {
+      if (this.timeInSeconds == 0) return;
+      else this.timeInSeconds--;
+    }, 1000);
   },
 };
 </script>

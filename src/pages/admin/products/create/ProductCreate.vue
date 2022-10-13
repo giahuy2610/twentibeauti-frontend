@@ -1,58 +1,68 @@
 <template lang="">
-    <AdminBlankPage>
-      <template v-slot:header>
-        <div class="header-wrapper">
-          <div class="header-wrapper__left" @click="$router.push({path:'/admin/products',replace:true})">Quay lại</div>
-          <div class="header-wrapper__right">
-            <Button label="Hủy" class="p-button-outlined p-button-danger" />
-            <Button label="Xem trước" class="p-button-outlined p-button-success" @click="$router.push({path:'/products',replace:true})" />
-            <Button label="Lưu" class="p-button-outlined p-button-info" />
-            
-          </div>
+  <AdminBlankPage>
+    <template v-slot:header>
+      <div class="header-wrapper">
+        <div
+          class="header-wrapper__left flex align-items-center cursor-pointer"
+          @click="$router.push({ path: '/admin/products', replace: true })"
+        >
+          <i class="pi pi-angle-left"></i>
+          <span>Quay lại</span>
         </div>
-      </template>
-      <template v-slot:main>
-        <div class="main-wrapper">
-          <Main_content></Main_content>
+        <div class="header-wrapper__right">
+          <Button label="Hủy" class="p-button-outlined p-button-danger" />
+          <Button
+            label="Xem trước"
+            class="p-button-success"
+            @click="$router.push({ path: '/products', replace: true })"
+          />
+          <Button label="Lưu" class="p-button-info" />
         </div>
-      </template>
-    </AdminBlankPage>
-  </template>
-  <script>
-  import AdminBlankPage from "../../AdminBlankPage.vue";
-  import Main_content from "./components/Main_content.vue";
-  export default {
-    components: {
-      AdminBlankPage,
-      Main_content,
-    },
-    data() {
-      return {};
-    }
-  };
-  </script>
-  <style lang="scss" scoped>
-  .header-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .header-wrapper__right{
-        display: flex;
-        gap:10px;
-    }
-  
+      </div>
+    </template>
+    <template v-slot:main>
+      <div class="main-wrapper">
+        <Main_content></Main_content>
+      </div>
+    </template>
+  </AdminBlankPage>
+</template>
+<script>
+import AdminBlankPage from "../../AdminBlankPage.vue";
+import Main_content from "./components/Main_content.vue";
+export default {
+  components: {
+    AdminBlankPage,
+    Main_content,
+  },
+  data() {
+    return {};
+  },
+};
+</script>
+<style lang="scss" scoped>
+.header-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
+  .header-wrapper__left:hover {
+    color: var(--primary-color)
   }
-  .main-wrapper {
-    .product-table {
-      width: 100%;
-  
-    }
+
+  .header-wrapper__right {
+    display: flex;
+    gap: 10px;
   }
-  
-  ::v-deep(.p-card) {
-    border-radius: 10px;
+}
+.main-wrapper {
+  .product-table {
+    width: 100%;
   }
-  </style>
-  
+}
+
+::v-deep(.p-card) {
+  border-radius: 10px;
+}
+</style>

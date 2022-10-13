@@ -4,17 +4,16 @@
       <GeneralInfoVue></GeneralInfoVue>
       <ProductPrice></ProductPrice>
       <div class="photos">
-        <Card >
-            <template #title> Ảnh sản phẩm </template>
-            <template #content>
-              <div >
-                <AddFile></AddFile>
-              </div>
-            </template>
-          </Card>
+        <Card>
+          <template #title> Ảnh sản phẩm </template>
+          <template #content>
+            <div>
+              <AddFile></AddFile>
+            </div>
+          </template>
+        </Card>
       </div>
       <OrderCreate></OrderCreate>
-      
     </div>
     <div class="right">
       <AddInfoVue></AddInfoVue>
@@ -49,15 +48,13 @@ export default {
   .left {
     width: 70%;
     margin: 10px;
-    .photos{
-        margin-top: 20px;
+    .photos {
+      margin-top: 20px;
     }
-
-    }
-    .right{
-      width: 30%;
-      margin: 10px;
-    }
-
+  }
+  .right {
+    width: 30%;
+    margin: 10px;
+  }
 }
 </style>
