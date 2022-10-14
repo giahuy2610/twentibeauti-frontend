@@ -46,7 +46,7 @@
   </div>
 </template>
 <script>
-import { useCartStorePinia } from "@/stores/cart.js";
+import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapActions } from "pinia";
 export default {
   props: {

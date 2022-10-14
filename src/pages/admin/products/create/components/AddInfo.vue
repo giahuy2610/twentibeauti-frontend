@@ -13,12 +13,12 @@
             optionValue="code"
             placeholder="Chọn loại sản phẩm"
             :editable="true"
+            style="width: 100%"
           />
           <Button
             icon="pi pi-plus"
             class="p-button-rounded p-button-outlined p-button-sm ml-1"
             @click="openModalCate"
-
           ></Button>
         </div>
 
@@ -30,13 +30,9 @@
           :modal="true"
         >
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
-              v-model="nameproduct"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="name"
-              placeholder="Tên loại sản phẩm"
+            <p>Tên loại sản phẩm</p>
+            <InputText
+              type="text"
             />
           </span>
           <template #footer>
@@ -52,7 +48,7 @@
             />
           </template>
         </Dialog>
-        <br>
+        <br />
         <p>Nhãn hiệu</p>
         <div class="flex">
           <Dropdown
@@ -62,15 +58,15 @@
             optionValue="code"
             placeholder="Chọn nhãn hiệu"
             :editable="true"
+            style="width: 100%"
           />
           <Button
             icon="pi pi-plus"
             class="p-button-rounded p-button-outlined p-button-sm ml-1"
             @click="openModal"
-
           ></Button>
         </div>
-          
+
         <Dialog
           header="Thêm nhãn hiệu"
           v-model:visible="displayModal"
@@ -79,18 +75,26 @@
           :modal="true"
         >
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
+            <p>Tên nhãn hiệu</p>
+            <InputText
+              type="text"
               v-model="nameBrand"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="name"
-              placeholder="Tên nhãn hiệu"
+              :class="{ 'p-invalid': isValidNameBrand }"
             />
+            <small id="username2-help" class="p-error" v-if="isValidNameBrand"
+              >Tên chỉ được chứa chữ và số</small
+            >
             <p>Đường dẫn</p>
-            <InputText type="text" placeholder="/collections/nameBrand" v-model="inputpath" />
+            <InputText
+              type="text"
+              v-model="inputPath"
+              :class="{ 'p-invalid': isValidInputPath }"
+            />
+            <small id="username2-help" class="p-error" v-if="isValidInputPath"
+              >Đường dẫn không chứa kí tự đặc biệt và khoảng cách</small
+            >
           </span>
-          
+
           <template #footer>
             <Button label="Thoát" @click="closeModal" class="p-button-text" />
             <Button
@@ -109,12 +113,12 @@
             optionValue="code"
             placeholder="Tags"
             :editable="true"
+            style="width: 100%"
           />
           <Button
             icon="pi pi-plus"
             class="p-button-rounded p-button-outlined p-button-sm ml-1"
             @click="openShowTags"
-
           ></Button>
         </div>
         <Dialog
@@ -125,17 +129,17 @@
           :modal="true"
         >
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
-              v-model="nameTags"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="name"
-              placeholder="Tên Tags"
+            <p>Nhãn hiệu</p>
+            <InputText
+              type="text"
             />
           </span>
           <template #footer>
-            <Button label="Thoát" @click="closeShowTags" class="p-button-text" />
+            <Button
+              label="Thoát"
+              @click="closeShowTags"
+              class="p-button-text"
+            />
             <Button
               label="Thêm Tags"
               class="p-button-success"
@@ -151,10 +155,14 @@
 export default {
   data() {
     return {
+      nameBrand: null,
       displayModal: false,
       messages: [],
       displayModalCate: false,
       displayTags: false,
+      inputPath: null,
+      isValidNameBrand: false,
+      isValidInputPath: false,
     };
   },
   methods: {
@@ -205,6 +213,51 @@ export default {
         group: "br",
         life: 3000,
       });
+    },
+    checkValid(value) {
+      //the url is only include letters, numbers and dashes
+      return !/^[a-zA-Z-0-9-_ ]+$/i.test(value); //return true if the url is wrong
+    },
+  },
+  watch: {
+    nameBrand: {
+      handler(newValue, oldValue) {
+        if (newValue === "") {
+          this.isValidNameBrand = false;
+          this.inputPath = "";
+          return;
+        }
+        //check if invalid
+        //replace spaces with '-' and transfer to en-us format letter
+        this.isValidNameBrand = this.checkValid(newValue);
+        if (this.isValidNameBrand) {
+          this.inputPath = "";
+          return;
+        }
+
+        this.inputPath =
+          "/collections/" +
+          newValue
+            .normalize("NFD")
+            .replace(/[\u0300-\u036f]/g, "")
+            .toLowerCase()
+            .replace(/ /g, "-");
+      },
+      deep: true,
+    },
+    inputPath: {
+      handler(newValue, oldValue) {
+        if (newValue === "") {
+          this.isValidInputPath = false;
+          return;
+        }
+        //check if invalid
+        //replace spaces with '-' and transfer to en-us format letter
+        //slice(13,...tail) to remove the prefix "/collections/"
+        //only storing the path of product, like: "the-face-shop" without the  prefix "/collections/"
+        this.isValidInputPath = this.checkValid(newValue.slice(13));
+      },
+      deep: true,
     },
   },
 };

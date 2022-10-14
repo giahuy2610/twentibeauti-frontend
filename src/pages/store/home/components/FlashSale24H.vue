@@ -83,10 +83,28 @@ export default {
         days: 0,
         hours: 0,
         minutes: 0,
-        seconds: 1,
+        seconds: 0,
       },
+      timeInSeconds: 15227,
     };
   },
+  created() {
+    setInterval(() => {
+      if (this.timeInSeconds == 0) return;
+      else this.timeInSeconds--;
+    }, 1000);
+  },
+  watch: {
+    timeInSeconds: {
+      handler(newValue, oldValue) {
+        this.timeLeft.days = parseInt(newValue/(24*60*60));
+        this.timeLeft.hours = parseInt(newValue/(60*60)-24*this.timeLeft.days);
+        this.timeLeft.minutes = parseInt(newValue/(60)-24*60*this.timeLeft.days-60*this.timeLeft.hours);
+        this.timeLeft.seconds = parseInt(newValue - 24*60*60*this.timeLeft.days-60*60*this.timeLeft.hours-60*this.timeLeft.minutes);
+      },
+      deep: true
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

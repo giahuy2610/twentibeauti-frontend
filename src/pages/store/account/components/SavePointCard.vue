@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/index.js";
+import { useIndexStorePinia } from "@/stores/store/index.js";
 import { mapState, mapActions } from "pinia";
 export default {
   data() {

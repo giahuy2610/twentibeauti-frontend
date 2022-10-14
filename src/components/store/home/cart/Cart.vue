@@ -40,7 +40,7 @@
 </template>
 <script>
 import ProductItem from "./ProductItem.vue";
-import { useCartStorePinia } from "@/stores/cart.js";
+import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 
 export default {

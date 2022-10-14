@@ -51,25 +51,25 @@ export default {
     scrollLeft: function () {
       if (this.currentPage != this.allProducts.length) {
         this.currentPage++;
-        this.$refs.wrapper.scrollLeft += screen.width;
+        this.$refs.wrapper.scrollLeft = window.innerWidth*this.currentPage;
       } else {
-        this.$refs.wrapper.scrollLeft -= screen.width * this.allProducts.length;
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.allProducts.length;
         this.currentPage = 1;
       }
     },
     scrollRight: function () {
       if (this.currentPage != 1) {
         this.currentPage--;
-        this.$refs.wrapper.scrollLeft -= screen.width;
+        this.$refs.wrapper.scrollLeft = window.innerWidth*this.currentPage;
       } else {
         this.currentPage = this.allProducts.length;
-        this.$refs.wrapper.scrollLeft += screen.width * this.allProducts.length;
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.allProducts.length;
       }
-      //this.$refs.wrapper.scrollLeft -= (screen.width - this.$refs.image[0].offsetWidth) ;
+      //this.$refs.wrapper.scrollLeft -= (window.innerWidth - this.$refs.image[0].offsetinnerWidth) ;
     },
     scrollTo: function (pageNum) {
-      this.$refs.wrapper.scrollLeft +=
-        (pageNum - this.currentPage) * screen.width;
+      this.$refs.wrapper.scrollLeft =
+        (pageNum - this.currentPage) * window.innerWidth;
       this.currentPage = pageNum;
     },
   },
