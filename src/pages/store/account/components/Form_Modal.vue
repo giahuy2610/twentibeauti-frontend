@@ -1,22 +1,21 @@
 <template lang="">
   <div class="wrapper" :style="[isHidden ? 'display: none' : '']">
     <ScrollPanel>
-      <div class="modal">
-        <div class="modal-content">
-          <div class="m-icon">
-            <i class="pi pi-times" @click="close"></i>
-          </div>
-          <div class="modal-title">
-            <div class="m-head">Thêm địa chỉ</div>
-          </div>
+      <div class="modal" >
+        <div class="modal-content" >
+          <slot name="header"></slot>
+          <!-- <div class="m-icon">
+            <i class="pi pi-times" @click="modal=false"></i>
+          </div> -->
+          
           <div class="modal-context">
             <div class="row_home">
               <span class="p-fluid">
-                <AutoComplete
-                  v-model="text1"
-                  :suggestions="filteredAddress"
-                  @complete="searchAddress($event)"
-                  optionLabel="home"
+                <InputText
+                  v-model="namehome"
+                  :suggestions="filteredNameHome"
+                  @complete="searchNameHome($event)"
+                  optionLabel="namehome"
                   placeholder="Tên địa chỉ (vd: Văn phòng, Nhà, ...)"
                 />
               </span>
@@ -24,8 +23,8 @@
             <div class="row_fullname">
               <div class="firstName">
                 <span class="p-fluid">
-                  <AutoComplete
-                    v-model="text1"
+                  <InputText
+                    v-model="firstname"
                     :suggestions="filteredFName"
                     @complete="searchFName($event)"
                     optionLabel="fname"
@@ -35,8 +34,8 @@
               </div>
               <div class="lastName">
                 <span class="p-fluid">
-                  <AutoComplete
-                    v-model="text2"
+                  <InputText
+                    v-model="lastname"
                     :suggestions="filteredLName"
                     @complete="searchLName($event)"
                     optionLabel="lname"
@@ -47,7 +46,7 @@
             </div>
             <div class="row_email">
               <span class="p-fluid">
-                <AutoComplete
+                <InputText
                   type="email"
                   v-model="email"
                   :suggestions="filteredEmail"
@@ -62,7 +61,7 @@
                 <InputMask
                   id="phone"
                   mask="(999) 999-9999"
-                  v-model="val4"
+                  v-model="phone"
                   :suggestions="filteredPhone"
                   @complete="searchPhone($event)"
                   placeholder="Nhập số điện thoại"
@@ -95,7 +94,7 @@
             </div>
             <div class="row_home">
               <span class="p-fluid">
-                <AutoComplete
+                <InputText
                   v-model="home_add"
                   :suggestions="filteredHome"
                   @complete="searchHome($event)"
@@ -122,6 +121,8 @@ export default {
   data() {
     return {
       isHidden: false,
+      modal:false,
+      position:"center",
     };
   },
   methods: {
@@ -156,9 +157,10 @@ export default {
     position: fixed;
     width: 500px;
     left: calc(50% - 250px);
-    top: 100px;
+    top: 80px;
+    text-decoration: none;
     //-webkit-scrollbar{ display: none; }
-    height: 200vh;
+    //height: 200vh;
 
     .modal-content {
       padding: 18px 24px 16px;
@@ -172,11 +174,11 @@ export default {
       border: none rgba(0, 0, 0, 0.9);
       outline: none;
       border-radius: 10px;
-      height: 700vh;
+      //height: 700vh;
       .m-icon {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 10;
+        right:5; 
         z-index: 10;
         padding: 0;
         color: rgba(0, 0, 0, 0.45);
@@ -261,6 +263,11 @@ export default {
         .row_district {
           width: 50%;
         }
+      }
+    }
+    .modal-footer {
+      button {
+        background-color: aqua;
       }
     }
   }

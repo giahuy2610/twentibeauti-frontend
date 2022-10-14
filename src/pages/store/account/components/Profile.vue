@@ -7,8 +7,8 @@
           <form>
             <div class="txtFName">Tên</div>
             <span class="p-fluid">
-              <AutoComplete
-                v-model="v_fname"
+              <InputText
+                v-model="fName"
                 :suggestions="filterFName"
                 @complete="searchFName($event)"
                 optionLabel="text"
@@ -21,8 +21,8 @@
           <form>
             <div class="txtLName">Họ <br /></div>
             <span class="p-fluid">
-              <AutoComplete
-                v-model="v_lname"
+              <InputText
+                v-model="lName"
                 :suggestions="filterLName"
                 @complete="searchLName($event)"
                 optionLabel="text"
@@ -37,8 +37,8 @@
           <form>
             <div class="txtEmail">Email <br /></div>
             <span class="p-fluid">
-              <AutoComplete
-                v-model="v_email"
+              <InputText
+                v-model="email"
                 :suggestions="filterEmail"
                 @complete="searchEmail($event)"
                 optionLabel="mail"
@@ -51,8 +51,8 @@
           <form>
             <div class="txtPhone">Số điện thoại <br /></div>
             <span class="p-fluid">
-              <AutoComplete
-                v-model="v_phone"
+              <InputText
+                v-model="phone"
                 :suggestions="filterPhone"
                 @complete="searchPhone($event)"
                 optionLabel="phone"
@@ -69,7 +69,17 @@
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      fName:null,
+      lName:null,
+      email:null,
+     phone:null,
+
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
 .right-column {
@@ -127,13 +137,14 @@ export default {};
       border-radius: 38px;
       margin-top: 40px;
       margin-left: 75%;
-      width: 200px;
+      width: 150px;
       height: 50px;
       font-weight: 700;
       box-sizing: border-box;
       color: #fff;
       text-shadow: 0-1px 0 rbg(0 0 0/12%);
       box-shadow: 0-2px rbg(0 0 0 /5%);
+      cursor:pointer;
     }
   }
 }

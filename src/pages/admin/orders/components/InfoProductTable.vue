@@ -285,9 +285,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-table-wrapper {
-  
-}
+
 .dialog {
   position: fixed;
   top:0;
@@ -336,6 +334,7 @@ h4 {
     top:5px;
     right:20px;
     text-decoration: none;
+    color:#607d8b;
   }
 }
 .dialog-body {
@@ -422,10 +421,7 @@ h4 {
   }
 }
 
-::v-deep(.p-paginator) {
-  .p-paginator-current {
-  }
-}
+
 
 ::v-deep(.p-progressbar) {
   height: 0.5rem;

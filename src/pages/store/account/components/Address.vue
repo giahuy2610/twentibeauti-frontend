@@ -1,9 +1,21 @@
 <template lang="">
   <Form v-if="modal1">
     <template v-slot:button>
-      <div class="btn_save">
+      <div class="btn-save">
         <button @click="modal1 = false">Lưu</button>
       </div>
+    </template>
+    <template v-slot:header>
+      <div class="header">
+        <div class="modal-title">
+          <div class="m-head">Thêm địa chỉ</div>
+        </div>
+        <div class="btn-close">
+          <i class="pi pi-times" @click="modal1 = false"></i>
+        </div>
+
+      </div>
+      
     </template>
   </Form>
 
@@ -66,6 +78,18 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+.header {
+  text-align: center;
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  gap:20px;
+  .btn-close{
+    cursor: pointer;
+    margin-top:-35px;
+    margin-left: 400px;
+  }
+}
 .right-column {
   display: flex;
   float: right;
@@ -148,6 +172,7 @@ export default {
               width: 50%;
               border: none;
               background-color: white;
+              cursor:pointer;
             }
           }
         }
@@ -196,6 +221,7 @@ export default {
         justify-content: center;
 
         .pi {
+          cursor:pointer;
           font-size: 16px;
           color: black;
           border: none;
@@ -214,6 +240,27 @@ export default {
     }
   }
 }
+.btn-save {
+  button {
+    border: none;
+      background-color: #94c83d;
+      text-align: center;
+      display: inline-block;
+      font-size: 18px;
+      border-radius: 20px;
+      //margin-top: 40px;
+      margin-left: 75%;
+      width: 90px;
+      height: 40px;
+      font-weight: 700;
+      box-sizing: border-box;
+      color: #fff;
+      text-shadow: 0-1px 0 rbg(0 0 0/12%);
+      box-shadow: 0-2px rbg(0 0 0 /5%);
+      cursor:pointer;
+  }
+}
+
 </style>
 
 { nsame: 'bb', age: 12 } { name: '',car: 'gg'} var response = new object{ name:
