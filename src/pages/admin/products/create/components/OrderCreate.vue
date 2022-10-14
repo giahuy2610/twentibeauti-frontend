@@ -10,26 +10,13 @@
         <div class="orderinf">
             <p>Tồn kho ban đầu</p>
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
-              v-model="order"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="price"
-              placeholder="0"
-            />
+            <InputText id="inventory" type="text" v-model="inventory" placeholder="0"/>
           </span>
         </div>
         <div class="orderinf">
             <p>Giá vốn</p>
           <span class="p-fluid">
-            <AutoComplete
-              v-model="pricepro"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="price"
-              placeholder="0"
-            />
+            <InputText id="costprice" type="text" v-model="costprice" placeholder="0"/>
           </span>
         </div>
       </div>

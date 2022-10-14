@@ -14,7 +14,7 @@
           <Button
             label="Xem trước"
             class="p-button-success"
-            @click="$router.push({ path: '/products', replace: true })"
+            @click="$router.push({ path: '/product', replace: true })"
           />
           <Button label="Lưu" class="p-button-info" />
         </div>
