@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="infcus shadow-5">
+  <div class="infcus shadow-3">
     <div class="h2">
       <b>Thông tin liên lạc</b>
     </div>
@@ -238,8 +238,6 @@ export default {
   padding: 20px;
   font-size: 16px;
   width: 100%;
-  border: 1px solid #aaa;
-
   .fillinf {
     display: flex;
     flex-direction: row;
