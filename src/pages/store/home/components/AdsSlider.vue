@@ -45,12 +45,14 @@ export default {
       currentDisplayProducts: [],
       currentPage: 1,
       count: 0,
+      autoScrollLeft: null,
     };
   },
   methods: {
     scrollLeft: function () {
       if (this.currentPage != this.allProducts.length) {
         this.currentPage++;
+        console.log(this.currentPage);
         this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
       } else {
         this.currentPage = 1;
@@ -75,7 +77,10 @@ export default {
     },
   },
   mounted() {
-    setInterval(() => this.scrollLeft(), 3000);
+    this.autoScrollLeft = setInterval(() => this.scrollLeft(), 3000);
+  },
+  unmounted() {
+    clearInterval(this.autoScrollLeft);
   },
 };
 </script>
