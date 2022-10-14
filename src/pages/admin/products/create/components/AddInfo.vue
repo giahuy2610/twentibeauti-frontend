@@ -13,7 +13,7 @@
             optionValue="code"
             placeholder="Chọn loại sản phẩm"
             :editable="true"
-            style="width:100%"
+            style="width: 100%"
           />
           <Button
             icon="pi pi-plus"
@@ -30,13 +30,9 @@
           :modal="true"
         >
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
-              v-model="nameproduct"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="name"
-              placeholder="Tên loại sản phẩm"
+            <p>Tên loại sản phẩm</p>
+            <InputText
+              type="text"
             />
           </span>
           <template #footer>
@@ -62,7 +58,7 @@
             optionValue="code"
             placeholder="Chọn nhãn hiệu"
             :editable="true"
-            style="width:100%"
+            style="width: 100%"
           />
           <Button
             icon="pi pi-plus"
@@ -117,7 +113,7 @@
             optionValue="code"
             placeholder="Tags"
             :editable="true"
-            style="width:100%"
+            style="width: 100%"
           />
           <Button
             icon="pi pi-plus"
@@ -133,13 +129,9 @@
           :modal="true"
         >
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
-              v-model="nameTags"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="name"
-              placeholder="Tên Tags"
+            <p>Nhãn hiệu</p>
+            <InputText
+              type="text"
             />
           </span>
           <template #footer>
@@ -224,7 +216,7 @@ export default {
     },
     checkValid(value) {
       //the url is only include letters, numbers and dashes
-      return !/^[a-z-0-9-]+$/i.test(value); //return true if the url is wrong
+      return !/^[a-zA-Z-0-9-_ ]+$/i.test(value); //return true if the url is wrong
     },
   },
   watch: {
@@ -261,7 +253,9 @@ export default {
         }
         //check if invalid
         //replace spaces with '-' and transfer to en-us format letter
-        this.isValidInputPath = this.checkValid(newValue);
+        //slice(13,...tail) to remove the prefix "/collections/"
+        //only storing the path of product, like: "the-face-shop" without the  prefix "/collections/"
+        this.isValidInputPath = this.checkValid(newValue.slice(13));
       },
       deep: true,
     },
