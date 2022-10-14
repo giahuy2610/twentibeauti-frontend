@@ -4,7 +4,7 @@
       <h2>Đơn hàng</h2>
       <div class="cart__body">
         <ScrollPanel style="width: 100%; height: 700px">
-          <ProductItem class="mb-1" v-for="item in 17"></ProductItem>
+          <ProductItemList></ProductItemList>
         </ScrollPanel>
       </div>
       <div class="cart__footer">
@@ -74,10 +74,10 @@
   </div>
 </template>
 <script>
-import ProductItem from "../../../../../components/store/home/cart/ProductItem.vue";
+import ProductItemList from "@/components/store/home/cart/ProductItemList.vue";
 export default {
   components: {
-    ProductItem,
+    ProductItemList,
   },
   data() {
     return {

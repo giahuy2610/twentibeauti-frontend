@@ -27,7 +27,7 @@
         src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
         :uid="item"
         :key="item"
-        @click="$router.push({ path: '/collections/flash-sale'})"
+        @click="$router.push({ path: '/collections/flash-sale' })"
       />
     </div>
   </div>
@@ -45,25 +45,28 @@ export default {
       currentDisplayProducts: [],
       currentPage: 1,
       count: 0,
+      autoScrollLeft: null,
     };
   },
   methods: {
     scrollLeft: function () {
       if (this.currentPage != this.allProducts.length) {
         this.currentPage++;
-        this.$refs.wrapper.scrollLeft = window.innerWidth*this.currentPage;
+        console.log(this.currentPage);
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
       } else {
-        this.$refs.wrapper.scrollLeft = window.innerWidth * this.allProducts.length;
         this.currentPage = 1;
+        this.$refs.wrapper.scrollLeft = 0;
       }
     },
     scrollRight: function () {
       if (this.currentPage != 1) {
         this.currentPage--;
-        this.$refs.wrapper.scrollLeft = window.innerWidth*this.currentPage;
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
       } else {
         this.currentPage = this.allProducts.length;
-        this.$refs.wrapper.scrollLeft = window.innerWidth * this.allProducts.length;
+        this.$refs.wrapper.scrollLeft =
+          window.innerWidth * this.allProducts.length;
       }
       //this.$refs.wrapper.scrollLeft -= (window.innerWidth - this.$refs.image[0].offsetinnerWidth) ;
     },
@@ -74,7 +77,10 @@ export default {
     },
   },
   mounted() {
-    setInterval(this.scrollLeft, 3000);
+    this.autoScrollLeft = setInterval(() => this.scrollLeft(), 3000);
+  },
+  unmounted() {
+    clearInterval(this.autoScrollLeft);
   },
 };
 </script>

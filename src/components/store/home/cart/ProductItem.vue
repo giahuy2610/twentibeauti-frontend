@@ -20,7 +20,7 @@
         <div class="product-wrapper__right__info__main">
           <p
             class="font-semibold under-hover"
-            @click="$router.push({ path: routePath })"
+            @click="$router.push({ path: routePath, replace: true })"
           >
             {{ name }}
           </p>
