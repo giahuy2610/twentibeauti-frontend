@@ -6,16 +6,7 @@
 
     <div class="cart__body">
       <ScrollPanel style="width: 100%; height: 100%">
-        <ProductItem
-          class="mb-1"
-          v-for="item in getCartItems"
-          :name="item.name"
-          :SKU="item.SKU"
-          :imagePath="item.imagePath"
-          :routePath="item.routePath"
-          :retailPrice="item.retailPrice"
-          :quantity="item.quantity"
-        ></ProductItem>
+        <ProductItemList></ProductItemList>
       </ScrollPanel>
     </div>
 
@@ -39,43 +30,16 @@
   </div>
 </template>
 <script>
-import ProductItem from "./ProductItem.vue";
+import ProductItemList from "./ProductItemList.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 
 export default {
   data() {
-    return {
-      productArr: [
-        {
-          id: 100,
-          name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-          salePrice: 289000,
-          quantity: 2,
-          image:
-            "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7",
-        },
-        {
-          id: 200,
-          name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-          salePrice: 289000,
-          quantity: 3,
-          image:
-            "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7",
-        },
-        {
-          id: 300,
-          name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-          salePrice: 289000,
-          quantity: 4,
-          image:
-            "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7",
-        },
-      ],
-    };
+    return {};
   },
   components: {
-    ProductItem,
+    ProductItemList,
   },
   computed: {
     ...mapState(useCartStorePinia, {
@@ -84,7 +48,7 @@ export default {
     total() {
       let totaltemp = 0;
       this.getCartItems.forEach((element) => {
-        totaltemp += element.retailPrice*element.quantity
+        totaltemp += element.retailPrice * element.quantity;
       });
       return totaltemp;
     },

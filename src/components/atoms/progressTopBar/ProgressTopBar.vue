@@ -4,7 +4,7 @@
       class="progress-bar"
       :style="{ width: progressPercentage + '%' }"
       v-if="show"
-    ></div>
+    >{{show}}</div>
   </div>
 </template>
 <script>
@@ -18,10 +18,13 @@ export default {
     progressPercentage() {
       console.log(1);
       var width = 100; // width of a progress bar in percentage
-      var perfData = window.performance.timing; // The PerformanceTiming interface
-      EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart); // Calculated Estimated Time of Page Load which returns negative value.
-      time = parseInt((EstimatedTime / 1000) % 60) * 100; //Converting EstimatedTime from miliseconds to seconds.
-      if ((time = 100)) {
+      // var perfData = window.performance.timing; // The PerformanceTiming interface
+      // EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart); // Calculated Estimated Time of Page Load which returns negative value.
+      // time = parseInt((EstimatedTime / 1000) % 60) * 100; //Converting EstimatedTime from miliseconds to seconds.
+      var time = 100;
+      console.log(time);
+      if (time = 100) {
+        console.log('false');
         setTimeout(() => (this.show = false), 500);
       }
       return time;
@@ -29,7 +32,6 @@ export default {
   },
   watch: {
     $route(to, from) {
-      console.log(2);
       this.show = true;
     },
   },
