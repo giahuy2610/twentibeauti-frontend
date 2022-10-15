@@ -7,26 +7,13 @@
         <div class="priceinf">
             <p>Giá bán lẻ</p>
           <span class="p-fluid">
-            <AutoComplete
-              style="color: blue"
-              v-model="retailprice"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="price"
-              placeholder="0"
-            />
+            <InputText id="retailprice" type="text" v-model="retailprice" placeholder="0"/>
           </span>
         </div>
         <div class="priceinf">
             <p>Giá nhập</p>
           <span class="p-fluid">
-            <AutoComplete
-              v-model="importprice"
-              :suggestions="filteredCountries"
-              @complete="searchCountry($event)"
-              optionLabel="price"
-              placeholder="0"
-            />
+            <InputText id="entryprice" type="text" v-model="entryprice" placeholder="0"/>
           </span>
         </div>
       </div>

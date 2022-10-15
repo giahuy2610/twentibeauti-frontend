@@ -103,7 +103,8 @@ export default {
 .right-column {
   display: flex;
   float: right;
-  width: 70%;
+  width: 60%;
+  gap:10px;
   min-height: 200px;
   flex-direction: column;
   @include tablet {

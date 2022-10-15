@@ -7,14 +7,7 @@
         <div class="nameprod">
           <div class="nameinf">
             <span class="p-fluid">
-              <AutoComplete
-                style="color: blue"
-                v-model="nameproduct"
-                :suggestions="filteredCountries"
-                @complete="searchCountry($event)"
-                optionLabel="name"
-                placeholder="Nhập tên sản phẩm"
-              />
+              <InputText id="nameprod" type="text" v-model="nameprod" placeholder="Nhập tên sản phẩm"/>
             </span>
           </div>
         </div>
@@ -25,13 +18,7 @@
             <div class="fillinf">
               <div class="nameinf">
                 <span class="p-fluid"
-                  ><AutoComplete
-                    style="color: blue"
-                    v-model="codeproduct"
-                    :suggestions="filteredCountries"
-                    @complete="searchCountry($event)"
-                    optionLabel="name"
-                  />
+                  ><InputText id="codeprod" type="text" v-model="codeprod" placeholder="Nhập mã sản phẩm"/>
                 </span>
               </div>
             </div>
@@ -39,19 +26,12 @@
           <div class="mass">
             <p>Khối lượng</p>
             <div class="fillinf">
-              <AutoComplete
-                style="color: blue"
-                v-model="mass"
-                :suggestions="filteredCountries"
-                @complete="searchCountry($event)"
-                optionLabel="name"
-              />
+              <InputText id="mass" type="text" v-model="mass" />
               <Dropdown
                 v-model="selectedWard"
                 :options="wards"
                 optionLabel="name"
                 optionValue="code"
-                placeholder=""
                 :editable="true"
               />
             </div>
@@ -91,6 +71,10 @@ export default {
   data() {
     return {
       description: null,
+      nameprod:null,
+      codeprod:null,
+      mass:0,
+      unit:null,
     };
   },
   methods: {

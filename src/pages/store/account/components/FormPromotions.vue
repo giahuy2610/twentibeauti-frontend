@@ -12,7 +12,7 @@
                         <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
                         </Skeleton>
                         <img
-                          src=" https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=Example"
+                          src=" https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=Example"
                           alt="qr"
                           @load="isLoaded = true"
                           v-show="isLoaded"
@@ -61,6 +61,7 @@ export default {
       isHidden: false,
       modal: false,
       position: "center",
+      isLoaded: false,
     };
   },
   methods: {
@@ -96,10 +97,11 @@ export default {
     position: fixed;
     width: 500px;
     left: calc(50% - 250px);
-    top: 80px;
+    top: 40px;
     text-decoration: none;
     //-webkit-scrollbar{ display: none; }
     //height: 200vh;
+    
 
     .modal-content {
       //padding: 18px 24px 16px;
@@ -127,6 +129,9 @@ export default {
       display: flex;
       flex-direction: column;
       gap: 15px;
+      @include mobile {
+        //top:10px;
+      }
       .header {
         width: 100%;
         // height: 150px;
@@ -143,7 +148,7 @@ export default {
           box-shadow: rgb(0 0 0 / 25%) 0px 0px 4px;
           .qr {
             width: 35%;
-            //padding: 15px;
+            padding: 5px;
             background: rgb(255, 255, 255);
           }
           .text {

@@ -11,7 +11,7 @@ import "./scss/_theme.scss";
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
-
+import VueProgressBar from "@aacassandra/vue3-progressbar";
 
 import InputText from "primevue/inputtext";
 import SelectButton from "primevue/selectbutton";
@@ -57,6 +57,20 @@ import Calendar from "primevue/calendar";
 import Textarea from "primevue/textarea";
 // import ButtonModule from 'primeng/button';
 
+const options = {
+  color: "#94c83d",
+  failedColor: "#94c83d",
+  thickness: "5px",
+  transition: {
+    speed: "0.2s",
+    opacity: "0.6s",
+    termination: 300,
+  },
+  autoRevert: true,
+  location: "top",
+  inverse: false,
+};
+
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
@@ -65,6 +79,7 @@ app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
 app.use(VueAxios, axios);
+app.use(VueProgressBar, options);
 
 app.component("Textarea", Textarea);
 app.component("Calendar", Calendar);

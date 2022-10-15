@@ -86,8 +86,7 @@ export default {
         flex-direction: column;
         gap: 10px;
         justify-content: space-between;
-        @include mobile {
-        }
+
         .label {
           font-weight: 600;
         }
@@ -147,7 +146,7 @@ export default {
         gap: 15px;
       }
       .status {
-        padding-left: 35px;
+        padding-left: 5px;
         display: flex;
         flex-direction: row;
         gap: 10px;
@@ -174,7 +173,7 @@ export default {
           width: 110px;
           //line-height: 20px;
           @include mobile {
-            margin-left: 250px;
+           // margin-left: 250px;
             margin-top: 5px;
             margin-bottom: 5px;
           }

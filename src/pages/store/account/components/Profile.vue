@@ -1,7 +1,7 @@
 <template lang="">
   <div class="right-column">
     <div class="info">
-      <h2>Tài khoản</h2>
+      <div class="header">Tài khoản</div>
       <div class="fullname">
         <div class="firstname">         
             <div class="txtFName">Tên</div>
@@ -113,7 +113,12 @@ export default {
     }
 
     
-    h2 {
+    .header{
+      display: block;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    box-sizing: border-box;
       font-weight: 700;
       @include mobile {
         display: none;
@@ -171,7 +176,7 @@ export default {
       cursor:pointer;
       @include mobile {
         max-width:100%;
-        margin-left: 38%;
+        //margin-left: 38%;
         font-size: 20px;
         max-height:40px;
         max-width:100px;
@@ -179,7 +184,7 @@ export default {
       }
       @include mini-tablet {
         max-width:100%;
-        margin-left: 45%;
+        //margin-left: 45%;
         font-size: 20px;
         max-height:40px;
         max-width:100px;
@@ -187,7 +192,7 @@ export default {
       }
       @include tablet {
         max-width:100%;
-        margin-left: 45%;
+       // margin-left: 45%;
         font-size: 20px;
         max-height:40px;
         max-width:100px;

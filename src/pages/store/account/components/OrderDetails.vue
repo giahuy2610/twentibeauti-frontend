@@ -1,4 +1,5 @@
 <template lang="">
+
   <FormOrderAgain v-if="modal1">
     <template v-slot:button>
       <div class="btn-save">
@@ -16,6 +17,14 @@
       </div>
     </template>
   </FormOrderAgain>
+  <div class="header-bread">
+    <ul class="breadcrumb">
+      <li><a href="/">Trang chủ</a></li>
+      <li><a href="/account/orders">Tài khoản</a></li>
+      <li>Đơn hàng</li>
+
+    </ul>
+  </div>
   <div class="order-detail">
     <div class="header">
       <div class="header-id">
@@ -46,6 +55,9 @@
         <div class="title">Thông tin vận chuyển</div>
         <div class="id-delivery">SS001</div>
       </div>
+    </div>
+    <div class="step">
+      <Step></Step>
     </div>
     <!-- <div class="step">
         <Toast />
@@ -109,9 +121,11 @@
 </template>
 <script>
 import FormOrderAgain from "./FormOrderAgain.vue";
+import Step from "./Step.vue";
 export default {
   components: {
     FormOrderAgain,
+    Step,
   },
   data() {
     return {
@@ -146,6 +160,37 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+.header-bread{
+  ul.breadcrumb {
+    padding: 20px 40px;
+    list-style: none;
+    //margin-left:50px;
+  }
+
+  /* Display list items side by side */
+  ul.breadcrumb li {
+    display: inline;
+  }
+  /* Add a slash symbol (/) before/behind each list item */
+  ul.breadcrumb li + li:before {
+    padding: 8px;
+    color: #797979;
+    content: ">\00a0";
+  }
+
+  /* Add a color to all links inside the list */
+  ul.breadcrumb li a {
+    color: #797979;
+    text-decoration: none;
+  }
+
+  /* Add a color on mouse-over */
+  ul.breadcrumb li a:hover {
+    color: #797979;
+    font-weight: 600;
+    text-decoration: underline;
+  }
+}
 .m-header {
   //text-align: center;
   display: flex;
@@ -171,7 +216,7 @@ export default {
   }
 }
 .order-detail {
-  margin: 80px;
+  margin:0px 80px;
   .header {
     display: flex;
     flex-direction: row;
@@ -186,6 +231,11 @@ export default {
     }
     .btn-buy-again {
       margin-top: 50px;
+      @include mobile {
+          
+        margin-top: 0px;
+        margin-bottom:10px;
+      }
       button {
         background-color: #fff;
         border-radius: 35px;
@@ -234,18 +284,15 @@ export default {
       }
     }
   }
-  .step {
-    margin: 20px 0px;
-    width: 100%;
-    .card {
-      color: blue;
-    }
-  }
+  
   .order {
-    margin: 20px 0px;
+    margin: 120px 0px;
     border: 1px solid #d3d7d3;
     border-radius: 15px;
     padding: 20px;
+    @include mobile {
+      margin-top:20px;
+    }
     .title {
       margin-bottom: 20px;
       font-weight: 700;

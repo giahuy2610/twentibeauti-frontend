@@ -8,7 +8,7 @@
   </Form>
   <div class="right-column">
     <div class="header">
-      <h2>Ưu đãi của tôi</h2>
+      Ưu đãi của tôi
     </div>
     <div class="promotion">
       <div class="voucher" v-for="item in 4">
@@ -35,6 +35,7 @@ export default {
     return {
       modal: false,
       position: "center",
+      isLoaded: false,
     };
   },
 };
@@ -68,8 +69,21 @@ export default {
     width: 100%;
   }
   .header {
-    h2 {
-        display: none;
+    display: block;
+    font-size: 24px;
+    margin-bottom: 15px;
+    font-weight: 700;
+    box-sizing: border-box;
+
+       @include mobile {
+    display:none;
+  
+  @include mini-tablet {
+    display:none;
+  }
+  @include tablet {
+    display:none;
+  }
     }
   }
   .promotion {

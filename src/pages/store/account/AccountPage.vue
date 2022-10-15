@@ -71,6 +71,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+
 .content {
   width: 100%;
   min-height: 100vh;
@@ -111,7 +112,6 @@ export default {
     ul.breadcrumb li {
       display: inline;
     }
-
     /* Add a slash symbol (/) before/behind each list item */
     ul.breadcrumb li + li:before {
       padding: 8px;
@@ -131,8 +131,16 @@ export default {
       font-weight: 600;
       text-decoration: underline;
     }
+
+    
     .sidebar-account {
       font-size: 16px;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+
       @include mobile {
         text-align: center;
         max-width: 100%;
@@ -141,12 +149,10 @@ export default {
         white-space: nowrap;
         -ms-overflow-style: none; /* IE and Edge */
         scrollbar-width: none;
-        border-bottom: 1px solid rgba(198, 197, 197, 0.5);
+        // border-bottom: 1px solid rgba(198, 197, 197, 0.5);
         //border-right: 1px solid rgba(198, 197, 197, 0.5);
         margin-bottom: 10px;
-        &::-webkit-scrollbar {
-          display: none;
-        }
+        overflow: scroll;
       }
       @include mini-tablet {
         text-align: center;
@@ -160,9 +166,7 @@ export default {
         border-bottom: 1px solid rgba(198, 197, 197, 0.5);
         //border-right: 1px solid rgba(198, 197, 197, 0.5);
         margin-bottom: 10px;
-        &::-webkit-scrollbar {
-          display: none;
-        }
+        overflow: scroll;
       }
       @include tablet {
         text-align: center;
@@ -176,9 +180,7 @@ export default {
         border-bottom: 1px solid rgba(198, 197, 197, 0.5);
         //border-right: 1px solid rgba(198, 197, 197, 0.5);
         margin-bottom: 10px;
-        &::-webkit-scrollbar {
-          display: none;
-        }
+        overflow: scroll;
       }
     }
 
@@ -193,6 +195,21 @@ export default {
     .sidebar-account a:hover {
       text-decoration: underline;
       color: #aed56b;
+    }
+    .sidebar-account a:focus {
+      color: var(--primary-color) !important;
+      
+      font-weight: 600;
+      text-decoration: none;
+      @include mobile {
+        border-bottom: 2px solid var(--primary-color);
+      }
+      @include mini-tablet {
+        border-bottom: 2px solid var(--primary-color);
+      }
+      @include tablet {
+        border-bottom: 2px solid var(--primary-color);
+      }
     }
   }
 }
