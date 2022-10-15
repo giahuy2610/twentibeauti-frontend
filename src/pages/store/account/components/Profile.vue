@@ -162,11 +162,11 @@ export default {
       background-color: #94c83d;
       text-align: center;
       display: inline-block;
-      font-size: 24px;
+      font-size: 20px;
       border-radius: 38px;
       margin-top: 40px;
-      margin-left: 75%;
-      width: 150px;
+      margin-left: 85%;
+      width: 90px;
       height: 50px;
       font-weight: 700;
       box-sizing: border-box;
