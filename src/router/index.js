@@ -71,7 +71,7 @@ const routes = [
         component: CategoriesPage,
       },
       {
-        path: "/details",
+        path: "orders/details",
         component: AccountOrderDetails,
       },
       {
