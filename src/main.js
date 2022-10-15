@@ -49,7 +49,7 @@ import PanelMenu from "primevue/panelmenu";
 import Dialog from "primevue/dialog";
 import Toast from "primevue/toast";
 import Skeleton from "primevue/skeleton";
-
+import Paginator from 'primevue/paginator';
 import SplitButton from "primevue/splitbutton";
 import Steps from "primevue/steps";
 import Avatar from "primevue/avatar";
@@ -120,7 +120,7 @@ app.component("PanelMenu", PanelMenu);
 app.component("Dialog", Dialog);
 app.component("Toast", Toast);
 app.component("Skeleton", Skeleton);
-
+app.component("Paginator",Paginator);
 app.directive("badge", BadgeDirective);
 
 app.mount("#app");

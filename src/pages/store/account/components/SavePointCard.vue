@@ -41,8 +41,35 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .card-wrapper {
   padding: 0 1rem;
   border-radius: 10px;
+  @include mobile {
+    max-width: 100%;
+    display:flex;
+    flex-direction: column;
+    //color:red;
+  }
+  @include mini-tablet {
+    max-width: 100%;
+    display:flex;
+    flex-direction: column;
+    //color:blue;
+  }
+  @include tablet {
+    max-width: 100%;
+    display:flex;
+    flex-direction: column;
+    //color:palevioletred;
+  }
+  .top {
+    @include mobile {
+      max-width: 100%;
+      display:flex;
+      flex-direction: row;
+      //color:green;
+    }
+  }
 }
 </style>
