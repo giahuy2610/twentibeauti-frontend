@@ -157,7 +157,7 @@ const routes = [
       },
       {
         name: "create return",
-        path: "create_return",
+        path: "order_return/create_return",
         component: CreateReturn,
       },
     ],

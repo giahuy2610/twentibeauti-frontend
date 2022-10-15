@@ -17,7 +17,7 @@
             </div>
           </div>
           <div class="date-ship">
-            <div class="label">Hẹn giao hàng:</div>
+            <div class="label">Hẹn giao hàng</div>
             <div class="text">
               <Calendar inputId="icon" v-model="date3" :showIcon="true" />
             </div>
@@ -25,7 +25,7 @@
           <div class="idpro">
             <div class="label">Mã đơn hàng</div>
             <div class="text">
-                <InputText type="text" v-model="value5" placeholder="SS001" disabled />
+                <InputText type="text" v-model="value5" placeholder="SS001" disabled style="width:240px" />
             </div>
           </div>
         </div>

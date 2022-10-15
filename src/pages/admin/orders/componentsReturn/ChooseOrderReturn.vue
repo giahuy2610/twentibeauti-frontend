@@ -3,12 +3,12 @@
     <ScrollPanel style="width: 100%">
       <div class="modal">
         <div class="modal-content">
-          <div class="m-icon">
-            <i class="pi pi-times" @click="close()"></i>
-          </div>
+          <!-- <div class="m-icon">
+            <i class="pi pi-times" @click="modal=false"></i>
+          </div> -->
           <div class="modal-title">
             <div class="m-head">
-              Chọn đơn hàng để trả
+             
               <slot name="title"></slot>
             </div>
           </div>
@@ -37,8 +37,8 @@
                 responsiveLayout="scroll"
               >
                 <template #header>
-                  <span class="p-input-icon-left">
-                    <i class="pi pi-search" />
+                  <span class="p-input-icon-left" stye="width:100%;">
+                    <!-- <i class="pi pi-search" /> -->
                     <InputText
                       type="text"
                       v-model="filters['global'].value"
@@ -127,6 +127,8 @@ import { FilterMatchMode, FilterOperator } from "primevue/api";
 export default {
   data() {
     return {
+      modal:false,
+      position: "center",
       isHidden: false,
       customers: null,
       selectedCustomers: null,
@@ -272,6 +274,12 @@ export default {
     width: 900px;
     left: calc(50% - 450px);
     top: 100px;
+    button {
+      border:none;
+      background-color: #fff;
+      color: #0088FF;
+      font-weight: 600;
+    }
     //-webkit-scrollbar{ display: none; }
     // height: 200vh;
 
@@ -315,25 +323,7 @@ export default {
       }
     }
 
-    .modal-title {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      text-align: center;
 
-      .m-head {
-        width: 100%;
-        text-align: center;
-        align-items: center;
-        margin-right: 250px;
-        font-size: 24px;
-        line-height: 36px;
-        font-weight: 700;
-        margin: 0;
-        color: rgba(0, 0, 0, 0.85);
-        box-sizing: inherit;
-      }
-    }
     .modal-context {
       width: 100%;
       display: block;

@@ -3,8 +3,8 @@
       <template v-slot:header>
         <div class="header-wrapper">
           <div class="header-wrapper__left">
-            <i class="pi pi-angle-left"></i>
-            Quay lại danh sách đơn hàng</div>
+            <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/orderdetails' })"></i>
+            Quay lại đơn hàng</div>
           <div class="header-wrapper__right">
             <Button label="Sửa đơn hàng" class="p-button-outlined" style="color:#0088FF" />
             <Button
@@ -13,6 +13,7 @@
               class="p-button-info ml-2"
               badgeClass="p-badge-danger"
               style="background-color: #0088FF"
+              @click="$router.push({ path: '/admin/order_return/create_return' })"
             />
           </div>
         </div>

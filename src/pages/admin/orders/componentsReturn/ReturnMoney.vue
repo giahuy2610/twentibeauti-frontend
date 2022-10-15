@@ -44,6 +44,7 @@ export default {
             display:flex;
             flex-direction: row;
             gap:120px;
+            justify-content: space-between;
             .label {
                 width:50%;
             }

@@ -420,6 +420,7 @@
       font-size: 16px;
       line-height: 20px;
       font-weight: 400;
+      justify-content: space-between;
       .total,
       .discount,
       .price-ship,
@@ -434,6 +435,7 @@
         }
         .money {
           width: 20%;
+          text-align: right;
         }
       }
       .total-of-cus {

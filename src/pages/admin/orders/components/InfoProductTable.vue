@@ -391,6 +391,7 @@ h4 {
 .footer {
   width: 100%;
   .info-payment {
+    justify-content: space-between;
     margin-left: 400px;
     display: flex;
     flex-direction: column;
@@ -413,6 +414,8 @@ h4 {
       }
       .money {
         width: 20%;
+        text-align: right;
+        //float:right;
       }
     }
     .total-of-cus {
