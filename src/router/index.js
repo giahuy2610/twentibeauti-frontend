@@ -14,6 +14,8 @@ import Product from "../pages/store/product/Product.vue";
 import AccountProfile from "../pages/store/account/components/Profile.vue";
 import AccountOrders from "../pages/store/account/components/Orders.vue";
 import AccountAddress from "../pages/store/account/components/Address.vue";
+import AccountPromotions from "../pages/store/account/components/MyPromotions.vue";
+import AccountOrderDetails from "../pages/store/account/components/OrderDetails.vue";
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
@@ -69,6 +71,10 @@ const routes = [
         component: CategoriesPage,
       },
       {
+        path: "/details",
+        component: AccountOrderDetails,
+      },
+      {
         name: "account",
         path: "/account",
         component: Account,
@@ -87,8 +93,9 @@ const routes = [
           },
           {
             path: "my-promotions",
-            component: AccountProfile,
+            component: AccountPromotions,
           },
+          
         ],
       },
       {

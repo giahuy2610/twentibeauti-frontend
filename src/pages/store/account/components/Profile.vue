@@ -3,8 +3,7 @@
     <div class="info">
       <h2>Tài khoản</h2>
       <div class="fullname">
-        <div class="firstname">
-          <form>
+        <div class="firstname">         
             <div class="txtFName">Tên</div>
             <span class="p-fluid">
               <InputText
@@ -15,10 +14,10 @@
                 placeholder="Nhập Tên"
               />
             </span>
-          </form>
+          
         </div>
         <div class="lastname">
-          <form>
+          
             <div class="txtLName">Họ <br /></div>
             <span class="p-fluid">
               <InputText
@@ -29,12 +28,12 @@
                 placeholder="Nhập Họ"
               />
             </span>
-          </form>
+          
         </div>
       </div>
       <div class="emailphone">
         <div class="email">
-          <form>
+          
             <div class="txtEmail">Email <br /></div>
             <span class="p-fluid">
               <InputText
@@ -45,10 +44,10 @@
                 placeholder="Nhập Email"
               />
             </span>
-          </form>
+          
         </div>
         <div class="phone">
-          <form>
+          
             <div class="txtPhone">Số điện thoại <br /></div>
             <span class="p-fluid">
               <InputText
@@ -59,7 +58,7 @@
                 placeholder="Nhập Số Điện Thoại"
               />
             </span>
-          </form>
+          
         </div>
       </div>
       <div class="button">
@@ -82,52 +81,77 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .right-column {
   width: 60%;
-  min-height: 200px;
+  //min-height: 200px;
   float: right;
+  gap:10px;
   flex-direction: column;
   display: flex;
+  @include mobile {
+    width:100%;
+  }
+  @include mini-tablet {
+    width:100%;
+  }
+  @include tablet {
+    width:100%;
+  }
   .info {
-    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+    @include mobile {
+      margin-left:0;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      flex-wrap: wrap;     
+      //color:red;
+      gap:10px;
+    }
+
+    
     h2 {
       font-weight: 700;
+      @include mobile {
+        display: none;
+      }
+      @include mini-tablet {
+        display: none;
+      }
+      @include tablet {
+        display: none;
+      }
     }
-    .txtLName,
-    .txtFName,
-    .txtPhone,
-    .txtEmail {
-      margin-bottom: 15px;
-    }
-    .fullname {
+
+    .fullname,.emailphone {
       display: flex;
       flex-direction: row;
-      .lastname {
-        width: 50%;
-        margin-left: 10px;
-        //margin-top:10px;
+      gap:10px;
+      width:100%;
+      @include mobile {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;     
       }
-      .firstname {
+      .lastname,.firstname,.email,.phone {
         width: 50%;
-        //margin: 50%;
-        margin-right: 5px;
-        //margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap:10px;
+        @include mobile {
+          width: 100%;    
+        }
+        .txtFName,.txtLName,.txtPhone,.txtEmail {
+          font-weight: 600;
+        }
       }
+
     }
-    .emailphone {
-      display: flex;
-      flex-direction: row;
-      margin-top: 60px;
-      width: 100%;
-      .email {
-        margin-right: 10px;
-        width: 50%;
-      }
-      .phone {
-        //margin-right: 10px;
-        width: 50%;
-      }
-    }
+
     button {
       border: none;
       background-color: #94c83d;
@@ -145,6 +169,30 @@ export default {
       text-shadow: 0-1px 0 rbg(0 0 0/12%);
       box-shadow: 0-2px rbg(0 0 0 /5%);
       cursor:pointer;
+      @include mobile {
+        max-width:100%;
+        margin-left: 38%;
+        font-size: 20px;
+        max-height:40px;
+        max-width:100px;
+        margin-top: 10px;
+      }
+      @include mini-tablet {
+        max-width:100%;
+        margin-left: 45%;
+        font-size: 20px;
+        max-height:40px;
+        max-width:100px;
+        margin-top: 10px;
+      }
+      @include tablet {
+        max-width:100%;
+        margin-left: 45%;
+        font-size: 20px;
+        max-height:40px;
+        max-width:100px;
+        margin-top: 10px;
+      }
     }
   }
 }

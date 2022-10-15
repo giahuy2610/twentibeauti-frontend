@@ -133,6 +133,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .wrapper {
   position: fixed;
   top: 0;
@@ -146,7 +147,7 @@ export default {
   justify-content: center;
   align-items: center;
   overscroll-behavior: contain;
-  height: 200vh;
+  //height: 200vh;
 
   .modal {
     background-clip: padding-box;
@@ -161,6 +162,11 @@ export default {
     text-decoration: none;
     //-webkit-scrollbar{ display: none; }
     //height: 200vh;
+    @include mobile {
+      top:5px;
+      width: 450px;
+      left: calc(50% - 230px);
+    }
 
     .modal-content {
       padding: 18px 24px 16px;
@@ -234,9 +240,8 @@ export default {
       display: flex;
       flex-direction: column;
       gap: 15px;
-
       .row_home {
-        margin-top: 10px;
+        //margin-top: 10px;
         width: 100%;
         background: palegreen;
       }
@@ -244,25 +249,34 @@ export default {
         display: flex;
         flex-direction: row;
         width: 100%;
-        gap: 10px;
-        .firstName {
-          width: 50%;
+        gap: 15px;
+        @include mobile{
+          flex-direction: column;
         }
-        .lastName {
+        .firstName,.lastName {
           width: 50%;
+          @include mobile{
+            flex-direction: column;
+            width:100%;
+          }
         }
+        
       }
       .row_city_district {
         display: flex;
         flex-direction: row;
         width: 100%;
-        gap: 10px;
-        .row_city {
-          width: 50%;
+        gap: 15px;
+        @include mobile{
+          flex-direction: column;
         }
-        .row_district {
+        .row_city,.row_district {
           width: 50%;
+          @include mobile{
+            width:100%;
+          }
         }
+       
       }
     }
     .modal-footer {

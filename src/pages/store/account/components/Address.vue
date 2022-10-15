@@ -6,7 +6,7 @@
       </div>
     </template>
     <template v-slot:header>
-      <div class="header">
+      <div class="m-header">
         <div class="modal-title">
           <div class="m-head">Thêm địa chỉ</div>
         </div>
@@ -28,7 +28,7 @@
           <div class="add">Thêm địa chỉ</div>
         </div>
       </div>
-      <div class="test" v-for="item in 5">
+      <div class="box" v-for="item in 5">
         <div class="address-box">
           <div class="frame_add">
             <div class="address">
@@ -78,16 +78,26 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
-.header {
+.m-header {
   text-align: center;
   display:flex;
   flex-direction: row;
   width: 100%;
   gap:20px;
+  //background-color: aqua;
+.m-head {
+  //background-color: #94c83d;
+  font-weight: 600;
+  width:100%;
+  font-size: 24px;
+  text-align: center;
+  margin-left:115px;
+  padding-bottom: 10px;
+}
   .btn-close{
     cursor: pointer;
-    margin-top:-35px;
-    margin-left: 400px;
+    //margin-top:-35px;
+    margin-left: 200px;
   }
 }
 .right-column {
@@ -96,12 +106,32 @@ export default {
   width: 70%;
   min-height: 200px;
   flex-direction: column;
+  @include tablet {
+    width:100%;
+  }
+  @include mini-tablet {
+    width:100%;
+    //color:blue;
+  }
+  @include mobile {
+    width:100%;
+    //color:green;
+  }
   .header {
     display: block;
     font-size: 24px;
     margin-bottom: 15px;
     font-weight: 700;
     box-sizing: border-box;
+    @include tablet {
+      
+    }
+    @include mini-tablet {
+      
+    }
+    @include mobile {
+    display:none;
+    }
   }
   .flex_column {
     display: flex;
@@ -109,21 +139,29 @@ export default {
     box-sizing: border-box;
     width: 100%;
     gap: 10px;
-
-    .test {
+    @include tablet {
+      width:100%;
+      //color:palevioletred;
+    }
+    @include mini-tablet {
+      width:100%;
+    }
+    @include mobile {
+      width:100%;
+      display:flex;
+      flex-direction: column;
+    }
+    .box {
       display: flex;
-      //align-items: center;
-      //justify-content: center;
       border-style: solid;
-
       border-width: 1px;
       border-radius: 10px;
-
       width: 45%;
       margin: 0;
       padding: 0;
-      //flex-direction: row;
-      //margin-left:2px;
+      @include mobile {
+        width:100%;
+      }
       .test_show {
         color: black;
       }
@@ -144,8 +182,6 @@ export default {
           text-align: center;
           align-items: center;
           overflow: hidden;
-
-          //gap: 10px;
           .address {
             text-align: left;
             box-sizing: border-box;
@@ -189,9 +225,6 @@ export default {
             box-sizing: border-box;
             text-align: left;
             font-size: 14px;
-
-            // height: 70%;
-
             .info_name,
             .info_phone {
               font-weight: 700;
@@ -214,6 +247,9 @@ export default {
       height: 190px;
       width: 45%;
       //padding: 20px;
+      @include mobile {
+        width:100%;
+      }
       .plus {
         display: flex;
         flex-direction: column;
