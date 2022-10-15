@@ -13,7 +13,17 @@
         <div class="products-wrapper">
           <div class="products-wrapper__top">
             <p>{{ countProductsInCollection }} Kết quả</p>
-            <p>Lọc theo</p>
+            <p class="filter-chooser">
+              Lọc theo
+              <span
+                >{{ filterChooser[filtered]
+                }}<span><i class="pi pi-angle-down"></i></span
+              ></span>
+            <div class="filter-chooser-card">
+              <p v-for="(item, index) in filterChooser">{{ item }}</p>
+            </div>              
+            </p>
+
           </div>
           <div class="products-wrapper__content">
             <div class="item" v-for="(item, index) in 10">
@@ -40,6 +50,13 @@ export default {
     CollectionFilterSider,
     ProductCard,
     ButtonPrimary,
+  },
+  data() {
+    return {
+      countProductsInCollection: 2,
+      filterChooser: ["Giá tăng dần", "Giá giảm dần", "% giảm", "Mua nhiều"],
+      filtered: 2, //default: % giảm
+    };
   },
 };
 </script>
@@ -83,8 +100,16 @@ export default {
       }
 
       &__top {
+        width: 100%;
         display: flex;
-        align-content: space-between;
+        justify-content: space-between;
+
+        .filter-chooser {
+          position: relative;
+          .filter-chooser-card {
+            position: absolute;
+          }
+        }
       }
 
       &__bottom {

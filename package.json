@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aacassandra/vue3-progressbar": "^1.0.3",
     "axios": "^1.1.2",
     "chart.js": "^3.9.1",
     "jquery": "^3.6.1",

@@ -24,7 +24,6 @@
         padding-bottom: 0 !important;
       "
     >
-      <ProgressTopBar></ProgressTopBar>
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">
           <div
@@ -125,7 +124,6 @@
 <script>
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
-import ProgressTopBar from "@/components/atoms/progressTopBar/ProgressTopBar.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 
@@ -217,7 +215,6 @@ export default {
   components: {
     Cart,
     Wrapper,
-    ProgressTopBar,
   },
   computed: {
     ...mapState(useCartStorePinia, {
