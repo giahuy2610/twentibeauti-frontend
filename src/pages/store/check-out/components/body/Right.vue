@@ -3,7 +3,7 @@
     <div class="righttop shadow-3">
       <h2>Đơn hàng</h2>
       <div class="cart__body">
-        <ScrollPanel style="width: 100%; height: 700px">
+        <ScrollPanel style="width: 100%; max-height: 250px" :key="Math.random()">
           <ProductItemList></ProductItemList>
         </ScrollPanel>
       </div>
@@ -91,7 +91,6 @@ export default {
 .right {
   width: 50%;
   .righttop {
-    height: 84%;
     border: 1px solid rgb(235, 224, 224);
     border-radius: 10px;
     padding: 10px;

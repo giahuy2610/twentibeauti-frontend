@@ -1,10 +1,8 @@
 <template lang="">
-  <div class="progress-wrapper">
-    <div
-      class="progress-bar"
-      :style="{ width: progressPercentage + '%' }"
-      v-if="show"
-    >{{show}}</div>
+  <div class="progress-wrapper" :key="keyvalue">
+    <div class="progress-bar" :style="{ width: percentage + '%' }" v-if="show">
+      {{ show }}
+    </div>
   </div>
 </template>
 <script>
@@ -12,28 +10,24 @@ export default {
   data() {
     return {
       show: false,
+      performance: 0,
+      keyvalue:0
+      
     };
   },
-  computed: {
-    progressPercentage() {
-      console.log(1);
-      var width = 100; // width of a progress bar in percentage
-      // var perfData = window.performance.timing; // The PerformanceTiming interface
-      // EstimatedTime = -(perfData.loadEventEnd - perfData.navigationStart); // Calculated Estimated Time of Page Load which returns negative value.
-      // time = parseInt((EstimatedTime / 1000) % 60) * 100; //Converting EstimatedTime from miliseconds to seconds.
-      var time = 100;
-      console.log(time);
-      if (time = 100) {
-        console.log('false');
-        setTimeout(() => (this.show = false), 500);
-      }
-      return time;
-    },
-  },
+  computed: {},
   watch: {
     $route(to, from) {
+      console.log("rote change");
       this.show = true;
+      this.performance = 35;
     },
+  },
+  mounted() {
+    setTimeout(() => {
+      this.show = false;
+      console.log("false");
+    }, 500);
   },
 };
 </script>
