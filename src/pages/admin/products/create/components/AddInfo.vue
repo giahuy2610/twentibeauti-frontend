@@ -8,8 +8,8 @@
         <div class="flex">
           <Dropdown
             v-model="typeproduct"
-            :options="cities"
-            optionLabel="name"
+            :options="typeproduct"
+            optionLabel="typeproduct"
             optionValue="code"
             placeholder="Chọn loại sản phẩm"
             :editable="true"
@@ -53,8 +53,8 @@
         <div class="flex">
           <Dropdown
             v-model="typeBrand"
-            :options="cities"
-            optionLabel="name"
+            :options="typeBrand"
+            optionLabel="typeBrand"
             optionValue="code"
             placeholder="Chọn nhãn hiệu"
             :editable="true"
@@ -108,8 +108,8 @@
         <div class="flex">
           <Dropdown
             v-model="Tags"
-            :options="cities"
-            optionLabel="name"
+            :options="Tags"
+            optionLabel="Tags"
             optionValue="code"
             placeholder="Tags"
             :editable="true"

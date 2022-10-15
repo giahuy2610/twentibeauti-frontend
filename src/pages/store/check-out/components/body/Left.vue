@@ -9,7 +9,7 @@
           <p>{{ item.label }}</p>
         </div>
 
-        <div class="selectbutton">
+        <div class="selectbutton" >
           <SelectButton
             v-model="item.value"
             :options="options"
@@ -48,7 +48,7 @@ export default {
 .left {
   margin-left: 20px;
   padding-right: 10pt;
-  width: 90%;
+  width: 100%;
   .leftfooter {
     width: 100%;
     display: flex;
@@ -62,11 +62,16 @@ export default {
       .contentinvoice {
         width: 70%;
         font-weight: bold;
-        font-size: 1.5rem;
+        font-size: 1rem;
       }
       .selectbutton {
-        padding: 20px;
-        margin-right: 10px;
+        padding: 10px;
+        margin-right: 20px;
+        width: 100%;
+        max-width: max-content;
+        width: 50%;
+
+
       }
     }
   }

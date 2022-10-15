@@ -3,7 +3,7 @@
     <div class="righttop shadow-3">
       <h2>Đơn hàng</h2>
       <div class="cart__body">
-        <ScrollPanel style="width: 100%; max-height: 250px" :key="Math.random()">
+        <ScrollPanel style="width: 100%; max-height:500px ; height:fit-content">
           <ProductItemList></ProductItemList>
         </ScrollPanel>
       </div>
@@ -88,14 +88,31 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .right {
   width: 50%;
+  margin-left: 20px;
+  padding-right: 10pt;
+  @include mobile {
+    
+    width: 100%;
+  }
+  @include mini-tablet {
+    max-width: 100%;
+    width: 100%;
+  }
+  @include tablet {
+    max-width: 100%;
+    width: 100%;
+  }
   .righttop {
+    //height: 84%;
     border: 1px solid rgb(235, 224, 224);
     border-radius: 10px;
     padding: 10px;
     display: flex;
     flex-direction: column;
+    
     .cart__body {
       border-top: 1px solid rgb(235, 224, 224);
       border-bottom: 1px solid rgb(235, 224, 224);

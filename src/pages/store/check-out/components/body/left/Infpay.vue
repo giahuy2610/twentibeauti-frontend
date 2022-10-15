@@ -59,7 +59,6 @@ export default {
 </script>
 <style lang="scss" scoped>
 .payment {
-  border: 1px solid #aaa;
   border-radius: 10px;
 
   -moz-box-flex: 1;
