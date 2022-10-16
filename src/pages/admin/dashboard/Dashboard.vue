@@ -16,15 +16,27 @@
       </div>
     </template>
     <template v-slot:main>
-      <div class="main-wrapper"></div>
+      <div class="main-wrapper">
+        <Card>
+          <template #title>Doanh số</template>
+          <template #content>
+            <div class="">
+              <LineChartVue></LineChartVue>
+              <LineChartVue></LineChartVue>
+            </div>
+          </template>
+        </Card>
+      </div>
     </template>
   </AdminBlankPage>
 </template>
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
+import LineChartVue from "./components/LineChart.vue";
 export default {
   components: {
     AdminBlankPage,
+    LineChartVue,
   },
   data() {
     return {};
@@ -38,7 +50,10 @@ export default {
   justify-content: space-between;
   align-items: center;
 
+
+
   &__left {
+
   }
 
   &__right {

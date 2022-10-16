@@ -1,15 +1,15 @@
 <template lang="">
   <Wrapper>
-      <div class="over">
-        <ImageProduct class="sticky"></ImageProduct>
-        <div class="infor">
-          <Breadcrumb></Breadcrumb>
-          <div class="product-header-wrapper">
-            <HeaderProduct></HeaderProduct>
-          </div>
-          <RatingProduct></RatingProduct>
-          <AddCart></AddCart>
+    <div class="over">
+      <ImageProduct class="sticky"></ImageProduct>
+      <div class="infor">
+        <Breadcrumb></Breadcrumb>
+        <div class="product-header-wrapper">
+          <HeaderProduct></HeaderProduct>
         </div>
+        <RatingProduct></RatingProduct>
+        <AddCart></AddCart>
+      </div>
     </div>
     <div class="seperator"> <br><br><br><br> </div>
     <div class="Ads">
@@ -22,7 +22,6 @@
       <RatingDetail></RatingDetail>
     </div>
   </Wrapper>
-    
 </template>
 <script>
 import ImageProduct from "@/pages/store/product/components/ImageProduct.vue";
@@ -56,24 +55,19 @@ export default {
       };
     },
 };
-
 </script>
 
-
 <style lang="scss" scoped>
-
 .over {
   display: flex;
   flex-direction: row;
   position: relative;
 }
 
-.sticky
-{
+.sticky {
   position: sticky;
-  position : -webkit-sticky;
+  position: -webkit-sticky;
   top: 0;
   margin-top: 10px;
 }
-
 </style>

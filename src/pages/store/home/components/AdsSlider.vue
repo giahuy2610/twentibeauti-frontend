@@ -27,7 +27,7 @@
         src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
         :uid="item"
         :key="item"
-        @click="$router.push({ path: '/collections/flash-sale', replace: true })"
+        @click="$router.push({ path: '/collections/flash-sale' })"
       />
     </div>
   </div>
@@ -45,36 +45,42 @@ export default {
       currentDisplayProducts: [],
       currentPage: 1,
       count: 0,
+      autoScrollLeft: null,
     };
   },
   methods: {
     scrollLeft: function () {
       if (this.currentPage != this.allProducts.length) {
         this.currentPage++;
-        this.$refs.wrapper.scrollLeft += screen.width;
+        console.log(this.currentPage);
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
       } else {
-        this.$refs.wrapper.scrollLeft -= screen.width * this.allProducts.length;
         this.currentPage = 1;
+        this.$refs.wrapper.scrollLeft = 0;
       }
     },
     scrollRight: function () {
       if (this.currentPage != 1) {
         this.currentPage--;
-        this.$refs.wrapper.scrollLeft -= screen.width;
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
       } else {
         this.currentPage = this.allProducts.length;
-        this.$refs.wrapper.scrollLeft += screen.width * this.allProducts.length;
+        this.$refs.wrapper.scrollLeft =
+          window.innerWidth * this.allProducts.length;
       }
-      //this.$refs.wrapper.scrollLeft -= (screen.width - this.$refs.image[0].offsetWidth) ;
+      //this.$refs.wrapper.scrollLeft -= (window.innerWidth - this.$refs.image[0].offsetinnerWidth) ;
     },
     scrollTo: function (pageNum) {
-      this.$refs.wrapper.scrollLeft +=
-        (pageNum - this.currentPage) * screen.width;
+      this.$refs.wrapper.scrollLeft =
+        (pageNum - this.currentPage) * window.innerWidth;
       this.currentPage = pageNum;
     },
   },
   mounted() {
-    setInterval(this.scrollLeft, 3000);
+    this.autoScrollLeft = setInterval(() => this.scrollLeft(), 3000);
+  },
+  unmounted() {
+    clearInterval(this.autoScrollLeft);
   },
 };
 </script>
@@ -114,13 +120,13 @@ export default {
   .btn-right {
     position: absolute;
     top: 50%;
-    z-index: 45;
+    z-index: 4;
     transform: translateX(50%);
   }
   .btn-left {
     position: absolute;
     top: 50%;
-    z-index: 45;
+    z-index: 4;
     right: 0;
     transform: translateX(-50%);
   }

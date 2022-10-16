@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="infcus shadow-5">
+  <div class="infcus shadow-3">
     <div class="h2">
       <b>Thông tin liên lạc</b>
     </div>
@@ -7,23 +7,20 @@
     <div class="fillinf">
       <div class="nameinf">
         <span class="p-fluid">
-          <AutoComplete
-            style="color: blue"
-            v-model="text1"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
+          <InputText
+            id="firstname"
+            type="text"
+            v-model="firstname"
             placeholder="Tên"
           />
         </span>
       </div>
       <div class="nameinf">
         <span class="p-fluid">
-          <AutoComplete
-            v-model="text2"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
+          <InputText
+            id="lastname"
+            type="text"
+            v-model="lastname"
             placeholder="Họ"
           />
         </span>
@@ -32,23 +29,21 @@
     <div class="fillinf">
       <div class="nameinf">
         <span class="p-fluid">
-          <AutoComplete
-            v-model="text3"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
-            placeholder="Số điện thoại"
+          <InputText
+            id="lastname"
+            type="text"
+            v-model="lastname"
+            placeholder="Họ"
             class="p-invalid"
           />
         </span>
       </div>
       <div class="nameinf">
         <span class="p-fluid">
-          <AutoComplete
-            v-model="text4"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
+          <InputText
+            id="email"
+            type="text"
+            v-model="email"
             placeholder="Email"
           />
         </span>
@@ -104,11 +99,10 @@
       <br />
       <div class="nameinf">
         <span class="p-fluid">
-          <AutoComplete
-            v-model="text1"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
+          <InputText
+            id="address"
+            type="text"
+            v-model="address"
             placeholder="Địa chỉ"
           />
         </span>
@@ -116,11 +110,10 @@
       <br />
       <div class="namefor">
         <span class="p-fluid">
-          <AutoComplete
-            v-model="text1"
-            :suggestions="filteredCountries"
-            @complete="searchCountry($event)"
-            optionLabel="name"
+          <InputText
+            id="address"
+            type="text"
+            v-model="address"
             placeholder="Tên địa chỉ(vd:Văn phòng,Nhà,..."
           />
         </span>
@@ -214,7 +207,7 @@ export default {
       });
     },
     confirmOrder() {
-      
+
     }
   },
   mounted() {
@@ -245,8 +238,6 @@ export default {
   padding: 20px;
   font-size: 16px;
   width: 100%;
-  border: 1px solid #aaa;
-
   .fillinf {
     display: flex;
     flex-direction: row;
