@@ -27,68 +27,63 @@
 </template>
 <script>
 export default {
-    
-}
+  data() {
+    return {
+      val2: 1,
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
-::before
-{
-    box-sizing: inherit;
+::before {
+  box-sizing: inherit;
 }
 .product-rating__space > div:not(:first-child)::before {
-    width: 2px;
-    background-color: rgba(0, 0, 0, 0.125);
-    content: "";
-    position: absolute;
-    top: 0px;
-    left: -10px;
-    bottom: 0px;
+  width: 2px;
+  background-color: rgba(0, 0, 0, 0.125);
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: -10px;
+  bottom: 0px;
 }
-.flex-row
-{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
-.product-rating-align
-{
-    display: flex;
-    -webkit-box-align: center;
-    align-items: center;
-    .product-rating
-    {
+.product-rating-align {
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  .product-rating {
+    position: relative;
+    gap: 20px;
+    .space-item {
+      position: relative;
+      text-size-adjust: 100%;
+      a {
+        text-decoration: none;
+        gap: 0.5rem;
+      }
+      .num-reviews {
         position: relative;
-        gap: 20px;
-        .space-item
-        { 
-            position: relative;
-            text-size-adjust: 100%;
-            a
-            {
-                text-decoration: none;
-                gap: 0.5rem;
-            }
-            .num-reviews
-            {
-                position: relative;
-                text-decoration: underline !important;
-            }
-        }
-        .num-likes
-        {
-            position: relative;
-            gap:0.25rem;
-        }
-        .origin
-        {
-            position: relative;
-            gap:0.25rem;
-        }
-        .sku
-        {
-            position: relative;
-            gap:0.25rem; 
-        }
+        text-decoration: underline !important;
+      }
     }
+    .num-likes {
+      position: relative;
+      gap: 0.25rem;
+    }
+    .origin {
+      position: relative;
+      gap: 0.25rem;
+    }
+    .sku {
+      position: relative;
+      gap: 0.25rem;
+    }
+  }
 }
 </style>

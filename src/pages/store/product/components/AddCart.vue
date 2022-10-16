@@ -54,6 +54,7 @@ export default {
     display: flex;
     flex-direction: row;
     align-items: center;
+    flex-wrap: wrap;
 }
 .add-cart-align
 {
@@ -114,6 +115,7 @@ export default {
                 content : '';
                 background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ic_shopping_cart_48px.svg/1024px-Ic_shopping_cart_48px.svg.png');
                 background-size: contain;
+                background-repeat: no-repeat;
             }
             .cart
             {

@@ -161,9 +161,9 @@ export default {
     top: 0;
     margin-top: 10px;
     object-fit: contain;
-    margin-right: 3rem;
+    margin-left: 3rem;
+    margin-right: 6rem;
     height: 50vh;
-    overflow: hidden;
   }
   &__appear {
     max-width: 100%;
@@ -226,11 +226,11 @@ export default {
     display: block;
     animation: 2s slidein;
     @keyframes slidein {
-      from {
-        margin-top: 5%;
-        height: 120%;
+      0% {
+        margin-top: 4%;
+        height: 100%;
       }
-      to {
+      100% {
         margin-top: 0%;
         height: 100%;
       }
