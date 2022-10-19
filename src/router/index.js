@@ -80,6 +80,10 @@ const routes = [
         component: Account,
         children: [
           {
+            path: "",
+            redirect: { path: "account/profile" },
+          },
+          {
             path: "profile",
             component: AccountProfile,
           },
@@ -95,7 +99,6 @@ const routes = [
             path: "my-promotions",
             component: AccountPromotions,
           },
-          
         ],
       },
       {
