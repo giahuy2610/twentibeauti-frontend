@@ -3,16 +3,19 @@
       <template v-slot:header>
         <div class="header-wrapper">
           <div class="header-wrapper__left">
-            <i class="pi pi-angle-left"></i>
-            Quay lại danh sách đơn hàng</div>
+            <button class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
+              Quay lại danh sách đơn hàng
+            </button>
+            </div>
           <div class="header-wrapper__right">
-            <Button label="Sửa đơn hàng" class="p-button-outlined" style="color:#0088FF" />
+            <Button label="Sửa đơn hàng" class="p-button-outlined" style="color:#0088FF" @click="$router.push({ path: '/admin/orderdetails/editorder' })" />
             <Button
               type="button"
               label="Đổi trả hàng"
               class="p-button-info ml-2"
               badgeClass="p-badge-danger"
               style="background-color: #0088FF"
+              @click="$router.push({ path: '/admin/order_return/create_return' })"
             />
           </div>
         </div>
@@ -65,8 +68,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
- 
+    button {
+      //font-family: 'Arial';
+      border:none;
+      background: rgba(255, 255, 255, 0.25);
+    }
   }
   .main-wrapper {
     display: flex;

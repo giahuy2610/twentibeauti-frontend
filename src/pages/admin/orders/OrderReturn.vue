@@ -1,7 +1,12 @@
 <template lang="">
-  <ChooseOrderReturn v-if="modal">
+  <ChooseOrderReturn v-if="modal1">
     <template v-slot:title>
-      <div class="title"></div>
+      <div class="title" >
+        <div class="header" > Chọn đơn hàng để trả</div>
+        <div class="btn-close">
+          <i class="pi pi-times" @click="modal1 = false"></i>
+        </div>
+      </div>
     </template>
     <template v-slot:context>
       <div></div>
@@ -10,9 +15,6 @@
       <div></div>
     </template>
     <template v-slot:button>
-      <div class="btn_save">
-        <button @click="modal = false">Lưu</button>
-      </div>
     </template>
   </ChooseOrderReturn>
   <div class="order-return">
@@ -27,7 +29,7 @@
               label="Tạo đơn trả hàng"
               class="p-button-info ml-2"
               badgeClass="p-badge-danger"
-              @click="modal=true"
+              @click="modal1=true"
             />
           </div>
         </div>
@@ -56,7 +58,7 @@ export default {
   },
   data()  {
     return {
-      modal: false,
+      modal1: false,
       position: "center",
     };
   },
@@ -73,5 +75,26 @@ export default {
     display:flex;
     flex-direction: column;
     
+}
+.title {
+  text-align: center;
+  display:flex;
+  flex-direction: row;
+  width: 100%;
+  gap:20px;
+  //background-color: red;
+  .header {
+    font-weight: 700;
+    width:100%;
+    font-size: 24px;
+    text-align: center;
+    margin-left:250px;
+    padding-bottom: 10px;
+       // box-sizing: inherit;
+  }
+  .btn-close {
+    //margin-bottom:250px;
+    margin-left:200px;
+  }
 }
 </style>

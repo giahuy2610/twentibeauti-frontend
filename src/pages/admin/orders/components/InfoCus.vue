@@ -364,6 +364,7 @@ export default {
         .unsuccess-order {
           display: flex;
           flex-direction: row;
+          justify-content: space-between;
           // padding: 10px;
           .label {
             width: 75%;
@@ -372,6 +373,7 @@ export default {
             font-weight: 500;
             color: red;
             margin-left: 30px;
+            text-align: right;
           }
         }
       }

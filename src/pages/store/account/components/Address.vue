@@ -32,7 +32,7 @@
         <div class="address-box">
           <div class="frame_add">
             <div class="address">
-              <p>phamlediuaiphamlediuaiphamlediuaiphamlediuaianhtu</p>
+              <p>phamlediuaiphamlediuaiphamlediuaiphamlediuaianhtudiuaiabcdiuai</p>
             </div>
             <!-- <div class="space">                   
                 </div> -->
@@ -51,7 +51,7 @@
               <div class="info_phone">0868247806</div>
               <div class="info_email">diuai4232@gmail.com</div>
               <div class="info_home">
-                44/37/1/3, HT43, phường Hiệp Thành, Quận 12, Hồ Chí Minh
+                44/37/1/3, HT43, phường Hiệp Thành, Quận 12, Hồ Chí Minh abcabcabcba bcbabcb abcdiuai1412ahajsjxcnxjisisiọdedeopnsdobsdobdsoiboiboisbfoiboisbfoisfdbosfbsoibsoibsoisdbosfid
               </div>
             </div>
           </div>
@@ -124,6 +124,7 @@ export default {
     margin-bottom: 15px;
     font-weight: 700;
     box-sizing: border-box;
+      font-weight: 700;
     @include tablet {
       
     }
@@ -154,8 +155,7 @@ export default {
     }
     .box {
       display: flex;
-      border-style: solid;
-      border-width: 1px;
+      border: 1px solid;
       border-radius: 10px;
       width: 45%;
       margin: 0;
@@ -175,27 +175,33 @@ export default {
         .frame_add {
           display: flex;
           width: 100%;
-          height: 40%;
+          //height: 40%;
           flex-direction: row;
           border-bottom: 1px solid black;
           gap: 5px;
-          padding: 10px 10px 5px 15px;
+          padding: 10px;
           text-align: center;
           align-items: center;
           overflow: hidden;
           .address {
             text-align: left;
             box-sizing: border-box;
-
             width: 80%;
             display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
+            //flex-wrap: wrap;
+            //flex-direction: column;
+            //overflow: hidden;
             overflow: hidden;
-            word-wrap: break-word;
-            word-break: break-all;
+              text-overflow: ellipsis;
+              display:-webkit-box;
+              -webkit-line-clamp: 2;
+              line-clamp: 2;
+              -webkit-box-orient:vertical ;
+              word-wrap: break-word;
+              //word-break: break-all;
             font-size: 14px;
             font-weight: 700;
+            max-lines: 2;
           }
           .icon {
             display: flex;
@@ -214,13 +220,12 @@ export default {
           }
         }
         .frame_info {
-          height: 60%;
+          padding: 10px;
+          //height: 80%;
           overflow: hidden;
           .info {
             width: 100%;
-            margin-top: 5px;
-
-            margin-left: 15px;
+           //margin:15px;
             line-height: 1.5715;
             gap: 5px;
             box-sizing: border-box;
@@ -229,6 +234,17 @@ export default {
             .info_name,
             .info_phone {
               font-weight: 700;
+            }
+            .info_home {
+              width:100%;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              display:-webkit-box;
+              -webkit-line-clamp: 2;
+              line-clamp: 2;
+              -webkit-box-orient:vertical ;
+              word-wrap: break-word;
+              //word-break: break-all;
             }
           }
         }
@@ -245,7 +261,7 @@ export default {
       -webkit-box-pack: center;
       border-width: 1px;
       border-radius: 10px;
-      height: 190px;
+      height: 13.2rem;
       width: 45%;
       //padding: 20px;
       @include mobile {

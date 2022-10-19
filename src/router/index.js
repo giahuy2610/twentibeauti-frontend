@@ -71,7 +71,7 @@ const routes = [
         component: CategoriesPage,
       },
       {
-        path: "/details",
+        path: "orders/details",
         component: AccountOrderDetails,
       },
       {
@@ -160,7 +160,7 @@ const routes = [
       },
       {
         name: "create return",
-        path: "create_return",
+        path: "order_return/create_return",
         component: CreateReturn,
       },
     ],
