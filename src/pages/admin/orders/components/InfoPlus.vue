@@ -7,16 +7,19 @@
       <template #content>
         <div class="body">
           <div class="orderby">
-            <div class="label">Bán bởi:</div>
+            <div class="label">Bán bởi</div>
             <div class="text">
-              <SplitButton
-                label="nhân viên"
-                :model="items"
-                class="p-button-text mb-2"
-              ></SplitButton>
+              <Dropdown
+                v-model="selectedEmp"
+                :options="emp"
+                optionLabel="emp"
+                optionValue="employee"
+                placeholder="Nhân viên"
+                style="width:140px; text-align:left"
+              />
             </div>
           </div>
-          <div class="date-ship">
+          <div class="dateship">
             <div class="label">Hẹn giao hàng</div>
             <div class="text">
               <Calendar inputId="icon" v-model="date3" :showIcon="true" />
@@ -25,7 +28,12 @@
           <div class="idpro">
             <div class="label">Mã đơn hàng</div>
             <div class="text">
-                <InputText type="text" v-model="value5" placeholder="SS001" disabled style="width:240px" />
+              <InputText
+                type="text"
+                v-model="value5"
+                placeholder="SS001"
+                disabled
+              />
             </div>
           </div>
         </div>
@@ -68,16 +76,16 @@ export default {
 </script>
 <style lang="scss" scoped>
 .title {
-    font-size: 16px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #D3D5D7;
+  font-size: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d3d5d7;
 }
 .body {
   display: flex;
   flex-direction: column;
   width: 100%;
   font-size: 14px;
-  gap:10px;
+  gap: 10px;
   .orderby {
     display: flex;
     flex-direction: row;
@@ -85,18 +93,14 @@ export default {
     gap: 10px;
     //padding:20px;
     text-align: center;
-    margin:0;
+    margin: 0;
     .label {
-      //width: 50%;
+      margin-top:10px;
       text-align: left;
     }
-    .text {
-      //padding-top:-30px;
-      border: none;
-      //top:-10px;
-    }
+
   }
-  .dateship {
+  .dateship,.idpro {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -111,7 +115,7 @@ export default {
       //padding-top:15px;
       border: none;
       //bottom:30px;
-      width: 100%;
+      width: 200px;
     }
   }
 }

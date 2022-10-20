@@ -134,7 +134,7 @@
           <div class="info-payment">
             <div class="total">
               <div class="label">Tổng tiền</div>
-              <div class="money">300,000</div>
+              <div class="money">300.000</div>
             </div>
             <div class="discount">
               <div class="label">Chiết khấu</div>
@@ -150,7 +150,7 @@
             </div>
             <div class="total-of-cus">
               <div class="label">Khách phải trả</div>
-              <div class="money">300,000</div>
+              <div class="money">300.000</div>
             </div>
           </div>
         </div>
@@ -367,7 +367,7 @@ h4 {
 }
 }
 .overlay {
-  background-color: rgba(0,0,0,0.85);
+  background-color: rgba(0,0,0,0.3);
 }
 .header{
   display:flex;

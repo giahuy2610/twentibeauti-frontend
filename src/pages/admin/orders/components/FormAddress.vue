@@ -5,12 +5,14 @@
       <a href="#" class="overlay-close"></a>
       <div class="modal">
         <div class="modal-content">
-          <a class="m-icon" href="#"> &times; </a>
+          
           <div class="modal-title">
-            <div class="m-head">
+            <slot name="title"></slot>
+            <!-- <div class="m-head">
               Thêm địa chỉ giao hàng
-              <slot name="title"></slot>
-            </div>
+             
+            </div> -->
+            <!-- <button class="pi pi-times" @click="modal2=false"></button> -->
           </div>
           <div class="modal-context">
             <div class="row_namephone">
@@ -129,6 +131,8 @@
 export default {
   data() {
     return {
+      modal2:false,
+      position:"center",
       isHidden: false,
       messages: [],
       fullName: null,
@@ -222,36 +226,10 @@ export default {
         cursor: pointer;
         transition: color 0.3s;
       }
-      .pi {
-        display: block;
-        width: 80px;
-        height: 80px;
-        font-size: 16px;
-        font-style: normal;
-        line-height: 80px;
-        text-align: center;
-      }
+      
     }
 
-    .modal-title {
-      display: flex;
-      flex-direction: row;
-      width: 100%;
-      text-align: center;
-
-      .m-head {
-        width: 100%;
-        text-align: center;
-        align-items: center;
-        margin-right: 250px;
-        font-size: 24px;
-        line-height: 36px;
-        font-weight: 700;
-        margin: 0;
-        color: rgba(0, 0, 0, 0.85);
-        box-sizing: inherit;
-      }
-    }
+    
     .modal-context {
       width: 100%;
       display: block;

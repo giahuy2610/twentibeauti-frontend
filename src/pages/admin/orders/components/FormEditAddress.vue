@@ -5,14 +5,13 @@
         <a href="#" class="overlay-close"></a>
         <div class="modal">
           <div class="modal-content">
-            <a class="m-icon" href="#">
-                &times;                
-            </a>
+           
             <div class="modal-title">
-              <div class="m-head">
+              <slot name="title"></slot>
+              <!-- <div class="m-head">
                 Sửa địa chỉ
-                <slot name="title"></slot>
-              </div>
+               
+              </div> -->
             </div>
             <div class="modal-context">
               <div class="row_namephone">
@@ -224,26 +223,7 @@
         }
       }
   
-      .modal-title {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        text-align: center;
-  
-        .m-head {
-          width: 100%;
-          text-align: center;
-          align-items: center;
-          margin-right: 250px;
-          font-size: 24px;
-          line-height: 36px;
-          font-weight: 700;
-          margin: 0;
-          color: rgba(0, 0, 0, 0.85);
-          box-sizing: inherit;
-          
-        }
-      }
+
       .modal-context {
         width: 100%;
         display: block;
