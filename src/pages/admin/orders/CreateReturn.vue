@@ -2,7 +2,9 @@
   <AdminBlankPage>
     <template v-slot:header>
       <div class="header-wrapper">
-        <div class="header-wrapper__left">Tạo đơn trả hàng</div>
+        <div class="header-wrapper__left">
+          <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/order_return' })"></i>
+          Quay lại danh sách đơn trả hàng</div>
         <div class="header-wrapper__right">
           <Button label="Thoát" class="p-button-outlined p-button-danger" />
           <Button
@@ -11,7 +13,7 @@
             class="p-button-info ml-2"
             badgeClass="p-badge-danger"
             @click="
-              $router.push({ path: '/admin/products/create', replace: true })
+              $router.push({ path: '/admin/order_return/create_return', replace: true })
             "
           />
         </div>

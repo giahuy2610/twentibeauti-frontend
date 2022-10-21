@@ -152,7 +152,7 @@
             <div class="info-payment">
               <div class="total">
                 <div class="label">Tổng tiền</div>
-                <div class="money">300,000</div>
+                <div class="money">300.000</div>
               </div>
               <div class="discount">
                 <div class="label">Chiết khấu</div>
@@ -168,7 +168,7 @@
               </div>
               <div class="total-of-cus">
                 <div class="label">Khách phải trả</div>
-                <div class="money">300,000</div>
+                <div class="money">300.000</div>
               </div>
             </div>
           </div>
@@ -420,6 +420,7 @@
       font-size: 16px;
       line-height: 20px;
       font-weight: 400;
+      justify-content: space-between;
       .total,
       .discount,
       .price-ship,
@@ -434,6 +435,7 @@
         }
         .money {
           width: 20%;
+          text-align: right;
         }
       }
       .total-of-cus {

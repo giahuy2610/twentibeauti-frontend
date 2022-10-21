@@ -29,10 +29,17 @@
         </div>
       </span>
     </div>
+    <div class="my-order">
+      <MyOrder></MyOrder>
+    </div>
   </div>
 </template>
 <script>
+import MyOrder from "./MyOrder.vue";
 export default {
+  components: {
+    MyOrder,
+  },
   data() {
     return {
       selected: 0,
@@ -50,6 +57,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .active {
   color: var(--primary-color) !important;
   border-bottom: 2px solid var(--primary-color);
@@ -61,12 +69,33 @@ export default {
   min-height: 200px;
   flex-direction: column;
   gap: 10px;
+  @include mobile {
+    width:100%;
+    //color:red;
+  }
+  @include mini-tablet {
+    width:100%;
+    //color:blue;
+  }
+  @include tablet {
+    width:100%;
+    //color:green;
+  }
   .header {
     display: block;
     font-size: 24px;
     margin-bottom: 15px;
     font-weight: 700;
     box-sizing: border-box;
+    @include mobile {
+      display: none;
+    }
+    @include mini-tablet {
+      display: none;
+    }
+    @include tablet {
+      display: none;
+    }
   }
 
   .p-input-icon-left {

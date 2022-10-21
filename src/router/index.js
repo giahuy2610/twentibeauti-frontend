@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import { useIndexStorePinia } from "../stores/admin/index.js";
 //store
 import AppLayout from "../layouts/AppLayout.vue";
 import HomeStore from "../pages/store/home/HomeStore.vue";
@@ -14,6 +14,8 @@ import Product from "../pages/store/product/Product.vue";
 import AccountProfile from "../pages/store/account/components/Profile.vue";
 import AccountOrders from "../pages/store/account/components/Orders.vue";
 import AccountAddress from "../pages/store/account/components/Address.vue";
+import AccountPromotions from "../pages/store/account/components/MyPromotions.vue";
+import AccountOrderDetails from "../pages/store/account/components/OrderDetails.vue";
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
@@ -26,6 +28,7 @@ import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
 import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
+import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -69,10 +72,18 @@ const routes = [
         component: CategoriesPage,
       },
       {
+        path: "/details",
+        component: AccountOrderDetails,
+      },
+      {
         name: "account",
         path: "/account",
         component: Account,
         children: [
+          {
+            path: "",
+            redirect: { path: "account/profile" },
+          },
           {
             path: "profile",
             component: AccountProfile,
@@ -87,7 +98,7 @@ const routes = [
           },
           {
             path: "my-promotions",
-            component: AccountProfile,
+            component: AccountPromotions,
           },
         ],
       },
@@ -154,6 +165,14 @@ const routes = [
         component: CreateReturn,
       },
     ],
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    name: "admin login",
+    path: "/admin-login",
+    component: AdminLoginPage,
   },
 ];
 
@@ -168,5 +187,15 @@ const router = createRouter({
   //  mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
   routes,
 });
+router.beforeEach((to, from, next) => {
+  const store = useIndexStorePinia();
+  if (!store.isLoggedIn && to.meta.requiresAuth) {
+    next({ name: "admin login" });
+  } else {
+    next();
+  }
 
+  console.log(store.isLoggedIn);
+  next();
+});
 export default router;
