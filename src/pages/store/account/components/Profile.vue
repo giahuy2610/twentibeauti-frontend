@@ -54,7 +54,7 @@
           </span>
         </div>
       </div>
-      <div class="button">
+      <div class="button flex justify-content-center">
         <button type="button">Lưu</button>
       </div>
     </div>
@@ -162,15 +162,14 @@ export default {
       font-size: 20px;
       border-radius: 38px;
       margin-top: 40px;
-      margin-left: 85%;
       width: 90px;
       height: 50px;
       font-weight: 700;
       box-sizing: border-box;
       color: #fff;
       text-shadow: 0-1px 0 rbg(0 0 0/12%);
-      box-shadow: 0-2px rbg(0 0 0 /5%);
       cursor: pointer;
+
       @include mobile {
         max-width: 100%;
         //margin-left: 38%;

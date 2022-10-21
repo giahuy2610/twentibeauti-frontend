@@ -83,13 +83,13 @@
         </div>
         <div class="nameproduct">
           <div class="name">
-            <a
+            <router-link
               role="presentation"
-              href="https://thefaceshop.com.vn/products/kem-chong-nang-hieu-chinh-da-belif-uv-protector-multi-sunscreen-spf50-pa-50ml"
+              to="/product"
             >
               Kem chống nắng hiệu chỉnh da BELIF UV PROTECTOR MULTI SUNSCREEN
               SPF50++ PA++++ 50ml
-            </a>
+            </router-link>
           </div>
           <div class="number-sku">
             <div class="sku">SKU: 52101289</div>

@@ -13,26 +13,15 @@
         </div>
 
         <div class="sidebar-account">
-          <p>
+          <p v-for="(item, index) in routeLinks">
             <li>
-              <router-link to="/account/profile"> Tài khoản </router-link>
-            </li>
-          </p>
-          <p>
-            <li>
-              <router-link to="/account/orders">Đơn hàng</router-link>
-            </li>
-          </p>
-          <p>
-            <li>
-              <router-link to="/account/address">Địa chỉ giao nhận</router-link>
-            </li>
-          </p>
-          <p>
-            <li>
-              <router-link to="/account/my-promotions"
-                >Ưu đãi của tôi</router-link
+              <router-link
+                :to="item.path"
+                :ref="item.path"
+                :class="{ active: this.$route.path === item.path }"
               >
+                {{ item.title }}
+              </router-link>
             </li>
           </p>
         </div>
@@ -55,14 +44,22 @@ export default {
   },
   data() {
     return {
-      routeLink: [
+      routeLinks: [
         {
           title: "Tài khoản",
-          path: "account/profile",
+          path: "/account/profile",
         },
         {
           title: "Đơn hàng",
-          path: "account/profile",
+          path: "/account/orders",
+        },
+        {
+          title: "Địa chỉ giao nhận",
+          path: "/account/address",
+        },
+        {
+          title: "Ưu đãi của tôi",
+          path: "/account/my-promotions",
         },
       ],
     };
@@ -132,14 +129,12 @@ export default {
       text-decoration: underline;
     }
 
-    
     .sidebar-account {
       font-size: 16px;
 
       &::-webkit-scrollbar {
         display: none;
       }
-
 
       @include mobile {
         text-align: center;
@@ -196,9 +191,10 @@ export default {
       text-decoration: underline;
       color: #aed56b;
     }
-    .sidebar-account a:focus {
+    .sidebar-account a:focus,
+    .active {
       color: var(--primary-color) !important;
-      
+
       font-weight: 600;
       text-decoration: none;
       @include mobile {

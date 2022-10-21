@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-
+import { useIndexStorePinia } from "../stores/admin/index.js";
 //store
 import AppLayout from "../layouts/AppLayout.vue";
 import HomeStore from "../pages/store/home/HomeStore.vue";
@@ -28,6 +28,7 @@ import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
 import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
+import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -71,7 +72,7 @@ const routes = [
         component: CategoriesPage,
       },
       {
-        path: "orders/details",
+        path: "/details",
         component: AccountOrderDetails,
       },
       {
@@ -160,10 +161,18 @@ const routes = [
       },
       {
         name: "create return",
-        path: "order_return/create_return",
+        path: "create_return",
         component: CreateReturn,
       },
     ],
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    name: "admin login",
+    path: "/admin-login",
+    component: AdminLoginPage,
   },
 ];
 
@@ -178,5 +187,15 @@ const router = createRouter({
   //  mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
   routes,
 });
+router.beforeEach((to, from, next) => {
+  const store = useIndexStorePinia();
+  if (!store.isLoggedIn && to.meta.requiresAuth) {
+    next({ name: "admin login" });
+  } else {
+    next();
+  }
 
+  console.log(store.isLoggedIn);
+  next();
+});
 export default router;
