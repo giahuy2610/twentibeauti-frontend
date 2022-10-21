@@ -21,6 +21,9 @@
     <div class="detail-rating">
       <RatingDetail></RatingDetail>
     </div>
+    <div class="relevant-product">
+      <RelevantProduct></RelevantProduct>
+    </div>
   </Wrapper>
 </template>
 <script>
@@ -32,6 +35,7 @@ import AddCart from "@/pages/store/product/components/AddCart.vue";
 import AdsSlider2 from "@/pages/store/home/components/AdsSlider2.vue";
 import AboutProduct from "@/pages/store/product/components/AboutProduct.vue";
 import RatingDetail from "@/pages/store/product/components/RatingDetail.vue";
+import RelevantProduct from "@/pages/store/product/components/RelevantProduct.vue"
 
 
 import Wrapper from "../../Wrapper.vue";
@@ -46,6 +50,7 @@ export default {
         AdsSlider2,
         AboutProduct,
         RatingDetail,
+        RelevantProduct,
         Wrapper,
     },
     data() 

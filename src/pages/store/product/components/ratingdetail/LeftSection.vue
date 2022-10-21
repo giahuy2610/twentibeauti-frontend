@@ -3,7 +3,7 @@
   <div class="section-region">
     <h2 class="header">Đánh giá</h2>
     <div class="flex-row num-review">
-        <div><strong>0</strong>&nbsp;Đánh giá</div>
+        <div><strong>3</strong>&nbsp;Đánh giá</div>
         <Button class="p-button-text" @click="Popup">
             <span class="review">Viết đánh giá</span>
         </Button>
@@ -52,7 +52,6 @@ export default {
 
 <style lang="scss" scoped>
 .section-region{
-  padding-left: 15px;
   padding-right: 30px;
 }
 .flex-row {
