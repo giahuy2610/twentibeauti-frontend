@@ -1,23 +1,80 @@
-<!-- <template lang="">
-  <div class="wrapper">
-    <div class="wrapper__header">
-      <span>TWENTI</span>
-    </div>
-    <div class="wrapper__body">
-
-    </div>
+<template lang="">
+  <div class="layout has-sidebar fixed-sidebar fixed-header">
+    <aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+      <div class="image-wrapper">
+        <img
+          src="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg"
+          alt="sidebar background"
+        />
+      </div>
+      <div class="sidebar-layout">
+        <div class="sidebar-header">
+          <span
+            style="
+              width: 100%;
+              text-transform: uppercase;
+              font-size: 1.3rem;
+              letter-spacing: 3px;
+              font-weight: bold;
+              text-align: center;
+            "
+            >TWENTI</span
+          >
+        </div>
+        <div class="sidebar-content">
+          <nav class="menu open-current-submenu">
+            <ul>
+              <li
+                class="menu-item sub-menu"
+                :class="{ open: selectedSubMenuIndex === index }"
+                v-for="(item, index) in sideItems"
+                @click="
+                  selectedSubMenuIndex === index
+                    ? (selectedSubMenuIndex = null)
+                    : (selectedSubMenuIndex = index)
+                "
+              >
+                <router-link :to="item.path" class="none-children">
+                  <span class="menu-icon">
+                    <i class="pi pi-home"></i>
+                  </span>
+                  <span class="menu-title">{{ item.name }}</span>
+                </router-link>
+                <div
+                  class="sub-menu-list"
+                  :class="{ block: selectedSubMenuIndex === index }"
+                >
+                  <ul>
+                    <li
+                      class="menu-item"
+                      v-for="(nestedItem, nestedIndex) in item.children"
+                    >
+                      <router-link :to="nestedItem.path">
+                        <span class="menu-title">{{ nestedItem.name }}</span>
+                      </router-link>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+        <div class="sidebar-footer"><span>Về cửa hàng</span></div>
+      </div>
+    </aside>
   </div>
 </template>
 <script>
 export default {
   data() {
     return {
+      selectedSubMenuIndex: null,
       sideItems: [
         {
           name: "Tổng quan",
           icon: "pi-home",
           children: null,
-          path: "",
+          path: "/admin",
         },
         {
           name: "Sản phẩm",
@@ -25,11 +82,11 @@ export default {
           children: [
             {
               name: "Danh sách sản phẩm",
-              path: ""
+              path: "/admin/products",
             },
             {
               name: "Quản lý kho",
-              path: ""
+              path: "",
             },
           ],
           path: "",
@@ -46,16 +103,16 @@ export default {
           children: [
             {
               name: "Tạo đơn hàng và giao hàng",
-              path: ""
+              path: "",
             },
             {
               name: "Danh sách đơn hàng",
-              path: ""
-            }
+              path: "",
+            },
             {
               name: "Khách trả hàng",
-              path: ""
-            }
+              path: "",
+            },
           ],
           path: "",
         },
@@ -83,64 +140,407 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.wrapper {
-  width: 100%;
-  height: 100vh;
-  background-color: #162818;
-  border-right: 2px solid gray;
+$text-color: #b3b8d4;
+$secondary-text-color: #dee2ec;
 
-  &__header {
-    width: 100%;
-    height: 100px;
-    border-bottom: 1px solid gray;
-    font-size: 2rem;
-    font-weight: bolder;
-    color: white;
+$bg-color: #0c1e35;
+$secondary-bg-color: #0b1a2c;
+
+$border-color: rgba(#535d7d, 0.3);
+
+$sidebar-header-height: 64px;
+$sidebar-footer-height: 64px;
+
+.layout {
+  z-index: 1;
+
+  .header {
+    box-shadow: 1px 1px 4px #9aa0b9;
     display: flex;
-    justify-content: center;
     align-items: center;
+    padding: 20px;
+  }
+  .content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
   }
 
-  &__body {
-    width: 100%;
-    overflow: hidden;
-
-    .sidebar {
-      width: 200px;
-      // height: 100%;
-      // // left: -250px;
-      // background: #1b1b1b;
-      transition: left 0.4s ease;
+  .footer {
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+    padding: 20px;
+  }
+  &.rtl {
+    .header {
+      box-shadow: -1px 1px 4px #9aa0b9;
     }
+  }
+}
 
-    nav ul {
-      background: #1b1b1b;
-      height: 100%;
+.sidebar {
+  color: $text-color;
+  overflow-x: hidden !important;
+  position: relative;
+  background-color: $bg-color;
+  height: 100vh;
+
+  .image-wrapper {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    opacity: 0.2;
+    z-index: 1;
+    display: none;
+    > img {
       width: 100%;
-      list-style: none;
-      margin-left: -40px;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+  &.has-bg-image .image-wrapper {
+    display: block;
+  }
 
-      li {
-        line-height: 60px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
+  .sidebar-layout {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    .sidebar-header {
+      height: $sidebar-header-height;
+      min-height: $sidebar-header-height;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      border-bottom: 1px solid $border-color;
+      > span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+    .sidebar-content {
+      flex-grow: 1;
+      padding: 10px 0;
+    }
+    .sidebar-footer {
+      height: $sidebar-footer-height;
+      min-height: $sidebar-footer-height;
+      display: flex;
+      align-items: center;
+      border-top: 1px solid $border-color;
+      padding: 0 20px;
+      > span {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
 
-        &:last-child {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+@keyframes swing {
+  0%,
+  30%,
+  50%,
+  70%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(10deg);
+  }
+
+  40% {
+    transform: rotate(-10deg);
+  }
+
+  60% {
+    transform: rotate(5deg);
+  }
+
+  80% {
+    transform: rotate(-5deg);
+  }
+}
+
+.layout {
+  .sidebar {
+    .menu {
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+      .menu-item {
+        a {
+          display: flex;
+          align-items: center;
+          height: 50px;
+          padding: 0 20px;
+          color: $text-color;
+
+          .menu-icon {
+            font-size: 1.2rem;
+            width: 35px;
+            min-width: 35px;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            display: inline-block;
+            margin-right: 10px;
+            border-radius: 2px;
+            transition: color 0.3s;
+            i {
+              display: inline-block;
+            }
+          }
+
+          .menu-title {
+            font-size: 0.9rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex-grow: 1;
+            transition: color 0.3s;
+          }
+          .menu-prefix,
+          .menu-suffix {
+            display: inline-block;
+            padding: 5px;
+            opacity: 1;
+            transition: opacity 0.3s;
+          }
+          &:hover {
+            .menu-title {
+              color: $secondary-text-color;
+            }
+            .menu-icon {
+              color: $secondary-text-color;
+              i {
+                animation: swing ease-in-out 0.5s 1 alternate;
+              }
+            }
+            &::after {
+              border-color: $secondary-text-color !important;
+            }
+          }
         }
 
-        a {
+        &.sub-menu {
           position: relative;
-          color: white;
-          text-decoration: none;
-          font-size: 18px;
-          padding-left: 40px;
-          font-weight: 500;
-          display: block;
-          width: 100%;
-          border-left: 3px solid transparent;
+          > a {
+            &::after {
+              content: "";
+              transition: transform 0.3s;
+              border-right: 2px solid currentcolor;
+              border-bottom: 2px solid currentcolor;
+              width: 5px;
+              height: 5px;
+              transform: rotate(-45deg);
+            }
 
-          &:hover {
-            background: #1e1e1e;
+            &.none-children {
+              &::after {
+                content: "";
+                transition: transform 0.3s;
+                border-right: 2px solid currentcolor;
+                border-bottom: 2px solid currentcolor;
+                width: 5px;
+                height: 5px;
+                transform: rotate(-45deg);
+              }
+            }
+          }
+
+          > .sub-menu-list {
+            padding-left: 20px;
+            display: none;
+            overflow: hidden;
+            z-index: 999;
+          }
+          &.open {
+            > a {
+              &::after {
+                transform: rotate(45deg);
+              }
+            }
+          }
+        }
+
+        &.active {
+          > a {
+            .menu-title {
+              color: $secondary-text-color;
+            }
+            &::after {
+              border-color: $secondary-text-color;
+            }
+            .menu-icon {
+              color: $secondary-text-color;
+            }
+          }
+        }
+      }
+      > ul > .sub-menu > .sub-menu-list {
+        background-color: $secondary-bg-color;
+      }
+
+      &.icon-shape-circle,
+      &.icon-shape-rounded,
+      &.icon-shape-square {
+        .menu-item a .menu-icon {
+          background-color: $secondary-bg-color;
+        }
+      }
+
+      &.icon-shape-circle .menu-item a .menu-icon {
+        border-radius: 50%;
+      }
+      &.icon-shape-rounded .menu-item a .menu-icon {
+        border-radius: 4px;
+      }
+      &.icon-shape-square .menu-item a .menu-icon {
+        border-radius: 0;
+      }
+    }
+
+    &:not(.collapsed) {
+      .menu > ul {
+        > .menu-item {
+          &.sub-menu {
+            > .sub-menu-list {
+              visibility: visible !important;
+              position: static !important;
+              transform: translate(0, 0) !important;
+            }
+          }
+        }
+      }
+    }
+
+    &.collapsed {
+      .menu > ul {
+        > .menu-item {
+          > a {
+            .menu-prefix,
+            .menu-suffix {
+              opacity: 0;
+            }
+          }
+          &.sub-menu {
+            > a {
+              &::after {
+                content: "";
+                width: 5px;
+                height: 5px;
+                background-color: currentcolor;
+                border-radius: 50%;
+                display: inline-block;
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                border: none;
+                transform: translateY(-50%);
+              }
+              &:hover {
+                &::after {
+                  background-color: $secondary-text-color;
+                }
+              }
+            }
+            > .sub-menu-list {
+              transition: none !important;
+              width: 200px;
+              margin-left: 3px !important;
+              border-radius: 4px;
+              display: block !important;
+            }
+          }
+          &.active {
+            > a {
+              &::after {
+                background-color: $secondary-text-color;
+              }
+            }
+          }
+        }
+      }
+    }
+    &.has-bg-image {
+      .menu {
+        &.icon-shape-circle,
+        &.icon-shape-rounded,
+        &.icon-shape-square {
+          .menu-item a .menu-icon {
+            background-color: rgba($secondary-bg-color, 0.6);
+          }
+        }
+      }
+      &:not(.collapsed) {
+        .menu {
+          > ul > .sub-menu > .sub-menu-list {
+            background-color: rgba($secondary-bg-color, 0.6);
+          }
+        }
+      }
+    }
+  }
+
+  &.rtl {
+    .sidebar {
+      .menu {
+        .menu-item {
+          a {
+            .menu-icon {
+              margin-left: 10px;
+              margin-right: 0;
+            }
+          }
+
+          &.sub-menu {
+            > a {
+              &::after {
+                transform: rotate(135deg);
+              }
+            }
+
+            > .sub-menu-list {
+              padding-left: 0;
+              padding-right: 20px;
+            }
+            &.open {
+              > a {
+                &::after {
+                  transform: rotate(45deg);
+                }
+              }
+            }
+          }
+        }
+      }
+
+      &.collapsed {
+        .menu > ul {
+          > .menu-item {
+            &.sub-menu {
+              a::after {
+                right: auto;
+                left: 10px;
+              }
+
+              > .sub-menu-list {
+                margin-left: -3px !important;
+              }
+            }
           }
         }
       }
@@ -148,101 +548,24 @@ export default {
   }
 }
 
-.sidebar .text {
-  color: white;
-  font-size: 25px;
-  font-weight: 600;
-  line-height: 65px;
-  text-align: center;
-  background: #1e1e1e;
-  letter-spacing: 1px;
+* {
+  box-sizing: border-box;
 }
-// nav ul {
-//   background: #1b1b1b;
-//   height: 100%;
-//   width: 100%;
-//   list-style: none;
-// }
-// nav ul li {
-//   line-height: 60px;
-//   border-top: 1px solid rgba(255, 255, 255, 0.1);
-// }
-// nav ul li:last-child {
-//   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-// }
-// nav ul li a {
-//   position: relative;
-//   color: white;
-//   text-decoration: none;
-//   font-size: 18px;
-//   padding-left: 40px;
-//   font-weight: 500;
-//   display: block;
-//   width: 100%;
-//   border-left: 3px solid transparent;
-// }
-nav ul li.active a {
-  color: cyan;
-  background: #1e1e1e;
-  border-left-color: cyan;
+
+body {
+  margin: 0;
+  height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: #212529;
 }
-// nav ul li a:hover {
-//   background: #1e1e1e;
-// }
-nav ul ul {
-  position: static;
-  display: none;
+
+a {
+  text-decoration: none;
 }
-nav ul .feat-show.show {
-  display: block;
+
+@media (max-width: 992px) {
+  #btn-collapse {
+    display: none;
+  }
 }
-nav ul .serv-show.show1 {
-  display: block;
-}
-nav ul ul li {
-  line-height: 42px;
-  border-top: none;
-}
-nav ul ul li a {
-  font-size: 17px;
-  color: #e6e6e6;
-  padding-left: 80px;
-}
-nav ul li.active ul li a {
-  color: #e6e6e6;
-  background: #1b1b1b;
-  border-left-color: transparent;
-}
-nav ul ul li a:hover {
-  color: cyan !important;
-  background: #1e1e1e !important;
-}
-nav ul li a span {
-  position: absolute;
-  top: 50%;
-  right: 20px;
-  transform: translateY(-50%);
-  font-size: 22px;
-  transition: transform 0.4s;
-}
-nav ul li a span.rotate {
-  transform: translateY(-50%) rotate(-180deg);
-}
-.content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: #202020;
-  z-index: -1;
-  text-align: center;
-}
-.content .header {
-  font-size: 45px;
-  font-weight: 600;
-}
-.content p {
-  font-size: 30px;
-  font-weight: 500;
-}
-</style> -->
+</style>
