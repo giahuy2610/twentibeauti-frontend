@@ -18,7 +18,7 @@
                 </button>
             </div>
             <div class="confirm-add">
-                <Button type="button" class="btn-add-cart p-button-rounded p-button-secondary flex-row">
+                <Button type="button" class="p-button-rounded p-button-secondary flex-row">
                     <span class="cart"></span>
                     <span class="ml-2 font-bold">Thêm vào giỏ hàng</span>
                 </Button>
@@ -102,10 +102,7 @@ export default {
         .confirm-add
         {
             
-            .btn-add-cart
-            {
-                padding : 14px 23px;
-            }
+            
             .cart:before
             {
                 width: 100%;
