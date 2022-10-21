@@ -15,11 +15,11 @@
           <div class="form-item">
             <span>Hình ảnh</span>
           </div>
-          <input type="file" id="uploadmyfile" ref="fileInput" />
             <div class="image-load" >
+              <input type="file" id="uploadmyfile" ref="fileInput" />
               <Button @click="trigger"  type="button" class="btn-load-img p-button-rounded p-button-outlined p-button-secondary flex-row">
                 <label for="uploadmyfile">
-                  <span class="cart"></span>
+                  <span class="upload"></span>
                   <span class="ml-2">Tải lên</span>
                 </label>
               </Button>
@@ -66,7 +66,7 @@ export default {
         width: 90%;
         border-radius: 5px;
         font-size: 16px;
-        height: 3.575rem;
+        height: 2.65rem;
         text-indent: 10px;
         border-color: var(--border-color);
       }
@@ -75,12 +75,10 @@ export default {
       font-size: 14px;
       line-height: 22px;
       color: var(--text-secondary);
-      margin: 1rem 0rem;
+      margin: 0.5rem 0rem;
     }
   }
-  .btn-load-img {
-    padding: 14px 20px;
-  }
+
   #uploadmyfile
   {
     display: none;
@@ -88,8 +86,9 @@ export default {
   label
   {
     display: flex;
+    cursor: pointer;
   }
-  .cart:before {
+  .upload:before {
     width: 100%;
     height: 100%;
     display: inline-block;
@@ -98,7 +97,7 @@ export default {
     background-size: contain;
     background-repeat: no-repeat;
   }
-  .cart {
+  .upload {
     width: 1.7rem;
     height: 1.7rem;
   }

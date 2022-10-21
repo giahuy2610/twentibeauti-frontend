@@ -7,7 +7,7 @@
     />
     <div class="container-slide" ref="slide">
       <div class="slick-slider">
-        <div class="slick-list">z
+        <div class="slick-list">
           <div class="slick-track">
             <div ref="btn" v-for="(item, index) in illustProducts" :key="index">
               <Button

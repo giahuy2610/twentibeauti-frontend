@@ -6,16 +6,18 @@
         <RatePopup></RatePopup>
         <div class="divider-horizontal"></div>
         <ReviewPopup></ReviewPopup>
+        <ReviewDetailPopup></ReviewDetailPopup>
       </BodyPopup>
     </PopUp>
 </template>
 <script>
-import PopUp from "@/pages/store/product/components/popup/PopUp.vue";
-import HeaderPopup from "@/pages/store/product/components/popup/HeaderPopup.vue";
-import ImagePopup from "@/pages/store/product/components/popup/ImagePopup.vue";
-import BodyPopup from "@/pages/store/product/components/popup/BodyPopup.vue";
-import RatePopup from "@/pages/store/product/components/popup/RatePopup.vue";
-import ReviewPopup from "@/pages/store/product/components/popup/ReviewPopup.vue";
+import PopUp from "@/pages/store/product/components/popupreview/PopUp.vue";
+import HeaderPopup from "@/pages/store/product/components/popupreview/HeaderPopup.vue";
+import ImagePopup from "@/pages/store/product/components/popupreview/ImagePopup.vue";
+import BodyPopup from "@/pages/store/product/components/popupreview/BodyPopup.vue";
+import RatePopup from "@/pages/store/product/components/popupreview/RatePopup.vue";
+import ReviewPopup from "@/pages/store/product/components/popupreview/ReviewPopup.vue";
+import ReviewDetailPopup from "@/pages/store/product/components/popupreview/ReviewDetailPopup.vue";
 
 export default {
   components: {
@@ -25,6 +27,7 @@ export default {
     BodyPopup,
     RatePopup,
     ReviewPopup,
+    ReviewDetailPopup,
   },
   data() {
     return {
