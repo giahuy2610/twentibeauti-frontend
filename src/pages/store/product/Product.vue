@@ -11,7 +11,7 @@
         <AddCart></AddCart>
       </div>
     </div>
-    <div class="seperator"><br /><br /></div>
+    <div class="seperator"> <br><br><br><br> </div>
     <div class="Ads">
       <AdsSlider2></AdsSlider2>
     </div>
@@ -31,25 +31,29 @@ import RatingProduct from "@/pages/store/product/components/RatingProduct.vue";
 import AddCart from "@/pages/store/product/components/AddCart.vue";
 import AdsSlider2 from "@/pages/store/home/components/AdsSlider2.vue";
 import AboutProduct from "@/pages/store/product/components/AboutProduct.vue";
+import RatingDetail from "@/pages/store/product/components/RatingDetail.vue";
+
+
 import Wrapper from "../../Wrapper.vue";
 
 export default {
-  components: {
-    ImageProduct,
-    Breadcrumb,
-    HeaderProduct,
-    RatingProduct,
-    AddCart,
-    AdsSlider2,
-    AboutProduct,
-    Wrapper,
-  },
-  data() {
-    return;
+    components: {
+        ImageProduct,
+        Breadcrumb,
+        HeaderProduct,
+        RatingProduct,
+        AddCart,
+        AdsSlider2,
+        AboutProduct,
+        RatingDetail,
+        Wrapper,
+    },
+    data() 
     {
-      listPrice: 369000;
-    }
-  },
+      return 
+      {
+      };
+    },
 };
 </script>
 
