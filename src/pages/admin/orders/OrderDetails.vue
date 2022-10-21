@@ -3,9 +3,12 @@
       <template v-slot:header>
         <div class="header-wrapper">
           <div class="header-wrapper__left">
-            <button class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
+            <!-- <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
               Quay lại danh sách đơn hàng
-            </button>
+            </i> -->
+            <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
+            </i>
+            Quay lại danh sách đơn hàng
             </div>
           <div class="header-wrapper__right">
             <Button label="Sửa đơn hàng" class="p-button-outlined" style="color:#0088FF" @click="$router.push({ path: '/admin/orderdetails/editorder' })" />

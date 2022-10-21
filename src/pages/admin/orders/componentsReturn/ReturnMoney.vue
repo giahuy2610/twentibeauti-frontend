@@ -8,15 +8,15 @@
                 <div class="content">
                         <div class="row1">
                             <div class="label">Cần hoàn tiền trả hàng</div>
-                            <div class="money">375,000</div>
+                            <div class="money">375.000</div>
                         </div>
                         <div class="row2">
                             <div class="label">Khách cần trả đơn đổi</div>
-                            <div class="money">300,000</div>
+                            <div class="money">300.000</div>
                         </div>
                         <div class="row3">
                             <div class="label">Tổng tiền cần hoàn trả khách</div>
-                            <div class="money">75,000</div>
+                            <div class="money">75.000</div>
                         </div>
                 </div>
             </template>

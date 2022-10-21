@@ -96,6 +96,9 @@ export default {
                 text-align: center;
                 vertical-align: middle;
             }
+            .card {
+                
+            }
         }
         .print-order {
             display:flex;
@@ -121,6 +124,7 @@ export default {
             border: 1px solid #fff;
             background: #fff;
             border-radius: 5px;
+            box-shadow: 3px 3px 3px #D3D5D7;
         }
     }
 </style>

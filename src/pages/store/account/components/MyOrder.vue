@@ -1,4 +1,5 @@
 <template lang="">
+  <Wrapper>
   <div class="myorder" v-for="item in 2">
     <div class="myorder-top">
       <div class="list-items">
@@ -45,10 +46,15 @@
   </div>
   <div class="paginator">
     <Paginator :rows="10" :totalRecords="totalRecords"></Paginator>
-  </div>
+    </div>
+  </Wrapper>
 </template>
 <script>
+import Wrapper from "../../../Wrapper.vue";
 export default {
+  components: {
+    Wrapper,
+  },
   data() {
     return {
       first: 0,
@@ -60,6 +66,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+
 .myorder {
   border: 1px solid #d3d7d3;
   border-radius: 15px;
