@@ -1,21 +1,23 @@
 <template lang="">
   <div class="divider-horizontal"></div>
-  <div id="product-review">
+  <div class="flex-row" id="product-review">
     <LeftSection 
     @popupmsg="() => TogglePopup('buttonTrigger')"
     :TogglePopup="this.TogglePopup"
     :buttonTrigger="this.popupTriggers.buttonTrigger">
     </LeftSection>
-    <PopupReview
+    <RightSection></RightSection>
+  </div>
+  <PopupReview
       v-if="popupTriggers.buttonTrigger"
       :CancelPopup="() => TogglePopup('buttonTrigger')">
     </PopupReview>
-  </div>
 </template>
 
 <script>
 import PopupReview from "@/pages/store/product/components/PopupReview.vue";
 import LeftSection from "@/pages/store/product/components/ratingdetail/LeftSection.vue";
+import RightSection from '@/pages/store/product/components/ratingdetail/RightSection.vue';
 import { ref } from "vue";
 
 export default {
@@ -34,11 +36,16 @@ export default {
   components: {
     PopupReview,
     LeftSection,
+    RightSection,
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
 .divider-horizontal {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   margin: 3rem 0rem;
