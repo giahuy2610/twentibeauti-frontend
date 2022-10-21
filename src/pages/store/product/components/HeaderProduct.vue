@@ -1,7 +1,7 @@
 <template lang="">
     <div class="product-header">
         <div class="brand-name" role="presentation" @click="$router.push({ path: '/collections', replace: true })">TWENTI BEAUTI </div>
-        <h1 class="info-title">Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)</h1>
+        <h1 class="info-title">Mặt Nạ Kỳ Dịu Nhẹ THEFACESHOP SMART PEELING MILD PAPAYA 150ml</h1>
       </div>
 </template>
 <script>
