@@ -1,5 +1,6 @@
 <template lang="">
 <div class="left-section">
+  <div class="section-region">
     <h2 class="header">Đánh giá</h2>
     <div class="flex-row num-review">
         <div><strong>0</strong>&nbsp;Đánh giá</div>
@@ -35,7 +36,7 @@
         <div class="progress-line"></div>
         <div class="num-rate">(0)</div>
     </div>
-    
+  </div>
 </div>
 </template>
 
@@ -50,13 +51,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.section-region{
+  padding-left: 15px;
+  padding-right: 30px;
+}
 .flex-row {
     display: flex;
     flex-direction: row;
     align-items: center;
   }
 .left-section {
-  width: 50% !important;
+  width: 30% !important;
 
   .num-review {
     position: relative;
