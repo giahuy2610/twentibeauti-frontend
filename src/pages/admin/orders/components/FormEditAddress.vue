@@ -5,21 +5,20 @@
         <a href="#" class="overlay-close"></a>
         <div class="modal">
           <div class="modal-content">
-            <a class="m-icon" href="#">
-                &times;                
-            </a>
+           
             <div class="modal-title">
-              <div class="m-head">
+              <slot name="title"></slot>
+              <!-- <div class="m-head">
                 Sửa địa chỉ
-                <slot name="title"></slot>
-              </div>
+               
+              </div> -->
             </div>
             <div class="modal-context">
               <div class="row_namephone">
                 <div class="name"> Họ Tên
                   <span class="p-fluid">
-                    <AutoComplete
-                      v-model="text1"
+                    <InputText
+                      v-model="fullName"
                       :suggestions="filteredFName"
                       @complete="searchFName($event)"
                       optionLabel="name"
@@ -29,8 +28,8 @@
                 </div>
                 <div class="phone"> Số điện thoại
                   <span class="p-fluid">
-                    <AutoComplete
-                      v-model="text2"
+                    <InputText
+                      v-model="phone"
                       :suggestions="filteredPhone"
                       @complete="searchPhone($event)"
                       optionLabel="phone"
@@ -39,10 +38,11 @@
                   </span>
                 </div>
               </div>
-              <div class="row_address"> Địa chỉ cụ thể
+              <div class="row_address"> 
+                <div class="txtAddress">Địa chỉ cụ thể</div>
                 <span class="p-fluid">
-                  <AutoComplete
-                    v-model="home"
+                  <InputText
+                    v-model="address"
                     :suggestions="filteredAddress"
                     @complete="searchAddress($event)"
                     optionLabel="address"
@@ -54,9 +54,9 @@
                 <div class="row-city"> Khu vực
                   <span class="p-fluid">
                     <Dropdown
-                      v-model="selectedCity1"
+                      v-model="selectedCity"
                       :options="cities"
-                      optionLabel="name"
+                      optionLabel="city"
                       optionValue="code"
                       placeholder="Tỉnh/Thành phố - Quận/Huyện"
                     />
@@ -65,9 +65,9 @@
                 <div class="row-ward"> Phường xã
                   <span class="p-fluid">
                     <Dropdown
-                      v-model="selectedDistrict1"
+                      v-model="selectedDistrict"
                       :options="district"
-                      optionLabel="name"
+                      optionLabel="district"
                       optionValue="code"
                       placeholder="Phường/Xã"
                     />
@@ -77,13 +77,13 @@
               <div class="row-email-post">
                 <div class="row-email"> Email
                   <span class="p-fluid">
-                    <Dropdown
-                      v-model="selectedEmail"
-                      :options="email"
-                      optionLabel="name"
-                      optionValue="code"
-                      placeholder="Nhập địa chỉ email"
-                    />
+                    <InputText
+                    v-model="email"
+                    :suggestions="filteredEmail"
+                    @complete="searchEmail($event)"
+                    optionLabel="email"
+                    placeholder="Nhập địa chỉ cụ thể"
+                  />
                   </span>
                 </div>
                 <div class="row-post"> Mã bưu điện
@@ -124,6 +124,13 @@
       return {
         isHidden: false,
         messages: [],
+        fullName: null,
+      phone: null,
+      address: null,
+      selectedCity: null,
+      selectedDistrict: null,
+      email: null,
+      selectedPost: null,
       };
     },
     methods: {
@@ -216,26 +223,7 @@
         }
       }
   
-      .modal-title {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        text-align: center;
-  
-        .m-head {
-          width: 100%;
-          text-align: center;
-          align-items: center;
-          margin-right: 250px;
-          font-size: 24px;
-          line-height: 36px;
-          font-weight: 700;
-          margin: 0;
-          color: rgba(0, 0, 0, 0.85);
-          box-sizing: inherit;
-          
-        }
-      }
+
       .modal-context {
         width: 100%;
         display: block;
@@ -258,6 +246,9 @@
           gap: 15px;
           .name,.phone {
             width: 50%;
+            display: flex;
+          flex-direction: column;
+          gap: 10px;
           }
         }
         .row-city-district,.row-email-post {
@@ -267,10 +258,21 @@
           gap: 15px;
           .row-city,.row-email {
             width: 50%;
+            display: flex;
+          flex-direction: column;
+          gap: 10px;
           }
           .row-ward,.row-post {
             width: 50%;
+            display: flex;
+          flex-direction: column;
+          gap: 10px;
           }
+        }
+        .row_address {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
         }
       }
     }

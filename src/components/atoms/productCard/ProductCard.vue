@@ -1,6 +1,6 @@
 <template lang="">
   <div
-    @click="$router.push({ path: '/product/{{}}', replace: true })"
+    @click="$router.push({ path: '/product/{{}}'})"
     class="product-card"
   >
     <div class="product-card__img">
@@ -10,7 +10,7 @@
       <h4
         class="brand-name--hover"
         @click="
-          $router.push({ path: '/categories/{{brandPath}}', replace: true })
+          $router.push({ path: '/categories/{{brandPath}}'})
         "
       >
         {{ brandName }}

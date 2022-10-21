@@ -134,7 +134,7 @@
           <div class="info-payment">
             <div class="total">
               <div class="label">Tổng tiền</div>
-              <div class="money">300,000</div>
+              <div class="money">300.000</div>
             </div>
             <div class="discount">
               <div class="label">Chiết khấu</div>
@@ -150,7 +150,7 @@
             </div>
             <div class="total-of-cus">
               <div class="label">Khách phải trả</div>
-              <div class="money">300,000</div>
+              <div class="money">300.000</div>
             </div>
           </div>
         </div>
@@ -285,9 +285,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-table-wrapper {
-  
-}
+
 .dialog {
   position: fixed;
   top:0;
@@ -336,6 +334,7 @@ h4 {
     top:5px;
     right:20px;
     text-decoration: none;
+    color:#607d8b;
   }
 }
 .dialog-body {
@@ -368,7 +367,7 @@ h4 {
 }
 }
 .overlay {
-  background-color: rgba(0,0,0,0.85);
+  background-color: rgba(0,0,0,0.3);
 }
 .header{
   display:flex;
@@ -392,6 +391,7 @@ h4 {
 .footer {
   width: 100%;
   .info-payment {
+    justify-content: space-between;
     margin-left: 400px;
     display: flex;
     flex-direction: column;
@@ -414,6 +414,8 @@ h4 {
       }
       .money {
         width: 20%;
+        text-align: right;
+        //float:right;
       }
     }
     .total-of-cus {
@@ -422,10 +424,7 @@ h4 {
   }
 }
 
-::v-deep(.p-paginator) {
-  .p-paginator-current {
-  }
-}
+
 
 ::v-deep(.p-progressbar) {
   height: 0.5rem;

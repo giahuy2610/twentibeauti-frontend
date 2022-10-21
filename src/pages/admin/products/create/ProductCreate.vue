@@ -4,7 +4,7 @@
       <div class="header-wrapper">
         <div
           class="header-wrapper__left flex align-items-center cursor-pointer"
-          @click="$router.push({ path: '/admin/products', replace: true })"
+          @click="$router.push({ path: '/admin/products'})"
         >
           <i class="pi pi-angle-left"></i>
           <span>Quay lại</span>
@@ -14,7 +14,7 @@
           <Button
             label="Xem trước"
             class="p-button-success"
-            @click="$router.push({ path: '/product', replace: true })"
+            @click="$router.push({ path: '/product'})"
           />
           <Button label="Lưu" class="p-button-info" />
         </div>

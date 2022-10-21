@@ -253,7 +253,7 @@
   .footer {
     width: 100%;
     .info-payment {
-      margin-left: 500px;
+      margin-left: 460px;
       display: flex;
       flex-direction: column;
       width: 50%;
@@ -261,6 +261,8 @@
       font-size: 16px;
       line-height: 20px;
       font-weight: 400;
+      justify-content: space-between;
+      
       .total,
       .total-of-cus {
         display: flex;
@@ -271,6 +273,7 @@
           width: 80%;
         }
         .money {
+          text-align: right;
           width: 20%;
           font-weight: 500;
         }
