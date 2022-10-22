@@ -14,7 +14,12 @@
 </template>
 <script>
 export default {
-    props: ["listPrice","retailPrice","discountPercent"]
+    props: ["listPrice","retailPrice","discountPercent"],
+    computed: {
+    calcDiscount() {
+      return parseInt((1 - this.retailPrice / this.listPrice) * 100);
+    },
+  },
 }
 </script>
 <style lang="scss" scoped>
