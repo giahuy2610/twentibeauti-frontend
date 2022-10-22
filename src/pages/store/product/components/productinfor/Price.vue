@@ -1,6 +1,6 @@
 <template lang="">
     <div class="price-row">
-        <h2>{{ Intl.NumberFormat().format(retailPrice) }}đ</h2>
+        <h2 class="m-1 text-primary">{{ Intl.NumberFormat().format(retailPrice) }}đ</h2>
         <p
           v-if="retailPrice !== listPrice"
           style="text-decoration: line-through; margin: 0 20px 0 10px"
