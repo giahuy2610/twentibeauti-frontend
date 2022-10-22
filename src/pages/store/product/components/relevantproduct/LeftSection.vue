@@ -2,7 +2,7 @@
     <div class="left-section">
         <div class="section-region">
           <h2 class="header">Sản phẩm liên quan</h2>
-          <Button class="p-button-secondary p-button-text">
+          <Button class="p-button-secondary p-button-text" @click="$router.push({ path: '/', replace: true })">
             <span>
                 XEM TẤT CẢ SẢN PHẨM LIÊN QUAN
             </span>

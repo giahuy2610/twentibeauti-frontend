@@ -16,6 +16,16 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.divider-horizontal {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    margin-bottom: 3rem;
+    display: flex;
+    clear: both;
+    width: 100%;
+    min-width: 100%;
+    font-size: 14px;
+    line-height: 1.5715;
+  }
 .flex-row {
     position: relative;
     display: flex;

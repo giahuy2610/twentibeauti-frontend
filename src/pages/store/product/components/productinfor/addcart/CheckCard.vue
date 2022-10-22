@@ -1,0 +1,44 @@
+<template lang="">
+    <div class="confirm-add">
+        <Button type="button" class="p-button-rounded p-button-secondary flex-row">
+            <span class="cart"></span>
+            <span class="ml-2 font-bold nowrap">Thêm vào giỏ hàng</span>
+        </Button>
+    </div>
+    <div class="buy">
+        <Button type="button" class="p-button-rounded p-button-success flex-row">
+            <span class="ml-1 font-bold nowrap">MUA NGAY</span>
+        </Button>
+    </div>
+    <div class="add-favourite">
+        <Button type="button" class="pi pi-heart p-button-rounded p-button-outlined" style="width: 3rem"></Button>
+    </div>
+</template>
+<script>
+export default {};
+</script>
+<style lang="scss" scoped>
+Button {
+  height: 3rem;
+}
+.nowrap
+{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.confirm-add {
+  .cart:before {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+    content: "";
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ic_shopping_cart_48px.svg/1024px-Ic_shopping_cart_48px.svg.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+  .cart {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+</style>

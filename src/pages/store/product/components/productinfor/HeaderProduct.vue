@@ -1,11 +1,12 @@
 <template lang="">
     <div class="product-header">
-        <div class="brand-name" role="presentation" @click="$router.push({ path: '/collections', replace: true })">TWENTI BEAUTI </div>
-        <h1 class="info-title">Mặt Nạ Kỳ Dịu Nhẹ THEFACESHOP SMART PEELING MILD PAPAYA 150ml</h1>
+        <div class="brand-name" role="presentation" @click="$router.push({ path: '/collections', replace: true })">{{brandName}}</div>
+        <h1 class="info-title">{{productName}}</h1>
       </div>
 </template>
 <script>
 export default {
+  props: ["productName","brandName"],
     
 }
 </script>
