@@ -23,9 +23,9 @@ export default {
 </script>
 <style lang="scss" scoped>
 .isHover {
-  color: yellow !important;
+  color: #fadb14 !important;
 }
 .isActive {
-  color: yellow !important;
+  color: #fadb14 !important;
 }
 </style>

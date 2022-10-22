@@ -185,6 +185,9 @@ const router = createRouter({
           behavior: 'smooth',
       }
     }
+    if (savedPosition) {
+      return savedPosition;
+    }
     return { top: 0, left: 0 };
   },
   //  mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
