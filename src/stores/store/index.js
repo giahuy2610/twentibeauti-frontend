@@ -8,5 +8,8 @@ export const useIndexStorePinia = defineStore('indexStorePinia', {
       userPoint: 12
     }
   },
+  getters: () => {
+  },
+  actions: () => {},
   persist: true,
 })

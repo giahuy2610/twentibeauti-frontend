@@ -190,7 +190,12 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const store = useIndexStorePinia();
   if (!store.isLoggedIn && to.meta.requiresAuth) {
-    next({ name: "admin login" });
+    next({
+      name: "admin login",
+      query: {
+        nextUrl: to.fullPath,
+      },
+    });
   } else {
     next();
   }
