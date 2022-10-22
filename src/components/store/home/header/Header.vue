@@ -9,6 +9,9 @@
   </Sidebar>
   <div
     class="shadow-2"
+    :class="{
+      relative: $route.path === '/product' || $route.path === '/checkout',
+    }"
     style="
       top: 0;
       width: 100vw;
