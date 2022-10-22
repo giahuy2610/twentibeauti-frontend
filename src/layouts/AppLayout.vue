@@ -1,7 +1,14 @@
 <template lang="">
   <div>
     <Header></Header>
-    <div style="margin-top: 130px"><router-view></router-view></div>
+    <div
+      style="margin-top: 130px"
+      :class="{
+        'm-0': $route.path === '/product' || $route.path === '/checkout',
+      }"
+    >
+      <router-view></router-view>
+    </div>
     <Footer></Footer>
   </div>
 </template>
