@@ -182,6 +182,12 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition;
     }
+    if (to.hash) {
+      return {
+          el: to.hash,
+          behavior: 'smooth',
+      }
+    }
     return { top: 0, left: 0 };
   },
   //  mode: process.env.VUE_APP_ROUTER_MODE_HISTORY === 'true' ? 'history' : 'hash',
