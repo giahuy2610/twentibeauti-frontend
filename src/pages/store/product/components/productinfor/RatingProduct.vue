@@ -4,10 +4,10 @@
             <div class="space-item" >
                 <a href="/product#product-review" class="flex-row">
                     <div class="rate-section">
-                        <Rating v-model="val2" :cancel="false" offIcon="pi pi-star-fill" />
+                        <Rating v-model="ratingStar" :cancel="false" offIcon="pi pi-star-fill" />
                     </div>
                     <div class="num-reviews">
-                        <p>1 Đánh giá</p>
+                        <p>{{numReviews}} Đánh giá</p>
                     </div>
                 </a> 
             </div>
@@ -27,11 +27,7 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      val2: 1,
-    };
-  },
+  props: ["ratingStar","numReviews"],
 };
 </script>
 <style lang="scss" scoped>

@@ -15,30 +15,7 @@
 <script>
 import CustomReview from "../ratingdetail/CustomReview.vue";
 export default {
-  data() {
-    return {
-      reviews: [
-        {
-          numstar: 5,
-          date: "22/10/2022",
-          short: "Sản phẩm tuyệt",
-          long: "Peel da rất tốt",
-        },
-        {
-          numstar: 5,
-          date: "5/5/2022",
-          short: "Chưa sài chưa biết",
-          long: "Ship hơi lâu",
-        },
-        {
-          numstar: 4,
-          date: "7/6/2022",
-          short: "Sản phẩm gây châm chít",
-          long: "Sản phẩm lột lớp sừng trên bề mặt da",
-        },
-      ],
-    };
-  },
+  props: ["reviews"],
 
   components: {
     CustomReview,

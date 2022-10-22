@@ -6,7 +6,7 @@
     :TogglePopup="this.TogglePopup"
     :buttonTrigger="this.popupTriggers.buttonTrigger">
     </LeftSection>
-    <RightSection></RightSection>
+    <RightSection :reviews="this.reviews"></RightSection>
   </div>
   <PopupReview
       v-if="popupTriggers.buttonTrigger"
@@ -21,6 +21,7 @@ import RightSection from '@/pages/store/product/components/ratingdetail/RightSec
 import { ref } from "vue";
 
 export default {
+  props : ["reviews"],
   setup() {
     const popupTriggers = ref({ buttonTrigger: false });
     var TogglePopup = (trigger) => {
