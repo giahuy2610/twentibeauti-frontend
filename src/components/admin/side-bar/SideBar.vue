@@ -8,7 +8,14 @@
         />
       </div>
       <div class="sidebar-layout">
-        <div class="sidebar-header">
+        <div
+          class="sidebar-header"
+          @click="
+            $router.push({
+              path: '/admin/',
+            })
+          "
+        >
           <span
             style="
               width: 100%;
@@ -26,7 +33,10 @@
             <ul>
               <li
                 class="menu-item sub-menu"
-                :class="{ open: selectedSubMenuIndex === index }"
+                :class="{
+                  open: selectedSubMenuIndex === index,
+                  selected: $route.path === item.path,
+                }"
                 v-for="(item, index) in sideItems"
                 @click="
                   selectedSubMenuIndex === index
@@ -34,22 +44,34 @@
                     : (selectedSubMenuIndex = index)
                 "
               >
-                <router-link :to="item.path" class="none-children">
+                <router-link
+                  :to="item.path"
+                  :class="{ 'none-children': item.children == null }"
+                >
                   <span class="menu-icon">
-                    <i class="pi pi-home"></i>
+                    <i class="pi" :class="item.icon"> </i>
                   </span>
                   <span class="menu-title">{{ item.name }}</span>
                 </router-link>
                 <div
                   class="sub-menu-list"
-                  :class="{ block: selectedSubMenuIndex === index }"
+                  :class="{
+                    block:
+                      selectedSubMenuIndex === index ||
+                      (item.children != null
+                        ? item.children.filter(
+                            (child) => child.path === $route.path
+                          ).length > 0
+                        : false),
+                  }"
                 >
                   <ul>
                     <li
                       class="menu-item"
+                      :class="{ selected: $route.path === nestedItem.path }"
                       v-for="(nestedItem, nestedIndex) in item.children"
                     >
-                      <router-link :to="nestedItem.path">
+                      <router-link :to="nestedItem.path" class="none-children">
                         <span class="menu-title">{{ nestedItem.name }}</span>
                       </router-link>
                     </li>
@@ -59,12 +81,22 @@
             </ul>
           </nav>
         </div>
-        <div class="sidebar-footer"><span>Về cửa hàng</span></div>
+        <div
+          class="sidebar-footer flex align-items-center cursor-pointer"
+          @click="
+            isLoggedIn = false;
+            this.$router.go();
+          "
+        >
+          <i class="pi pi-sign-out mr-2"></i><span>Đăng xuất</span>
+        </div>
       </div>
     </aside>
   </div>
 </template>
 <script>
+import { useIndexStorePinia } from "@/stores/admin/index.js";
+import { mapWritableState } from "pinia";
 export default {
   data() {
     return {
@@ -78,7 +110,7 @@ export default {
         },
         {
           name: "Sản phẩm",
-          icon: "pi-home",
+          icon: "pi-database",
           children: [
             {
               name: "Danh sách sản phẩm",
@@ -93,13 +125,13 @@ export default {
         },
         {
           name: "Khuyến mãi",
-          icon: "pi-home",
+          icon: "pi-tags",
           children: null,
           path: "",
         },
         {
           name: "Đơn hàng",
-          icon: "pi-home",
+          icon: "pi-box",
           children: [
             {
               name: "Tạo đơn hàng và giao hàng",
@@ -118,25 +150,31 @@ export default {
         },
         {
           name: "Vận chuyển",
-          icon: "pi-home",
+          icon: "pi-car",
           children: null,
           path: "",
         },
         {
           name: "Khách hàng",
-          icon: "pi-home",
+          icon: "pi-users",
           children: null,
           path: "",
         },
         {
           name: "Yêu cầu hỗ trợ",
-          icon: "pi-home",
+          icon: "pi-inbox",
           children: null,
           path: "",
         },
       ],
     };
   },
+  computed: {
+    ...mapWritableState(useIndexStorePinia, {
+      isLoggedIn: "isLoggedIn",
+    }),
+  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -150,6 +188,10 @@ $border-color: rgba(#535d7d, 0.3);
 
 $sidebar-header-height: 64px;
 $sidebar-footer-height: 64px;
+
+.selected {
+  background-color: rgba(#535d7d, 0.3);
+}
 
 .layout {
   z-index: 1;
@@ -225,6 +267,11 @@ $sidebar-footer-height: 64px;
         white-space: nowrap;
         text-overflow: ellipsis;
       }
+
+      &:hover {
+        color: white;
+        cursor: pointer;
+      }
     }
     .sidebar-content {
       flex-grow: 1;
@@ -241,6 +288,11 @@ $sidebar-footer-height: 64px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+      }
+
+      &:hover {
+        color: white;
+        cursor: pointer;
       }
     }
   }
@@ -337,7 +389,11 @@ $sidebar-footer-height: 64px;
 
         &.sub-menu {
           position: relative;
-          > a {
+          a:has(.none-children) {
+            &::after {
+            }
+          }
+          a:not(.none-children) {
             &::after {
               content: "";
               transition: transform 0.3s;
@@ -347,20 +403,7 @@ $sidebar-footer-height: 64px;
               height: 5px;
               transform: rotate(-45deg);
             }
-
-            &.none-children {
-              &::after {
-                content: "";
-                transition: transform 0.3s;
-                border-right: 2px solid currentcolor;
-                border-bottom: 2px solid currentcolor;
-                width: 5px;
-                height: 5px;
-                transform: rotate(-45deg);
-              }
-            }
           }
-
           > .sub-menu-list {
             padding-left: 20px;
             display: none;
