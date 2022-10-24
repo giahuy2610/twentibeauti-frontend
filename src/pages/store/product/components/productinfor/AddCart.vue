@@ -28,5 +28,6 @@ export default {
     gap: 1.5rem;
     
   }
+  margin-top: 1rem;
 }
 </style>
