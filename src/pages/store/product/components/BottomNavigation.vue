@@ -42,7 +42,7 @@ export default {
     box-shadow: rgb(0 0 0 / 10%) 0px 2px 14px;
     border-radius: 10px;
     background: rgb(255, 255, 255);
-    padding: 12px;
+    padding: 10px;
     margin-bottom: 24px;
     box-sizing: content-box;
     margin-left: auto;

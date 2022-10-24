@@ -107,8 +107,11 @@ export default {
 .slide-enter-active {
   transition: 1s;
 }
-.slide-enter {
-  transform: translate(0, -100%);
+.slide-enter-from {
+  transform: translate(0, 100%);
+}
+.slide-enter-to {
+  transform: translate(0, 0%);
 }
 .slide-leave-to {
   transform: translate(0, 100%);
