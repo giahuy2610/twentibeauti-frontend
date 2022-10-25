@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="button" @click="$router.push({ path: pathRoute, replace: true })">
+  <div class="button" @click="$router.push({ path: pathRoute})">
     {{ message }}
   </div>
 </template>

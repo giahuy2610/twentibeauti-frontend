@@ -21,6 +21,8 @@
         'status',
       ]"
       responsiveLayout="scroll"
+      @rowSelect="onRowSelect"
+      selectionMode="single"
     >
       <template #header>
         <div class="flex justify-content-between align-items-center">
@@ -48,7 +50,21 @@
       <template #empty> No customers found. </template>
       <template #loading> Loading customers data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-
+      <Column field="details" header="Chi tiết" style="min-width: 10rem">
+        <template #body="{ data }">
+          <p
+            @click="
+              $router.push({
+                path: '/admin/products/create',
+                query: { sku: data.id },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+          >
+            Xem chi tiết
+          </p>
+        </template>
+      </Column>
       <Column field="name" header="Tên" sortable style="min-width: 14rem">
         <template #body="{ data }">
           {{ data.name }}
@@ -379,11 +395,26 @@ export default {
         currency: "USD",
       });
     },
+    onRowSelect(event) {
+      this.$toast.add({
+        severity: "info",
+        summary: "Product Selected",
+        detail: "Name: " + event.data.name,
+        life: 3000,
+      });
+    },
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.hover-primary-color {
+  text-decoration: underline;
+  &:hover {
+    color: var(--primary-color);
+  }
+}
+
 .product-table-wrapper {
 }
 
