@@ -1,9 +1,12 @@
 <template lang="">
   <Wrapper>
+    <div class="heading">
+      <Heading></Heading>
+    </div>
     <div class="content">
       <div class="content__top">
-        <a href="/">Trang chủ</a>
-        <h2>{{ title }}</h2>
+        <h5 class="font-light title-content" @click="$router.push({ path: '/'})">Trang chủ</h5>
+        <h2 class="uppercase">{{ title }}</h2>
       </div>
       <div class="content__main">
         <div class="sider">
@@ -11,19 +14,18 @@
         </div>
 
         <div class="products-wrapper">
-          <div class="products-wrapper__top">
+          <div class="products-wrapper__top flex align-items-center">
             <p>{{ countProductsInCollection }} Kết quả</p>
-            <p class="filter-chooser">
-              Lọc theo
+            <p class="filter-chooser" @click="isFilterChose = !isFilterChose">
+              <i class="pi pi-filter-fill"></i>
               <span
                 >{{ filterChooser[filtered]
-                }}<span><i class="pi pi-angle-down"></i></span
+                }}<span><i class="pi" :class="{'pi-angle-down': !isFilterChose,'pi-angle-up': isFilterChose }"></i></span
               ></span>
-            <div class="filter-chooser-card">
-              <p v-for="(item, index) in filterChooser">{{ item }}</p>
+            <div class="filter-chooser-card shadow-3" v-show="isFilterChose">
+              <p v-for="(item, index) in filterChooser" @click="filtered = index" :class="{'text-primary': index === filtered}">{{ item }}</p>
             </div>              
             </p>
-
           </div>
           <div class="products-wrapper__content">
             <div class="item" v-for="(item, index) in 10">
@@ -43,6 +45,7 @@ import Wrapper from "../../Wrapper.vue";
 import CollectionFilterSider from "@/components/atoms/collectionFilterSider/CollectionFilterSider.vue";
 import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
 import ButtonPrimary from "@/components/atoms/buttonPrimary/ButtonPrimary.vue";
+import Heading from "./components/Heading.vue";
 
 export default {
   components: {
@@ -50,12 +53,16 @@ export default {
     CollectionFilterSider,
     ProductCard,
     ButtonPrimary,
+    Heading,
+
   },
   data() {
     return {
       countProductsInCollection: 2,
       filterChooser: ["Giá tăng dần", "Giá giảm dần", "% giảm", "Mua nhiều"],
       filtered: 2, //default: % giảm
+      title: 'The face shop',
+      isFilterChose: false
     };
   },
 };
@@ -70,6 +77,14 @@ export default {
 
   &__top {
     width: 100%;
+
+    .title-content {
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
   }
 
   &__main {
@@ -77,6 +92,7 @@ export default {
     justify-content: space-between;
 
     .sider {
+      width: 100%;
       max-width: 20%;
 
       @include mobile {
@@ -106,8 +122,25 @@ export default {
 
         .filter-chooser {
           position: relative;
+          cursor: pointer;
+          border: 1px solid var(--primary-color);
+          padding: 0.4rem 0.2rem;
+          border-radius: 10px;
+
+
           .filter-chooser-card {
             position: absolute;
+            background-color: #fff;
+            right: 0;
+            padding: 0 1rem;
+            margin-top: 0.5rem;
+            border-radius: 10px;
+            z-index: 3;
+            width: 10rem;
+
+            p:hover {
+              color: var(--primary-color);
+            }
           }
         }
       }
