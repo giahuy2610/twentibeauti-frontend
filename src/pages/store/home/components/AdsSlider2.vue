@@ -31,9 +31,20 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
+@include mobile {
+  .wrapper{
+    width: 250%;
+  }
+}
+@include desktop {
+  .wrapper{
+    width: 100%;
+  }
+}
 .wrapper {
   display: flex;
-  width: 100%;
+  
   box-sizing: border-box;
   justify-content: space-between;
 

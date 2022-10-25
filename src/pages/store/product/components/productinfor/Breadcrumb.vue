@@ -52,10 +52,10 @@ export default {
             text-decoration: underline;
             }
         }
-        :last-child span.twenti-breadcrumb-separator 
+        }
+        li:last-child .twenti-breadcrum-seperator
         {
             display: none;
-        }
         }
     }
 }

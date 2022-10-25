@@ -3,9 +3,10 @@
   <div class="section-region">
     <h2 class="header">Đánh giá</h2>
     <div class="flex-row num-review">
-        <div><strong>3</strong>&nbsp;Đánh giá</div>
+        <div class=""><strong>3</strong>&nbsp;Đánh giá</div>
+        <div class="seperator">&nbsp;</div>
         <Button class="p-button-text" @click="Popup">
-            <span class="review">Viết đánh giá</span>
+            <span class="review" style="white-space: nowrap">Viết đánh giá</span>
         </Button>
     </div>
     <div class="star-rate">
@@ -51,6 +52,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/mixin";
+.star-rate
+{
+  
+}
 .section-region{
   padding-right: 30px;
 }
@@ -60,15 +66,36 @@ export default {
     align-items: center;
   }
 .left-section {
-  width: 30% !important;
+  
+
+  @include mobile {
+    width: 100% !important;
+  }
+  @include desktop {
+    width: 30% !important;;
+  }
 
   .num-review {
     position: relative;
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
 
-    Button {
-      position: absolute;
-      right: 0;
+    .seperator
+    {
+      margin: 0px;
+      position: relative;
+      top: -0.06em;
+      display: inline-block;
+      height: 0.9em;
+      margin: 0 8px;
+      vertical-align: middle;
+      border-top: 0;
+      border-left: 1px solid rgba(0,0,0,.06);
     }
+
   }
 
   .star {

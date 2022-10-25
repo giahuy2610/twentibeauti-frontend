@@ -1,44 +1,44 @@
 <template lang="">
-  <div class="scroll-wrapper" ref="wrapper">
-    <Button
-      @click="scrollUp(), (isClick = !isClick)"
-      icon="pi pi-angle-up "
-      class="pag__btn btn__up p-button p-button-rounded p-button-outlined"
-    />
-    <div class="container-slide" ref="slide">
-      <div class="slick-slider">
-        <div class="slick-list">
-          <div class="slick-track">
-            <div ref="btn" v-for="(item, index) in illustProducts" :key="index">
-              <Button
-                @click="scrollTo(index), (isClick = !isClick)"
-                class="pag__size pag__btn p-button-lg p-button-rounded p-button-outlined"
-                :style="{
-                  backgroundImage: `url(${this.illustProducts[index]})`,
-                }"
-              />
+  <div class="image-product flex-row">
+    <div class="scroll-wrapper" ref="wrapper">
+      <button
+        @click="scrollUp(), (isClick = !isClick), (selectedItem = selectedItem + 1)"
+        class="pag__btn btn__up"
+      ><span class="icon-chevron-thin-up"></span></button>
+      <div class="container-slide" ref="slide">
+        <div class="slick-slider">
+          <div class="slick-list">
+            <div class="slick-track">
+              <div ref="btn" v-for="(item, index) in illustProducts" :key="index">
+                <button
+                  @click="scrollTo(index), (isClick = !isClick), (selectedItem = index)"
+                  class="pag__size pag__item"
+                  :style="{backgroundImage: `url(${this.illustProducts[index]})`}"
+                  :clas="{shadow2: selectedItem == index}"
+                />
+              </div>
             </div>
           </div>
         </div>
       </div>
+      <button
+        @click="scrollDown(), (isClick = !isClick), (selectedItem = selectedItem - 1)"
+        class="pag__btn btn__down"
+      ><span class="icon-chevron-thin-down"></span></button>
     </div>
-    <Button
-      @click="scrollDown(), (isClick = !isClick)"
-      icon="pi pi-angle-down"
-      class="pag__btn btn__down p-button p-button-rounded p-button-outlined"
-    />
-  </div>
-  <div
-    ref="image"
-    class="img__margin"
-    :class="[isClick ? 'img__appear' : 'img__show']"
-  >
-    <img :src="currentImg" alt="Ảnh sản phẩm" />
+    <div
+      ref="image"
+      class="img__margin"
+      :class="[isClick ? 'img__appear' : 'img__show']"
+    >
+      <img class="img" :src="currentImg" alt="Ảnh sản phẩm" />
+    </div>
   </div>
 </template>
 <script>
 export default {
   methods: {
+
     scrollDown() {
       if (this.currentIllust != 1) {
         this.currentIllust--;
@@ -48,8 +48,8 @@ export default {
           this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = this.illustProducts.length;
       }
+      setTimeout(()=>{this.isClick = !this.isClick},100)
       console.log(this.isClick);
-      console.log(this.isClick_1);
     },
     scrollUp() {
       if (this.currentIllust != this.illustProducts.length) {
@@ -60,12 +60,14 @@ export default {
           this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = 1;
       }
+      setTimeout(()=>{this.isClick = !this.isClick},100)
       console.log(this.isClick);
     },
     scrollTo(index) {
       this.$refs.slide.scrollTop +=
         this.$refs.btn[0].offsetHeight * (index + 1 - this.currentIllust);
       this.currentIllust = index + 1;
+      setTimeout(()=>{this.isClick = !this.isClick},100)
       console.log(this.isClick);
     },
     // reset() {
@@ -74,6 +76,7 @@ export default {
   },
   data() {
     return {
+      selectedItem: 0,
       isClick: false,
       isClick_1: true,
       currentIllust: 1,
@@ -100,9 +103,34 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.flex-row{
+  display: flex;
+  flex-direction: row;
+  justify-content : space-evenly
+}
+.image-product
+{
+  width: 100%;
+  
+}
+@import url("@/assets/icomoon/style.css");
+@import "@/scss/mixin";
+
+@include mobile {
+  .scroll-wrapper {
+  display : none
+  }
+}
+@include mini-tablet {
+
+}
+.shadow2{
+    filter: drop-shadow(rgb(184, 193, 202) 0px 0px 10px);
+}
 .scroll-wrapper {
   position: sticky;
   position: -webkit-sticky;
+  padding-top: 5px;
   top: 0;
   margin-top: 10px;
   display: flex;
@@ -116,6 +144,7 @@ export default {
     display: none;
   }
   .container-slide {
+    padding: 1rem 1rem;
     overflow: hidden;
     position: relative;
     .slick-slider {
@@ -140,43 +169,72 @@ export default {
       }
     }
   }
+
   .pag {
     &__btn {
-      margin: 0.5rem;
+      background-color: initial;
+      margin-bottom: 1.7rem;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      height: 3rem !important;
+      width: 3rem !important;
     }
     &__size {
       background-size: 165%;
       background-size: contain;
     }
+    &__item{
+      border: none;
+      margin-bottom: 1.7rem;
+      border-radius: 50%;
+      overflow: hidden;
+      height: 3rem !important;
+      width: 3rem !important;
+    }
+    &__item:active, &__item:focus{
+      filter: drop-shadow(rgb(184, 193, 202) 0px 0px 10px);
+    }
   }
 
   .btn {
     &__up {
+      cursor: auto;
       position: relative;
       z-index: 100;
+      border: none;
     }
 
     &__down {
+      cursor: auto;
       position: relative;
       z-index: 100;
+      border: none;
     }
   }
 }
 .img {
+  min-width: 300px;
+  min-height: 300px;
+  width: auto;
+  height: auto;
+  object-fit: contain
   &__margin {
+    
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     margin-top: 10px;
     object-fit: contain;
-    margin-left: 3rem;
-    margin-right: 6rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     height: 50vh;
   }
   &__appear {
     max-width: 100%;
+    max-height: 100%;
     display: block;
-    animation: fadeIn s;
+    animation: fadeIn 2s;
 
     -webkit-animation: fadeIn 2s;
     -moz-animation: fadeIn 2s;

@@ -1,23 +1,23 @@
 <template lang="">
     <div class="over">
-        <ImageProduct class="sticky"></ImageProduct>
+        <ImageProduct class="imageProduct"></ImageProduct>
         <div class="infor">
           <Breadcrumb></Breadcrumb>
           <div class="product-header-wrapper">
-            <HeaderProduct 
+            <HeaderProduct class="headerProduct"
             :productName="this.productName"
             :brandName="this.brandName"
             ></HeaderProduct>
           </div>
-          <RatingProduct 
+          <RatingProduct class="ratingProduct"
           :ratingStar="this.ratingStar"
           :numReviews="this.numReviews"
           ></RatingProduct>
-          <Price
+          <Price class="price"
           :listPrice="this.listPrice"
           :retailPrice="this.retailPrice"
           :discountPercent="this.discountPercent"></Price>
-          <AddCart></AddCart>
+          <AddCart class="addCart"></AddCart>
         </div>
     </div>
 </template>
@@ -26,10 +26,18 @@ import ImageProduct from "../components/productinfor/ImageProduct.vue";
 import Breadcrumb from "../components/productinfor/Breadcrumb.vue";
 import HeaderProduct from "../components/productinfor/HeaderProduct.vue";
 import RatingProduct from "../components/productinfor/RatingProduct.vue";
-import Price from '../components/productinfor/Price.vue';
+import Price from "../components/productinfor/Price.vue";
 import AddCart from "../components/productinfor/AddCart.vue";
 export default {
-  props: ['productName', 'listPrice', 'retailPrice', 'brandName', 'discountPercent', 'ratingStar','numReviews'],
+  props: [
+    "productName",
+    "listPrice",
+    "retailPrice",
+    "brandName",
+    "discountPercent",
+    "ratingStar",
+    "numReviews",
+  ],
   components: {
     ImageProduct,
     Breadcrumb,
@@ -41,15 +49,35 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.over {
-  display: flex;
-  flex-direction: row;
-  position: relative;
+@import "@/scss/mixin";
+
+@include mobile {
+  .imageProduct {
+    position: relative;
+  }
+  .over {
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+  }
+  .infor {
+  }
+  .addCart{
+    display: none;
+  }
 }
-.sticky {
-  position: sticky;
-  position: -webkit-sticky;
-  top: 0;
-  margin-top: 10px;
+@include mini-tablet {
+}
+@include tablet {
+}
+@include desktop {
+  .imageProduct {
+    position: sticky;
+  }
+  .over {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
 }
 </style>
