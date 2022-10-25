@@ -29,6 +29,7 @@ import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
 import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
+import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -164,6 +165,11 @@ const routes = [
         path: "create_return",
         component: CreateReturn,
       },
+      {
+        name: "theme handling",
+        path: "/theme-handling",
+        component: ThemeHandling,
+      },
     ],
     meta: {
       requiresAuth: true,
@@ -181,9 +187,9 @@ const router = createRouter({
   scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       return {
-          el: to.hash,
-          behavior: 'smooth',
-      }
+        el: to.hash,
+        behavior: "smooth",
+      };
     }
     if (savedPosition) {
       return savedPosition;

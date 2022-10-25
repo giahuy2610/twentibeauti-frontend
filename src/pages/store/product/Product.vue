@@ -87,9 +87,6 @@ export default {
       ],
     };
   },
-  mounted() {
-    window.addEventListener("scroll", this.onScroll);
-  },
   beforeDestroy() {
     window.removeEventListener("scroll", this.onScroll);
   },
@@ -98,6 +95,45 @@ export default {
       this.windowTop =
         window.top.scrollY; /* or: e.target.documentElement.scrollTop */
     },
+  },
+  mounted() {
+    window.addEventListener("scroll", this.onScroll);
+    //this.primaryColor = document.documentElement.style.getPropertyValue('--primary-color');
+    //document.documentElement.style.setProperty('--primary-color', '#fff');
+    let __protocol = document.location.protocol;
+    let __baseUrl = __protocol + "//livechat.fpt.ai/v35/src";
+
+    let prefixNameLiveChat = "twenti";
+    let objPreDefineLiveChat = {
+        appCode: "871880b5f6606337b170c0132e4a0d9f",
+        themes: "",
+        appName: prefixNameLiveChat ? prefixNameLiveChat : "Live support",
+        thumb: "",
+        icon_bot: "",
+      },
+      appCodeHash = window.location.hash.substr(1);
+    if (appCodeHash.length == 32) {
+      objPreDefineLiveChat.appCode = appCodeHash;
+    }
+
+    let fpt_ai_livechat_script = document.createElement("script");
+    fpt_ai_livechat_script.id = "fpt_ai_livechat_script";
+    fpt_ai_livechat_script.src = __baseUrl + "/static/fptai-livechat.js";
+    document.body.appendChild(fpt_ai_livechat_script);
+
+    let fpt_ai_livechat_stylesheet = document.createElement("link");
+    fpt_ai_livechat_stylesheet.id = "fpt_ai_livechat_script";
+    fpt_ai_livechat_stylesheet.rel = "stylesheet";
+    fpt_ai_livechat_stylesheet.href = __baseUrl + "/static/fptai-livechat.css";
+    document.body.appendChild(fpt_ai_livechat_stylesheet);
+
+    fpt_ai_livechat_script.onload = function () {
+      fpt_ai_render_chatbox(
+        objPreDefineLiveChat,
+        __baseUrl,
+        "livechat.fpt.ai:443"
+      );
+    };
   },
 };
 </script>
