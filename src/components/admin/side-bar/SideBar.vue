@@ -150,7 +150,7 @@ export default {
         },
         {
           name: "Vận chuyển",
-          icon: "pi-car",
+          icon: "pi-send",
           children: null,
           path: "",
         },
@@ -165,6 +165,12 @@ export default {
           icon: "pi-inbox",
           children: null,
           path: "",
+        },
+        {
+          name: "Giao diện",
+          icon: "pi-slack",
+          children: null,
+          path: "/theme-handling",
         },
       ],
     };
