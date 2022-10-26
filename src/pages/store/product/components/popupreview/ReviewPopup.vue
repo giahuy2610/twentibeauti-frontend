@@ -40,10 +40,16 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .left {
   padding-left: 10px;
   padding-right: 10px;
-  flex: 0 0 50%;
+  @include desktop {
+    flex: 0 0 50%;
+    }
+    @include mobile {
+      flex: 0 0 100%;
+    }
 }
 .review {
   flex-flow: row wrap;

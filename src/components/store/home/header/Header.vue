@@ -1,5 +1,13 @@
 <template lang="">
   <Sidebar
+    v-model:visible="visibleSidebarMobile"
+    :baseZIndex="10000"
+    position="left"
+    class="p-sidebar-md"
+  >
+    hidden-lg-only
+  </Sidebar>
+  <Sidebar
     v-model:visible="visibleCart"
     :baseZIndex="10000"
     position="right"
@@ -7,6 +15,7 @@
   >
     <Cart></Cart>
   </Sidebar>
+
   <div
     class="shadow-2"
     :class="{
@@ -20,13 +29,7 @@
       background-color: #ffff;
     "
   >
-    <Wrapper
-      style="
-        height: 80px;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      "
-    >
+    <Wrapper id="header-first-row">
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">
           <div
@@ -80,17 +83,52 @@
           ></i>
         </div>
       </div>
+
+      <div class="main-content-mobile">
+        <div class="header-content-mobile">
+          <i class="pi pi-bars" @click="visibleSidebarMobile = true"></i>
+          <div
+            @click="$router.push({ path: '/' })"
+            class="cursor-pointer flex align-items-center"
+          >
+            <img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
+            <h2>TWENTI</h2>
+          </div>
+          <div class="header-content-right-mobile">
+            <i
+              @click="count++"
+              class="pi pi-heart mx-3"
+              style="font-size: 20px"
+            ></i>
+            <i
+              @click="visibleCart = true"
+              class="pi pi-shopping-bag"
+              style="font-size: 20px"
+              v-badge="getCartItemsNumber"
+              v-if="getCartItemsNumber > 0"
+            ></i>
+            <i
+              @click="visibleCart = true"
+              class="pi pi-shopping-bag"
+              style="font-size: 20px"
+              v-else
+            ></i>
+          </div>
+        </div>
+        <span class="searcher p-input-icon-left">
+          <InputText
+            style="border-radius: 30px; width: 100%"
+            type="text"
+            v-model="value2"
+            placeholder="Mặt nạ, dưỡng da, son môi, dưỡng ẩm,..."
+          />
+          <i class="pi pi-search" />
+        </span>
+      </div>
     </Wrapper>
 
     <!--navigation here-->
-    <Wrapper
-      style="
-        height: 50px;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        border-top: 1px solid #d3d7d3;
-      "
-    >
+    <Wrapper id="header-second-row">
       <div class="content flex">
         <div
           class="item-submenu flex"
@@ -135,6 +173,7 @@ export default {
     return {
       count: 9,
       visibleCart: false,
+      visibleSidebarMobile: false,
       hoveredItem: -1,
       dataList: [
         {
@@ -228,12 +267,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 i {
   cursor: pointer;
 }
 
+#header-first-row {
+  height: 80px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+
+  @include mobile {
+    height: 130px;
+  }
+  @include mini-tablet {
+    height: 130px;
+  }
+}
+
+#header-second-row {
+  height: 50px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-top: 1px solid #d3d7d3;
+
+  @include mobile {
+    display: none;
+  }
+  @include mini-tablet {
+    display: none;
+  }
+}
+
 .main-content {
-  display: flex;
+  display: none;
   justify-content: space-between;
 
   .header-wrapper {
@@ -243,6 +310,36 @@ i {
         align-items: center;
         justify-content: center;
       }
+    }
+  }
+
+  @include desktop {
+    display: flex;
+  }
+  @include tablet {
+    display: flex;
+  }
+}
+
+.main-content-mobile {
+  display: none;
+  flex-direction: column;
+
+  @include mobile {
+    display: flex;
+  }
+  @include mini-tablet {
+    display: flex;
+  }
+
+  .header-content-mobile {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .header-content-right-mobile {
+      display: flex;
     }
   }
 }

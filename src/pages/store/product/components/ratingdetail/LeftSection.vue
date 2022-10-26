@@ -69,7 +69,13 @@ export default {
   
 
   @include mobile {
-    width: 100% !important;
+    width: 90% !important;
+  }
+  @include mini-tablet {
+    width: 40% !important;
+  }
+  @include tablet {
+    width: 40% !important;
   }
   @include desktop {
     width: 30% !important;;

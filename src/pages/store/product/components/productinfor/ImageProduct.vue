@@ -159,7 +159,7 @@ export default {
       touch-action: pan-y;
       .slick-list {
         padding: 20px;
-        height: 50vh !important;
+        height: 30vh !important;
         transform: translateZ(0);
         position: relative;
         display: block;

@@ -24,14 +24,12 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "@/scss/mixin";
-.right-section
-{
-    flex-shrink : 1.2;
-}
+
 .section-region {
   width: 100%;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  justify-content: space-between;
 }
 .wrapper__products {
   width: 100%;
@@ -46,12 +44,23 @@ export default {
 
     @include mobile {
       max-width: 50%;
+      
     }
     @include mini-tablet {
       max-width: 50%;
+      .right-section {
+        flex-shrink: 2;
+      }
     }
     @include tablet {
       max-width: 33.33%;
+      .right-section {
+      }
+    }
+    @include desktop {
+      .right-section {
+        flex-shrink: 1.2;
+      }
     }
   }
 }

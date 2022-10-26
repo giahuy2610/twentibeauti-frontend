@@ -72,9 +72,16 @@ export default {
   @include mobile {
     height: 8rem;
   }
+  @include mini-tablet {
+    height: 6rem;
+  }
+  @include tablet {
+    height: 6rem;
+  }
   @include desktop {
     height: 12.5rem;
   }
+
 }
 .right-col {
   .product-content {

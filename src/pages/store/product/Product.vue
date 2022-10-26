@@ -162,10 +162,7 @@ export default {
 }
 
 @include mobile {
-  .bottomNavigation
-  {
-    display : none;
-  }
+  
 
 }
 @include desktop {

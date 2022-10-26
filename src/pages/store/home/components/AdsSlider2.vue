@@ -64,18 +64,18 @@ export default {
     scrollLeft() {
       console.log(this.$refs.slide.scrollLeft, this.$refs.ads[0].offsetWidth);
       this.$refs.slide.scrollLeft -=
-        (window.innerWidth - (this.arrThumbnailScr.length - 1) * 20) /
+        (window.innerWidth - (this.arrThumbnailScr.length - 1) * 5) /
         this.arrThumbnailScr.length;
     },
     scrollRight() {
       console.log(this.$refs.slide.scrollLeft, this.$refs.ads[0].offsetWidth);
-      this.$refs.slide.scrollLeft +=(window.innerWidth - (this.arrThumbnailScr.length - 1) * 20) /this.arrThumbnailScr.length;      
+      this.$refs.slide.scrollLeft +=(window.innerWidth - (this.arrThumbnailScr.length - 1) * 5) /this.arrThumbnailScr.length;      
       console.log("Right");
     },
   },
   data() {
     return {
-      btnLeft: false,
+      btnLeft: true,
       btnRight: true,
       hover: null,
       isLoaded: false,
@@ -101,10 +101,10 @@ export default {
     &__desktop {
       display: none;
     }
+    
   }
 }
-
-@include desktop {
+@include mini-tablet {
   .wrapper {
     width: 100%;
 
@@ -113,8 +113,28 @@ export default {
     }
   }
 }
+@include tablet {
+  .wrapper {
+    width: 100%;
+
+    &__mobile {
+      display: none;
+    }
+  }
+}
+@include desktop {
+  .wrapper {
+    width: 100%;
+
+    &__mobile {
+      display: none;
+    }
+    
+  }
+}
 
 .wrapper {
+  margin-top: 30px;
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
@@ -131,6 +151,9 @@ export default {
       box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
       transition: all 0.3s ease 0s;
       cursor: pointer;
+    }
+    &:nth-child(2n) {
+      margin: 0 10px;
     }
   }
 

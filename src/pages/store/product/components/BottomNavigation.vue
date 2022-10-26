@@ -2,7 +2,7 @@
   <div class="bottom-navigation">
     <div class="region">
       <div class="item bottom_animation">
-        <ProductBottom
+        <ProductBottom class="productBottom"
           :productName="this.productName"
           :listPrice="this.listPrice"
           :retailPrice="this.retailPrice"
@@ -28,6 +28,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/mixin";
+
+@include mobile {
+  .productBottom{
+    display : none,
+  }
+
+}
 .bottom-navigation {
   position: fixed;
   bottom: 0px;
