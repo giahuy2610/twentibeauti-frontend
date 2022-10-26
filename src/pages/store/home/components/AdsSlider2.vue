@@ -19,7 +19,7 @@
   <div class="wrapper">
     <div class="wrapper__mobile">
       <button v-show="btnLeft" @click="scrollLeft()" class="pag__btn btn__up">
-        <span class="icon-chevron-thin-up"></span>
+        <span class="icon-chevron-thin-left"></span>
       </button>
       <div class="scroll-wrapper" ref="wrapper">
         <div class="container-slide" ref="slide">
@@ -43,7 +43,7 @@
         </div>
       </div>
       <button v-show="btnRight" @click="scrollRight()" class="pag__btn btn__down">
-        <span class="icon-chevron-thin-down"></span>
+        <span class="icon-chevron-thin-right"></span>
       </button>
     </div>
   </div>
@@ -159,6 +159,7 @@ export default {
 
   &__mobile {
     position: relative;
+    align-items: center;
 
     .pag {
       &__btn {

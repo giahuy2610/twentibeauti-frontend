@@ -34,6 +34,13 @@ export default {
   .productBottom{
     display : none,
   }
+  
+
+}
+@include mini-tablet {
+  .productBottom{
+    display : none,
+  }
 
 }
 .bottom-navigation {
@@ -76,6 +83,7 @@ export default {
       align-items: center;
       -webkit-box-pack: justify;
       justify-content: space-between;
+      margin: 0 auto;
     }
   }
 }
@@ -83,6 +91,7 @@ export default {
   max-width: 100%;
   display: block;
   animation: 10s slidein;
+  
   @keyframes slidein {
     from {
 

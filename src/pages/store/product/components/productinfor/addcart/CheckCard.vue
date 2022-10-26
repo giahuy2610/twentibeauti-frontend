@@ -3,7 +3,7 @@
     <div class="group">
         <div class="confirm-add">
             <Button type="button" class="p-button-rounded p-button-secondary flex-row">
-                <span class="cart"></span>
+                <span class="icon-shopping-bag"></span>
                 <span class="ml-2 font-bold nowrap">Thêm vào giỏ hàng</span>
             </Button>
         </div>
@@ -24,6 +24,7 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
+@import url("@/assets/icomoon/style.css");
 @import "@/scss/mixin";
 
 Button {
@@ -51,13 +52,26 @@ Button {
     }
 }
 
+@include mini-tablet {
+  .group{
+    gap:5px
+  }
+  .cart{
+    display: none;
+  }
+  .flex-align {
+      gap:5px;
+      flex-direction: row-reverse;
+  }
+}
+
 .nowrap {
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
 .confirm-add {
-    .cart:before {
+    /* .cart:before {
         width: 100%;
         height: 100%;
         display: inline-block;
@@ -65,7 +79,7 @@ Button {
         background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ic_shopping_cart_48px.svg/1024px-Ic_shopping_cart_48px.svg.png");
         background-size: contain;
         background-repeat: no-repeat;
-    }
+    } */
 
     .cart {
         width: 2rem;

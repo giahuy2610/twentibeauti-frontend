@@ -19,7 +19,7 @@
               <input type="file" id="uploadmyfile" ref="fileInput" />
               <Button @click="trigger"  type="button" class="btn-load-img p-button-rounded p-button-outlined p-button-secondary flex-row">
                 <label for="uploadmyfile">
-                  <span class="upload"></span>
+                  <span class="icon-upload-to-cloud"></span>
                   <span class="ml-2">Tải lên</span>
                 </label>
               </Button>
@@ -40,6 +40,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import url("@/assets/icomoon/style.css");
 @import "@/scss/mixin";
 .left {
   padding-left: 10px;
@@ -93,7 +94,9 @@ export default {
   {
     display: flex;
     cursor: pointer;
+    align-items: center;
   }
+  /*
   .upload:before {
     width: 100%;
     height: 100%;
@@ -107,5 +110,6 @@ export default {
     width: 1.7rem;
     height: 1.7rem;
   }
+  */
 }
 </style>
