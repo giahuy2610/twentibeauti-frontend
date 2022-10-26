@@ -21,8 +21,8 @@ export default {};
 </script>
 <style lang="scss" scoped>
 .region {
-  padding-left: 10px;
-  padding-right: 10px;
+  
+  padding: 10px;
   flex: 0 0 100%;
   width: 100%;
 }

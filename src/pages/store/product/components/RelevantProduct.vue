@@ -1,6 +1,5 @@
 <template lang="">
-    <div class="divider-horizontal"></div>
-    <div class="flex-row">
+    <div class="flex-align">
         <LeftSection></LeftSection>
         <RightSection></RightSection>
     </div>
@@ -16,6 +15,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .divider-horizontal {
     border-top: 1px solid rgba(0, 0, 0, 0.06);
     margin-bottom: 3rem;
@@ -26,10 +26,14 @@ export default {
     font-size: 14px;
     line-height: 1.5715;
   }
-.flex-row {
-    position: relative;
+  .flex-align {
+    @include mobile {
+    display: flex;
+    flex-direction: column;}
+    @include desktop {
     display: flex;
     flex-direction: row;
-}
+    }
+  }
 
 </style>

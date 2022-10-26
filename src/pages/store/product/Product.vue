@@ -1,38 +1,44 @@
 <template lang="">
-  <Wrapper>
-    <ProductInfor
-      :productName="this.productName"
-      :listPrice="this.listPrice"
-      :retailPrice="this.retailPrice"
-      :brandName="this.brandName"
-      :discountPercent="this.discountPercent"
-      :ratingStar="this.ratingStar"
-      :numReviews="this.reviews.length"
-    ></ProductInfor>
-    <div class="seperator"><br /><br /><br /><br /></div>
-    <div class="Ads">
-      <AdsSlider2></AdsSlider2>
-    </div>
-    <div class="about">
-      <AboutProduct></AboutProduct>
-    </div>
-    <div class="detail-rating">
-      <RatingDetail :reviews="this.reviews"></RatingDetail>
-    </div>
-    <div class="relevant-product">
-      <RelevantProduct></RelevantProduct>
-    </div>
-    <div class="bottom-navigation">
-      <Transition name="slide">
-        <BottomNavigation
+  <div class="home__wrapper">
+    <Wrapper>
+      <div class="home__wrapper__content"></div>
+      <ProductInfor
+        :productName="this.productName"
+        :listPrice="this.listPrice"
+        :retailPrice="this.retailPrice"
+        :brandName="this.brandName"
+        :discountPercent="this.discountPercent"
+        :ratingStar="this.ratingStar"
+        :numReviews="this.reviews.length"
+      ></ProductInfor>
+      <div class="seperator"></div>
+      <div class="Ads">
+        <AdsSlider2></AdsSlider2>
+      </div>
+      <div class="divider-horizontal"></div>
+      <div class="about">
+        <AboutProduct></AboutProduct>
+      </div>
+      <div class="detail-rating">
+        <RatingDetail :reviews="this.reviews"></RatingDetail>
+      </div>
+      <div class="divider-horizontal"></div>
+      <div class="relevant-product">
+        <RelevantProduct></RelevantProduct>
+      </div>
+      <div class="bottom-navigation">
+        <Transition name="slide">
+          <BottomNavigation
+          class="bottomNavigation"
           :productName="this.productName"
           :listPrice="this.listPrice"
           :retailPrice="this.retailPrice"
           v-show="windowTop >= 400"
         ></BottomNavigation>
-      </Transition>
-    </div>
-  </Wrapper>
+        </Transition>
+      </div>
+    </Wrapper>
+  </div>
 </template>
 
 <script>
@@ -139,7 +145,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
 @import "@/scss/mixin";
+
+.home__wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+
+  &__content {
+    width: 100%;
+  }
+}
+
+@include mobile {
+  
+
+}
+@include desktop {
+  
+}
 .slide-leave-active,
 .slide-enter-active {
   transition: 1s;
@@ -153,6 +181,15 @@ export default {
 .slide-leave-to {
   transform: translate(0, 100%);
 }
-
-
+.seperator{
+  margin: 10px 0px;
+}
+.divider-horizontal {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  margin: 1rem 0rem;
+  display: flex;
+  clear: both;
+  font-size: 14px;
+  line-height: 1.5715;
+}
 </style>

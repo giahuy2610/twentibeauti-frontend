@@ -26,22 +26,38 @@ export default {};
   cursor: pointer;
 }
 .item-breadcrumb {
-  font-size: 12px;
-  line-height: 18px;
-  text-size-adjust: 100%;
-  margin-bottom: 5px;
-  ol {
-    list-style-type: none;
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0;
-    padding: 0;
-    li:last-child  {
-      .twenti-breadcrum-seperator
-      {
-        display: none;
-      }
-      
+    font-size: 12px;
+    line-height: 18px;
+    text-size-adjust: 100%;
+    margin-bottom: 5px;
+    ol {
+        list-style-type: none;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0;
+        padding: 0;
+        li {
+        span
+        {
+            margin: 0px 2px;
+            p {
+            display: inline;
+            color: #797979;
+            background-color: transparent;
+            transition: color 0.3s;
+            text-decoration: none;
+            touch-action: manipulation;
+            }
+            p:hover {
+            color: #000000;
+            text-decoration: underline;
+            }
+        }
+        }
+        li:last-child .twenti-breadcrum-seperator
+        {
+            display: none;
+        }
     }
     li {
       span {
@@ -61,6 +77,4 @@ export default {};
       }
     }
   }
-
-}
 </style>

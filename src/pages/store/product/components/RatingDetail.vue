@@ -1,6 +1,6 @@
 <template lang="">
   <div class="divider-horizontal"></div>
-  <div class="flex-row" id="product-review">
+  <div class="flex-align" id="product-review">
     <LeftSection 
     @popupmsg="() => TogglePopup('buttonTrigger')"
     :TogglePopup="this.TogglePopup"
@@ -17,11 +17,11 @@
 <script>
 import PopupReview from "@/pages/store/product/components/PopupReview.vue";
 import LeftSection from "@/pages/store/product/components/ratingdetail/LeftSection.vue";
-import RightSection from '@/pages/store/product/components/ratingdetail/RightSection.vue';
+import RightSection from "@/pages/store/product/components/ratingdetail/RightSection.vue";
 import { ref } from "vue";
 
 export default {
-  props : ["reviews"],
+  props: ["reviews"],
   setup() {
     const popupTriggers = ref({ buttonTrigger: false });
     var TogglePopup = (trigger) => {
@@ -43,9 +43,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.flex-row {
-  display: flex;
-  flex-direction: row;
+@import "@/scss/mixin";
+.flex-align {
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+  }
+  @include desktop {
+    display: flex;
+    flex-direction: row;
+  }
 }
 .divider-horizontal {
   border-top: 1px solid rgba(0, 0, 0, 0.06);

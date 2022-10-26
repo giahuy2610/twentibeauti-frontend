@@ -2,7 +2,7 @@
   <div class="bottom-navigation">
     <div class="region">
       <div class="item bottom_animation">
-        <ProductBottom
+        <ProductBottom class="productBottom"
           :productName="this.productName"
           :listPrice="this.listPrice"
           :retailPrice="this.retailPrice"
@@ -28,6 +28,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/mixin";
+
+@include mobile {
+  .productBottom{
+    display : none,
+  }
+  
+
+}
+@include mini-tablet {
+  .productBottom{
+    display : none,
+  }
+
+}
 .bottom-navigation {
   position: fixed;
   bottom: 0px;
@@ -68,6 +83,7 @@ export default {
       align-items: center;
       -webkit-box-pack: justify;
       justify-content: space-between;
+      margin: 0 auto;
     }
   }
 }
@@ -75,6 +91,7 @@ export default {
   max-width: 100%;
   display: block;
   animation: 10s slidein;
+  
   @keyframes slidein {
     from {
 
