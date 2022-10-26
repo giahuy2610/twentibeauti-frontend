@@ -147,8 +147,9 @@
           <i v-if="item.isHover" class="pi pi-angle pi-angle-down"></i>
         </div>
         {{ hoveredItem }}
-      </div> -->
-      <HeaderNavigation/>
+      </div>
+      -->
+      <HeaderNavigation />
     </Wrapper>
   </div>
   <!-- <div
@@ -175,7 +176,7 @@ import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
-import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue"
+import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 export default {
   data() {
     return {
@@ -264,7 +265,7 @@ export default {
   components: {
     Cart,
     Wrapper,
-    HeaderNavigation
+    HeaderNavigation,
   },
   computed: {
     ...mapState(useCartStorePinia, {
