@@ -25,11 +25,11 @@
     <div class="bottom-navigation">
       <Transition name="slide">
         <BottomNavigation
-        :productName="this.productName"
-        :listPrice="this.listPrice"
-        :retailPrice="this.retailPrice"
-        v-show="windowTop >= 400"
-      ></BottomNavigation>
+          :productName="this.productName"
+          :listPrice="this.listPrice"
+          :retailPrice="this.retailPrice"
+          v-show="windowTop >= 400"
+        ></BottomNavigation>
       </Transition>
     </div>
   </Wrapper>
@@ -139,6 +139,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .slide-leave-active,
 .slide-enter-active {
   transition: 1s;
@@ -151,4 +152,7 @@ export default {
 }
 .slide-leave-to {
   transform: translate(0, 100%);
-}</style>
+}
+
+
+</style>
