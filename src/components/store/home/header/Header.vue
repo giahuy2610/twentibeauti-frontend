@@ -127,8 +127,8 @@
       </div>
     </Wrapper>
 
-    <!--navigation here-->
-    <Wrapper
+  <Wrapper
+    
       style="
         height: 50px;
         padding-top: 0 !important;
@@ -136,21 +136,8 @@
         border-top: 1px solid #d3d7d3;
       "
     >
-      <div class="content flex">
-        <div
-          class="item-submenu flex"
-          v-for="(item, index) in dataList"
-          @mouseover="hoveredItem = index"
-          @mouseout="hoveredItem = -1"
-        >
-          <p>{{ item.name }}</p>
-          <i v-if="item.isHover" class="pi pi-angle pi-angle-down"></i>
-        </div>
-        {{ hoveredItem }}
-      </div>
-      -->
-      <HeaderNavigation />
-    </Wrapper>
+      <HeaderNavigation/>
+  </Wrapper>
   </div>
   <!-- <div
     class="sub-menu-wrapper"
@@ -179,88 +166,7 @@ import { mapState, mapActions } from "pinia";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 export default {
   data() {
-    return {
-      count: 9,
-      visibleCart: false,
-      hoveredItem: -1,
-      dataList: [
-        {
-          name: "Khuyến mãi",
-          path: null,
-          isHover: true,
-          subnavData: [
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-          ],
-        },
-        {
-          name: "Thương hiệu",
-          path: "/brands",
-          isHover: true,
-          subnavData: [
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-          ],
-        },
-        {
-          name: "Sản phẩm",
-          path: "/collections",
-          isHover: false,
-          subnavData: [
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-          ],
-        },
-      ],
-    };
+    
   },
   components: {
     Cart,
@@ -644,5 +550,8 @@ h2 {
 .header-wrapper__content__right-group-buttons {
   display: flex;
   align-items: center;
+}
+.content{
+  height: 50px;
 }
 </style>
