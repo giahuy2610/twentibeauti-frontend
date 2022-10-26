@@ -128,7 +128,14 @@
     </Wrapper>
 
     <!--navigation here-->
-    <Wrapper id="header-second-row">
+    <Wrapper
+      style="
+        height: 50px;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        border-top: 1px solid #d3d7d3;
+      "
+    >
       <div class="content flex">
         <div
           class="item-submenu flex"
@@ -140,7 +147,8 @@
           <i v-if="item.isHover" class="pi pi-angle pi-angle-down"></i>
         </div>
         {{ hoveredItem }}
-      </div>
+      </div> -->
+      <HeaderNavigation/>
     </Wrapper>
   </div>
   <!-- <div
@@ -167,13 +175,12 @@ import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
-
+import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue"
 export default {
   data() {
     return {
       count: 9,
       visibleCart: false,
-      visibleSidebarMobile: false,
       hoveredItem: -1,
       dataList: [
         {
@@ -257,6 +264,7 @@ export default {
   components: {
     Cart,
     Wrapper,
+    HeaderNavigation
   },
   computed: {
     ...mapState(useCartStorePinia, {
