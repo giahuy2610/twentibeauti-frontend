@@ -1,63 +1,63 @@
 <template lang="">
-    <div class="footer-wrapper">
-      <div class="footer-wrapper__subscribe">
-        <div class="footer-wrapper__subscribe__content">
-          <div class="footer-wrapper__subscribe__content__left">
-            <h3>NHẬN BẢN TIN LÀM ĐẸP</h3>
-            <h5>Đừng bỏ lỡ hàng ngàn sản phẩm và khuyến mãi siêu hấp dẫn</h5>
-          </div>
-          <div class="footer-wrapper__subscribe__content__right">
-            <span class="p-input-icon-left">
-              <i class="pi pi-search" />
-              <InputText
-                type="text"
-                v-model="value3"
-                placeholder="Email của bạn iu là"
-                style="border-radius: 10000px"
-              />
-            </span>
-          </div>
+  <div class="footer-wrapper">
+    <div class="footer-wrapper__subscribe">
+      <div class="footer-wrapper__subscribe__content">
+        <div class="footer-wrapper__subscribe__content__left">
+          <h3>NHẬN BẢN TIN LÀM ĐẸP</h3>
+          <h5>Đừng bỏ lỡ hàng ngàn sản phẩm và khuyến mãi siêu hấp dẫn</h5>
+        </div>
+        <div class="footer-wrapper__subscribe__content__right">
+          <span class="p-input-icon-left mb-3">
+            <i class="pi pi-search" />
+            <InputText
+              type="text"
+              v-model="value3"
+              placeholder="Email của bạn iu là"
+              style="border-radius: 10000px; width: 100%"
+            />
+          </span>
         </div>
       </div>
-
-      <Wrapper class="footer">
-        <div class="contain">
-          <div class="col">
-            <h1>TWENTI BEAUTI</h1>
-            <ul>
-              <li>Về chúng tôi</li>
-              <li>Câu chuyện thương hiệu</li>
-              <li>Liên hệ với chúng tôi</li>
-            </ul>
-          </div>
-          <div class="col">
-            <h1>CHĂM SÓC KHÁCH HÀNG</h1>
-            <ul>
-              <li>Đăng kí tài khoản thành viên</li>
-              <li>Hướng dẫn mua hàng online</li>
-              <li>Chính sách khách hàng thân thiết</li>
-              <li>Giao hàng và thanh toán</li>
-              <li>Chinha sách đổi hàng</li>
-              <li>Điều khoản mua bán hàng hoá</li>
-            </ul>
-          </div>
-          <div class="col">
-            <h1>ĐỐI TÁC-LIÊN KẾT</h1>
-            <ul>
-              <li>Beauty-box</li>
-            </ul>
-          </div>
-          <div class="col social">
-            <h1>Social media</h1>
-            <ul>
-              <li><i class="pi pi-facebook" style="font-size: 2rem" ></i></li>
-              <li><i class="pi pi-twitter" style="font-size: 2rem"></i></li>
-              <li><i class="pi pi-instagram" style="font-size: 2rem"></i></li>
-            </ul>
-          </div>
-        </div>
-      </Wrapper>
     </div>
+
+    <Wrapper class="footer">
+      <div class="contain">
+        <div class="col">
+          <h1>TWENTI BEAUTI</h1>
+          <ul>
+            <li>Về chúng tôi</li>
+            <li>Câu chuyện thương hiệu</li>
+            <li>Liên hệ với chúng tôi</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>CHĂM SÓC KHÁCH HÀNG</h1>
+          <ul>
+            <li>Đăng kí tài khoản thành viên</li>
+            <li>Hướng dẫn mua hàng online</li>
+            <li>Chính sách khách hàng thân thiết</li>
+            <li>Giao hàng và thanh toán</li>
+            <li>Chính sách đổi hàng</li>
+            <li>Điều khoản mua bán hàng hoá</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>ĐỐI TÁC-LIÊN KẾT</h1>
+          <ul>
+            <li>Beauty-box</li>
+          </ul>
+        </div>
+        <div class="col social">
+          <h1>Social media</h1>
+          <ul>
+            <li><i class="pi pi-facebook" style="font-size: 2rem"></i></li>
+            <li><i class="pi pi-twitter" style="font-size: 2rem"></i></li>
+            <li><i class="pi pi-instagram" style="font-size: 2rem"></i></li>
+          </ul>
+        </div>
+      </div>
+    </Wrapper>
+  </div>
 </template>
 <script>
 import Wrapper from "@/pages/Wrapper.vue";
@@ -68,10 +68,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-$desktop: 1280px;
-$lg: 1024px;
-$md: 768px;
-$sm: 568px;
+@import "@/scss/mixin";
 
 .footer-wrapper {
   &__subscribe {
@@ -82,10 +79,8 @@ $sm: 568px;
     justify-content: space-around;
     padding: 0 50px;
 
-    @mixin MediaQuery($sm) {
-      @media screen and (max-width: $sm) {
-        padding: 0;
-      }
+    @include mobile {
+      height: fit-content;
     }
 
     &__content {
@@ -94,6 +89,26 @@ $sm: 568px;
       display: flex;
       justify-content: space-around;
       align-items: center;
+
+      @include mobile {
+        flex-direction: column;
+      }
+
+      &__left {
+        text-align: center;
+      }
+
+      &__right {
+        .p-input-icon-left {
+          @include mobile {
+            width: 100%;
+          }
+        }
+
+        @include mobile {
+          width: 100%;
+        }
+      }
     }
   }
 
@@ -110,7 +125,6 @@ $sm: 568px;
       max-width: 1400px;
       display: flex;
       justify-content: space-between;
-   
     }
   }
 }
