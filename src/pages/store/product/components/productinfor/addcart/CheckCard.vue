@@ -54,13 +54,13 @@ Button {
 
 @include mini-tablet {
   .group{
-    gap:5px
+    gap:15px
   }
   .cart{
     display: none;
   }
   .flex-align {
-      gap:5px;
+      gap:15px;
       flex-direction: row-reverse;
   }
 }
