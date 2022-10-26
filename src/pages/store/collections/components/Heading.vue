@@ -37,17 +37,15 @@
       <div class="description-content">
         <DescriptionVue></DescriptionVue>
       </div>
-      
     </div>
     <div class="ads-slider">
       <AdsSlider></AdsSlider>
     </div>
-    
   </div>
 </template>
 <script>
 import WallpaperVue from "./Wallpaper.vue";
-import AdsSlider from '@/pages/store/home/components/AdsSlider2.vue';
+import AdsSlider from "@/pages/store/home/components/AdsSlider2.vue";
 import DescriptionVue from "@/pages/store/product/components/aboutproduct/RightAbout.vue";
 export default {
   components: {
@@ -64,6 +62,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .heading-wrapper {
   display: flex;
   flex-direction: column;
@@ -83,7 +82,6 @@ export default {
     margin-top: -4rem;
     z-index: 2;
 
-
     .logo-img {
       width: 120px;
       height: 120px;
@@ -100,7 +98,11 @@ export default {
     justify-content: center;
 
     .description-content {
-      width: 80%;
+      width: 100%;
+
+      @include desktop {
+        width: 80%;
+      }
     }
   }
 
