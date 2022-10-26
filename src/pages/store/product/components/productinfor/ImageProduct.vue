@@ -2,7 +2,7 @@
   <div class="image-product flex-row">
     <div class="scroll-wrapper" ref="wrapper">
       <button
-        @click="scrollUp(), (isClick = !isClick), (selectedItem = selectedItem + 1)"
+        @click="scrollUp(), (isClick = !isClick)"
         class="pag__btn btn__up"
       ><span class="icon-chevron-thin-up"></span></button>
       <div class="container-slide" ref="slide">
@@ -14,7 +14,7 @@
                   @click="scrollTo(index), (isClick = !isClick), (selectedItem = index)"
                   class="pag__size pag__item"
                   :style="{backgroundImage: `url(${this.illustProducts[index]})`}"
-                  :clas="{shadow2: selectedItem == index}"
+                  :class="{shadow2: selectedItem == index}"
                 />
               </div>
             </div>
@@ -22,7 +22,7 @@
         </div>
       </div>
       <button
-        @click="scrollDown(), (isClick = !isClick), (selectedItem = selectedItem - 1)"
+        @click="scrollDown(), (isClick = !isClick)"
         class="pag__btn btn__down"
       ><span class="icon-chevron-thin-down"></span></button>
     </div>
@@ -31,14 +31,13 @@
       class="img__margin"
       :class="[isClick ? 'img__appear' : 'img__show']"
     >
-      <img class="img" :src="currentImg" alt="Ảnh sản phẩm" />
+      <img class="img__size" :src="currentImg" alt="Ảnh sản phẩm" />
     </div>
   </div>
 </template>
 <script>
 export default {
   methods: {
-
     scrollDown() {
       if (this.currentIllust != 1) {
         this.currentIllust--;
@@ -48,8 +47,16 @@ export default {
           this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = this.illustProducts.length;
       }
-      setTimeout(()=>{this.isClick = !this.isClick},100)
-      console.log(this.isClick);
+      if (this.selectedItem <= 0)
+      {
+        this.selectedItem = this.illustProducts.length - 1;
+      }
+      else this.selectedItem = this.selectedItem - 1;
+      setTimeout(() => {
+        this.isClick = !this.isClick;
+      }, 100);
+      // console.log(this.isClick);
+      console.log(this.selectedItem);
     },
     scrollUp() {
       if (this.currentIllust != this.illustProducts.length) {
@@ -60,15 +67,27 @@ export default {
           this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
         this.currentIllust = 1;
       }
-      setTimeout(()=>{this.isClick = !this.isClick},100)
-      console.log(this.isClick);
+      if (this.selectedItem >= this.illustProducts.length - 1)
+      {
+        this.selectedItem = 0;
+      }
+      else this.selectedItem = this.selectedItem + 1;
+      
+      setTimeout(() => {
+        this.isClick = !this.isClick;
+      }, 100);
+      // console.log(this.isClick);
+      console.log(this.selectedItem);
     },
     scrollTo(index) {
       this.$refs.slide.scrollTop +=
         this.$refs.btn[0].offsetHeight * (index + 1 - this.currentIllust);
       this.currentIllust = index + 1;
-      setTimeout(()=>{this.isClick = !this.isClick},100)
+      setTimeout(() => {
+        this.isClick = !this.isClick;
+      }, 100);
       console.log(this.isClick);
+      console.log(this.selectedItem);
     },
     // reset() {
     //   this.isClick = !this.isClick;
@@ -103,29 +122,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.flex-row{
+.flex-row {
   display: flex;
   flex-direction: row;
-  justify-content : space-evenly
-}
-.image-product
-{
-  width: 100%;
   
 }
+
 @import url("@/assets/icomoon/style.css");
 @import "@/scss/mixin";
 
-@include mobile {
-  .scroll-wrapper {
-  display : none
-  }
-}
-@include mini-tablet {
 
-}
-.shadow2{
-    filter: drop-shadow(rgb(184, 193, 202) 0px 0px 10px);
+.shadow2 {
+  filter: drop-shadow(rgb(184, 193, 202) 0px 0px 10px);
 }
 .scroll-wrapper {
   position: sticky;
@@ -135,7 +143,6 @@ export default {
   margin-top: 10px;
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
   scroll-behavior: smooth;
   flex-basis: 100px;
   align-items: center;
@@ -169,7 +176,6 @@ export default {
       }
     }
   }
-
   .pag {
     &__btn {
       background-color: initial;
@@ -184,16 +190,13 @@ export default {
       background-size: 165%;
       background-size: contain;
     }
-    &__item{
+    &__item {
       border: none;
       margin-bottom: 1.7rem;
       border-radius: 50%;
       overflow: hidden;
       height: 3rem !important;
       width: 3rem !important;
-    }
-    &__item:active, &__item:focus{
-      filter: drop-shadow(rgb(184, 193, 202) 0px 0px 10px);
     }
   }
 
@@ -214,21 +217,24 @@ export default {
   }
 }
 .img {
-  min-width: 300px;
-  min-height: 300px;
+  
+  &__size{
+  
+  position: relative;
+  display: block;
+  max-height: 350px;
+  max-width: 350px;
   width: auto;
   height: auto;
-  object-fit: contain
+  }
+  
   &__margin {
-    
     position: sticky;
     position: -webkit-sticky;
     top: 0;
     margin-top: 10px;
-    object-fit: contain;
     margin-left: 2rem;
     margin-right: 2rem;
-    height: 50vh;
   }
   &__appear {
     max-width: 100%;
@@ -301,6 +307,25 @@ export default {
         height: 80%;
       }
     }
+  }
+}
+
+@include mobile {
+  .scroll-wrapper {
+    display: none;
+  }
+  .image-product {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+  }
+}
+@include mini-tablet {
+  
+}
+@include desktop {
+  .image-product {
+    gap: 2rem;
   }
 }
 </style>

@@ -65,10 +65,17 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
+
 .shorten {
-    height: 12.5rem;
-    overflow: hidden;
+  overflow: hidden;
+  @include mobile {
+    height: 8rem;
   }
+  @include desktop {
+    height: 12.5rem;
+  }
+}
 .right-col {
   .product-content {
     position: relative;
