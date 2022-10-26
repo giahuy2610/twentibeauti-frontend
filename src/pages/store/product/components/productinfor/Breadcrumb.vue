@@ -19,11 +19,12 @@
       </div>
 </template>
 <script>
-export default {
-    
-}
+export default {};
 </script>
 <style lang="scss" scoped>
+.breadcrumb-link {
+  cursor: pointer;
+}
 .item-breadcrumb {
     font-size: 12px;
     line-height: 18px;
@@ -58,5 +59,22 @@ export default {
             display: none;
         }
     }
-}
+    li {
+      span {
+        margin: 0px 2px;
+        p {
+          display: inline;
+          color: #797979;
+          background-color: transparent;
+          transition: color 0.3s;
+          text-decoration: none;
+          touch-action: manipulation;
+        }
+        p:hover {
+          color: #000000;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 </style>

@@ -22,7 +22,12 @@
           <template #content>
             <div class="">
               <LineChartVue></LineChartVue>
-              <LineChartVue></LineChartVue>
+              <div class="" style="width: 45%">
+                <DoughnutVue></DoughnutVue>
+              </div>
+              <div class="" style="width: 45%">
+                <PolarAreaVue></PolarAreaVue>
+              </div>
             </div>
           </template>
         </Card>
@@ -33,10 +38,14 @@
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
 import LineChartVue from "./components/LineChart.vue";
+import DoughnutVue from "./components/Doughnut.vue";
+import PolarAreaVue from "./components/PolarArea.vue";
 export default {
   components: {
     AdminBlankPage,
     LineChartVue,
+    DoughnutVue,
+    PolarAreaVue,
   },
   data() {
     return {};
@@ -50,10 +59,7 @@ export default {
   justify-content: space-between;
   align-items: center;
 
-
-
   &__left {
-
   }
 
   &__right {

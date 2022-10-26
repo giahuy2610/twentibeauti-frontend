@@ -6,5 +6,11 @@ export const useIndexStorePinia = defineStore('indexStorePinia', {
         isLoggedIn: false
     }
   },
+  actions: {
+    logout() {
+      this.isLoggedIn = false;
+      // this.$route.push({path:});
+    }
+  },
   persist: true,
 })
