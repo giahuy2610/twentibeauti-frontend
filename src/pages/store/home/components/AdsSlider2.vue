@@ -9,13 +9,17 @@
 <div class="wrapper">
     <div class="wrapper__mobile">
         <div class="scroll-wrapper" ref="wrapper">
-            <div class="region">
-                <div class="container-slide" ref="slide">
-                    <button @click="scrollRight(), (isClick = !isClick), (selectedItem = selectedItem + 1)" class="pag__btn btn__up"><span class="icon-chevron-thin-up"></span></button>
-                    <div class="slide-list">
-                        <img v-for="(item, index) in arrThumbnailScr" @click="$router.push({ path: '/collections/'}), (isClick = !isClick), (selectedItem = index)" :src="item" alt="sale thumbnail" :clas="{shadow2: selectedItem == index}" />
+            <div class="container-slide" ref="slide">
+                <div class="region">
+                    <div class="gap">
+                        <div class="horizon-scroll">
+                            <button @click="scrollRight(), (isClick = !isClick), (selectedItem = selectedItem + 1)" class="pag__btn btn__up"><span class="icon-chevron-thin-up"></span></button>
+                            <div class="slide-list">
+                                <img v-for="(item, index) in arrThumbnailScr" @click="$router.push({ path: '/collections/'}), (isClick = !isClick), (selectedItem = index)" :src="item" alt="sale thumbnail" :clas="{shadow2: selectedItem == index}" />
+                            </div>
+                            <button @click="scrollLeft(), (isClick = !isClick), (selectedItem = selectedItem - 1)" class="pag__btn btn__down"><span class="icon-chevron-thin-down"></span></button>
+                        </div>
                     </div>
-                    <button @click="scrollLeft(), (isClick = !isClick), (selectedItem = selectedItem - 1)" class="pag__btn btn__down"><span class="icon-chevron-thin-down"></span></button>
                 </div>
             </div>
         </div>
@@ -102,62 +106,70 @@ export default {
       &::-webkit-scrollbar {
         display: none;
       }
-      .region {
-        height: 100%;
 
-        .container-slide {
-          padding-left: 0px !important;
-          padding-right: 0px !important;
-          display: block;
-          flex: 0 0 100%;
-          max-width: 100%;
-          gap: 10px;
-          margin: -20px -12px;
+      .container-slide {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+        display: block;
+        flex: 0 0 100%;
+        max-width: 100%;
+        min-height: 1px;
+        position: relative;
+
+        .region {
           height: 100%;
-          display: flex;
-          position: relative;
 
-          .slide-list {
-            padding: 20px 12px;
-            -webkit-box-pack: justify;
-            justify-content: space-between;
+          .gap {
             gap: 10px;
-            display: flex;
-            height: max-content;
-            overflow-y: hidden;
-            position: relative;
-            width: 100%;
-          }
 
-          .pag {
-            &__btn {
-              position: absolute;
-              top: 50%;
-              transform: translateY(-50%);
-              width: 48px;
-              height: 48px;
-              background: rgb(255, 255, 255);
-              box-shadow: rgb(184 193 202) 0px 0px 10px;
-              border: none;
+            .horizon-scroll {
+              margin: -20px -12px;
+              height: 100%;
+              position: relative;
               display: flex;
-              -webkit-box-align: center;
-              align-items: center;
-              -webkit-box-pack: center;
-              justify-content: center;
-              border-radius: 100%;
-              cursor: pointer;
-              z-index: 10;
-              user-select: auto !important;
-            }
-          }
+              .slide-list {
+                padding: 20px 12px;
+                -webkit-box-pack: justify;
+                justify-content: space-between;
+                gap: 10px;
+                display: flex;
+                height: max-content;
+                overflow-y: hidden;
+                position: relative;
+                width: 100%;
+              }
 
-          .btn {
-            &__up {
-              left: 2px;
-            }
+              .pag {
+                &__btn {
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  width: 48px;
+                  height: 48px;
+                  background: rgb(255, 255, 255);
+                  box-shadow: rgb(184 193 202) 0px 0px 10px;
+                  border: none;
+                  display: flex;
+                  -webkit-box-align: center;
+                  align-items: center;
+                  -webkit-box-pack: center;
+                  justify-content: center;
+                  border-radius: 100%;
+                  cursor: pointer;
+                  z-index: 10;
+                  user-select: auto !important;
+                }
+              }
 
-            &__down {
-              right: 2px;
+              .btn {
+                &__up {
+                  left: 15px;
+                }
+
+                &__down {
+                  right: 15px;
+                }
+              }
             }
           }
         }
