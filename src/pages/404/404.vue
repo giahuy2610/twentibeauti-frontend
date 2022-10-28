@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="a404-wrapper"><img src="@/assets/404.png" alt="" /></div>
+  <div class="a404-wrapper"><img src="@/assets/404.png" alt="404" class="w-full" /></div>
 </template>
 <script>
 export default {};
