@@ -1,8 +1,7 @@
 <template lang="">
-     
-      
   <div>
     <MegaMenu :model="items" />
+    <!-- <MegaMenu :model="items" orientation="vertical" /> -->
   </div>
 </template>
 <script>
@@ -12,7 +11,7 @@ export default {
       items: [
         {
           label: "Khuyến mãi",
-        //   icon: "pi pi-angle pi-angle-down",
+
           items: [
             [
               {
@@ -26,47 +25,24 @@ export default {
         },
         {
           label: "Thương hiệu",
-        //   icon: "pi-angle-down",
+          //   icon: "pi-angle-down",
           items: [
             [
               {
-               
                 items: [{ label: "THEFACESHOP" }],
               },
               {
-               
                 items: [{ label: "CNP" }],
               },
             ],
-         
           ],
         },
         {
           label: "Sản phẩm mới",
-        //   icon: "pi pi-fw pi-calendar",
-        //   items: [
-        //     [
-        //       {
-        //         label: "Trang điểm mặt",
-        //         items: [{ label: "Kem nền" }, { label: "Kem lót" }],
-        //       },
-        //       {
-        //         label: "Trang điểm môi",
-        //         items: [{ label: "Dưỡng môi" }, { label: "Son bóng" }],
-        //       },
-        //     ],
-        //     [
-        //       {
-        //         label: "Trang điểm mắt",
-        //         items: [{ label: "Kẻ mắt" }, { label: "Kẻ lông mày" }],
-        //       },
-              
-        //     ],
-        //   ],
         },
         {
           label: "Trang điểm",
-        
+
           items: [
             [
               {
@@ -83,13 +59,12 @@ export default {
                 label: "Trang điểm mắt",
                 items: [{ label: "Kẻ mắt" }, { label: "Kẻ lông mày" }],
               },
-              
             ],
           ],
         },
         {
           label: "Dưỡng da",
-        
+
           items: [
             [
               {
@@ -106,18 +81,20 @@ export default {
                 label: "Mặt nạ",
                 items: [{ label: "Mặt nạ ngủ" }, { label: "Mặt nạ dưỡng" }],
               },
-              
             ],
           ],
         },
         {
           label: "Chăm sóc cơ thể",
-        
+
           items: [
             [
               {
                 label: "Chăm sóc BODY",
-                items: [{ label: "Dưỡng cơ thể" }, { label: "Tẩy tế bào chết " }],
+                items: [
+                  { label: "Dưỡng cơ thể" },
+                  { label: "Tẩy tế bào chết " },
+                ],
               },
               {
                 label: "Chăm sóc tóc",
@@ -129,14 +106,12 @@ export default {
                 label: "Chăm sóc tay/chân",
                 items: [{ label: "Dưỡng da" }, { label: "Tẩy tế bào chết" }],
               },
-              
             ],
           ],
         },
         {
           label: "Nhận mã ưu đãi",
-        }
-
+        },
       ],
     };
   },
@@ -146,15 +121,24 @@ export default {
 .p-megamenu {
   padding: 0;
 
-  border:none;
+  border: none;
 }
-@media screen and (max-width: 800px) {
 
-.p-megamenu-root-list{
-    display: none;
-  }
+:deep(.p-megamenu-root-list) {
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
 }
-:deep(.p-megamenu-root-list){
-    justify-content:space-between;
+.p-megamenu {
+  border-radius: 20px;
+}
+:deep(.p-megamenu-panel) {
+  border-radius: 14px;
+}
+@media screen and (max-width: 1067px) {
+  
+  :deep(.p-megamenu .p-megamenu-root-list > .p-menuitem > .p-menuitem-link) {
+    padding: 0;
+  }
 }
 </style>

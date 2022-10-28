@@ -5,7 +5,7 @@
     position="left"
     class="p-sidebar-md"
   >
-    hidden-lg-only
+<!-- <HeaderNavigation className= -->
   </Sidebar>
   <Sidebar
     v-model:visible="visibleCart"
