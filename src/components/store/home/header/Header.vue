@@ -134,6 +134,7 @@
         padding-bottom: 0 !important;
         border-top: 1px solid #d3d7d3;
       "
+      id="hidden-when-small-screen"
     >
       <HeaderNavigation />
     </Wrapper>
@@ -187,6 +188,15 @@ export default {
 @import "@/scss/mixin";
 i {
   cursor: pointer;
+}
+
+#hidden-when-small-screen {
+  @include mobile {
+    display: none;
+  }
+  @include mini-tablet {
+    display: none;
+  }
 }
 
 #header-first-row {
