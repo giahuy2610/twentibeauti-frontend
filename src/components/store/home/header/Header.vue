@@ -127,8 +127,7 @@
       </div>
     </Wrapper>
 
-  <Wrapper
-    
+    <Wrapper
       style="
         height: 50px;
         padding-top: 0 !important;
@@ -136,8 +135,8 @@
         border-top: 1px solid #d3d7d3;
       "
     >
-      <HeaderNavigation/>
-  </Wrapper>
+      <HeaderNavigation />
+    </Wrapper>
   </div>
   <!-- <div
     class="sub-menu-wrapper"
@@ -166,7 +165,10 @@ import { mapState, mapActions } from "pinia";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 export default {
   data() {
-    
+    return {
+      visibleSidebarMobile: false,
+      visibleCart: false,
+    };
   },
   components: {
     Cart,
@@ -551,7 +553,7 @@ h2 {
   display: flex;
   align-items: center;
 }
-.content{
+.content {
   height: 50px;
 }
 </style>
