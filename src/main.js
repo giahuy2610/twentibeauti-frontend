@@ -126,4 +126,6 @@ app.component("ColorPicker", ColorPicker);
 
 app.directive("badge", BadgeDirective);
 
+app.config.globalProperties.$API_URL = "https://localhost:7101/weatherforecast";
+
 app.mount("#app");
