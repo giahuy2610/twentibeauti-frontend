@@ -68,12 +68,12 @@ export default {
     .imageProduct {
         display: block;
         flex: 0 0 45.83333333%;
-        max-width: 45.83333333%;
+        
     }
     .infor {
         display: block;
         flex: 0 0 54.16666667%;
-        max-width: 54.16666667%;
+        
     }
     .over {
         display: flex;

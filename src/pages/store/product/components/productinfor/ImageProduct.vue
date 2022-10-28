@@ -24,7 +24,14 @@ export default {
   }
 }
 @include mini-tablet {
-  
+  .mobile {
+    display: none;
+  }
+}
+@include tablet {
+  .mobile {
+    display: none;
+  }
 }
 @include desktop {
   .mobile {

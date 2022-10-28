@@ -32,12 +32,14 @@ Button {
 }
 .group{
   display: flex;
+  flex-wrap: wrap;
   gap:10px;
 }
 .flex-align {
   gap:10px;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 @include mobile {
     .group{
@@ -64,7 +66,18 @@ Button {
       flex-direction: row-reverse;
   }
 }
-
+@include tablet {
+    .group{
+      gap:15px
+    }
+    .cart{
+      display: none;
+    }
+    .flex-align {
+        gap:15px;
+        flex-direction: row-reverse;
+    }
+  }
 .nowrap {
     white-space: nowrap;
     text-overflow: ellipsis;

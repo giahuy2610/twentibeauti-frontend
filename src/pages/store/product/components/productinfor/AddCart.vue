@@ -26,7 +26,6 @@ export default {
 .add-cart-align {
   .item {
     gap: 1rem;
-    
   }
   margin-top: 1rem;
 }

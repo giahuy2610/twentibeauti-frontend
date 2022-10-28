@@ -124,6 +124,28 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import url("@/assets/icomoon/style.css");
+@import "@/scss/mixin";
+@media mini-tablet {
+  .image_size{
+    max-width: 500px;
+    width: 100%;
+    height: auto;
+  }
+}
+@media tablet {
+  .image_size{
+    height: auto;
+    max-width: 400px;
+    width: 100%;
+  }
+}
+@media desktop {
+  .image_size{
+    width: 100%;
+    height: auto;
+    width: 400px;
+  }
+}
 .image-product {
     gap: 2rem;
     display: flex;
@@ -184,7 +206,7 @@ export default {
         width: 3rem !important;
       }
       &__size {
-        background-size: 165%;
+        background-size: 100%;
         background-size: contain;
       }
       &__item {
@@ -214,13 +236,11 @@ export default {
     }
   }
   .img {
-    
     &__size{
     
     position: relative;
     display: block;
-    max-height: 350px;
-    max-width: 350px;
+    border-radius: 10px;
     width: auto;
     height: auto;
     }
@@ -230,7 +250,7 @@ export default {
       position: -webkit-sticky;
       top: 0;
       margin-top: 10px;
-      margin-left: 2rem;
+      
       margin-right: 2rem;
     }
     &__appear {
