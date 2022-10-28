@@ -20,43 +20,7 @@
       </div>
     </div>
 
-    <Wrapper class="footer">
-      <div class="contain">
-        <div class="col">
-          <h1>TWENTI BEAUTI</h1>
-          <ul>
-            <li>Về chúng tôi</li>
-            <li>Câu chuyện thương hiệu</li>
-            <li>Liên hệ với chúng tôi</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h1>CHĂM SÓC KHÁCH HÀNG</h1>
-          <ul>
-            <li>Đăng kí tài khoản thành viên</li>
-            <li>Hướng dẫn mua hàng online</li>
-            <li>Chính sách khách hàng thân thiết</li>
-            <li>Giao hàng và thanh toán</li>
-            <li>Chính sách đổi hàng</li>
-            <li>Điều khoản mua bán hàng hoá</li>
-          </ul>
-        </div>
-        <div class="col">
-          <h1>ĐỐI TÁC-LIÊN KẾT</h1>
-          <ul>
-            <li>Beauty-box</li>
-          </ul>
-        </div>
-        <div class="col social">
-          <h1>Social media</h1>
-          <ul>
-            <li><i class="pi pi-facebook" style="font-size: 2rem"></i></li>
-            <li><i class="pi pi-twitter" style="font-size: 2rem"></i></li>
-            <li><i class="pi pi-instagram" style="font-size: 2rem"></i></li>
-          </ul>
-        </div>
-      </div>
-    </Wrapper>
+ 
   </div>
 </template>
 <script>
@@ -71,6 +35,8 @@ export default {
 @import "@/scss/mixin";
 
 .footer-wrapper {
+  width: 100%;
+
   &__subscribe {
     height: 100px;
     background-color: #162818;
