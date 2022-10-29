@@ -30,6 +30,7 @@ import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
 import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
 import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
+import AdminPromotion from "../pages/admin/promotion/AdminPromotion.vue"; 
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -167,9 +168,14 @@ const routes = [
       },
       {
         name: "theme handling",
-        path: "/theme-handling",
+        path: "theme-handling",
         component: ThemeHandling,
       },
+      {
+        name: "promotion",
+        path: "promotion",
+        component: AdminPromotion,
+      }
     ],
     meta: {
       requiresAuth: true,

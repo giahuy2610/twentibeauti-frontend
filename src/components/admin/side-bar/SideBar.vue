@@ -127,7 +127,7 @@ export default {
           name: "Khuyến mãi",
           icon: "pi-tags",
           children: null,
-          path: "",
+          path: "/admin/promotion",
         },
         {
           name: "Đơn hàng",
@@ -170,7 +170,7 @@ export default {
           name: "Giao diện",
           icon: "pi-slack",
           children: null,
-          path: "/theme-handling",
+          path: "/admin/theme-handling",
         },
       ],
     };
