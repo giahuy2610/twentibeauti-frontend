@@ -20,6 +20,7 @@
       </div>
     </div>
 
+<<<<<<< HEAD
     <Wrapper class="footer">
       <div class="contain" style ="display:flex">
          <div class="col social">
@@ -59,6 +60,9 @@
        
       </div>
     </Wrapper>
+=======
+ 
+>>>>>>> e63bda6f3f361e3342ea37dee4583429f6e29c0a
   </div>
 </template>
 <script>
@@ -73,6 +77,8 @@ export default {
 @import "@/scss/mixin";
 
 .footer-wrapper {
+  width: 100%;
+
   &__subscribe {
     height: 100px;
     background-color: #162818;
