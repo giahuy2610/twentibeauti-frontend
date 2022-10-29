@@ -19,17 +19,30 @@
         </div>
       </div>
     </div>
-
-<<<<<<< HEAD
     <Wrapper class="footer">
-      <div class="contain" style ="display:flex">
-         <div class="col social">
+      <div class="contain" style="display: flex">
+        <div class="col social">
           <h2 class="nameBrand" style="font-size: 36px">THEFACESHOP</h2>
           <h1>SOCIAL DEMIA</h1>
           <ul>
-            <li><i class="pi pi-facebook" style="font-size: 2rem; margin-right:10px"></i></li>
-            <li><i class="pi pi-twitter" style="font-size: 2rem; margin-right:10px"></i></li>
-            <li><i class="pi pi-instagram" style="font-size: 2rem; margin-right:10px"></i></li>
+            <li>
+              <i
+                class="pi pi-facebook"
+                style="font-size: 2rem; margin-right: 10px"
+              ></i>
+            </li>
+            <li>
+              <i
+                class="pi pi-twitter"
+                style="font-size: 2rem; margin-right: 10px"
+              ></i>
+            </li>
+            <li>
+              <i
+                class="pi pi-instagram"
+                style="font-size: 2rem; margin-right: 10px"
+              ></i>
+            </li>
           </ul>
         </div>
         <div class="col">
@@ -57,12 +70,8 @@
             <li>Beauty-box</li>
           </ul>
         </div>
-       
       </div>
     </Wrapper>
-=======
- 
->>>>>>> e63bda6f3f361e3342ea37dee4583429f6e29c0a
   </div>
 </template>
 <script>
@@ -136,8 +145,8 @@ export default {
     }
 
     @include mobile {
-        flex-direction: column;
-      }
+      flex-direction: column;
+    }
   }
 }
 .footer {
@@ -147,13 +156,11 @@ export default {
   background-color: #fff;
 }
 .footer .col {
- 
   height: auto;
   float: left;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  
 }
 .footer .col h1 {
   margin: 0;
@@ -176,7 +183,7 @@ export default {
   color: #464242;
   font-size: 14px;
   font-family: inherit;
- 
+
   padding: 5px 0px 5px 0px;
   cursor: pointer;
   transition: 0.2s;
@@ -185,7 +192,6 @@ export default {
 }
 .social ul li {
   display: inline-block;
- 
 }
 
 .footer .col ul li:hover {
@@ -201,13 +207,9 @@ export default {
 .foot {
   border-top: 1px solid #e2e2e2;
 }
-@media screen and (max-width: 784px){
-  .contain{
-flex-direction: column;
-
+@media screen and (max-width: 784px) {
+  .contain {
+    flex-direction: column;
+  }
 }
-  
-}
-
-
 </style>
