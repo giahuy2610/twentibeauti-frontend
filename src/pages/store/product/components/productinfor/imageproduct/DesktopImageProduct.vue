@@ -136,14 +136,15 @@ export default {
   .image_size{
     height: auto;
     max-width: 400px;
-    width: 100%;
+    width: auto\9;
   }
 }
 @media desktop {
-  .image_size{
-    width: 100%;
+  .image__size{
+    max-width: 100%;
     height: auto;
-    width: 400px;
+    width: auto\9;
+    
   }
 }
 .image-product {
@@ -237,12 +238,8 @@ export default {
   }
   .img {
     &__size{
-    
     position: relative;
-    display: block;
-    border-radius: 10px;
-    width: auto;
-    height: auto;
+    border-radius: 10px;   
     }
     
     &__margin {
@@ -250,12 +247,10 @@ export default {
       position: -webkit-sticky;
       top: 0;
       margin-top: 10px;
-      
       margin-right: 2rem;
     }
     &__appear {
-      max-width: 100%;
-      max-height: 100%;
+      
       display: block;
       animation: fadeIn 2s;
   

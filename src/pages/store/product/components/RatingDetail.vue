@@ -2,6 +2,7 @@
   <div class="divider-horizontal"></div>
   <div class="flex-align" id="product-review">
     <LeftSection 
+    :reviews="this.reviews"
     @popupmsg="() => TogglePopup('buttonTrigger')"
     :TogglePopup="this.TogglePopup"
     :buttonTrigger="this.popupTriggers.buttonTrigger">

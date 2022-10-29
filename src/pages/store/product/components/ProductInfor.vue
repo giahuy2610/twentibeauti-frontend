@@ -62,24 +62,39 @@ export default {
 
 @include mini-tablet {}
 
-@include tablet {}
+@include tablet {
+    .imageProduct {
+        position: relative;
+    }
+    .over {
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        
+    }
+    .imageProduct {
+        display: block;
+        margin : 0 auto;
+    }
+}
 
 @include desktop {
     .imageProduct {
         display: block;
-        flex: 0 0 45.83333333%;
-        
+        width: 50%;
+        position: relative;
     }
     .infor {
         display: block;
-        flex: 0 0 54.16666667%;
-        
+        width: 50%;
+        position: relative;
     }
     .over {
         display: flex;
         flex-direction: row;
         position: relative;
         gap: 3rem;
+        
     }
 }
 </style>
