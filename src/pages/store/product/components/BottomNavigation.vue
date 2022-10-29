@@ -53,6 +53,7 @@ export default {
     width: 90%;
 
     .item {
+      
       gap: 22px;
       display: flex;
       -webkit-box-align: center;
@@ -60,6 +61,8 @@ export default {
       -webkit-box-pack: justify;
       justify-content: space-between;
       width: 100%;
+      white-space: nowrap;
+      overflow:hidden
     }
 
     .button {
@@ -68,7 +71,9 @@ export default {
       align-items: center;
       -webkit-box-pack: justify;
       justify-content: space-between;
-      margin: 0 auto;
+      
+      float: right;
+      right: 0px;
     }
   }
 }
@@ -97,6 +102,9 @@ export default {
       .item {
         gap: 0px;
       }
+      .button{
+        margin: 0 auto;
+      }
     }
     .productBottom {
       display: none;
@@ -106,6 +114,37 @@ export default {
 @include mini-tablet {
   .productBottom {
     display: none;
+  }
+  .region {
+    width: 100%;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    justify-content: space-around;
+    .item {
+      gap: 0px;
+    }
+    .button{
+      margin: 0 auto;
+    }
+  }
+}
+@include tablet {
+  .productBottom {
+    width: 40%;
+  }
+  .region {
+    max-width: 100%;
+    margin-bottom: 0px;
+    border-radius: 0px;
+    justify-content: space-around;
+    .item {
+      gap: 0px;
+    }
+  }
+}
+@include desktop {
+  .productBottom {
+    width: 50%;
   }
 }
 </style>
