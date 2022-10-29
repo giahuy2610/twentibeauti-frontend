@@ -29,19 +29,6 @@ export default {
 
 <style lang="scss" scoped>
 @import "@/scss/mixin";
-
-@include mobile {
-  .productBottom{
-    display : none,
-  }
-
-}
-@include mini-tablet {
-  .productBottom{
-    display : none,
-  }
-
-}
 .bottom-navigation {
   position: fixed;
   bottom: 0px;
@@ -61,7 +48,7 @@ export default {
     box-sizing: content-box;
     margin-left: auto;
     margin-right: auto;
-    
+
     position: relative;
     width: 90%;
 
@@ -76,7 +63,6 @@ export default {
     }
 
     .button {
-      gap: 15px;
       display: flex;
       -webkit-box-align: center;
       align-items: center;
@@ -90,16 +76,40 @@ export default {
   max-width: 100%;
   display: block;
   animation: 10s slidein;
-  
+
   @keyframes slidein {
     from {
-
       height: 100%;
     }
     100% {
-
       height: 80%;
     }
+  }
+}
+
+@include mobile {
+  .bottom-navigation {
+    .region {
+      width: 100%;
+      margin-bottom: 0px;
+      border-radius: 0px;
+      justify-content: none;
+      top: 0px;
+      .item {
+        gap: 0px;
+      }
+      .button {
+        margin: 0;
+      }
+    }
+    .productBottom {
+      display: none;
+    }
+  }
+}
+@include mini-tablet {
+  .productBottom {
+    display: none;
   }
 }
 </style>
