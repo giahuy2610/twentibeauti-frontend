@@ -10,7 +10,15 @@
             </Button>
         </div>
         <div class="star-rate">
-            <i v-for="index in 5" class="pi pi-star-fill star"></i>
+            <Rating v-model="averageRating" :readonly="true" :cancel="false" offIcon="pi pi-star-fill" >
+                <template #officon>
+                    <i class="pi pi-star-fill star"></i>
+                </template>
+                <template #onicon>
+                    <i class="onicon pi pi-star-fill star" ></i>
+                </template>
+            </Rating>
+            
         </div>
         <div class="rate flex-row">
             <div class="score">5</div>
@@ -66,7 +74,6 @@ export default {
             average_4: 0,
             count_star_5: 0,
             average_5: 0,
-            totalRatings: 0,
             averageRating: 0,
         };
     },
@@ -92,7 +99,7 @@ export default {
         this.average_3 = this.count_star_3 / this.reviews.length * 100;
         this.average_4 = this.count_star_4 / this.reviews.length * 100;
         this.average_5 = this.count_star_5 / this.reviews.length * 100;
-        const averageRating = totalRatings / this.reviews.length;
+        this.averageRating = totalRatings / this.reviews.length;
         console.log(
             this.average_1,
             this.average_2,
@@ -100,7 +107,7 @@ export default {
             this.average_4,
             this.average_5,
             totalRatings,
-            averageRating
+            this.averageRating,
         );
     },
     computed: {
@@ -127,7 +134,11 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/mixin";
 
-.star-rate {}
+.star-rate {
+    .onicon{
+        color: var(--primary-color);
+    }
+}
 
 .section-region {
     padding-right: 30px;
