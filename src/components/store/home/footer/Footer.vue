@@ -21,7 +21,16 @@
     </div>
 
     <Wrapper class="footer">
-      <div class="contain">
+      <div class="contain" style ="display:flex">
+         <div class="col social">
+          <h2 class="nameBrand" style="font-size: 36px">THEFACESHOP</h2>
+          <h1>SOCIAL DEMIA</h1>
+          <ul>
+            <li><i class="pi pi-facebook" style="font-size: 2rem; margin-right:10px"></i></li>
+            <li><i class="pi pi-twitter" style="font-size: 2rem; margin-right:10px"></i></li>
+            <li><i class="pi pi-instagram" style="font-size: 2rem; margin-right:10px"></i></li>
+          </ul>
+        </div>
         <div class="col">
           <h1>TWENTI BEAUTI</h1>
           <ul>
@@ -47,14 +56,7 @@
             <li>Beauty-box</li>
           </ul>
         </div>
-        <div class="col social">
-          <h1>Social media</h1>
-          <ul>
-            <li><i class="pi pi-facebook" style="font-size: 2rem"></i></li>
-            <li><i class="pi pi-twitter" style="font-size: 2rem"></i></li>
-            <li><i class="pi pi-instagram" style="font-size: 2rem"></i></li>
-          </ul>
-        </div>
+       
       </div>
     </Wrapper>
   </div>
@@ -71,6 +73,8 @@ export default {
 @import "@/scss/mixin";
 
 .footer-wrapper {
+  width: 100%;
+
   &__subscribe {
     height: 100px;
     background-color: #162818;
@@ -126,32 +130,36 @@ export default {
       display: flex;
       justify-content: space-between;
     }
+
+    @include mobile {
+        flex-direction: column;
+      }
   }
 }
 .footer {
   width: 100%;
   position: relative;
-  height: auto;
+  // height: auto;
   background-color: #fff;
 }
 .footer .col {
-  width: 433px;
+ 
   height: auto;
   float: left;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  padding: 0px 20px 20px 20px;
+  
 }
 .footer .col h1 {
   margin: 0;
   padding: 0;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 17px;
   padding: 20px 0px 5px 0px;
-  color: orange;
-  font-weight: normal;
+  color: black;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.25em;
 }
@@ -164,7 +172,7 @@ export default {
   color: #464242;
   font-size: 14px;
   font-family: inherit;
-  font-weight: bold;
+ 
   padding: 5px 0px 5px 0px;
   cursor: pointer;
   transition: 0.2s;
@@ -173,7 +181,7 @@ export default {
 }
 .social ul li {
   display: inline-block;
-  padding-right: 5px;
+ 
 }
 
 .footer .col ul li:hover {
@@ -189,4 +197,13 @@ export default {
 .foot {
   border-top: 1px solid #e2e2e2;
 }
+@media screen and (max-width: 784px){
+  .contain{
+flex-direction: column;
+
+}
+  
+}
+
+
 </style>

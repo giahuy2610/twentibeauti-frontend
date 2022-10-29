@@ -5,7 +5,7 @@
     position="left"
     class="p-sidebar-md"
   >
-    hidden-lg-only
+<!-- <HeaderNavigation className= -->
   </Sidebar>
   <Sidebar
     v-model:visible="visibleCart"
@@ -127,7 +127,6 @@
       </div>
     </Wrapper>
 
-    <!--navigation here-->
     <Wrapper
       style="
         height: 50px;
@@ -135,20 +134,9 @@
         padding-bottom: 0 !important;
         border-top: 1px solid #d3d7d3;
       "
+      id="hidden-when-small-screen"
     >
-      <div class="content flex">
-        <div
-          class="item-submenu flex"
-          v-for="(item, index) in dataList"
-          @mouseover="hoveredItem = index"
-          @mouseout="hoveredItem = -1"
-        >
-          <p>{{ item.name }}</p>
-          <i v-if="item.isHover" class="pi pi-angle pi-angle-down"></i>
-        </div>
-        {{ hoveredItem }}
-      </div> -->
-      <HeaderNavigation/>
+      <HeaderNavigation />
     </Wrapper>
   </div>
   <!-- <div
@@ -179,86 +167,8 @@ import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 export default {
   data() {
     return {
-      count: 9,
+      visibleSidebarMobile: false,
       visibleCart: false,
-      hoveredItem: -1,
-      dataList: [
-        {
-          name: "Khuyến mãi",
-          path: null,
-          isHover: true,
-          subnavData: [
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-          ],
-        },
-        {
-          name: "Thương hiệu",
-          path: "/brands",
-          isHover: true,
-          subnavData: [
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-          ],
-        },
-        {
-          name: "Sản phẩm",
-          path: "/collections",
-          isHover: false,
-          subnavData: [
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-            {
-              heading: "Trang",
-              path: "/",
-              children: [
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-                { name: "co", path: "/" },
-              ],
-            },
-          ],
-        },
-      ],
     };
   },
   components: {
@@ -278,6 +188,15 @@ export default {
 @import "@/scss/mixin";
 i {
   cursor: pointer;
+}
+
+#hidden-when-small-screen {
+  @include mobile {
+    display: none;
+  }
+  @include mini-tablet {
+    display: none;
+  }
 }
 
 #header-first-row {
@@ -638,5 +557,8 @@ h2 {
 .header-wrapper__content__right-group-buttons {
   display: flex;
   align-items: center;
+}
+.content {
+  height: 50px;
 }
 </style>

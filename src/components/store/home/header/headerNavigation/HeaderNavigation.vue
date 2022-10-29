@@ -1,134 +1,144 @@
 <template lang="">
   <div>
-
     <MegaMenu :model="items" />
+    <!-- <MegaMenu :model="items" orientation="vertical" /> -->
   </div>
 </template>
 <script>
-
-
 export default {
-    data() {
-        return {
-            items: [
-                {
-                    label: 'Videos', icon: 'pi pi-fw pi-video',
-                    items: [
-                        [
-                            {
-                                label: 'Video 1',
-                                items: [{label: 'Video 1.1'}, {label: 'Video 1.2'}]
-                            },
-                            {
-                                label: 'Video 2',
-                                items: [{label: 'Video 2.1'}, {label: 'Video 2.2'}]
-                            }
-                        ],
-                        [
-                            {
-                                label: 'Video 3',
-                                items: [{label: 'Video 3.1'}, {label: 'Video 3.2'}]
-                            },
-                            {
-                                label: 'Video 4',
-                                items: [{label: 'Video 4.1'}, {label: 'Video 4.2'}]
-                            }
-                        ]
-                    ]
-                },
-                {
-                    label: 'Users', icon: 'pi pi-fw pi-users',
-                    items: [
-                        [
-                            {
-                                label: 'User 1',
-                                items: [{label: 'User 1.1'}, {label: 'User 1.2'}]
-                            },
-                            {
-                                label: 'User 2',
-                                items: [{label: 'User 2.1'}, {label: 'User 2.2'}]
-                            },
-                        ],
-                        [
-                            {
-                                label: 'User 3',
-                                items: [{label: 'User 3.1'}, {label: 'User 3.2'}]
-                            },
-                            {
-                                label: 'User 4',
-                                items: [{label: 'User 4.1'}, {label: 'User 4.2'}]
-                            }
-                        ],
-                        [
-                            {
-                                label: 'User 5',
-                                items: [{label: 'User 5.1'}, {label: 'User 5.2'}]
-                            },
-                            {
-                                label: 'User 6',
-                                items: [{label: 'User 6.1'}, {label: 'User 6.2'}]
-                            }
-                        ]
-                    ]
-                },
-                {
-                    label: 'Events', icon: 'pi pi-fw pi-calendar',
-                    items: [
-                        [
-                            {
-                                label: 'Event 1',
-                                items: [{label: 'Event 1.1'}, {label: 'Event 1.2'}]
-                            },
-                            {
-                                label: 'Event 2',
-                                items: [{label: 'Event 2.1'}, {label: 'Event 2.2'}]
-                            }
-                        ],
-                        [
-                            {
-                                label: 'Event 3',
-                                items: [{label: 'Event 3.1'}, {label: 'Event 3.2'}]
-                            },
-                            {
-                                label: 'Event 4',
-                                items: [{label: 'Event 4.1'}, {label: 'Event 4.2'}]
-                            }
-                        ]
-                    ]
-                },
-                {
-                    label: 'Settings', icon: 'pi pi-fw pi-cog',
-                    items: [
-                        [
-                            {
-                                label: 'Setting 1',
-                                items: [{label: 'Setting 1.1'}, {label: 'Setting 1.2'}]
-                            },
-                            {
-                                label: 'Setting 2',
-                                items: [{label: 'Setting 2.1'}, {label: 'Setting 2.2'}]
-                            },
-                            {
-                                label: 'Setting 3',
-                                items: [{label: 'Setting 3.1'}, {label: 'Setting 3.2'}]
-                            }
-                        ],
-                        [
-                            {
-                                label: 'Setting 4',
-                                items: [{label: 'Setting 4.1'}, {label: 'Setting 4.2'}]
-                            }
-                        ]
-                    ]
-                }
-            ]
-        }
-    }
-} 
+  data() {
+    return {
+      items: [
+        {
+          label: "Khuyến mãi",
+
+          items: [
+            [
+              {
+                items: [{ label: "HOT DEAL ĐỘC QUYỀN THÁNG 10" }],
+              },
+              {
+                items: [{ label: "HOT DEAL ĐỘC QUYỀN THÁNG 10" }],
+              },
+            ],
+          ],
+        },
+        {
+          label: "Thương hiệu",
+          //   icon: "pi-angle-down",
+          items: [
+            [
+              {
+                items: [{ label: "THEFACESHOP" }],
+              },
+              {
+                items: [{ label: "CNP" }],
+              },
+            ],
+          ],
+        },
+        {
+          label: "Sản phẩm mới",
+        },
+        {
+          label: "Trang điểm",
+
+          items: [
+            [
+              {
+                label: "Trang điểm mặt",
+                items: [{ label: "Kem nền" }, { label: "Kem lót" }],
+              },
+              {
+                label: "Trang điểm môi",
+                items: [{ label: "Dưỡng môi" }, { label: "Son bóng" }],
+              },
+            ],
+            [
+              {
+                label: "Trang điểm mắt",
+                items: [{ label: "Kẻ mắt" }, { label: "Kẻ lông mày" }],
+              },
+            ],
+          ],
+        },
+        {
+          label: "Dưỡng da",
+
+          items: [
+            [
+              {
+                label: "Dưỡng da mặt",
+                items: [{ label: "Dưỡng ẩm" }, { label: "Tẩy tế bào chết" }],
+              },
+              {
+                label: "Làm sạch",
+                items: [{ label: "Sữa rửa mặt" }, { label: "Nước tẩy trang" }],
+              },
+            ],
+            [
+              {
+                label: "Mặt nạ",
+                items: [{ label: "Mặt nạ ngủ" }, { label: "Mặt nạ dưỡng" }],
+              },
+            ],
+          ],
+        },
+        {
+          label: "Chăm sóc cơ thể",
+
+          items: [
+            [
+              {
+                label: "Chăm sóc BODY",
+                items: [
+                  { label: "Dưỡng cơ thể" },
+                  { label: "Tẩy tế bào chết " },
+                ],
+              },
+              {
+                label: "Chăm sóc tóc",
+                items: [{ label: "Dầu dội" }, { label: "Dầu xả" }],
+              },
+            ],
+            [
+              {
+                label: "Chăm sóc tay/chân",
+                items: [{ label: "Dưỡng da" }, { label: "Tẩy tế bào chết" }],
+              },
+            ],
+          ],
+        },
+        {
+          label: "Nhận mã ưu đãi",
+        },
+      ],
+    };
+  },
+};
 </script>
 <style lang="scss" scoped>
-.p-megamenu{
-    border:none;
-    height: 50px;
+.p-megamenu {
+  padding: 0;
+
+  border: none;
+}
+
+:deep(.p-megamenu-root-list) {
+  justify-content: space-between;
+  background-color: white;
+  border-radius: 10px;
+}
+.p-megamenu {
+  border-radius: 20px;
+}
+:deep(.p-megamenu-panel) {
+  border-radius: 14px;
+}
+@media screen and (max-width: 1067px) {
+  
+  :deep(.p-megamenu .p-megamenu-root-list > .p-menuitem > .p-menuitem-link) {
+    padding: 0;
+  }
 }
 </style>
