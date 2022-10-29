@@ -20,7 +20,49 @@
       </div>
     </div>
 
+<<<<<<< HEAD
+    <Wrapper class="footer">
+      <div class="contain" style ="display:flex">
+         <div class="col social">
+          <h2 class="nameBrand" style="font-size: 36px">THEFACESHOP</h2>
+          <h1>SOCIAL DEMIA</h1>
+          <ul>
+            <li><i class="pi pi-facebook" style="font-size: 2rem; margin-right:10px"></i></li>
+            <li><i class="pi pi-twitter" style="font-size: 2rem; margin-right:10px"></i></li>
+            <li><i class="pi pi-instagram" style="font-size: 2rem; margin-right:10px"></i></li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>TWENTI BEAUTI</h1>
+          <ul>
+            <li>Về chúng tôi</li>
+            <li>Câu chuyện thương hiệu</li>
+            <li>Liên hệ với chúng tôi</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>CHĂM SÓC KHÁCH HÀNG</h1>
+          <ul>
+            <li>Đăng kí tài khoản thành viên</li>
+            <li>Hướng dẫn mua hàng online</li>
+            <li>Chính sách khách hàng thân thiết</li>
+            <li>Giao hàng và thanh toán</li>
+            <li>Chính sách đổi hàng</li>
+            <li>Điều khoản mua bán hàng hoá</li>
+          </ul>
+        </div>
+        <div class="col">
+          <h1>ĐỐI TÁC-LIÊN KẾT</h1>
+          <ul>
+            <li>Beauty-box</li>
+          </ul>
+        </div>
+       
+      </div>
+    </Wrapper>
+=======
  
+>>>>>>> e63bda6f3f361e3342ea37dee4583429f6e29c0a
   </div>
 </template>
 <script>
@@ -92,32 +134,36 @@ export default {
       display: flex;
       justify-content: space-between;
     }
+
+    @include mobile {
+        flex-direction: column;
+      }
   }
 }
 .footer {
   width: 100%;
   position: relative;
-  height: auto;
+  // height: auto;
   background-color: #fff;
 }
 .footer .col {
-  width: 433px;
+ 
   height: auto;
   float: left;
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
-  padding: 0px 20px 20px 20px;
+  
 }
 .footer .col h1 {
   margin: 0;
   padding: 0;
   font-family: inherit;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 17px;
   padding: 20px 0px 5px 0px;
-  color: orange;
-  font-weight: normal;
+  color: black;
+  font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 0.25em;
 }
@@ -130,7 +176,7 @@ export default {
   color: #464242;
   font-size: 14px;
   font-family: inherit;
-  font-weight: bold;
+ 
   padding: 5px 0px 5px 0px;
   cursor: pointer;
   transition: 0.2s;
@@ -139,7 +185,7 @@ export default {
 }
 .social ul li {
   display: inline-block;
-  padding-right: 5px;
+ 
 }
 
 .footer .col ul li:hover {
@@ -155,4 +201,13 @@ export default {
 .foot {
   border-top: 1px solid #e2e2e2;
 }
+@media screen and (max-width: 784px){
+  .contain{
+flex-direction: column;
+
+}
+  
+}
+
+
 </style>
