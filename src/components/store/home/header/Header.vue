@@ -20,10 +20,10 @@
     class="shadow-2"
     :class="{
       relative: $route.path === '/product' || $route.path === '/checkout',
+      'w-full': $route.path !== '/product' || $route.path !== '/checkout',
     }"
     style="
       top: 0;
-      width: 100vw;
       position: fixed;
       z-index: 33;
       background-color: #ffff;
@@ -327,11 +327,6 @@ i {
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap");
 
 $blue: #4f64f5;
-
-body {
-  width: 100vw;
-  height: 100vw;
-}
 
 ul {
   padding-left: 0;

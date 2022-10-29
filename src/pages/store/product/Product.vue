@@ -147,7 +147,6 @@ export default {
 <style lang="scss" scoped>
 
 @import "@/scss/mixin";
-
 .home__wrapper {
   min-height: 100vh;
   display: flex;
@@ -155,11 +154,12 @@ export default {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  overflow-x: hidden;
 
   &__content {
     width: 100%;
   }
-}
+} 
 
 @include mobile {
   

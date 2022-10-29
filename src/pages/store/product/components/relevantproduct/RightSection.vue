@@ -59,7 +59,7 @@ export default {
     }
     @include desktop {
       .right-section {
-        flex-shrink: 1.2;
+        flex-shrink: 1.5;
       }
     }
   }

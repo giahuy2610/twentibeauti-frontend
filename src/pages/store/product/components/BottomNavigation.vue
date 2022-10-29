@@ -34,7 +34,6 @@ export default {
   .productBottom{
     display : none,
   }
-  
 
 }
 @include mini-tablet {
@@ -62,7 +61,7 @@ export default {
     box-sizing: content-box;
     margin-left: auto;
     margin-right: auto;
-    max-width: 1300px;
+    
     position: relative;
     width: 90%;
 

@@ -201,16 +201,16 @@ export default {
       flex-direction: row;
       align-items: center;
 
-      &::-webkit-scrollbar {
-        display: none;
-      }
-
       .container-slide {
         overflow: hidden;
         position: relative;
         touch-action: pan-x;
         overflow-x: scroll;
         scroll-behavior: smooth;
+
+        &::-webkit-scrollbar {
+          display: none;
+        }
 
         .slick-slider {
           height: 100%;
