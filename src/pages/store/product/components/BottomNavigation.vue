@@ -93,13 +93,9 @@ export default {
       width: 100%;
       margin-bottom: 0px;
       border-radius: 0px;
-      justify-content: none;
-      top: 0px;
+      justify-content: space-around;
       .item {
         gap: 0px;
-      }
-      .button {
-        margin: 0;
       }
     }
     .productBottom {
