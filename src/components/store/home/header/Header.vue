@@ -5,7 +5,7 @@
     position="left"
     class="p-sidebar-md"
   >
-<!-- <HeaderNavigation className= -->
+    <SidebarMobile />
   </Sidebar>
   <Sidebar
     v-model:visible="visibleCart"
@@ -13,7 +13,7 @@
     position="right"
     class="p-sidebar-md"
   >
-    <Cart></Cart>
+    <Cart />
   </Sidebar>
 
   <div
@@ -22,12 +22,7 @@
       relative: $route.path === '/product' || $route.path === '/checkout',
       'w-full': $route.path !== '/product' || $route.path !== '/checkout',
     }"
-    style="
-      top: 0;
-      position: fixed;
-      z-index: 33;
-      background-color: #ffff;
-    "
+    style="top: 0; position: fixed; z-index: 33; background-color: #ffff"
   >
     <Wrapper id="header-first-row">
       <div class="main-content">
@@ -139,23 +134,6 @@
       <HeaderNavigation />
     </Wrapper>
   </div>
-  <!-- <div
-    class="sub-menu-wrapper"
-    style="position: absolute; z-index: 9999; background-color: #ffff"
-    v-show="hoveredItem > -1"
-  >
-    <div class="sub-menu-content">
-      <div
-        class="sub-menu-item"
-        v-for="(item, index) in dataList[hoveredItem]"
-      >
-        <h3>{{ item.heading }}</h3>
-        <p v-for="(item2, index) in item2.children">
-          {{ item2.name }}
-        </p>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
@@ -164,6 +142,7 @@ import Wrapper from "@/pages/Wrapper.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
+import SidebarMobile from "./sidebarMobile/SidebarMobile.vue";
 export default {
   data() {
     return {
@@ -175,6 +154,7 @@ export default {
     Cart,
     Wrapper,
     HeaderNavigation,
+    SidebarMobile,
   },
   computed: {
     ...mapState(useCartStorePinia, {
