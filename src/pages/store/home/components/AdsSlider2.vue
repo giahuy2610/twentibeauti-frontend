@@ -26,17 +26,14 @@
           <div class="slick-slider">
             <div class="slick-list">
               <div class="slide-track">
+                <div class="img-div" ref="ads" v-for="(item, index) in arrThumbnailScr">
                 <img
-                  ref="ads"
-                  v-for="(item, index) in arrThumbnailScr"
-                  @click="
-                    $router.push({ path: '/collections/' }),
-                      (isClick = !isClick)
-                  "
+                  @click="$router.push({ path: '/collections/' }),(isClick = !isClick)"
                   :src="item"
                   alt="sale thumbnail"
                   :clas="{ shadow2: selectedItem == index }"
                 />
+              </div>
               </div>
             </div>
           </div>
@@ -53,8 +50,7 @@
 export default {
   watch: {
     btnLeft: function () {
-      if (this.$refs.slide.scrollLeft != this.$refs.slide.scrollLeft)
-      {
+      if (this.$refs.slide.scrollLeft != this.$refs.slide.scrollLeft) {
         this.btnLeft = true;
         console.log("Hiii");
       }
@@ -63,14 +59,11 @@ export default {
   methods: {
     scrollLeft() {
       console.log(this.$refs.slide.scrollLeft, this.$refs.ads[0].offsetWidth);
-      this.$refs.slide.scrollLeft -=
-        (window.innerWidth - (this.arrThumbnailScr.length - 1) * 5) /
-        this.arrThumbnailScr.length;
+      this.$refs.slide.scrollLeft -= this.$refs.ads[1].offsetWidth;
     },
     scrollRight() {
       console.log(this.$refs.slide.scrollLeft, this.$refs.ads[0].offsetWidth);
-      this.$refs.slide.scrollLeft +=(window.innerWidth - (this.arrThumbnailScr.length - 1) * 5) /this.arrThumbnailScr.length;      
-      console.log("Right");
+      this.$refs.slide.scrollLeft += this.$refs.ads[1].offsetWidth;
     },
   },
   data() {
@@ -101,7 +94,6 @@ export default {
     &__desktop {
       display: none;
     }
-    
   }
 }
 @include mini-tablet {
@@ -129,7 +121,6 @@ export default {
     &__mobile {
       display: none;
     }
-    
   }
 }
 
@@ -138,24 +129,6 @@ export default {
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
-
-  img {
-    max-width: 32%;
-    background-size: contain;
-    object-fit: contain;
-    border-radius: 10px;
-    flex: 1;
-
-    &:hover {
-      transform: translate3d(0px, -5px, 0px);
-      box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
-      transition: all 0.3s ease 0s;
-      cursor: pointer;
-    }
-    &:nth-child(2n) {
-      margin: 0 10px;
-    }
-  }
 
   &__mobile {
     position: relative;
@@ -228,7 +201,29 @@ export default {
               overflow-y: hidden;
               position: relative;
               width: 100%;
-              width: 700px;
+              width: 1200px;
+
+              .img-div {
+                max-width: 32%;
+                img {
+                  height: 100%;
+                  max-width: 240px;
+                  background-size: contain;
+                  object-fit: contain;
+                  border-radius: 10px;
+                  flex: 1;
+
+                  &:hover {
+                    transform: translate3d(0px, -5px, 0px);
+                    box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
+                    transition: all 0.3s ease 0s;
+                    cursor: pointer;
+                  }
+                  &:nth-child(2n) {
+                    margin: 0 10px;
+                  }
+                }
+              }
             }
           }
         }
