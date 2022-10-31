@@ -87,42 +87,7 @@ export default {
 @import url("@/assets/icomoon/style.css");
 @import "@/scss/mixin";
 
-@include mobile {
-  .wrapper {
-    width: 250%;
 
-    &__desktop {
-      display: none;
-    }
-  }
-}
-@include mini-tablet {
-  .wrapper {
-    width: 100%;
-
-    &__mobile {
-      display: none;
-    }
-  }
-}
-@include tablet {
-  .wrapper {
-    width: 100%;
-
-    &__mobile {
-      display: none;
-    }
-  }
-}
-@include desktop {
-  .wrapper {
-    width: 100%;
-
-    &__mobile {
-      display: none;
-    }
-  }
-}
 
 .wrapper {
   margin-top: 30px;
@@ -131,7 +96,6 @@ export default {
   justify-content: space-between;
 
   img {
-    width: 100%;
     max-width: 300px;
     background-size: contain;
     object-fit: contain;
@@ -237,6 +201,47 @@ export default {
           }
         }
       }
+    }
+  }
+}
+@include mobile {
+  .wrapper {
+    width: 250%;
+
+    &__desktop {
+      display: none;
+    }
+  }
+}
+@include mini-tablet {
+  .wrapper {
+    img{
+      width: 33%;
+    }
+
+    &__mobile {
+      display: none;
+    }
+  }
+}
+@include tablet {
+  .wrapper {
+    img{
+      width: 33%;
+    }
+
+    &__mobile {
+      display: none;
+    }
+  }
+}
+@include desktop {
+  .wrapper {
+    img{
+      width: 33%;
+    }
+    &__mobile {
+      display: none;
     }
   }
 }
