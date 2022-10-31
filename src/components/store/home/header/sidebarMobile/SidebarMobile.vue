@@ -71,10 +71,7 @@
         <div class="container-slide">
           <div
             class="sidebar-footer flex align-items-center cursor-pointer"
-            @click="
-              isLoggedIn = false;
-              this.$router.go();
-            "
+            @click="$router.push({ path: '/account' })"
           >
             <i class="pi pi-sign-in mr-2"></i><span>Đăng nhập</span>
           </div>
@@ -108,16 +105,32 @@ export default {
     return {
       selectedSubMenuIndex: null,
       sideItems: [
+     
         {
           name: "Khuyến mãi",
           icon: "pi pi-circle",
           children: [
             {
-              name: "SIÊU SALE THÁNG 10",
+              name: "Siêu Sale tháng 10",
               path: "",
             },
             {
-              name: "SIÊU SALE THÁNG 10",
+              name: "Siêu sale tháng 10",
+              path: "",
+            },
+          ],
+          path: "",
+        },
+        {
+          name: "Thương hiệu",
+          icon: "pi pi-circle",
+          children: [
+            {
+              name: "The face shop",
+              path: "",
+            },
+            {
+              name: "Cmp",
               path: "",
             },
           ],
@@ -268,13 +281,17 @@ $sidebar-footer-height: 64px;
         text-overflow: ellipsis;
       }
       &:hover {
-        color: white;
+        color: #9aa0b9;
         cursor: pointer;
       }
     }
     .sidebar-content {
       flex-grow: 1;
       padding: 10px 0;
+      &:hover {
+        color: #9aa0b9;
+        cursor: pointer;
+      }
     }
     .sidebar-footer {
       height: $sidebar-footer-height;
@@ -289,7 +306,7 @@ $sidebar-footer-height: 64px;
         text-overflow: ellipsis;
       }
       &:hover {
-        color: white;
+        font-weight: 100px;
         cursor: pointer;
       }
     }
@@ -353,7 +370,11 @@ $sidebar-footer-height: 64px;
             white-space: nowrap;
             flex-grow: 1;
             transition: color 0.3s;
+            
           }
+          &:hover{
+             font-weight: bold; 
+            }
           .menu-prefix,
           .menu-suffix {
             display: inline-block;
@@ -586,5 +607,10 @@ a {
   font-family: system-ui;
 
   font-size: 0.9rem;
+}
+
+.context__final_sidebar:hover{
+  font-weight: bold;
+  cursor: pointer;
 }
 </style>
