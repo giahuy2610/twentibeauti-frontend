@@ -90,13 +90,15 @@ export default {
 
 
 .wrapper {
+  
   margin-top: 30px;
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
 
   img {
-    max-width: 300px;
+    max-width: 33%;
+    
     background-size: contain;
     object-fit: contain;
     border-radius: 10px;
@@ -177,7 +179,7 @@ export default {
               width: 1200px;
 
               .img-div {
-                max-width: 32%;
+                max-width: 33%;
                 img {
                   height: 100%;
                   max-width: 240px;
@@ -237,9 +239,7 @@ export default {
 }
 @include desktop {
   .wrapper {
-    img{
-      width: 33%;
-    }
+    max-width: 100%;
     &__mobile {
       display: none;
     }

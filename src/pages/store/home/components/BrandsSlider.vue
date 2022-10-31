@@ -193,7 +193,6 @@ export default {
               height: max-content;
               overflow-y: hidden;
               position: relative;
-              width: 100%;
               width: 1600px;
             }
           }
@@ -220,7 +219,9 @@ export default {
 @include mini-tablet {
   .wrapper {
     width: 250%;
-
+    .slide-track{
+      width: 3200px;
+    }
     .brands-slider {
       display: none;
     }
@@ -230,11 +231,13 @@ export default {
 @include tablet {
   .wrapper {
     width: 250%;
+    .slide-track{
+      width: 3200px;
+    }
 
     .brands-slider {
       display: none;
     }
-    
   }
 }
 </style>
