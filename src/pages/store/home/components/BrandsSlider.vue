@@ -84,16 +84,7 @@ export default {
 <style lang="scss" scoped>
 @import url("@/assets/icomoon/style.css");
 @import "@/scss/mixin";
-@include mobile {
-  .wrapper {
-    width: 250%;
 
-    .brands-slider {
-      display: none;
-    }
-    
-  }
-}
 .brands-slider {
   display: flex;
   gap: 10px;
@@ -209,6 +200,41 @@ export default {
         }
       }
     }
+  }
+}
+@include mobile {
+  .wrapper {
+    width: 250%;
+
+    .brands-slider {
+      display: none;
+    }
+    
+  }
+}
+@include desktop {
+  .wrapper{
+    display: none;
+  }
+}
+@include mini-tablet {
+  .wrapper {
+    width: 250%;
+
+    .brands-slider {
+      display: none;
+    }
+    
+  }
+}
+@include tablet {
+  .wrapper {
+    width: 250%;
+
+    .brands-slider {
+      display: none;
+    }
+    
   }
 }
 </style>

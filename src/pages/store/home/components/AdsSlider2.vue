@@ -130,6 +130,15 @@ export default {
   box-sizing: border-box;
   justify-content: space-between;
 
+  img {
+    width: 100%;
+    max-width: 300px;
+    background-size: contain;
+    object-fit: contain;
+    border-radius: 10px;
+    flex: 1;
+  }
+
   &__mobile {
     position: relative;
     align-items: center;
