@@ -176,7 +176,7 @@
       position: fixed;
       width: 700px;
       left: calc(50% - 350px);
-      top: 100px;
+      top: 85px;
       //-webkit-scrollbar{ display: none; }
       //height: 100;
   
