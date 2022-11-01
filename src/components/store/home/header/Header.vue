@@ -47,15 +47,12 @@
         </div>
 
         <div class="header-wrapper__content__right-group-buttons">
+          <i class="pi pi-ellipsis-h" style="font-size: 20px"> </i>
           <i
-            @click="count++"
-            class="pi pi-ellipsis-h"
-            style="font-size: 20px"
-          ></i>
-          <i
-            @click="count++"
             class="pi pi-user ml-3"
             style="font-size: 20px"
+            @click="user == null ? visibleLogin = true : $router.push('/account')"
+            ><LoginOverlay></LoginOverlay
           ></i>
 
           <i
@@ -140,9 +137,11 @@
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
-import { mapState, mapActions } from "pinia";
+import { mapState, mapWritableState } from "pinia";
+import { useIndexStorePinia } from "@/stores/store/index.js";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 import SidebarMobile from "./sidebarMobile/SidebarMobile.vue";
+import LoginOverlay from "./loginOverlay/LoginOverlay.vue";
 export default {
   data() {
     return {
@@ -155,10 +154,15 @@ export default {
     Wrapper,
     HeaderNavigation,
     SidebarMobile,
+    LoginOverlay,
   },
   computed: {
     ...mapState(useCartStorePinia, {
       getCartItemsNumber: "getCartItemsNumber",
+    }),
+    ...mapWritableState(useIndexStorePinia, {
+      visibleLogin: "isVisibleLogin",
+      user: "user"
     }),
   },
 };

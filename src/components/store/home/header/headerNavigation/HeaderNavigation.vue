@@ -120,23 +120,23 @@ export default {
 <style lang="scss" scoped>
 .p-megamenu {
   padding: 0;
-
   border: none;
+  border-radius: 20px;
 }
 
 :deep(.p-megamenu-root-list) {
   justify-content: space-between;
   background-color: white;
   border-radius: 10px;
+  width: 100%;
+  max-width: 100%;
+  flex-wrap: nowrap !important;
 }
-.p-megamenu {
-  border-radius: 20px;
-}
+
 :deep(.p-megamenu-panel) {
   border-radius: 14px;
 }
 @media screen and (max-width: 1067px) {
-  
   :deep(.p-megamenu .p-megamenu-root-list > .p-menuitem > .p-menuitem-link) {
     padding: 0;
   }
