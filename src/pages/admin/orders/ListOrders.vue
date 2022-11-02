@@ -6,13 +6,6 @@
           <div class="header-wrapper__left">Danh sách đơn hàng</div>
           <div class="header-wrapper__right">
             <Button label="Thoát" class="p-button-outlined p-button-danger" />
-            <Button
-              type="button"
-              label="Thêm đơn hàng"
-              icon="pi pi-plus"
-              class="p-button-info ml-2"
-              badgeClass="p-badge-danger"
-            />
           </div>
         </div>
       </template>
@@ -87,18 +80,19 @@
         </div>
       </template>
     </AdminBlankPage>
+
   </div>
 </template>
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
 import ProductTable from "../products/components/ProductTable.vue";
 import OrderTable from "./components/OrderTable.vue";
-
 export default {
   components: {
     AdminBlankPage,
     ProductTable,
     OrderTable,
+
   },
   data() {
     return {

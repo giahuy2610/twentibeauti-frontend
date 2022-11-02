@@ -95,6 +95,7 @@ export default {
   .btn-close {
     //margin-bottom:250px;
     margin-left:200px;
+    cursor: pointer;
   }
 }
 </style>

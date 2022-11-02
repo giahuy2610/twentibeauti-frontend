@@ -134,16 +134,12 @@ export default {
           icon: "pi-box",
           children: [
             {
-              name: "Tạo đơn hàng và giao hàng",
-              path: "",
-            },
-            {
               name: "Danh sách đơn hàng",
-              path: "",
+              path: "/admin/listorders",
             },
             {
               name: "Khách trả hàng",
-              path: "",
+              path: "/admin/order_return",
             },
           ],
           path: "",

@@ -102,11 +102,11 @@
                 </Column>
                 <Column
                 header="Thao tác"
-                style="min-width: 9rem"
+                style="min-width: 9rem;"
         bodyStyle="text-align: center; overflow: visible"
       >
         <template #body>
-            <button>Đổi trả</button>
+            <button style="cursor:pointer;">Đổi trả</button>
         </template>
       </Column>
               </DataTable>
