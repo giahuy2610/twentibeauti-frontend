@@ -85,6 +85,15 @@
           class="sidebar-footer flex align-items-center cursor-pointer"
           @click="
             isLoggedIn = false;
+            this.$router.push('/')
+          "
+        >
+          <i class="pi pi-shopping-bag mr-2"></i><span>Về cửa hàng</span>
+        </div>
+        <div
+          class="sidebar-footer flex align-items-center cursor-pointer"
+          @click="
+            isLoggedIn = false;
             this.$router.go();
           "
         >
@@ -95,7 +104,7 @@
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/admin/index.js";
+import { useIndexAdminStorePinia } from "@/stores/admin/index.js";
 import { mapWritableState } from "pinia";
 export default {
   data() {
@@ -134,16 +143,12 @@ export default {
           icon: "pi-box",
           children: [
             {
-              name: "Tạo đơn hàng và giao hàng",
-              path: "",
-            },
-            {
               name: "Danh sách đơn hàng",
-              path: "",
+              path: "/admin/listorders",
             },
             {
               name: "Khách trả hàng",
-              path: "",
+              path: "/admin/order_return",
             },
           ],
           path: "",
@@ -176,7 +181,7 @@ export default {
     };
   },
   computed: {
-    ...mapWritableState(useIndexStorePinia, {
+    ...mapWritableState(useIndexAdminStorePinia, {
       isLoggedIn: "isLoggedIn",
     }),
   },

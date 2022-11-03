@@ -34,7 +34,6 @@
             <img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
             <h2>TWENTI</h2>
           </div>
-
           <span class="searcher p-input-icon-left mr-3 ml-3">
             <InputText
               style="border-radius: 30px; width: 21rem"
@@ -47,15 +46,14 @@
         </div>
 
         <div class="header-wrapper__content__right-group-buttons">
+          <i class="pi pi-ellipsis-h" style="font-size: 20px"> </i>
           <i
-            @click="count++"
-            class="pi pi-ellipsis-h"
-            style="font-size: 20px"
-          ></i>
-          <i
-            @click="count++"
             class="pi pi-user ml-3"
             style="font-size: 20px"
+            @click="
+              getUser == null ? (visibleLogin = true) : $router.push('/account')
+            "
+            ><LoginOverlay></LoginOverlay
           ></i>
 
           <i
@@ -140,9 +138,10 @@
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
-import { mapState, mapActions } from "pinia";
+import { mapState, mapWritableState } from "pinia";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 import SidebarMobile from "./sidebarMobile/SidebarMobile.vue";
+import LoginOverlay from "./LoginOverlay.vue";
 export default {
   data() {
     return {
@@ -155,10 +154,14 @@ export default {
     Wrapper,
     HeaderNavigation,
     SidebarMobile,
+    LoginOverlay,
   },
   computed: {
-    ...mapState(useCartStorePinia, {
+    ...mapWritableState(useCartStorePinia, {
       getCartItemsNumber: "getCartItemsNumber",
+      getUser: "user",
+      total: "total",
+      visibleLogin: "isVisibleLogin",
     }),
   },
 };

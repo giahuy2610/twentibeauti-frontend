@@ -23,7 +23,7 @@
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/admin/index.js";
+import { useIndexAdminStorePinia } from "@/stores/admin/index.js";
 import { mapWritableState } from "pinia";
 export default {
   data() {
@@ -42,7 +42,7 @@ export default {
     },
   },
   computed: {
-    ...mapWritableState(useIndexStorePinia, {
+    ...mapWritableState(useIndexAdminStorePinia, {
       isLoggedIn: "isLoggedIn",
     }),
   },

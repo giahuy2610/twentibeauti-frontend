@@ -12,6 +12,7 @@
 export default {};
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .wrapper-blank {
   header {
     position: fixed;
@@ -30,7 +31,7 @@ export default {};
   }
 
   main {
-    padding: 8rem 2rem 2rem 2rem;
+    padding: 8rem 0rem 0rem 0rem;
     min-height: 100vh;
     background-color: #f0f1f1;
     overflow-x: scroll;
