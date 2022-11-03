@@ -1,7 +1,6 @@
 <template lang="">
   <Dialog
     modal="true"
-    :dismissableMask="true"
     :visible="visibleLogin"
     :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
     :style="{ width: '50vw' }"

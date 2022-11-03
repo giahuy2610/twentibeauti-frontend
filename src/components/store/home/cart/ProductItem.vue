@@ -1,12 +1,7 @@
 <template lang="">
   <div class="product-wrapper">
     <div class="product-wrapper__left">
-      <Skeleton
-        shape="square"
-        size="80px"
-        v-show="!isLoaded"
-      >
-      </Skeleton>
+      <Skeleton shape="square" size="80px" v-show="!isLoaded"> </Skeleton>
       <img
         :src="imagePath"
         alt=""
@@ -20,7 +15,7 @@
         <div class="product-wrapper__right__info__main">
           <p
             class="font-semibold under-hover"
-            @click="$router.push({ path: routePath})"
+            @click="$router.push({ path: routePath })"
           >
             {{ name }}
           </p>
@@ -66,9 +61,9 @@ export default {
   },
   data() {
     return {
-      isLoaded: false
-    }
-  }
+      isLoaded: false,
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -105,7 +100,11 @@ export default {
       width: 100%;
       gap: 1rem;
 
-      &__main {
+      &__main p {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
       }
 
       &__delete {
