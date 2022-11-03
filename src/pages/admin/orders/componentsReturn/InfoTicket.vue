@@ -16,7 +16,9 @@
             </div>
             <div class="orderid">
               <div class="label">Mã đơn hàng gốc</div>
-              <div class="id">SS001</div>
+              <div class="id">
+                <a href="/admin/orderdetails">SS001</a>
+              </div>
             </div>
           </div>
         </template>
@@ -39,8 +41,21 @@
     </div>
   </div>
 </template>
-<script></script>
+<script>
+export default {
+  data () {
+    return {
+      order: [
+        {
+          id: "SS001"
+        }
+      ]
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
+
 .info-ticket {
   display: flex;
   flex-direction: row;
@@ -75,11 +90,16 @@
             color: #0088ff;
           }
         }
-      }
-      .orderid > .id {
-        color: #0088ff;
+        .id {
+          a{
+            color: #0088ff;
         cursor: pointer;
+        text-decoration: none;
+          }
+        
       }
+      }
+
     }
   }
   .info-plus {
