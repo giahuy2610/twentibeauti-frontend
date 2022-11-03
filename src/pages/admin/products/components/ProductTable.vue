@@ -396,12 +396,10 @@ export default {
       });
     },
     onRowSelect(event) {
-      this.$toast.add({
-        severity: "info",
-        summary: "Product Selected",
-        detail: "Name: " + event.data.name,
-        life: 3000,
-      });
+      // this.$router.push({
+      //   path: "/admin/products/create",
+      //   query: { sku: event.data.id },
+      // });
     },
   },
 };

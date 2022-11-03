@@ -98,8 +98,6 @@
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/admin/index.js";
-import { mapWritableState } from "pinia";
 export default {
   data() {
     return {
@@ -188,13 +186,7 @@ export default {
         },
       ],
     };
-  },
-  computed: {
-    ...mapWritableState(useIndexStorePinia, {
-      isLoggedIn: "isLoggedIn",
-    }),
-  },
-  mounted() {},
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -22,7 +22,7 @@
           <Button
             label="Đặt hàng"
             class="p-button-rounded"
-            @click="increaseTotal"
+            @click="$router.push('/checkout')"
           />
         </span>
       </div>

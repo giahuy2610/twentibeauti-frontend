@@ -43,27 +43,29 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { mapWritableState } from "pinia";
-import { useIndexStorePinia } from "@/stores/store/index.js";
+import { mapWritableState, mapActions } from "pinia";
+import { useCartStorePinia } from "@/stores/store/cart.js";
 export default {
   methods: {
     signInWithPopup() {
       const provider = new GoogleAuthProvider();
       signInWithPopup(getAuth(), provider)
         .then((result) => {
-          this.user = result;
+          this.getUser = result;
           this.visibleLogin = false;
           this.$router.push("/account");
         })
         .catch((error) => {
+          this.visibleLogin = false;
           console.error(error);
         });
     },
+    ...mapActions(useCartStorePinia, { login: "login" }),
   },
   computed: {
-    ...mapWritableState(useIndexStorePinia, {
+    ...mapWritableState(useCartStorePinia, {
       visibleLogin: "isVisibleLogin",
-      user: "user",
+      getUser: "user",
     }),
   },
 };
