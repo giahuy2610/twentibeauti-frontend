@@ -11,7 +11,9 @@
             icon="pi pi-plus"
             class="p-button-info ml-2"
             badgeClass="p-badge-danger"
-            @click="$router.push({path:'/admin/products/create',replace:true})"
+            @click="
+              $router.push({ path: '/admin/products/create', replace: true })
+            "
           />
         </div>
       </div>
@@ -30,7 +32,7 @@
           <template #title> Ảnh sản phẩm </template>
           <template #content>
             <div class="">
-              <AddFileVue></AddFileVue>
+              <AddFileVue @geturl="hoho"></AddFileVue>
             </div>
           </template>
         </Card>
@@ -41,7 +43,7 @@
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
 import ProductTable from "./components/ProductTable.vue";
-import AddFileVue from "./components/AddFile.vue";
+import AddFileVue from "@/components/admin/add-image/AddImage.vue";
 export default {
   components: {
     AdminBlankPage,
@@ -50,6 +52,11 @@ export default {
   },
   data() {
     return {};
+  },
+  methods: {
+    hoho(n) {
+      alert(n)
+    }
   }
 };
 </script>
