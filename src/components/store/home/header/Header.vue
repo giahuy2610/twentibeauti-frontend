@@ -95,7 +95,7 @@
               </div>
               <div
                 class="bar-submenu-item"
-                @click="(getUser = null), (visibleLogin = false)"
+                @click="(getUser = null), (visibleLogin = false), $router.push('/')"
               >
                 <i class="pi pi-sign-out"></i>
                 Đăng xuất
