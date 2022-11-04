@@ -27,7 +27,7 @@
     }"
     style="top: 0; position: fixed; z-index: 33; background-color: #ffff"
   >
-  {{getUser}}
+    {{ getUser }}
     <Wrapper id="header-first-row">
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">

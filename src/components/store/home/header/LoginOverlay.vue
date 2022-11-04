@@ -36,6 +36,8 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import vClickOutside from "click-outside-vue3";
+import { useCartStorePinia } from "@/stores/store/cart.js";
+import { mapState, mapWritableState } from "pinia";
 export default {
   methods: {
     signInWithPopup() {
@@ -66,6 +68,13 @@ export default {
     visible: function (newVal, oldVal) {
       this.visibleLogin = newVal;
     },
+  },
+  computed: {
+    ...mapWritableState(useCartStorePinia, {
+      getCartItemsNumber: "getCartItemsNumber",
+      getUser: "user",
+      total: "total",
+    }),
   },
 };
 </script>
