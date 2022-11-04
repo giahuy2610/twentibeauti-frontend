@@ -15,7 +15,10 @@
   >
     <Cart />
   </Sidebar>
-
+  <LoginOverlay
+    :visible="visibleLogin"
+    @change-visible="visibleLogin = false"
+  ></LoginOverlay>
   <div
     class="shadow-2"
     :class="{
@@ -24,6 +27,7 @@
     }"
     style="top: 0; position: fixed; z-index: 33; background-color: #ffff"
   >
+  {{getUser}}
     <Wrapper id="header-first-row">
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">
@@ -46,15 +50,56 @@
         </div>
 
         <div class="header-wrapper__content__right-group-buttons">
-          <i class="pi pi-ellipsis-h" style="font-size: 20px"> </i>
           <i
-            class="pi pi-user ml-3"
+            class="pi pi-ellipsis-h relative"
+            style="font-size: 20px"
+            @click="visibleBarSubmenu = true"
+            v-click-outside="() => (visibleBarSubmenu = false)"
+          >
+            <div class="bar-submenu shadow-2" v-show="visibleBarSubmenu">
+              <div class="bar-submenu-item">
+                <i class="pi pi-send"></i>
+                Trung tâm hỗ trợ
+              </div>
+              <div class="bar-submenu-item">
+                <i class="pi pi-search"></i>
+                Tra cứu đơn hàng
+              </div>
+            </div></i
+          >
+          <i
+            class="pi pi-user ml-3 relative"
             style="font-size: 20px"
             @click="
-              getUser == null ? (visibleLogin = true) : $router.push('/account')
+              getUser == null
+                ? (visibleLogin = true)
+                : (visibleAccountSubmenu = true)
             "
-            ><LoginOverlay></LoginOverlay
-          ></i>
+            v-click-outside="
+              () =>
+                visibleAccountSubmenu == true
+                  ? (visibleAccountSubmenu = false)
+                  : 1
+            "
+          >
+            <div class="bar-submenu shadow-2" v-show="visibleAccountSubmenu">
+              <div class="bar-submenu-item" @click="$router.push('/account')">
+                <i class="pi pi-id-card"></i>
+                Thông tin tài khoản
+              </div>
+              <div
+                class="bar-submenu-item"
+                @click="$router.push('/account/orders')"
+              >
+                <i class="pi pi-list"></i>
+                Lịch sử đặt hàng
+              </div>
+              <div class="bar-submenu-item" @click="getUser = null">
+                <i class="pi pi-sign-out"></i>
+                Đăng xuất
+              </div>
+            </div></i
+          >
 
           <i
             @click="count++"
@@ -79,7 +124,7 @@
 
       <div class="main-content-mobile">
         <div class="header-content-mobile">
-          <i class="pi pi-bars" @click="visibleSidebarMobile = true"></i>
+          <i class="pi pi-bars" @click="visibleSidebarMobile = true"> </i>
           <div
             @click="$router.push({ path: '/' })"
             class="cursor-pointer flex align-items-center"
@@ -142,11 +187,16 @@ import { mapState, mapWritableState } from "pinia";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
 import SidebarMobile from "./sidebarMobile/SidebarMobile.vue";
 import LoginOverlay from "./LoginOverlay.vue";
+import vClickOutside from "click-outside-vue3";
+
 export default {
   data() {
     return {
       visibleSidebarMobile: false,
       visibleCart: false,
+      visibleAccountSubmenu: false,
+      visibleBarSubmenu: false,
+      visibleLogin: false,
     };
   },
   components: {
@@ -161,9 +211,10 @@ export default {
       getCartItemsNumber: "getCartItemsNumber",
       getUser: "user",
       total: "total",
-      visibleLogin: "isVisibleLogin",
     }),
   },
+  directives: {},
+  methods: {},
 };
 </script>
 
@@ -206,6 +257,33 @@ i {
   }
   @include mini-tablet {
     display: none;
+  }
+}
+
+.bar-submenu {
+  position: absolute;
+  min-width: 200px;
+  width: max-content;
+  padding: 1rem;
+  border-radius: 10px;
+  z-index: 99;
+  top: 1.5rem;
+  right: 0;
+  background-color: #fff;
+
+  .bar-submenu-item {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    gap: 1rem;
+
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 }
 

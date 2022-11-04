@@ -1,39 +1,32 @@
 <template lang="">
-  <Dialog
-    modal="true"
-    :visible="visibleLogin"
-    :breakpoints="{ '960px': '75vw', '640px': '90vw' }"
-    :style="{ width: '50vw' }"
-    showHeader="false"
-  >
-    <h2
-      class="text-primary w-full text-center m-0"
-      @click="visibleLogin = false"
-    >
-      Đăng nhập
-    </h2>
-    <p class="w-full text-center">
-      Chưa có tài khoản? Kết nối nhanh chóng với TWENTI chỉ với gmail
-    </p>
-    <InputText class="w-full" type="text" placeholder="mytwenti@gmail.com" />
-    <p>
-      <Button
-        label="Đăng nhập"
-        class="w-full p-button-rounded p-button-primary"
-      />
-    </p>
-    <h5 class="w-full text-center">Hoặc</h5>
-    <div class="alterWay w-full flex align-items-center justify-content-center">
-      <Button class="google p-0" aria-label="Google" @click="signInWithPopup">
-        <i class="pi pi-google px-2 mx-1"></i>
-        <span class="px-3">Google</span>
-      </Button>
-      <Button class="facebook p-0 mx-1" aria-label="Facebook">
-        <i class="pi pi-facebook px-2"></i>
-        <span class="px-3">Facebook</span>
-      </Button>
+  <div class="login-overlay" v-if="visibleLogin">
+    <div class="login-overlay__content shadow-5" v-click-outside="hideOverlay">
+      <h2 class="text-primary w-full text-center m-0">Đăng nhập</h2>
+      <p class="w-full text-center">
+        Chưa có tài khoản? Kết nối nhanh chóng với TWENTI chỉ với gmail
+      </p>
+      <InputText class="w-full" type="text" placeholder="mytwenti@gmail.com" />
+      <p>
+        <Button
+          label="Đăng nhập"
+          class="w-full p-button-rounded p-button-primary"
+        />
+      </p>
+      <h5 class="w-full text-center">Hoặc</h5>
+      <div
+        class="alterWay w-full flex align-items-center justify-content-center"
+      >
+        <Button class="google p-0" aria-label="Google" @click="signInWithPopup">
+          <i class="pi pi-google px-2 mx-1"></i>
+          <span class="px-3">Google</span>
+        </Button>
+        <Button class="facebook p-0 mx-1" aria-label="Facebook">
+          <i class="pi pi-facebook px-2"></i>
+          <span class="px-3">Facebook</span>
+        </Button>
+      </div>
     </div>
-  </Dialog>
+  </div>
 </template>
 <script>
 import {
@@ -42,8 +35,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import { mapWritableState, mapActions } from "pinia";
-import { useCartStorePinia } from "@/stores/store/cart.js";
+import vClickOutside from "click-outside-vue3";
 export default {
   methods: {
     signInWithPopup() {
@@ -52,6 +44,7 @@ export default {
         .then((result) => {
           this.getUser = result;
           this.visibleLogin = false;
+          console.log(result);
           this.$router.push("/account");
         })
         .catch((error) => {
@@ -59,20 +52,44 @@ export default {
           console.error(error);
         });
     },
-    ...mapActions(useCartStorePinia, { login: "login" }),
+    hideOverlay() {
+      this.$emit("change-visible", false);
+    },
   },
-  computed: {
-    ...mapWritableState(useCartStorePinia, {
-      visibleLogin: "isVisibleLogin",
-      getUser: "user",
-    }),
+  props: ["visible"],
+  data() {
+    return {
+      visibleLogin: this.visible,
+    };
+  },
+  watch: {
+    visible: function (newVal, oldVal) {
+      this.visibleLogin = newVal;
+    },
   },
 };
 </script>
 <style lang="scss" scoped>
-:deep(.p-dialog-header) {
-  padding: 0 !important;
+.login-overlay {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1011;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(205, 201, 201, 0.8);
+
+  &__content {
+    width: 50vw;
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+  }
 }
+
 .signInBtn {
   cursor: pointer;
   width: 2rem;
