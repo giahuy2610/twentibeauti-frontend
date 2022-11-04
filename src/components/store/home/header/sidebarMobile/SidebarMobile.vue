@@ -98,17 +98,14 @@
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/admin/index.js";
-import { mapWritableState } from "pinia";
 export default {
   data() {
     return {
       selectedSubMenuIndex: null,
       sideItems: [
-     
         {
           name: "Khuyến mãi",
-          icon: "pi pi-circle",
+          icon: "pi pi-tags",
           children: [
             {
               name: "Siêu Sale tháng 10",
@@ -123,7 +120,7 @@ export default {
         },
         {
           name: "Thương hiệu",
-          icon: "pi pi-circle",
+          icon: "pi pi-list",
           children: [
             {
               name: "The face shop",
@@ -137,15 +134,15 @@ export default {
           path: "",
         },
         {
-          name: "Sẩn phẩm mới",
-          icon: "pi pi-circle",
+          name: "Sản phẩm mới",
+          icon: "pi pi-slack",
           children: null,
           path: "",
         },
 
         {
           name: "Trang điểm",
-          icon: "pi pi-circle",
+          icon: "pi pi-slack",
           children: [
             { name: "Trang điểm mắt", path: "" },
             { name: "Trang điểm môi", path: "" },
@@ -154,7 +151,7 @@ export default {
         },
         {
           name: "Dưỡng da",
-          icon: "pi pi-circle",
+          icon: "pi pi-slack",
           children: [
             {
               name: "Dưỡng da mắt",
@@ -173,7 +170,7 @@ export default {
         },
         {
           name: "Chăm sóc cơ thể",
-          icon: "pi pi-circle",
+          icon: "pi pi-slack",
           children: [
             { name: "Chăm sóc tóc", path: "" },
             { name: "Chăm sóc cơ thể", path: "" },
@@ -182,19 +179,13 @@ export default {
         },
         {
           name: "Nhận mã ưu đãi",
-          icon: "pi pi-circle",
+          icon: "pi pi-ticket",
           children: null,
           path: "",
         },
       ],
     };
   },
-  computed: {
-    ...mapWritableState(useIndexStorePinia, {
-      isLoggedIn: "isLoggedIn",
-    }),
-  },
-  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
@@ -370,11 +361,10 @@ $sidebar-footer-height: 64px;
             white-space: nowrap;
             flex-grow: 1;
             transition: color 0.3s;
-            
           }
-          &:hover{
-             font-weight: bold; 
-            }
+          &:hover {
+            font-weight: bold;
+          }
           .menu-prefix,
           .menu-suffix {
             display: inline-block;
@@ -609,7 +599,7 @@ a {
   font-size: 0.9rem;
 }
 
-.context__final_sidebar:hover{
+.context__final_sidebar:hover {
   font-weight: bold;
   cursor: pointer;
 }

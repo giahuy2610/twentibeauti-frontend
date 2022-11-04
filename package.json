@@ -11,6 +11,8 @@
     "@aacassandra/vue3-progressbar": "^1.0.3",
     "axios": "^1.1.2",
     "chart.js": "^3.9.1",
+    "click-outside-vue3": "^4.0.1",
+    "firebase": "^9.13.0",
     "jquery": "^3.6.1",
     "pinia": "^2.0.22",
     "pinia-plugin-persistedstate": "^2.2.0",

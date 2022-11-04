@@ -22,7 +22,7 @@
           <Button
             label="Đặt hàng"
             class="p-button-rounded"
-            @click="increaseTotal"
+            @click="$router.push('/checkout')"
           />
         </span>
       </div>
@@ -67,6 +67,10 @@ export default {
   height: 100%;
   overflow: hidden;
   padding: 0 2rem;
+
+  @media all and (max-width: 1024px) {
+    padding: 0;
+  }
 
   &__header {
     width: 100%;
