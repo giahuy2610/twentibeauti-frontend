@@ -223,12 +223,9 @@ router.beforeEach((to, from, next) => {
       },
     });
   } else if (store.user == null && to.meta.requiresStoreAuth) {
-    // next({
-    //   name: "admin login",
-    //   query: {
-    //     nextUrl: to.fullPath,
-    //   },
-    // });
+    next({
+      name: "home",
+    });
   } else {
     next();
   }
