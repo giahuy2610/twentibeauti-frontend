@@ -68,6 +68,10 @@ export default {
   overflow: hidden;
   padding: 0 2rem;
 
+  @media all and (max-width: 1024px) {
+    padding: 0;
+  }
+
   &__header {
     width: 100%;
     border-bottom: 1px solid grey;
