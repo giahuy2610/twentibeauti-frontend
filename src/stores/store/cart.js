@@ -34,7 +34,7 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     ],
     total: 10,
     user: null,
-    isVisibleLogin: false
+    isVisibleLogin: true,
   }),
   getters: {
     getCartItems(state) {

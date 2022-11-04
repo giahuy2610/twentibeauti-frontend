@@ -12,6 +12,7 @@ import "./scss/_theme.scss";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
+import vClickOutside from "click-outside-vue3"
 // import MegaMenu from 'primevue/megamenu';
 import InputText from "primevue/inputtext";
 import SelectButton from "primevue/selectbutton";
@@ -101,7 +102,7 @@ app.use(router);
 app.use(ToastService);
 app.use(VueAxios, axios);
 app.use(VueProgressBar, options);
-
+app.use(vClickOutside)
 app.component("Textarea", Textarea);
 app.component("Calendar", Calendar);
 app.component("Avatar", Avatar);
