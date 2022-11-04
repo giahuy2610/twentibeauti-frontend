@@ -173,6 +173,7 @@
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         border-top: 1px solid #d3d7d3;
+        overflow: hidden;
       "
       id="hidden-when-small-screen"
     >
