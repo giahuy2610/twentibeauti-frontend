@@ -22,9 +22,19 @@
       ]"
       responsiveLayout="scroll"
     >
-      <template #header>
+    <template #header>
         <div class="flex justify-content-between align-items-center">
           <h5 class="m-0">Đơn hàng</h5>
+          <span v-show="selectedCustomers.length > 0">
+            Chọn thao tác
+            <Dropdown
+              v-model="selectedCity1"
+              :options="cities"
+              optionLabel="name"
+              optionValue="code"
+              placeholder="Select a City"
+            />
+          </span>
           <span class="p-input-icon-left">
             <i class="pi pi-search" />
             <InputText
@@ -143,7 +153,7 @@ export default {
   data() {
     return {
       customers: null,
-      selectedCustomers: null,
+      selectedCustomers: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: {
