@@ -55,7 +55,7 @@ export default {
         });
     },
     hideOverlay() {
-      this.$emit("change-visible", false);
+      this.$emit("changeVisible", false);
     },
   },
   props: ["visible"],
@@ -76,6 +76,7 @@ export default {
       total: "total",
     }),
   },
+  emits: ["changeVisible"],
 };
 </script>
 <style lang="scss" scoped>

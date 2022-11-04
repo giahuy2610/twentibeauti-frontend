@@ -17,7 +17,7 @@
   </Sidebar>
   <LoginOverlay
     :visible="visibleLogin"
-    @change-visible="visibleLogin = false"
+    @change-visible="(value) => (visibleLogin = false)"
   ></LoginOverlay>
   <div
     class="shadow-2"
@@ -27,7 +27,6 @@
     }"
     style="top: 0; position: fixed; z-index: 33; background-color: #ffff"
   >
-    {{ getUser }}
     <Wrapper id="header-first-row">
       <div class="main-content">
         <div class="no-underline header-wrapper__content__left">
@@ -94,7 +93,10 @@
                 <i class="pi pi-list"></i>
                 Lịch sử đặt hàng
               </div>
-              <div class="bar-submenu-item" @click="getUser = null">
+              <div
+                class="bar-submenu-item"
+                @click="(getUser = null), (visibleLogin = false)"
+              >
                 <i class="pi pi-sign-out"></i>
                 Đăng xuất
               </div>
