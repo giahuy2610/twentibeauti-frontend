@@ -32,6 +32,8 @@ import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
 import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
 import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
 import AdminPromotion from "../pages/admin/promotion/AdminPromotion.vue";
+import AdminCollections from "../pages/admin/collections/AdminCollections.vue";
+import CollectionCreate from "../pages/admin/collections/create/CollectionCreate.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -144,6 +146,11 @@ const routes = [
         component: ProductCreate,
       },
       {
+        name: "collection create",
+        path: "collections/create",
+        component: CollectionCreate,
+      },
+      {
         name: "list orders",
         path: "listorders",
         component: ListOrders,
@@ -177,6 +184,11 @@ const routes = [
         name: "theme handling",
         path: "theme-handling",
         component: ThemeHandling,
+      },
+      {
+        name: "collections",
+        path: "collections",
+        component: AdminCollections,
       },
       {
         name: "promotion",

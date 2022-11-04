@@ -126,6 +126,11 @@ export default {
               path: "/admin/products",
             },
             {
+              name: "Danh mục sản phẩm",
+              path: "/admin/collections",
+            },
+
+            {
               name: "Quản lý kho",
               path: "",
             },
