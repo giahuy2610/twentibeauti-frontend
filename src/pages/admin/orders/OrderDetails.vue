@@ -32,11 +32,11 @@
             <div class="body-left">
               <InfoCus></InfoCus>
             </div>
-            <div class="body-right">
+            <div class="body-right ">
               <InfoPlus></InfoPlus>
             </div>
           </div>
-          <div class="info-product">
+          <div class="info-product shadow-2">
             <InfoProductTable></InfoProductTable>
           </div>
           

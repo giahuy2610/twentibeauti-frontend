@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="info-cus">
+    <div class="info-cus shadow-2">
       <Card>
         <template #title>
           <div class="card-info">
@@ -27,7 +27,7 @@
                       <a class="overlay-close" href="#"></a>
                       <div class="dialog-body">
                         <div class="dialog-header">
-                          <button class="dialog-close-btn" @click="basic = true">
+                          <button class="dialog-add-btn" @click="basic = true">
                             Thêm mới
                           </button>
                           <FormAddress v-if="basic">
@@ -275,6 +275,9 @@
                 font-weight: 600;
                 text-decoration: none;
               }
+              .form-address:hover {
+                font-weight: 700;
+              }
               .dialog {
                 position: fixed;
                 top: 0;
@@ -313,7 +316,7 @@
                   flex-direction: row;
                   width: 100%;
                   border-bottom: 1px solid #a3a8af;
-                  .dialog-close-btn {
+                  .dialog-add-btn {
                     position: absolute;
                     //top:2px;
                     right: 6px;
@@ -323,6 +326,14 @@
                     cursor: pointer;
                     border: none;
                     background-color: #fff;
+                  }
+                  .dialog-add-btn:hover{
+                    font-weight: 700;
+                  }
+                  .dialog-edit-btn{
+                    button:hover{
+                    font-weight: 700;
+                    }
                   }
                   .dialog-title {
                     width: 50%;

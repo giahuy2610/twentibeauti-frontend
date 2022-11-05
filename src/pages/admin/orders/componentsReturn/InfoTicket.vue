@@ -1,6 +1,6 @@
 <template lang="">
   <div class="info-ticket">
-    <div class="info-cus">
+    <div class="info-cus ">
       <Card style="width: 25rem; margin-bottom: 2em">
         <template #title>
           <div class="header">Thông tin phiếu</div>
@@ -17,7 +17,7 @@
             <div class="orderid">
               <div class="label">Mã đơn hàng gốc</div>
               <div class="id">
-                <a href="/admin/orderdetails">SS001</a>
+                <a href="/admin/orderdetails">1</a>
               </div>
             </div>
           </div>
@@ -33,7 +33,7 @@
           <div class="body">
             <div class="label">Ghi chú</div>
             <div class="text">
-               <Textarea v-model="value2" :autoResize="true" rows="1" cols="40" />
+               <Textarea v-model="note" :autoResize="true" rows="1" cols="40" />
             </div>
           </div>
         </template>
@@ -42,12 +42,16 @@
   </div>
 </template>
 <script>
+
+
 export default {
+
   data () {
     return {
+      note:null,
       order: [
         {
-          id: "SS001"
+          id: "1"
         }
       ]
     }
@@ -97,6 +101,10 @@ export default {
         text-decoration: none;
           }
         
+      }
+      .id:hover {
+        text-decoration: underline;
+  font-weight: 600;
       }
       }
 
