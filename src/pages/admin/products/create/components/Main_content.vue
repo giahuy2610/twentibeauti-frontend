@@ -16,7 +16,7 @@
       <OrderCreate></OrderCreate>
     </div>
     <div class="right">
-      <AddInfoVue></AddInfoVue>
+      <AddInfoVue @geturl="hoho"></AddInfoVue>
       <FooterVue></FooterVue>
     </div>
   </div>
@@ -24,7 +24,7 @@
 <script>
 import GeneralInfoVue from "./GeneralInfo.vue";
 import ProductPrice from "./ProductPrice.vue";
-import AddFile from "../../components/AddFile.vue";
+import AddFile from "@/components/admin/add-image/AddImage.vue";
 import OrderCreate from "./OrderCreate.vue";
 import AddInfoVue from "./AddInfo.vue";
 import FooterVue from "./Footer.vue";

@@ -28,14 +28,6 @@
             </div>
           </template>
         </Card>
-        <Card>
-          <template #title> Ảnh sản phẩm </template>
-          <template #content>
-            <div class="">
-              <AddFileVue @geturl="hoho"></AddFileVue>
-            </div>
-          </template>
-        </Card>
       </div>
     </template>
   </AdminBlankPage>
@@ -43,21 +35,15 @@
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
 import ProductTable from "./components/ProductTable.vue";
-import AddFileVue from "@/components/admin/add-image/AddImage.vue";
 export default {
   components: {
     AdminBlankPage,
     ProductTable,
-    AddFileVue,
   },
   data() {
     return {};
   },
-  methods: {
-    hoho(n) {
-      alert(n)
-    }
-  }
+  methods: {},
 };
 </script>
 <style lang="scss" scoped>

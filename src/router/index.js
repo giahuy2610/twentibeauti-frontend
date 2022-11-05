@@ -21,7 +21,7 @@ import AccountOrderDetails from "../pages/store/account/components/OrderDetails.
 import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
-import ProductDetail from "../pages/admin/products/ProductDetail.vue";
+// import ProductDetail from "../pages/admin/products/ProductDetail.vue";
 import ListOrders from "../pages/admin/orders/ListOrders.vue";
 import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
 import FormAddress from "../pages/admin/orders/components/FormAddress.vue";

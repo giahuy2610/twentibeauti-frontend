@@ -12,13 +12,12 @@
     >
       <template #empty>
         <p>Drag and drop files to here to upload.</p>
-        
       </template>
     </FileUpload>
   </div>
 </template>
 <script>
-//import $ from "jquery";
+import $ from "jquery";
 export default {
   methods: {
     toastSuccess() {
@@ -31,43 +30,37 @@ export default {
       });
     },
     onUpload(event) {
+      var $files = $("input[type=file]").get(0).files;
+      var self = this;
       var apiUrl = "https://api.imgur.com/3/image";
       var apiKey = "99d036fd40d9ea2";
-      var formData = new FormData();
-      formData.append("image", event.files[0]);
-      const clientId = "99d036fd40d9ea2";
-      const  auth = "Client-ID " + clientId;
-      console.log(event.files[0])
-      fetch("https://api.imgur.com/3/image/", {
-        // API Endpoint
+      var settings = {
         async: false,
         crossDomain: true,
         processData: false,
         contentType: false,
-        method: "POST", // HTTP Method
-        body: formData, // Data to be sent
+        type: "POST",
+        url: apiUrl,
         headers: {
-          // Setting header
-          Authorization: auth,
+          Authorization: "Client-ID " + apiKey,
           Accept: "application/json",
         },
-                mimeType: "multipart/form-data",
-      })
-        .then((res) => console.log(res)) // Handling success
-        .catch((err) => alert("Failed") && console.log(err)); // Handling error
-
+        mimeType: "multipart/form-data",
+      };
+      var formData = new FormData();
       // console.log($files[0].type, $files.type);
-
-      //   settings.data = formData;
-      //   $.ajax(settings).done(function (response) {
-      //     this.emitUrl(response.link);
-      //   });
+      formData.append("image", event.files[0]);
+      settings.data = formData;
+      $.ajax(settings).done(function (response) {
+        self.$emit("geturl", JSON.parse(response).data.link);
+      });
+      this.toastSuccess();
     },
     emits: ["geturl"],
     data() {
-        return {
-            result: null
-        }
+      return {
+        result: null,
+      };
     },
   },
   emitUrl(link) {
