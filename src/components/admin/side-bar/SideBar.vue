@@ -85,7 +85,7 @@
           class="sidebar-footer flex align-items-center cursor-pointer"
           @click="
             isLoggedIn = false;
-            this.$router.push('/')
+            this.$router.push('/');
           "
         >
           <i class="pi pi-shopping-bag mr-2"></i><span>Về cửa hàng</span>
@@ -243,6 +243,12 @@ $sidebar-footer-height: 64px;
   position: relative;
   background-color: $bg-color;
   height: 100vh;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .image-wrapper {
     overflow: hidden;

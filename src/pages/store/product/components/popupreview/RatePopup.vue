@@ -26,7 +26,7 @@
       </div>
 </template>
 <script>
-import RatingStar from '@/pages/store/ratingstar/RatingStar.vue';
+import RatingStar from '@/pages/store/product/ratingstar/RatingStar.vue';
 export default {
   components:{
     RatingStar
