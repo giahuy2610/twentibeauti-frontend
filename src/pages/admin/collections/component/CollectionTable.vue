@@ -7,7 +7,7 @@
       :rows="10"
       dataKey="id"
       :rowHover="true"
-      v-model:filters="filters"
+      :filters="filters"
       filterDisplay="menu"
       :loading="loading"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
