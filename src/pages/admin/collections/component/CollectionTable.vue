@@ -179,14 +179,14 @@ export default {
         },
         {
           id: 1002,
-          name: "Sản phẩm giả",
+          name: "Sản phẩm dưỡng da",
           createdOn: "2015-09-12",
           startOn: "2015-09-13",
           endOn: "2015-09-13",
         },
         {
           id: 1004,
-          name: "Sản phẩm cũ",
+          name: "Sản phẩm chăm sóc tóc",
           createdOn: "2015-09-13",
           startOn: "2015-09-13",
           endOn: "2015-09-13",
