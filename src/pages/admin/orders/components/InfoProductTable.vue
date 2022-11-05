@@ -85,7 +85,17 @@
       </Column>
       <Column field="name" header="Tên sản phẩm" style="min-width: 10rem">
         <template #body="{ data }">
-          {{ data.name }}
+          <p
+            @click="
+              $router.push({
+                path: '/admin/products/create',
+                query: { sku: data.name },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+          >
+            {{ data.name }}
+          </p>
         </template>
         
       </Column>
