@@ -1,7 +1,7 @@
 <template>
   <div class="product-table-wrapper">
     <DataTable
-      :value="products"
+      :value="categories"
       :paginator="true"
       class="p-datatable-customers"
       :rows="10"
@@ -13,13 +13,9 @@
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="[
-        'name',
-        'country.name',
-        'representative.name',
-        'status',
-      ]"
+      :globalFilterFields="['name', 'id']"
       responsiveLayout="scroll"
+      v-model:selection="selectedCategories"
     >
       <template #header>
         <div class="flex justify-content-between align-items-center">
@@ -37,59 +33,36 @@
       <template #loading> Loading collections data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 
-      <Column
-        field="name"
-        header="Mã danh mục"
-        sortable
-        style="min-width: 12rem"
-      >
+      <Column header="Mã danh mục" sortable style="min-width: 12rem" field="id">
         <template #body="{ data }">
-          {{ data.id }}
-        </template>
-        <template #filter="{ filterModel }">
-          <InputText
-            type="text"
-            v-model="filterModel.value"
-            class="p-column-filter"
-            placeholder="Search by name"
-          />
+          <p
+            @click="
+              $router.push({
+                path: '/admin/collections/create',
+                query: { id: data.id },
+              })
+            "
+            class="cursor-pointer"
+            style="color: var(--primary-color)"
+          >
+            {{ data.id }}
+          </p>
         </template>
       </Column>
 
       <Column
+        field="name"
         header="Tên danh mục"
         sortable
         filterField="representative"
         sortField="representative.name"
-        :showFilterMatchModes="false"
-        :filterMenuStyle="{ width: '11rem' }"
         style="min-width: 13rem"
       >
         <template #body="{ data }">
-          <span class="image-text">{{ data.category.name }}</span>
-        </template>
-        <template #filter="{ filterModel }">
-          <MultiSelect
-            v-model="filterModel.value"
-            :options="representatives"
-            optionLabel="name"
-            placeholder="Any"
-            class="p-column-filter"
-          >
-            <template #option="slotProps">
-              <div class="p-multiselect-representative-option">
-                <img
-                  :alt="slotProps.option.name"
-                  src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-                  width="32"
-                  style="vertical-align: middle"
-                />
-                <span class="image-text">{{ slotProps.option.name }}</span>
-              </div>
-            </template>
-          </MultiSelect>
+          <span>{{ data.name }}</span>
         </template>
       </Column>
+
       <Column
         field="date"
         header="Ngày hiển thị"
@@ -98,7 +71,7 @@
         style="min-width: 10rem"
       >
         <template #body="{ data }">
-          {{ data.createdOn }}
+          {{ data.startOn }}
         </template>
         <template #filter="{ filterModel }">
           <Calendar
@@ -108,6 +81,7 @@
           />
         </template>
       </Column>
+
       <Column
         field="date"
         header="Ngày kết thúc"
@@ -116,7 +90,7 @@
         style="min-width: 10rem"
       >
         <template #body="{ data }">
-          {{ data.createdOn }}
+          {{ data.endOn }}
         </template>
         <template #filter="{ filterModel }">
           <Calendar
@@ -126,6 +100,7 @@
           />
         </template>
       </Column>
+
       <Column
         field="date"
         header="Ngày tạo"
@@ -142,73 +117,6 @@
             dateFormat="mm/dd/yy"
             placeholder="mm/dd/yyyy"
           />
-        </template>
-      </Column>
-
-      <Column
-        field="image"
-        header="Ảnh bìa"
-        sortable
-        :filterMenuStyle="{ width: '10rem' }"
-        style="min-width: 11rem"
-      >
-        <template #body="{ data }">
-          <span :class="'customer-badge status-' + data.status">{{
-            data.status
-          }}</span>
-        </template>
-        <template #filter="{ filterModel }">
-          <Dropdown
-            v-model="filterModel.value"
-            :options="statuses"
-            placeholder="Any"
-            class="p-column-filter"
-            :showClear="true"
-          >
-            <template #value="slotProps">
-              <span :class="'customer-badge status-' + slotProps.value">{{
-                slotProps.value
-              }}</span>
-            </template>
-            <template #option="slotProps">
-              <span :class="'customer-badge status-' + slotProps.option">{{
-                slotProps.option
-              }}</span>
-            </template>
-          </Dropdown>
-        </template>
-      </Column>
-      <Column
-        field="image"
-        header="Ảnh logo"
-        sortable
-        :filterMenuStyle="{ width: '10rem' }"
-        style="min-width: 11rem"
-      >
-        <template #body="{ data }">
-          <span :class="'customer-badge status-' + data.status">{{
-            data.status
-          }}</span>
-        </template>
-        <template #filter="{ filterModel }">
-          <Dropdown
-            v-model="filterModel.value"
-            :options="statuses"
-            placeholder="Any"
-            class="p-column-filter"
-            :showClear="true"
-          >
-            <template #value="slotProps">
-              <span :class="'customer-badge status-' + slotProps.value">{{
-                slotProps.value
-              }}</span>
-            </template>
-            <template #option="slotProps">
-              <span :class="'customer-badge status-' + slotProps.option">{{
-                slotProps.option
-              }}</span>
-            </template>
-          </Dropdown>
         </template>
       </Column>
 
@@ -230,8 +138,6 @@ import { FilterMatchMode, FilterOperator } from "primevue/api";
 export default {
   data() {
     return {
-      customers: null,
-      selectedCustomers: null,
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: {
@@ -263,62 +169,30 @@ export default {
         verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
-      representatives: [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
-      ],
-      statuses: ["Đang giao dịch", "Hoàn thành"],
-      products: [
+      categories: [
         {
           id: 1000,
-          name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
-          brand: {
-            name: "The Face Shop",
-            id: 100,
-            path: "/collections/the-face-shop",
-            country: "Hàn Quốc",
-          },
+          name: "Sản phẩm mới",
           createdOn: "2015-09-13",
-          status: "Đang giao dịch",
-          stock: 20,
-          images: ["abc.png", "bcd.png"],
-          listprice: 80000,
-          salePrice: 75000,
-          description:
-            "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-          category: {
-            name: "Trang điểm",
-            id: "1",
-            path: "/categories/trang-diem",
-          },
-          review: [
-            {
-              id: 111,
-              userId: 1112,
-              rating: 4,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-13",
-              invoice: { id: 152 },
-            },
-            {
-              id: 115,
-              userId: 1113,
-              rating: 2,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-14",
-              invoice: { id: 165 },
-            },
-          ],
+          startOn: "2015-09-13",
+          endOn: "2015-09-13",
+        },
+        {
+          id: 1002,
+          name: "Sản phẩm giả",
+          createdOn: "2015-09-12",
+          startOn: "2015-09-13",
+          endOn: "2015-09-13",
+        },
+        {
+          id: 1004,
+          name: "Sản phẩm cũ",
+          createdOn: "2015-09-13",
+          startOn: "2015-09-13",
+          endOn: "2015-09-13",
         },
       ],
+      selectedCategories: [],
     };
   },
   created() {},
@@ -334,12 +208,6 @@ export default {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
-      });
-    },
-    formatCurrency(value) {
-      return value.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
       });
     },
   },
