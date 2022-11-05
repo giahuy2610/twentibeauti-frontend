@@ -20,7 +20,6 @@
     </template>
     <template v-slot:main>
       <div class="container">
-        <div class="title-collection">Danh sách danh mục</div>
         <div>
           <CollectionTable></CollectionTable>
         </div>

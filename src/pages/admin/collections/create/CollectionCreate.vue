@@ -21,12 +21,34 @@
       </div>
     </template>
     <template v-slot:main>
-      <div class="main-wrapper flex">
+      <div class="main-wrapper flex justify-content-center">
         <div class="left-content">
           <div>
             <AddInfor> </AddInfor>
           </div>
-
+          <Card>
+            <template #title>Chọn sản phẩm </template>
+            <template #content>
+              <div class="field-radiobutton px-3">
+                <RadioButton
+                  inputId="methodByHand"
+                  name="method"
+                  value="Thêm sản phẩm thủ công"
+                  v-model="method"
+                />
+                <label for="methodByHand">Thêm sản phẩm thủ công</label>
+              </div>
+              <div class="field-radiobutton px-3">
+                <RadioButton
+                  inputId="methodAuto"
+                  name="method"
+                  value="Thêm sản phẩm tự động"
+                  v-model="method"
+                />
+                <label for="methodAuto">Thêm sản phẩm tự động</label>
+              </div>
+            </template>
+          </Card>
           <Card>
             <template #title> Xem trước kết quả tìm kiếm </template>
             <template #content>
@@ -58,6 +80,23 @@
                 <label for="statusShow">Hiện</label>
               </div>
               <div class="p-2">Đặt lịch hiển thị</div>
+              <Calendar v-model="value" :showTime="true" :touchUI="true" />
+            </template>
+          </Card>
+          <Card>
+            <template #title> Ảnh bìa </template>
+            <template #content>
+              <div>
+                <AddFileVue></AddFileVue>
+              </div>
+            </template>
+          </Card>
+          <Card>
+            <template #title> Ảnh logo </template>
+            <template #content>
+              <div>
+                <AddFileVue></AddFileVue>
+              </div>
             </template>
           </Card>
           <Card>
@@ -121,7 +160,7 @@ export default {
 }
 :deep(.p-card) {
   padding: 5px;
-  margin: 4px;
+  margin: 8px;
   border-radius: 13px;
 }
 </style>
