@@ -31,6 +31,8 @@
 import AdminBlankPage from "../../AdminBlankPage.vue";
 import Main_content from "./components/Main_content.vue";
 export default {
+  watch: {
+  },
   components: {
     AdminBlankPage,
     Main_content,

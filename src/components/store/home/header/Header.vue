@@ -15,7 +15,7 @@
   >
     <Cart></Cart>
   </Sidebar>
-
+  
   <div
     class="shadow-2"
     :class="{
@@ -126,7 +126,7 @@
         </span>
       </div>
     </Wrapper>
-
+    
     <Wrapper
       style="
         height: 50px;
