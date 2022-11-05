@@ -85,7 +85,17 @@
         </Column>
         <Column field="name" header="Tên sản phẩm" style="min-width: 10rem">
           <template #body="{ data }">
+             <p
+            @click="
+              $router.push({
+                path: '/admin/products/create',
+                query: { sku: data.name },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+          >
             {{ data.name }}
+          </p>
           </template>
         </Column>
         <Column field="name" header="Số lượng" style="min-width: 7rem">
@@ -216,19 +226,6 @@
           verified: { value: null, matchMode: FilterMatchMode.EQUALS },
         },
         loading: true,
-        representatives: [
-          { name: "Amy Elsner", image: "amyelsner.png" },
-          { name: "Anna Fali", image: "annafali.png" },
-          { name: "Asiya Javayant", image: "asiyajavayant.png" },
-          { name: "Bernardo Dominic", image: "bernardodominic.png" },
-          { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-          { name: "Ioni Bowcher", image: "ionibowcher.png" },
-          { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-          { name: "Onyama Limba", image: "onyamalimba.png" },
-          { name: "Stephen Shaw", image: "stephenshaw.png" },
-          { name: "XuXue Feng", image: "xuxuefeng.png" },
-        ],
-        statuses: ["Đang giao dịch", "Hoàn thành"],
         products: [
           {
             id: 1000,
@@ -252,24 +249,6 @@
               id: "1",
               path: "/categories/trang-diem",
             },
-            review: [
-              {
-                id: 111,
-                userId: 1112,
-                rating: 4,
-                content: "Sản phẩm tốt",
-                createdOn: "2015-09-13",
-                invoice: { id: 152 },
-              },
-              {
-                id: 115,
-                userId: 1113,
-                rating: 2,
-                content: "Sản phẩm tốt",
-                createdOn: "2015-09-14",
-                invoice: { id: 165 },
-              },
-            ],
           },
         ],
       };

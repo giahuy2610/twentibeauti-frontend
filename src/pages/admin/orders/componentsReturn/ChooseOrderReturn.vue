@@ -8,7 +8,6 @@
           </div> -->
           <div class="modal-title">
             <div class="m-head">
-             
               <slot name="title"></slot>
             </div>
           </div>
@@ -53,15 +52,22 @@
                 </template>
                 <!-- <Column selectionMode="multiple" headerStyle="width: 3rem"></Column> -->
 
-                <Column
-                  field="name"
-                  header="Mã đơn hàng"
-                  style="min-width: 9rem"
-                >
-                  <template #body="{ data }">
-                    {{ data.id }}
-                  </template>
-                </Column>
+                <Column field="name" header="Mã đơn hàng" style="min-width: 11rem">
+          <template #body="{ data }">
+          <p
+            @click="
+              $router.push({
+                path: '/admin/orderdetails',
+                query: { sku: data.id },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+            style="color: #0088FF;"
+          >
+            {{ data.id }}
+          </p>
+        </template>
+        </Column>  
                 <Column
                   field="date"
                   header="Ngày tạo"
@@ -72,11 +78,7 @@
                     {{ data.createdOn }}
                   </template>
                 </Column>
-                <Column
-                  field="name"
-                  header="Nhân viên"
-                  style="min-width: 9rem"
-                >
+                <Column field="name" header="Nhân viên" style="min-width: 9rem">
                   <template #body="{ data }">
                     {{ data.id }}
                   </template>
@@ -101,21 +103,27 @@
                   </template>
                 </Column>
                 <Column
-                header="Thao tác"
-                style="min-width: 9rem;"
-        bodyStyle="text-align: center; overflow: visible"
-      >
-        <template #body>
-            <button style="cursor:pointer;">Đổi trả</button>
-        </template>
-      </Column>
+                  header="Thao tác"
+                  style="min-width: 9rem"
+                  bodyStyle="text-align: center; overflow: visible"
+                >
+                  <template #body="{ data }">
+                    <p
+                      @click="
+                        $router.push({
+                          path: '/admin/create_return',
+                          query: { sku: data.idreturn },
+                        })
+                      "
+                      class="cursor-pointer hover-primary-color"
+                    >
+                      <button style="cursor: pointer">Đổi trả</button>
+                    </p>
+                  </template>
+                </Column>
               </DataTable>
             </div>
             <slot name="context"></slot>
-          </div>
-          <div class="modal-footer">
-            <slot name="footer"></slot>
-            <slot name="button"></slot>
           </div>
         </div>
       </div>
@@ -127,7 +135,7 @@ import { FilterMatchMode, FilterOperator } from "primevue/api";
 export default {
   data() {
     return {
-      modal:false,
+      modal: false,
       position: "center",
       isHidden: false,
       customers: null,
@@ -163,60 +171,13 @@ export default {
         verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
-      representatives: [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
-      ],
-      statuses: ["Đang giao dịch", "Hoàn thành"],
       products: [
         {
           id: 1000,
-          name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
-          brand: {
-            name: "The Face Shop",
-            id: 100,
-            path: "/collections/the-face-shop",
-            country: "Hàn Quốc",
-          },
           createdOn: "2015-09-13",
           status: "Đang giao dịch",
-          stock: 20,
-          images: ["abc.png", "bcd.png"],
           listprice: 80000,
           salePrice: 75000,
-          description:
-            "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-          category: {
-            name: "Trang điểm",
-            id: "1",
-            path: "/categories/trang-diem",
-          },
-          review: [
-            {
-              id: 111,
-              userId: 1112,
-              rating: 4,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-13",
-              invoice: { id: 152 },
-            },
-            {
-              id: 115,
-              userId: 1113,
-              rating: 2,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-14",
-              invoice: { id: 165 },
-            },
-          ],
         },
       ],
     };
@@ -240,9 +201,9 @@ export default {
       });
     },
     formatCurrency(value) {
-      return value.toLocaleString("en-US", {
+      return value.toLocaleString( {
         style: "currency",
-        currency: "USD",
+        currency: "VND",
       });
     },
   },
@@ -275,9 +236,9 @@ export default {
     left: calc(50% - 450px);
     top: 100px;
     button {
-      border:none;
+      border: none;
       background-color: #fff;
-      color: #0088FF;
+      color: #0088ff;
       font-weight: 600;
     }
     //-webkit-scrollbar{ display: none; }
@@ -322,7 +283,6 @@ export default {
         text-align: center;
       }
     }
-
 
     .modal-context {
       width: 100%;
