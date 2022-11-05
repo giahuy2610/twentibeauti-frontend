@@ -52,7 +52,7 @@ export default {
       formData.append("image", event.files[0]);
       settings.data = formData;
       $.ajax(settings).done(function (response) {
-        console.log(response);
+        this.$emit("geturl", link);
       });
       this.toastSuccess();
     },

@@ -12,11 +12,13 @@
     >
       <template #empty>
         <p>Drag and drop files to here to upload.</p>
+        
       </template>
     </FileUpload>
   </div>
 </template>
 <script>
+//import $ from "jquery";
 export default {
   methods: {
     toastSuccess() {
@@ -29,36 +31,47 @@ export default {
       });
     },
     onUpload(event) {
-      const $ = require("jquery");
-      var $files = $("input[type=file]").get(0).files;
       var apiUrl = "https://api.imgur.com/3/image";
       var apiKey = "99d036fd40d9ea2";
-      var settings = {
+      var formData = new FormData();
+      formData.append("image", event.files[0]);
+      const clientId = "99d036fd40d9ea2";
+      const  auth = "Client-ID " + clientId;
+      console.log(event.files[0])
+      fetch("https://api.imgur.com/3/image/", {
+        // API Endpoint
         async: false,
         crossDomain: true,
         processData: false,
         contentType: false,
-        type: "POST",
-        url: apiUrl,
+        method: "POST", // HTTP Method
+        body: formData, // Data to be sent
         headers: {
-          Authorization: "Client-ID " + apiKey,
+          // Setting header
+          Authorization: auth,
           Accept: "application/json",
         },
-        mimeType: "multipart/form-data",
-      };
-      var formData = new FormData();
+                mimeType: "multipart/form-data",
+      })
+        .then((res) => console.log(res)) // Handling success
+        .catch((err) => alert("Failed") && console.log(err)); // Handling error
+
       // console.log($files[0].type, $files.type);
-      formData.append("image", event.files[0]);
-      settings.data = formData;
-      $.ajax(settings).done(function (response) {
-        this.emitUrl(response.link);
-      });
-      this.toastSuccess();
+
+      //   settings.data = formData;
+      //   $.ajax(settings).done(function (response) {
+      //     this.emitUrl(response.link);
+      //   });
     },
     emits: ["geturl"],
+    data() {
+        return {
+            result: null
+        }
+    },
   },
   emitUrl(link) {
-    this.$toast("geturl", link);
+    this.$emit("geturl", link);
   },
 };
 </script>
