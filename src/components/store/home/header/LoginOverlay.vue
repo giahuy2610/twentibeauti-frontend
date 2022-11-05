@@ -47,7 +47,6 @@ export default {
           this.getUser = result;
           this.visibleLogin = false;
           console.log(result);
-          this.$router.push("/account");
         })
         .catch((error) => {
           this.visibleLogin = false;

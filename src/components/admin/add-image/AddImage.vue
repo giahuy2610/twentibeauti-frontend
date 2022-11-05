@@ -31,7 +31,7 @@ export default {
     },
     onUpload(event) {
       var $files = $("input[type=file]").get(0).files;
-
+      var self = this;
       var apiUrl = "https://api.imgur.com/3/image";
       var apiKey = "99d036fd40d9ea2";
       var settings = {
@@ -52,10 +52,19 @@ export default {
       formData.append("image", event.files[0]);
       settings.data = formData;
       $.ajax(settings).done(function (response) {
-        this.$emit("geturl", link);
+        self.$emit("geturl", JSON.parse(response).data.link);
       });
       this.toastSuccess();
     },
+    emits: ["geturl"],
+    data() {
+      return {
+        result: null,
+      };
+    },
+  },
+  emitUrl(link) {
+    this.$emit("geturl", link);
   },
 };
 </script>
