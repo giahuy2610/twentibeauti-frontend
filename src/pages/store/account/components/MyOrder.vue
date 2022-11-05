@@ -36,7 +36,7 @@
           <button
             type="button"
             class="btn"
-            @click="$router.push({ path: '/orders/details' })"
+            @click="$router.push({ path: '/details' })"
           >
             Xem chi tiết
           </button>
