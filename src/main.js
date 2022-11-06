@@ -60,6 +60,8 @@ import ColorPicker from "primevue/colorpicker";
 // import ButtonModule from 'primeng/button';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
+import Fieldset from "primevue/fieldset";
+import ToggleButton from "primevue/togglebutton";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -148,6 +150,8 @@ app.component("Paginator", Paginator);
 app.component("ColorPicker", ColorPicker);
 app.component("ProgressSpinner", ProgressSpinner);
 app.component("Inplace", Inplace);
+app.component("Fieldset", Fieldset);
+app.component("ToggleButton", ToggleButton);
 app.directive("badge", BadgeDirective);
 
 app.config.globalProperties.$API_URL = "https://localhost:7101/weatherforecast";

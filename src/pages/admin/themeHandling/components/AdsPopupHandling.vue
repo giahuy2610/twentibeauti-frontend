@@ -74,16 +74,15 @@ export default {
   //   justify-content: center;
   //   align-items: center;
 
-  .time-handling, .edit {
+  .time-handling,
+  .edit {
     display: flex;
     align-items: center;
     gap: 1rem;
 
     label {
-        font-weight: bold;
+      font-weight: bold;
     }
   }
-
-
 }
 </style>

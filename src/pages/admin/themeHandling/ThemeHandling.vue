@@ -51,12 +51,9 @@
           </Card>
         </div>
 
-        <Card>
-          <template #title>Quảng cáo nổi</template>
-          <template #content>
-            <AdsPopupHandlingVue></AdsPopupHandlingVue>
-          </template>
-        </Card>
+        <Fieldset legend="Quảng cáo nổi" :toggleable="true" collapsed="false">
+          <AdsPopupHandlingVue></AdsPopupHandlingVue> ></Fieldset
+        >
         <Card>
           <template #title>Quảng cáo cạnh</template>
           <template #content> </template>
@@ -65,14 +62,18 @@
           <template #title>Quảng cáo đầu</template>
           <template #content> </template>
         </Card>
-        <Card>
-          <template #title>Trang chủ - Khuyến mãi tường Slider</template>
-          <template #content> </template>
-        </Card>
+        <Fieldset
+          legend="Trang chủ - Khuyến mãi tường Slider"
+          :toggleable="true"
+          collapsed="false"
+        >
+          <WallpaperHomePageHandingVue></WallpaperHomePageHandingVue
+        ></Fieldset>
         <Card>
           <template #title>Trang chủ - Thương hiệu Slider</template>
           <template #content> </template>
         </Card>
+
         <Card>
           <template #title>Trang chủ - Danh mục khuyến mãi Slider</template>
           <template #content> </template>

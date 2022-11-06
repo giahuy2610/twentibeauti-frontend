@@ -37,7 +37,7 @@ import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
 import AdminCollections from "../pages/admin/collections/AdminCollections.vue";
 import CollectionCreate from "../pages/admin/collections/create/CollectionCreate.vue";
 import AdminSupportPage from "../pages/admin/support/SupportPage.vue";
-
+import AdminAdvertisingPage from "../pages/admin/advertising/AdvertisingPage.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -213,6 +213,11 @@ const routes = [
         name: "support",
         path: "support",
         component: AdminSupportPage,
+      },
+      {
+        name: "advertising",
+        path: "advertising",
+        component: AdminAdvertisingPage,
       },
     ],
     meta: {

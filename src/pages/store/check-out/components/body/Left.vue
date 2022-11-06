@@ -9,11 +9,19 @@
           <p>{{ item.label }}</p>
         </div>
 
-        <div class="selectbutton" >
-          <SelectButton
+        <div class="selectbutton">
+          <!-- <SelectButton
             v-model="item.value"
             :options="options"
             aria-labelledby="single"
+          /> -->
+          <ToggleButton
+            v-model="item.value"
+            onLabel="Có"
+            offLabel="Không"
+            onIcon="pi pi-check"
+            offIcon="pi pi-times"
+            class="w-full sm:w-10rem"
           />
         </div>
       </div>
@@ -36,9 +44,9 @@ export default {
       value: "Không",
       options: ["Có", "Không"],
       array: [
-        { label: "Ghi chú", value: "Không" },
-        { label: "Đây là quà tặng?", value: "Không" },
-        { label: "Thông tin xuất hóa đơn", value: "Không" },
+        { label: "Ghi chú", value: false },
+        { label: "Đây là quà tặng?", value: false },
+        { label: "Thông tin xuất hóa đơn", value: false },
       ],
     };
   },
@@ -70,8 +78,6 @@ export default {
         width: 100%;
         max-width: max-content;
         width: 50%;
-
-
       }
     }
   }
