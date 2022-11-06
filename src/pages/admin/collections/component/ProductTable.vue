@@ -12,12 +12,21 @@
           />
         </span>
       </div>
+
+      <!-- <div>
+        <ProductTable />
+      </div> -->
     </template>
   </Card>
 </template>
 
 <script>
-export default {};
+import ProductTable from "../../products/components/ProductTable.vue"
+export default {
+  component:{
+    ProductTable
+  }
+};
 </script>
 
 <style></style>
