@@ -11,9 +11,7 @@
             icon="pi pi-plus"
             class="p-button-info ml-2"
             badgeClass="p-badge-danger"
-            @click="
-              $router.push({ path: '/admin/products/create', replace: true })
-            "
+            @click="$router.push({ path: '/admin/products/create' })"
           />
         </div>
       </div>

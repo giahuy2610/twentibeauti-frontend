@@ -1,10 +1,13 @@
 <template lang="">
-  <div class="container">
+  <div class="container flex justify-content-center align-items-center">
+    <ProgressSpinner v-show="!isLoaded" />
     <iframe
       src="https://livesupport.fpt.ai"
       width="100%"
       name="myFrame"
       style="height: 100vh"
+      @load="(isLoaded = true)"
+      v-show="isLoaded"
     ></iframe>
   </div>
 </template>
@@ -14,11 +17,16 @@ export default {
   components: {
     AdminBlankPage,
   },
+  data() {
+    return {
+      isLoaded: false,
+    };
+  },
 };
 </script>
 <style scoped>
 .container {
-    height: 100vh;
-    overflow: hidden;
+  height: 100vh;
+  overflow: hidden;
 }
 </style>
