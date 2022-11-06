@@ -1,6 +1,6 @@
 <template lang="">
   <div class="info-ticket">
-    <div class="info-cus ">
+    <div class="info-cus">
       <Card style="width: 25rem; margin-bottom: 2em">
         <template #title>
           <div class="header">Thông tin phiếu</div>
@@ -10,8 +10,11 @@
             <div class="customer">
               <div class="label">Khách hàng</div>
               <div class="name-phone">
-                <div class="name">Chị Oanh</div>
-                <div class="phone">0945945453</div>
+                <a target="_blank" href="/admin/customerdetails">
+                  <div class="name">Dịu Ái</div>
+                <div class="phone">0868247806</div>
+                </a>
+                
               </div>
             </div>
             <div class="orderid">
@@ -85,13 +88,22 @@ export default {
         flex-direction: column;
         gap: 5px;
         width: 50%;
+        .label {
+          font-weight: 500;
+        }
         .name-phone {
-          display: flex;
+          a{
+            display: flex;
           flex-direction: row;
           gap: 10px;
+          text-decoration: none;
+          }
           cursor:pointer;
           .name {
             color: #0088ff;
+          }
+          .phone {
+            color:#333;
           }
         }
         .id {

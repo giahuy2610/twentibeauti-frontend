@@ -2,8 +2,8 @@
     <AdminBlankPage>
       <template v-slot:header>
         <div class="header-wrapper">
-          <div class="header-wrapper__left">
-            <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/orderdetails' })"></i>
+          <div class="header-wrapper__left" style="cursor:pointer" @click="$router.push({ path: '/admin/orderdetails' })">
+            <i class="pi pi-angle-left" ></i>
             Quay lại đơn hàng</div>
           <div class="header-wrapper__right">
             <Button label="Sửa đơn hàng" class="p-button-outlined" style="color:#0088FF" />
@@ -13,7 +13,7 @@
               class="p-button-info ml-2"
               badgeClass="p-badge-danger"
               style="background-color: #0088FF"
-              @click="$router.push({ path: '/admin/create_return' })"
+              @click="$router.push({ path: '/admin/create-return' })"
             />
           </div>
         </div>
@@ -66,7 +66,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-  
+    .header-wrapper__left:hover{
+      color:var(--primary-color);
+    }
  
   }
   .main-wrapper {

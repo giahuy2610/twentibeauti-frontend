@@ -9,21 +9,16 @@
                 <div class="icon-ava">
                   <i class="pi pi-user"></i>
                 </div>
-                <div class="title">Thông tin khách hàng</div>
+                <h1 class="title">Dịu Ái</h1>
               </div>
               <div class="name-phone">
-                <a target="_blank" href="/admin/customerdetails">
-                  <h6
-                    class="name-cus">
-                    Dịu Ái
-                  </h6>
-                  <h6 class="phone-cus">- 0868247806</h6>
-                </a>
+                44/37/1/3,HT43,khu phố 4, phường Hiệp Thành,quận 12,TPHCM,
+                Phường Tân Hưng, Quận 7, Vietnam
               </div>
             </div>
             <div class="address-order">
               <div class="head-address">
-                <div class="tit-content">Địa chỉ giao hàng</div>
+                <div class="tit-content">Sổ địa chỉ</div>
                 <div class="button">
                   <a class="form-address" href="#dialog-address">Thay đổi</a>
                   <div class="dialog overlay" id="dialog-address">
@@ -33,21 +28,7 @@
                         <button class="dialog-add-btn" @click="basic = true">
                           Thêm mới
                         </button>
-                        <FormAddress v-if="basic">
-                          <template v-slot:title>
-                            <div class="m-header">
-                              <div class="modal-title">
-                                <div class="m-head">Thêm địa chỉ</div>
-                              </div>
-                              <div class="btn-close">
-                                <i
-                                  class="pi pi-times"
-                                  @click="basic = false"
-                                ></i>
-                              </div>
-                            </div>
-                          </template>
-                        </FormAddress>
+
                         <div class="dialog-title">Thay đổi địa chỉ</div>
                       </div>
                       <ul class="list-body">
@@ -57,13 +38,13 @@
                               class="address-list-phone"
                               style="font-weight: 500; line-height: 20px"
                             >
-                              0868247806
+                              094594553
                             </div>
                             <div
                               class="address-list-home"
                               style="font-weight: 400; line-height: 20px"
                             >
-                            44/37/1/3,HT43,khu phố 4, phường Hiệp Thành,quận 12,TPHCM
+                              Quảng Bình, Phường Phúc Xá, Quận Ba Đình, Hà Nội
                             </div>
                           </div>
                           <div class="address-list edit">
@@ -79,21 +60,6 @@
                             >
                               Sửa
                             </button>
-                            <FormEditAddress v-if="basic1">
-                              <template v-slot:title>
-                                <div class="m-header-edit">
-                                  <div class="modal-title">
-                                    <div class="m-head">Sửa địa chỉ</div>
-                                  </div>
-                                  <div class="btn-close">
-                                    <i
-                                      class="pi pi-times"
-                                      @click="basic1 = false"
-                                    ></i>
-                                  </div>
-                                </div>
-                              </template>
-                            </FormEditAddress>
                           </div>
                         </li>
                       </ul>
@@ -101,46 +67,10 @@
                   </div>
                 </div>
               </div>
-              <div class="phone-order">0868247806</div>
+              <div class="phone-order">094594553</div>
               <div class="address">
-                44/37/1/3,HT43,khu phố 4, phường Hiệp Thành,quận 12,TPHCM
+                Quảng Bình, Phường Phúc Xá, Quận Ba Đình, Hà Nội
               </div>
-            </div>
-          </div>
-          <div class="right-info">
-            <div class="info-total">
-              <li class="debt-collection">
-                <div class="label">
-                  <p class="label-content">Nợ phải thu</p>
-                </div>
-                <div class="total">
-                  <p class="total-number">0</p>
-                </div>
-              </li>
-              <li class="all-total">
-                <div class="label">
-                  <p class="label-content">Tổng chi tiêu (1 đơn)</p>
-                </div>
-                <div class="total">
-                  <p class="total-number">500,000</p>
-                </div>
-              </li>
-              <li class="refund">
-                <div class="label">
-                  <p class="label-content">Trả hàng (0 sản phẩm)</p>
-                </div>
-                <div class="total">
-                  <p class="total-number">0</p>
-                </div>
-              </li>
-              <li class="unsuccess-order">
-                <div class="label">
-                  <p class="label-content">Giao hàng thất bại (0 đơn)</p>
-                </div>
-                <div class="total">
-                  <p class="total-number">0</p>
-                </div>
-              </li>
             </div>
           </div>
         </div>
@@ -152,14 +82,10 @@
   </div>
 </template>
 <script>
-import FormAddress from "./FormAddress.vue";
 import Wrapper from "../../../Wrapper.vue";
-import FormEditAddress from "./FormEditAddress.vue";
 export default {
   components: {
-    FormAddress,
     Wrapper,
-    FormEditAddress,
   },
   data() {
     return {
@@ -184,7 +110,7 @@ export default {
   .card-info {
     display: flex;
     flex-direction: row;
-    gap: 50px;
+    //gap: 50px;
     margin-bottom: -30px;
     .m-header-edit {
       text-align: center;
@@ -229,30 +155,24 @@ export default {
             border: 1px solid #d3d5d7;
             background-color: #d3d5d7;
             border-radius: 50%;
-            width: 35px;
+            width: 45px;
             align-items: center;
             text-align: center;
             //padding-bottom: 5px;
           }
           .title {
-            font-size: 16px;
+            font-size: 20px;
             margin-top: 7px;
             font-weight: 600;
           }
         }
         .name-phone {
-          a {
-            display: flex;
-            flex-direction: row;
-            text-decoration: none;
-            color: #0088ff;
-            margin-top: -25px;
-            margin-left: 10px;
-            .phone-cus {
-              color: #333;
-              font-weight: 600;
-            }
-          }
+          display: flex;
+          flex-direction: row;
+          margin-left: 10px;
+          font-size: 14px;
+          font-weight: 400;
+          color: var(--text-color-secondary);
         }
       }
       .address-order {
@@ -378,7 +298,7 @@ export default {
                   min-height: 56px;
                   margin-right: 10px;
                   justify-content: space-between;
-                  width: 100%;
+                  // width: 100%;
                   display: flex;
                   flex-direction: row;
                   //flex-wrap: nowrap;
@@ -426,42 +346,6 @@ export default {
         }
         .address {
           font-size: 13px;
-        }
-      }
-    }
-    .right-info {
-      width: 50%;
-      .info-total {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        font-size: 14px;
-        font-weight: 400;
-        border: 1px dashed #a3a8af;
-        border-radius: 5px;
-        position: relative;
-        text-align: left;
-        //align-items: center;
-        justify-content: flex-start;
-        text-decoration: none;
-        padding: 5px 8px;
-        .debt-collection,
-        .all-total,
-        .refund,
-        .unsuccess-order {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          // padding: 10px;
-          .label {
-            width: 75%;
-          }
-          .total {
-            font-weight: 500;
-            color: red;
-            margin-left: 30px;
-            text-align: right;
-          }
         }
       }
     }

@@ -22,7 +22,9 @@
            <a class="overlay-close" href="#"></a>
            <div class="dialog-stock">
             <div class="dialog-header">
-              <a class="btn-close" href="#">&times;</a>
+              <a class="btn-close" href="#">
+                <i class="pi pi-times" style="margin-top:15px;"></i>
+              </a>
               <h4>Kiểm tra tồn kho</h4>
             </div>
             <div class="dialog-body">
