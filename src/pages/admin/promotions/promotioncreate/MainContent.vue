@@ -14,6 +14,8 @@
             <PromoCode></PromoCode>
             <PromoType></PromoType>
             <PromoValue></PromoValue>
+            <PromoCondition></PromoCondition>
+            <PromoCustomer></PromoCustomer>
         </div>
         <div class="right">
 
@@ -23,17 +25,22 @@
 <script>
 import PromoCode from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCode.vue';
 import PromoType from '@/pages/admin/promotions/promotioncreate/maincontent/PromoType.vue';
-import PromoValue from '@/pages/admin/promotions/promotioncreate/maincontent/PromoValue.vue'
+import PromoValue from '@/pages/admin/promotions/promotioncreate/maincontent/PromoValue.vue';
+import PromoCondition from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCondition.vue';
+import PromoCustomer from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCustomer.vue';
 export default {
   components :
   {
     PromoCode,
     PromoType,
-    PromoValue
+    PromoValue,
+    PromoCondition,
+    PromoCustomer,
   }
 }
 </script>
 <style lang="scss" scoped>
+
 .main_content {
     display: flex;
     flex-direction: row;

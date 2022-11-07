@@ -57,6 +57,8 @@ import Avatar from "primevue/avatar";
 import Calendar from "primevue/calendar";
 import Textarea from "primevue/textarea";
 import ColorPicker from "primevue/colorpicker";
+import DynamicDialog from 'primevue/dynamicdialog';
+import DialogService from 'primevue/dialogservice';
 // import ButtonModule from 'primeng/button';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
@@ -152,6 +154,8 @@ app.component("ProgressSpinner", ProgressSpinner);
 app.component("Inplace", Inplace);
 app.component("Fieldset", Fieldset);
 app.component("ToggleButton", ToggleButton);
+app.component("DynamicDialog", DynamicDialog);
+app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
 app.config.globalProperties.$API_URL = "https://localhost:7101/weatherforecast";

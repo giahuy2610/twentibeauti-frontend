@@ -12,27 +12,22 @@
             </div>
           </div>
           <div class="modal-context">
-            <div class="product-table-wrapper">
+            <div class="choose-order-return-table-wrapper">
               <DataTable
-                :value="products"
+                :value="orderreturn"
                 :paginator="true"
-                class="p-datatable-customers"
+                class="p-datatable-choose-order-return"
                 :rows="10"
                 dataKey="id"
                 :rowHover="true"
-                v-model:selection="selectedCustomers"
+                v-model:selection="selectedChooseOrderReturn"
                 v-model:filters="filters"
                 filterDisplay="menu"
                 :loading="loading"
                 paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                 :rowsPerPageOptions="[10, 25, 50]"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                :globalFilterFields="[
-                  'name',
-                  'country.name',
-                  'representative.name',
-                  'status',
-                ]"
+                :globalFilterFields="['id', 'customer', 'emp']"
                 responsiveLayout="scroll"
               >
                 <template #header>
@@ -52,22 +47,26 @@
                 </template>
                 <!-- <Column selectionMode="multiple" headerStyle="width: 3rem"></Column> -->
 
-                <Column field="name" header="Mã đơn hàng" style="min-width: 11rem">
-          <template #body="{ data }">
-          <p
-            @click="
-              $router.push({
-                path: '/admin/orderdetails',
-                query: { sku: data.id },
-              })
-            "
-            class="cursor-pointer hover-primary-color"
-            style="color: #0088FF;"
-          >
-            {{ data.id }}
-          </p>
-        </template>
-        </Column>  
+                <Column
+                  field="id"
+                  header="Mã đơn hàng"
+                  style="min-width: 11rem"
+                >
+                  <template #body="{ data }">
+                    <p
+                      @click="
+                        $router.push({
+                          path: '/admin/orderdetails',
+                          query: { sku: data.id },
+                        })
+                      "
+                      class="idod cursor-pointer hover-primary-color"
+                      style="color: #0088ff"
+                    >
+                      {{ data.id }}
+                    </p>
+                  </template>
+                </Column>
                 <Column
                   field="date"
                   header="Ngày tạo"
@@ -80,7 +79,7 @@
                 </Column>
                 <Column field="name" header="Nhân viên" style="min-width: 9rem">
                   <template #body="{ data }">
-                    {{ data.id }}
+                    {{ data.emp }}
                   </template>
                 </Column>
                 <Column
@@ -89,17 +88,17 @@
                   style="min-width: 9rem"
                 >
                   <template #body="{ data }">
-                    {{ data.id }}
+                    {{ data.customer }}
                   </template>
                 </Column>
                 <Column
-                  field="balance"
+                  field="total"
                   header="Tổng tiền"
                   dataType="numeric"
                   style="min-width: 9rem"
                 >
                   <template #body="{ data }">
-                    {{ formatCurrency(data.salePrice) }}
+                    {{ formatCurrency(data.total) }}
                   </template>
                 </Column>
                 <Column
@@ -138,8 +137,8 @@ export default {
       modal: false,
       position: "center",
       isHidden: false,
-      customers: null,
-      selectedCustomers: null,
+      orderreturn: null,
+      selectedChooseOrderReturn: null,
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: {
@@ -148,36 +147,35 @@ export default {
             { value: null, matchMode: FilterMatchMode.STARTS_WITH },
           ],
         },
-        "country.name": {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
         date: {
           operator: FilterOperator.AND,
           constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
         },
-        balance: {
+        total: {
           operator: FilterOperator.AND,
           constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
         },
-        status: {
+        id: {
           operator: FilterOperator.OR,
           constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
         },
-        activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+        emp: {
+          operator: FilterOperator.OR,
+          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
+        },
+        customer: {
+          operator: FilterOperator.OR,
+          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
+        },
       },
       loading: true,
-      products: [
+      orderreturn: [
         {
           id: 1000,
           createdOn: "2015-09-13",
-          status: "Đang giao dịch",
-          listprice: 80000,
-          salePrice: 75000,
+          emp: "Dịu Ái",
+          customer: "Thảo Hồng",
+          total: 75000,
         },
       ],
     };
@@ -201,7 +199,7 @@ export default {
       });
     },
     formatCurrency(value) {
-      return value.toLocaleString( {
+      return value.toLocaleString({
         style: "currency",
         currency: "VND",
       });
@@ -287,6 +285,10 @@ export default {
     .modal-context {
       width: 100%;
       display: block;
+      .idod:hover {
+        text-decoration: underline;
+  font-weight: 600;
+      }
       ::v-deep(.p-progressbar) {
         height: 0.5rem;
         background-color: #d8dadc;
@@ -304,7 +306,7 @@ export default {
         }
       }
 
-      ::v-deep(.p-datatable.p-datatable-customers) {
+      ::v-deep(.p-datatable.p-choose-order-return-customers) {
         .p-datatable-header {
           padding: 1rem;
           text-align: left;

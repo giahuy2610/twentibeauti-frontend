@@ -2,8 +2,8 @@
   <AdminBlankPage>
     <template v-slot:header>
       <div class="header-wrapper">
-        <div class="header-wrapper__left">
-          <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/order_return' })"></i>
+        <div class="header-wrapper__left" style="cursor:pointer" @click="$router.push({ path: '/admin/order-return' })">
+          <i class="pi pi-angle-left"  ></i>
           Quay lại danh sách đơn trả hàng</div>
         <div class="header-wrapper__right">
           <Button label="Thoát" class="p-button-outlined p-button-danger" />
@@ -65,6 +65,9 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .header-wrapper__left:hover {
+    color:var(--primary-color);
+  }
 }
 .main-wrapper {
   .product-table {

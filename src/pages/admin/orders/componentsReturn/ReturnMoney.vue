@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="return-money">
+    <div class="return-money shadow-2">
         <Card style="width: 100%; margin-top: 2em">
             <template #title>
                 <div class="title">Hoàn tiền</div>
@@ -32,7 +32,7 @@ export default {
     .title {
         font-size: 18px;
         font-weight: 500;
-        padding-left: 10px;
+        padding: 10px;
         border-bottom: 1px solid #e6e6e6;
     }
     .content {

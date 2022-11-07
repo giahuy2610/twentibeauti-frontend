@@ -153,22 +153,22 @@ export default {
             },
             {
               name: "Khách trả hàng",
-              path: "/admin/order_return",
+              path: "/admin/order-return",
             },
           ],
           path: "",
         },
-        {
-          name: "Vận chuyển",
-          icon: "pi-send",
-          children: null,
-          path: "",
-        },
+        // {
+        //   name: "Vận chuyển",
+        //   icon: "pi-send",
+        //   children: null,
+        //   path: "",
+        // },
         {
           name: "Khách hàng",
           icon: "pi-users",
           children: null,
-          path: "",
+          path: "/admin/customer",
         },
         {
           name: "Yêu cầu hỗ trợ",

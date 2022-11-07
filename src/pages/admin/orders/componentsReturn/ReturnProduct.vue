@@ -1,12 +1,12 @@
 <template>
-    <div class="product-table-wrapper">
+    <div class="product-table-wrapper shadow-2">
       <DataTable
-        :value="products"
-        class="p-datatable-customers"
+        :value="productreturn"
+        class="p-datatable-product-return"
         :rows="10"
         dataKey="id"
         :rowHover="true"
-        v-model:selection="selectedCustomers"
+        v-model:selection="selectedProductReturn"
         v-model:filters="filters"
         filterDisplay="menu"
         :loading="loading"
@@ -38,13 +38,13 @@
         <template #loading> Loading customers data. Please wait. </template>
         <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
   
-        <Column field="name" header="STT" style="min-width: 5rem">
+        <Column field="stt" header="STT" style="min-width: 5rem">
           <template #body="{ data }">
             {{ data.id }}
           </template>
         </Column>
         <Column
-        field="brand.name"
+        field="img"
         header="Ảnh"
         filterMatchMode="contains"
         style="min-width: 5rem"
@@ -52,7 +52,7 @@
         <template #body="{ data }">
           <img
             src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-            :class="'flag flag-' + data.brand.code"
+            :class="'flag flag-' + data.img"
             width="30"
           />
          
@@ -67,20 +67,20 @@
                 query: { sku: data.name },
               })
             "
-            class="cursor-pointer hover-primary-color"
+            class="namepro cursor-pointer hover-primary-color"
           >
             {{ data.name }}
           </p>
         </template>
       </Column>
-      <Column field="name" header="Số lượng" style="min-width: 7rem">
+      <Column field="quatity" header="Số lượng" style="min-width: 7rem">
         <template #body="{ data }">
-          {{ data.id }}
+          {{ data.quatity }}
         </template>
       </Column>
         
         <Column
-          field="balance"
+          field="price"
           header="Đơn giá"
           dataType="numeric"
           style="min-width: 7rem"
@@ -90,7 +90,7 @@
           </template>
         </Column>
         <Column
-          field="balance"
+          field="total"
           header="Thành tiền"
           dataType="numeric"
           style="min-width: 7rem"
@@ -135,84 +135,47 @@
   export default {
     data() {
       return {
-        customers: null,
-        selectedCustomers: null,
+        productreturn: null,
+        selectedProductReturn: null,
         filters: {
           global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+          id: {
+            operator: FilterOperator.AND,
+            constraints: [
+              { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+            ],
+          },
           name: {
-            operator: FilterOperator.AND,
-            constraints: [
-              { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-            ],
-          },
-          "country.name": {
-            operator: FilterOperator.AND,
-            constraints: [
-              { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-            ],
-          },
-          representative: { value: null, matchMode: FilterMatchMode.IN },
-          date: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
           },
-          balance: {
+          representative: { value: null, matchMode: FilterMatchMode.IN },
+          quatity: {
+            operator: FilterOperator.AND,
+            constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
+          },
+          total: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
           },
-          status: {
-            operator: FilterOperator.OR,
+          price: {
+            operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
           },
-          activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-          verified: { value: null, matchMode: FilterMatchMode.EQUALS },
         },
         loading: true,
         statuses: [
           "Đang giao dịch",
           "Hoàn thành",
         ],
-        products: [
+        productreturn: [
           {
             id: 1000,
             name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
-            brand: {
-              name: "The Face Shop",
-              id: 100,
-              path: "/collections/the-face-shop",
-              country: "Hàn Quốc",
-            },
-            createdOn: "2015-09-13",
-            status: "Đang giao dịch",
-            stock: 20,
-            images: ["abc.png", "bcd.png"],
-            listprice: 80000,
+            img: ["abc.png", "bcd.png"],
+            quatity:100,
             salePrice: 75000,
-            description:
-              "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-            category: {
-              name: "Trang điểm",
-              id: "1",
-              path: "/categories/trang-diem",
-            },
-            review: [
-              {
-                id: 111,
-                userId: 1112,
-                rating: 4,
-                content: "Sản phẩm tốt",
-                createdOn: "2015-09-13",
-                invoice: { id: 152 },
-              },
-              {
-                id: 115,
-                userId: 1113,
-                rating: 2,
-                content: "Sản phẩm tốt",
-                createdOn: "2015-09-14",
-                invoice: { id: 165 },
-              },
-            ],
+            
           },
         ],
       };
@@ -225,13 +188,6 @@
       this.loading = false;
     },
     methods: {
-      formatDate(value) {
-        return value.toLocaleDateString("en-US", {
-          day: "2-digit",
-          month: "2-digit",
-          year: "numeric",
-        });
-      },
       formatCurrency(value) {
         return value.toLocaleString( {
           style: "currency",
@@ -282,7 +238,10 @@
     }
   }
 
-  
+  .namepro:hover {
+    text-decoration: underline;
+    color:var(--text-admin-color);
+  }
   ::v-deep(.p-progressbar) {
     height: 0.5rem;
     background-color: #d8dadc;

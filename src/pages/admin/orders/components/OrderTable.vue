@@ -1,13 +1,13 @@
-<template>
-  <div class="product-table-wrapper">
+<template >
+  <div class="order-table-wrapper ">
     <DataTable
-      :value="products"
+      :value="orders"
       :paginator="true"
-      class="p-datatable-customers"
+      class="p-datatable-orders "
       :rows="10"
       dataKey="id"
       :rowHover="true"
-      v-model:selection="selectedCustomers"
+      v-model:selection="selectedStatus"
       v-model:filters="filters"
       filterDisplay="menu"
       :loading="loading"
@@ -15,24 +15,26 @@
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       :globalFilterFields="[
-        'name',
-        'country.name',
-        'representative.name',
+        'id',
+        'nameCus',
+        'total',
+        'date',
         'status',
+        'statuses.name',
       ]"
       responsiveLayout="scroll"
     >
     <template #header>
-        <div class="flex justify-content-between align-items-center">
+        <div class="flex justify-content-between align-items-center ">
           <h5 class="m-0">Đơn hàng</h5>
-          <span v-show="selectedCustomers.length > 0">
+          <span v-show="selectedStatus.length > 0">
             Chọn thao tác
             <Dropdown
-              v-model="selectedCity1"
-              :options="cities"
+              v-model="selectedTracking"
+              :options="tracking"
               optionLabel="name"
               optionValue="code"
-              placeholder="Select a City"
+              placeholder="Trạng thái đơn hàng"
             />
           </span>
           <span class="p-input-icon-left">
@@ -46,35 +48,35 @@
       </template>
       <template #empty> No customers found. </template>
       <template #loading> Loading customers data. Please wait. </template>
-      <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
+      <Column selectionMode="multiple" headerStyle="width: 2rem"></Column>
 
       <Column
-        field="name"
+        field="id"
         header="Mã đơn hàng"
-        style="min-width: 9rem"
+        style="min-width: 3rem"
       >
         <template #body="{ data }">
-          <p
+          <p 
             @click="
               $router.push({
                 path: '/admin/orderdetails',
                 query: { sku: data.id },
               })
             "
-            class="cursor-pointer hover-primary-color"
-            style="color: #0088FF;"
+            class="idod cursor-pointer "
+            style="color: var(--text-admin-color);"
           >
             {{ data.id }}
           </p>
         </template>
       </Column>
       <Column
-        field="name"
+        field="nameCus"
         header="Tên khách hàng"
-        style="min-width: 9rem"
+        style="min-width: 6rem"
       >
         <template #body="{ data }">         
-            {{ data.id }}
+            {{ data.nameCus }}
         </template>
       </Column>
       
@@ -83,32 +85,31 @@
         header="Ngày tạo"
         sortable
         dataType="date"
-        style="min-width: 10rem"
+        style="min-width: 6rem"
       >
         <template #body="{ data }">
           {{ data.createdOn }}
         </template>
       </Column>
       <Column
-        field="balance"
+        field="total"
         header="Tổng đơn"
         sortable
         dataType="numeric"
-        style="min-width: 11rem"
+        style="min-width: 6rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.salePrice) }}
+          {{ formatCurrency(data.total) }}
         </template>
       </Column>
       <Column
         field="status"
         header="Tình trạng"
-        sortable
         :filterMenuStyle="{ width: '10rem' }"
-        style="min-width: 11rem"
+        style="min-width: 6rem"
       >
         <template #body="{ data }">
-          <span :class="'customer-badge status-' + data.status">{{
+          <span :class="'order-badge status-' + data.status">{{
             data.status
           }}</span>
         </template>
@@ -121,12 +122,12 @@
             :showClear="true"
           >
             <template #value="slotProps">
-              <span :class="'customer-badge status-' + slotProps.value">{{
+              <span :class="'order-badge status-' + slotProps.value">{{
                 slotProps.value
               }}</span>
             </template>
             <template #option="slotProps">
-              <span :class="'customer-badge status-' + slotProps.option">{{
+              <span :class="'order-badge status-' + slotProps.option">{{
                 slotProps.option
               }}</span>
             </template>
@@ -135,11 +136,12 @@
       </Column>
 
       <Column
-        headerStyle="width: 4rem; text-align: center"
-        bodyStyle="text-align: center; overflow: visible"
+      header="Hủy đơn hàng"
+      style="min-width: 6rem"
       >
         <template #body>
-          <Button type="button" icon="pi pi-cog"></Button>
+          <Button type="button"  icon="pi pi-times"
+              class="p-button-rounded p-button-danger p-button-text"></Button>
         </template>
       </Column>
     </DataTable>
@@ -153,27 +155,26 @@ export default {
   data() {
     return {
       customers: null,
-      selectedCustomers: [],
+      selectedStatus: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: {
+        nameCus: {
           operator: FilterOperator.AND,
           constraints: [
             { value: null, matchMode: FilterMatchMode.STARTS_WITH },
           ],
         },
-        "country.name": {
+        "statuses.name": {
           operator: FilterOperator.AND,
           constraints: [
             { value: null, matchMode: FilterMatchMode.STARTS_WITH },
           ],
         },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
         date: {
           operator: FilterOperator.AND,
           constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
         },
-        balance: {
+        total: {
           operator: FilterOperator.AND,
           constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
         },
@@ -185,60 +186,35 @@ export default {
         verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
-      representatives: [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
+      tracking: [
+        { name: "Đơn hàng đang được chuẩn bị", code: "WT" },
+        { name: "Đang giao hàng", code: "SHIPPING" },
+        { name: "Đã giao hàng", code: "SHIPPED" },
+        { name: "Giao hàng không thành công", code: "UNS" },
+        { name: "Đơn hàng bị hủy", code: "CANC" },
       ],
-      statuses: ["Đang giao dịch", "Hoàn thành"],
-      products: [
+      selectedTracking: null,
+      statuses: [
+      { name: "Đơn hàng đang được chuẩn bị", code: "WT" },
+        { name: "Đang giao hàng", code: "SHIPPING" },
+        { name: "Đã giao hàng", code: "SHIPPED" },
+        { name: "Giao hàng không thành công", code: "UNS" },
+        { name: "Đơn hàng bị hủy", code: "CANC" },
+      ],
+      orders: [
         {
-          id: 1000,
-          name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
-          brand: {
-            name: "The Face Shop",
-            id: 100,
-            path: "/collections/the-face-shop",
-            country: "Hàn Quốc",
-          },
+          id: 1,
+          nameCus: "Dịu Ái",
           createdOn: "2015-09-13",
-          status: "Đang giao dịch",
-          stock: 20,
-          images: ["abc.png", "bcd.png"],
-          listprice: 80000,
-          salePrice: 75000,
-          description:
-            "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-          category: {
-            name: "Trang điểm",
-            id: "1",
-            path: "/categories/trang-diem",
-          },
-          review: [
-            {
-              id: 111,
-              userId: 1112,
-              rating: 4,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-13",
-              invoice: { id: 152 },
-            },
-            {
-              id: 115,
-              userId: 1113,
-              rating: 2,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-14",
-              invoice: { id: 165 },
-            },
-          ],
+          status: "Đang giao hàng",
+          total: 80000,
+        },
+        {
+          id: 2,
+          nameCus: "Dịu Ái",
+          createdOn: "2015-09-13",
+          status: "Đang giao hàng",
+          total: 80000,
         },
       ],
     };
@@ -269,14 +245,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-table-wrapper {
-}
+
 
 ::v-deep(.p-paginator) {
   .p-paginator-current {
   }
 }
-
+.idod:hover {
+  text-decoration: underline;
+  font-weight: 600;
+}
 ::v-deep(.p-progressbar) {
   height: 0.5rem;
   background-color: #d8dadc;
@@ -294,7 +272,7 @@ export default {
   }
 }
 
-::v-deep(.p-datatable.p-datatable-customers) {
+::v-deep(.p-datatable.p-datatable-orders) {
   .p-datatable-header {
     padding: 1rem;
     text-align: left;
