@@ -26,7 +26,7 @@
 <script>
 import ProductService from './service/ProductService';
 
-import InfoDemo from './InfoDemo.vue';
+import InfoDemo from './service/InfoDemo.vue';
 
 export default {
     inject: ['dialogRef'],
@@ -43,6 +43,7 @@ export default {
         this.productService.getProductsSmall().then(data => this.products = data.slice(0,5));
     },
     methods: {
+        
         selectProduct(data) {
             this.dialogRef.close(data);
         },

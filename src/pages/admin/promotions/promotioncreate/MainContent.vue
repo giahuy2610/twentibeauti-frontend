@@ -16,9 +16,11 @@
             <PromoValue></PromoValue>
             <PromoCondition></PromoCondition>
             <PromoCustomer></PromoCustomer>
+            <PromoRange></PromoRange>
+            <PromoTime></PromoTime>
         </div>
         <div class="right">
-
+          <PromoCheck></PromoCheck>
         </div>
     </div>
 </template>
@@ -28,6 +30,9 @@ import PromoType from '@/pages/admin/promotions/promotioncreate/maincontent/Prom
 import PromoValue from '@/pages/admin/promotions/promotioncreate/maincontent/PromoValue.vue';
 import PromoCondition from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCondition.vue';
 import PromoCustomer from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCustomer.vue';
+import PromoRange from '@/pages/admin/promotions/promotioncreate/maincontent/PromoRange.vue';
+import PromoTime from '@/pages/admin/promotions/promotioncreate/maincontent/PromoTime.vue'; 
+import PromoCheck from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCheck.vue'
 export default {
   components :
   {
@@ -36,6 +41,9 @@ export default {
     PromoValue,
     PromoCondition,
     PromoCustomer,
+    PromoRange,
+    PromoTime,
+    PromoCheck,
   }
 }
 </script>
