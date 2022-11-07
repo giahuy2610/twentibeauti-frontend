@@ -14,6 +14,7 @@ export default {};
 <style lang="scss" scoped>
 @import "@/scss/mixin";
 .wrapper-blank {
+  
   header {
     position: fixed;
     z-index: 10000000000000000000;
@@ -37,4 +38,6 @@ export default {};
     overflow-x: scroll;
   }
 }
+::v-deep(.p-hidden-accessible){ display: none; }
+
 </style>
