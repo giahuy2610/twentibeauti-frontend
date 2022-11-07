@@ -12,7 +12,9 @@
 export default {};
 </script>
 <style lang="scss" scoped>
+@import "@/scss/mixin";
 .wrapper-blank {
+  
   header {
     position: fixed;
     z-index: 10000000000000000000;
@@ -30,10 +32,12 @@ export default {};
   }
 
   main {
-    padding: 8rem 2rem 2rem 2rem;
+    padding: 8rem 0rem 0rem 0rem;
     min-height: 100vh;
     background-color: #f0f1f1;
     overflow-x: scroll;
   }
 }
+::v-deep(.p-hidden-accessible){ display: none; }
+
 </style>

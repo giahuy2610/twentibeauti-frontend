@@ -12,9 +12,7 @@
             label="Tạo đơn trả hàng"
             class="p-button-info ml-2"
             badgeClass="p-badge-danger"
-            @click="
-              $router.push({ path: '/admin/order_return/create_return', replace: true })
-            "
+            
           />
         </div>
       </div>

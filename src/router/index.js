@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { useIndexStorePinia } from "../stores/admin/index.js";
+import { useIndexAdminStorePinia } from "../stores/admin/index.js";
+import { useCartStorePinia } from "../stores/store/cart.js";
 //store
 import AppLayout from "../layouts/AppLayout.vue";
 import HomeStore from "../pages/store/home/HomeStore.vue";
@@ -20,7 +21,7 @@ import AccountOrderDetails from "../pages/store/account/components/OrderDetails.
 import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
 import Products from "../pages/admin/products/Products.vue";
-import ProductDetail from "../pages/admin/products/ProductDetail.vue";
+// import ProductDetail from "../pages/admin/products/ProductDetail.vue";
 import ListOrders from "../pages/admin/orders/ListOrders.vue";
 import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
 import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
@@ -32,6 +33,10 @@ import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
 import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
 import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
+import AdminCollections from "../pages/admin/collections/AdminCollections.vue";
+import CollectionCreate from "../pages/admin/collections/create/CollectionCreate.vue";
+import AdminSupportPage from "../pages/admin/support/SupportPage.vue";
+
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -104,11 +109,17 @@ const routes = [
             component: AccountPromotions,
           },
         ],
+        meta: {
+          requiresStoreAuth: true,
+        },
       },
       {
         name: "checkout",
         path: "/checkout",
         component: Checkout,
+        meta: {
+          requiresStoreAuth: true,
+        },
       },
       {
         name: "product",
@@ -179,8 +190,18 @@ const routes = [
       },
       {
         name: "theme handling",
-        path: "/theme-handling",
+        path: "theme-handling",
         component: ThemeHandling,
+      },
+      {
+        name: "collections",
+        path: "collections",
+        component: AdminCollections,
+      },
+      {
+        name: "support",
+        path: "support",
+        component: AdminSupportPage,
       },
     ],
     meta: {
@@ -212,13 +233,18 @@ const router = createRouter({
   routes,
 });
 router.beforeEach((to, from, next) => {
-  const store = useIndexStorePinia();
-  if (!store.isLoggedIn && to.meta.requiresAuth) {
+  const storeAdmin = useIndexAdminStorePinia();
+  const store = useCartStorePinia();
+  if (!storeAdmin.isLoggedIn && to.meta.requiresAuth) {
     next({
       name: "admin login",
       query: {
         nextUrl: to.fullPath,
       },
+    });
+  } else if (store.user == null && to.meta.requiresStoreAuth) {
+    next({
+      name: "home",
     });
   } else {
     next();

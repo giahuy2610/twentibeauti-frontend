@@ -38,32 +38,47 @@
         <template #empty> No customers found. </template>
         <template #loading> Loading customers data. Please wait. </template>
         <!-- <Column selectionMode="multiple" headerStyle="width: 3rem"></Column> -->
-  
-        <Column field="name" header="Khách hàng" style="min-width: 10rem">
+        <Column field="name" header="Mã đơn trả hàng" style="min-width: 12rem">
           <template #body="{ data }">
-            {{ data.id }}
-          </template>
-          <template #filter="{ filterModel }">
-            <InputText
-              type="text"
-              v-model="filterModel.value"
-              class="p-column-filter"
-              placeholder="Search by name"
-            />
-          </template>
+          <p
+            @click="
+              $router.push({
+                path: '/admin/create_return',
+                query: { sku: data.idreturn },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+            style="color: #0088FF;"
+          >
+            {{ data.idreturn }}
+          </p>
+        </template>
         </Column>
-        
+        <Column field="name" header="Mã đơn hàng" style="min-width: 11rem">
+          <template #body="{ data }">
+          <p
+            @click="
+              $router.push({
+                path: '/admin/orderdetails',
+                query: { sku: data.id },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+            style="color: #0088FF;"
+          >
+            {{ data.id }}
+          </p>
+        </template>
+        </Column>       
         <Column
           header="Trạng thái"
-          filterField="representative"
-          sortField="representative.name"
           :showFilterMatchModes="false"
           :filterMenuStyle="{ width: '11rem' }"
           style="min-width: 10rem"
         >
           <template #body="{ data }">
             
-            <span class="image-text">{{ data.category.name }}</span>
+           {{ data.statusreturn }}
           </template>
           <template #filter="{ filterModel }">
             <div class="mb-3 font-bold">Agent Picker</div>
@@ -90,7 +105,7 @@
         </Column>
         <Column field="name" header="Hoàn tiền" style="min-width: 10rem">
             <template #body="{ data }">
-              {{ data.id }}
+              {{ data.namereturn }}
             </template>
             <template #filter="{ filterModel }">
               <InputText
@@ -104,19 +119,12 @@
         <Column
           field="balance"
           header="Tổng tiền"
+          sortable
           dataType="numeric"
           style="min-width: 10rem"
         >
           <template #body="{ data }">
             {{ formatCurrency(data.salePrice) }}
-          </template>
-          <template #filter="{ filterModel }">
-            <InputNumber
-              v-model="filterModel.value"
-              mode="currency"
-              currency="USD"
-              locale="en-US"
-            />
           </template>
         </Column>
         <Column
@@ -145,7 +153,7 @@
           style="min-width: 11rem"
         >
           <template #body="{ data }">
-            <span :class="'customer-badge status-' + data.status">{{
+            <span :class="'order-return-badge status-' + data.status">{{
               data.status
             }}</span>
           </template>
@@ -158,12 +166,12 @@
               :showClear="true"
             >
               <template #value="slotProps">
-                <span :class="'customer-badge status-' + slotProps.value">{{
+                <span :class="'order-return-badge status-' + slotProps.value">{{
                   slotProps.value
                 }}</span>
               </template>
               <template #option="slotProps">
-                <span :class="'customer-badge status-' + slotProps.option">{{
+                <span :class="'order-return-badge status-' + slotProps.option">{{
                   slotProps.option
                 }}</span>
               </template>
@@ -222,34 +230,27 @@
           verified: { value: null, matchMode: FilterMatchMode.EQUALS },
         },
         loading: true,
-        representatives: [
-          { name: "Amy Elsner", image: "amyelsner.png" },
-          { name: "Anna Fali", image: "annafali.png" },
-          { name: "Asiya Javayant", image: "asiyajavayant.png" },
-          { name: "Bernardo Dominic", image: "bernardodominic.png" },
-          { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-          { name: "Ioni Bowcher", image: "ionibowcher.png" },
-          { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-          { name: "Onyama Limba", image: "onyamalimba.png" },
-          { name: "Stephen Shaw", image: "stephenshaw.png" },
-          { name: "XuXue Feng", image: "xuxuefeng.png" },
-        ],
         statuses: [
-          "Đang giao dịch",
-          "Hoàn thành",
+          "Hàng bị lỗi",
+          "Không đúng số lượng",
+          "Không đúng hàng",
+        ],
+        statusreturn:[
+          "Đã nhận",
+          "Chưa nhận",
+        ],
+        namereturn:[
+        "Đã nhận",
+          "Chưa nhận",
         ],
         products: [
           {
             id: 1000,
-            name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
-            brand: {
-              name: "The Face Shop",
-              id: 100,
-              path: "/collections/the-face-shop",
-              country: "Hàn Quốc",
-            },
+            idreturn: "RT1",
             createdOn: "2015-09-13",
-            status: "Đang giao dịch",
+            status: "Hàng bị lỗi",
+            statusreturn: "Đã nhận",
+            namereturn: "Đã nhận",
             stock: 20,
             images: ["abc.png", "bcd.png"],
             listprice: 80000,
@@ -261,24 +262,6 @@
               id: "1",
               path: "/categories/trang-diem",
             },
-            review: [
-              {
-                id: 111,
-                userId: 1112,
-                rating: 4,
-                content: "Sản phẩm tốt",
-                createdOn: "2015-09-13",
-                invoice: { id: 152 },
-              },
-              {
-                id: 115,
-                userId: 1113,
-                rating: 2,
-                content: "Sản phẩm tốt",
-                createdOn: "2015-09-14",
-                invoice: { id: 165 },
-              },
-            ],
           },
         ],
       };
@@ -299,9 +282,9 @@
         });
       },
       formatCurrency(value) {
-        return value.toLocaleString("en-US", {
+        return value.toLocaleString( {
           style: "currency",
-          currency: "USD",
+          currency: "VND",
         });
       },
     },

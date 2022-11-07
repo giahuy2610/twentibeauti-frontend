@@ -85,6 +85,15 @@
           class="sidebar-footer flex align-items-center cursor-pointer"
           @click="
             isLoggedIn = false;
+            this.$router.push('/');
+          "
+        >
+          <i class="pi pi-shopping-bag mr-2"></i><span>Về cửa hàng</span>
+        </div>
+        <div
+          class="sidebar-footer flex align-items-center cursor-pointer"
+          @click="
+            isLoggedIn = false;
             this.$router.go();
           "
         >
@@ -95,7 +104,7 @@
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/admin/index.js";
+import { useIndexAdminStorePinia } from "@/stores/admin/index.js";
 import { mapWritableState } from "pinia";
 export default {
   data() {
@@ -117,6 +126,11 @@ export default {
               path: "/admin/products",
             },
             {
+              name: "Danh mục sản phẩm",
+              path: "/admin/collections",
+            },
+
+            {
               name: "Quản lý kho",
               path: "",
             },
@@ -127,23 +141,19 @@ export default {
           name: "Khuyến mãi",
           icon: "pi-tags",
           children: null,
-          path: "",
+          path: "/admin/promotion",
         },
         {
           name: "Đơn hàng",
           icon: "pi-box",
           children: [
             {
-              name: "Tạo đơn hàng và giao hàng",
-              path: "",
-            },
-            {
               name: "Danh sách đơn hàng",
-              path: "",
+              path: "/admin/listorders",
             },
             {
               name: "Khách trả hàng",
-              path: "",
+              path: "/admin/order_return",
             },
           ],
           path: "",
@@ -164,19 +174,19 @@ export default {
           name: "Yêu cầu hỗ trợ",
           icon: "pi-inbox",
           children: null,
-          path: "",
+          path: "/admin/support",
         },
         {
           name: "Giao diện",
           icon: "pi-slack",
           children: null,
-          path: "/theme-handling",
+          path: "/admin/theme-handling",
         },
       ],
     };
   },
   computed: {
-    ...mapWritableState(useIndexStorePinia, {
+    ...mapWritableState(useIndexAdminStorePinia, {
       isLoggedIn: "isLoggedIn",
     }),
   },
@@ -233,6 +243,12 @@ $sidebar-footer-height: 64px;
   position: relative;
   background-color: $bg-color;
   height: 100vh;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   .image-wrapper {
     overflow: hidden;

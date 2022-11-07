@@ -13,7 +13,7 @@
               class="p-button-info ml-2"
               badgeClass="p-badge-danger"
               style="background-color: #0088FF"
-              @click="$router.push({ path: '/admin/order_return/create_return' })"
+              @click="$router.push({ path: '/admin/create_return' })"
             />
           </div>
         </div>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export const useIndexStorePinia = defineStore('indexStorePinia', {
+export const useIndexAdminStorePinia = defineStore('indexAdminStorePinia', {
   state: () => {
     return {
         isLoggedIn: false

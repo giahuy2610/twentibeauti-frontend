@@ -45,6 +45,7 @@ export default {
     }
   }
   .main-wrapper {
+    margin:  1rem;
     .product-table {
       width: 100%;
     }
@@ -62,4 +63,22 @@ export default {
   {
     padding: 0rem 0 !important;
   }
+  ::v-deep(.field-checkbox)
+{
+    label
+    {
+        cursor: pointer;
+    }
+    margin-bottom: 0rem;
+}::v-deep(.field-checkbox)
+{
+    label
+    {
+        cursor: pointer;
+    }
+    margin-bottom: 0rem;
+}
+::v-deep(.p-radiobutton)
+{
+}
 </style>

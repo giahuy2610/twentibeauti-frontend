@@ -13,8 +13,7 @@
         v-for="(item, index) in title"
         :class="index === selected ? 'active' : ''"
         @click="selected = index"
-        >{{ item }}</a
-      >
+        >{{ item }}</a>
     </div>
     <div class="search">
       <span class="p-fluid">

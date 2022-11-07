@@ -12,6 +12,7 @@ import "./scss/_theme.scss";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
+import vClickOutside from "click-outside-vue3"
 // import MegaMenu from 'primevue/megamenu';
 import InputText from "primevue/inputtext";
 import SelectButton from "primevue/selectbutton";
@@ -56,7 +57,29 @@ import Avatar from "primevue/avatar";
 import Calendar from "primevue/calendar";
 import Textarea from "primevue/textarea";
 import ColorPicker from "primevue/colorpicker";
+import DynamicDialog from 'primevue/dynamicdialog';
+import DialogService from 'primevue/dialogservice';
 // import ButtonModule from 'primeng/button';
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+  apiKey: "AIzaSyDa9FCzuXTUUWJsg_XpMxHOM7MyNjrB20I",
+  authDomain: "twenti-882b8.firebaseapp.com",
+  projectId: "twenti-882b8",
+  storageBucket: "twenti-882b8.appspot.com",
+  messagingSenderId: "460737526428",
+  appId: "1:460737526428:web:a91e2f019c39dfe30acb59",
+  measurementId: "G-QYG0GZD88R",
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
 const options = {
   color: "#94c83d",
@@ -81,7 +104,7 @@ app.use(router);
 app.use(ToastService);
 app.use(VueAxios, axios);
 app.use(VueProgressBar, options);
-
+app.use(vClickOutside)
 app.component("Textarea", Textarea);
 app.component("Calendar", Calendar);
 app.component("Avatar", Avatar);
@@ -123,7 +146,8 @@ app.component("Toast", Toast);
 app.component("Skeleton", Skeleton);
 app.component("Paginator", Paginator);
 app.component("ColorPicker", ColorPicker);
-
+app.component("DynamicDialog", DynamicDialog);
+app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
 app.config.globalProperties.$API_URL = "https://localhost:7101/weatherforecast";

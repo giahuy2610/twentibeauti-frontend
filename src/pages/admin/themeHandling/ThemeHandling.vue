@@ -24,6 +24,7 @@
             </div>
           </template>
         </Card>
+
       </div>
     </template>
   </AdminBlankPage>

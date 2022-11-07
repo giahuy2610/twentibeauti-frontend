@@ -60,7 +60,17 @@
       </Column>
       <Column field="name" header="Tên sản phẩm" style="min-width: 10rem">
         <template #body="{ data }">
-          {{ data.name}}
+          <p
+            @click="
+              $router.push({
+                path: '/admin/products/create',
+                query: { sku: data.name },
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+          >
+            {{ data.name }}
+          </p>
         </template>
       </Column>
       <Column field="name" header="Số lượng" style="min-width: 7rem">
@@ -110,7 +120,7 @@
                 </div>
                 <div class="total-of-cus">
                   <div class="label">Cần hoàn tiền trả hàng</div>
-                  <div class="money">300,000</div>
+                  <div class="money">300.000</div>
                 </div>
               </div>
             </div>
@@ -158,18 +168,6 @@
           verified: { value: null, matchMode: FilterMatchMode.EQUALS },
         },
         loading: true,
-        representatives: [
-          { name: "Amy Elsner", image: "amyelsner.png" },
-          { name: "Anna Fali", image: "annafali.png" },
-          { name: "Asiya Javayant", image: "asiyajavayant.png" },
-          { name: "Bernardo Dominic", image: "bernardodominic.png" },
-          { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-          { name: "Ioni Bowcher", image: "ionibowcher.png" },
-          { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-          { name: "Onyama Limba", image: "onyamalimba.png" },
-          { name: "Stephen Shaw", image: "stephenshaw.png" },
-          { name: "XuXue Feng", image: "xuxuefeng.png" },
-        ],
         statuses: [
           "Đang giao dịch",
           "Hoàn thành",
@@ -235,9 +233,9 @@
         });
       },
       formatCurrency(value) {
-        return value.toLocaleString("en-US", {
+        return value.toLocaleString( {
           style: "currency",
-          currency: "USD",
+          currency: "VND",
         });
       },
     },

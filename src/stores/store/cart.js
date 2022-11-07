@@ -33,6 +33,8 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
       },
     ],
     total: 10,
+    user: null,
+    isVisibleLogin: true,
   }),
   getters: {
     getCartItems(state) {
@@ -81,6 +83,9 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     },
     removeItem(SKU) {
       this.cartItems = this.cartItems.filter((e) => e.SKU !== SKU);
+    },
+    login(user) {
+      state.user = user;
     },
   },
   persist: true,

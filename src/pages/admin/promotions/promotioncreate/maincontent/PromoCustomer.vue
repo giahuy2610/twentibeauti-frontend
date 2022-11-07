@@ -1,5 +1,5 @@
 <template lang="">
-    <div class="sidebar-wrapper">
+    <div>
         
     </div>
 </template>
