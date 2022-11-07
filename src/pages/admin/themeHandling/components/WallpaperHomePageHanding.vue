@@ -1,5 +1,5 @@
 <template>
-  <div class="product-table-wrapper">
+  <div class="wallpaper-wrapper">
     <DataTable
       :value="categories"
       :paginator="true"
@@ -64,58 +64,25 @@
       </Column>
 
       <Column
-        field="date"
-        header="Ngày hiển thị"
+        field="name"
+        header="Đường dẫn"
         sortable
-        dataType="date"
-        style="min-width: 10rem"
+        filterField="representative"
+        sortField="representative.name"
+        style="min-width: 13rem"
       >
-        <template #body="{ data }">
-          {{ data.startOn }}
-        </template>
-        <template #filter="{ filterModel }">
-          <Calendar
-            v-model="filterModel.value"
-            dateFormat="mm/dd/yy"
-            placeholder="mm/dd/yyyy"
-          />
-        </template>
+        <template #body="{ data }"> </template>
       </Column>
 
-      <Column
-        field="date"
-        header="Ngày kết thúc"
-        sortable
-        dataType="date"
-        style="min-width: 10rem"
-      >
+      <Column field="name" header="Hình ảnh" style="min-width: 13rem">
         <template #body="{ data }">
-          {{ data.endOn }}
-        </template>
-        <template #filter="{ filterModel }">
-          <Calendar
-            v-model="filterModel.value"
-            dateFormat="mm/dd/yy"
-            placeholder="mm/dd/yyyy"
-          />
-        </template>
-      </Column>
-
-      <Column
-        field="date"
-        header="Ngày tạo"
-        sortable
-        dataType="date"
-        style="min-width: 10rem"
-      >
-        <template #body="{ data }">
-          {{ data.createdOn }}
-        </template>
-        <template #filter="{ filterModel }">
-          <Calendar
-            v-model="filterModel.value"
-            dateFormat="mm/dd/yy"
-            placeholder="mm/dd/yyyy"
+          <img
+            :src="
+              data == null
+                ? 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'
+                : data.img
+            "
+            style="width: 13rem; vertical-align: middle"
           />
         </template>
       </Column>
@@ -173,23 +140,17 @@ export default {
         {
           id: 1000,
           name: "Sản phẩm mới",
-          createdOn: "2015-09-13",
-          startOn: "2015-09-13",
-          endOn: "2015-09-13",
+          img: "https://image.hsv-tech.io/1920x0/tfs/common/01ce6eeb-2db9-43f5-b498-5d8f5f75548f.webp",
         },
         {
           id: 1002,
           name: "Sản phẩm dưỡng da",
-          createdOn: "2015-09-12",
-          startOn: "2015-09-13",
-          endOn: "2015-09-13",
+          img: "https://image.hsv-tech.io/1920x0/tfs/common/01ce6eeb-2db9-43f5-b498-5d8f5f75548f.webp",
         },
         {
           id: 1004,
           name: "Sản phẩm chăm sóc tóc",
-          createdOn: "2015-09-13",
-          startOn: "2015-09-13",
-          endOn: "2015-09-13",
+          img: "https://image.hsv-tech.io/1920x0/tfs/common/01ce6eeb-2db9-43f5-b498-5d8f5f75548f.webp",
         },
       ],
       selectedCategories: [],
@@ -215,7 +176,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.product-table-wrapper {
+.wallpaper-wrapper {
 }
 
 ::v-deep(.p-paginator) {

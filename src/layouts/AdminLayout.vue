@@ -36,7 +36,6 @@ export default {
   display: flex;
   width: 100vw;
   height: 100vh;
-  background-color: yellow;
   overflow: hidden;
 
   @include mobile {
@@ -54,12 +53,17 @@ export default {
     max-width: 200px;
     height: 100vh;
     overflow-y: scroll;
-    background-color: red;
+
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
   .main-content-c {
     width: 100%;
     height: 100vh;
-    background-color: blue;
     overflow-y: scroll;
   }
 }

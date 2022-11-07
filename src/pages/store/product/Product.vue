@@ -29,12 +29,12 @@
       <div class="bottom-navigation">
         <Transition name="slide">
           <BottomNavigation
-          class="bottomNavigation"
-          :productName="this.productName"
-          :listPrice="this.listPrice"
-          :retailPrice="this.retailPrice"
-          v-show="windowTop >= 400"
-        ></BottomNavigation>
+            class="bottomNavigation"
+            :productName="this.productName"
+            :listPrice="this.listPrice"
+            :retailPrice="this.retailPrice"
+            v-show="windowTop >= 400"
+          ></BottomNavigation>
         </Transition>
       </div>
     </Wrapper>
@@ -141,11 +141,14 @@ export default {
       );
     };
   },
+  unmounted() {
+    document.getElementById("fpt_ai_livechat_button").remove();
+    document.getElementById("fpt_ai_livechat_display_container").remove();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 @import "@/scss/mixin";
 .home__wrapper {
   min-height: 100vh;
@@ -159,14 +162,11 @@ export default {
   &__content {
     width: 100%;
   }
-} 
+}
 
 @include mobile {
-  
-
 }
 @include desktop {
-  
 }
 .slide-leave-active,
 .slide-enter-active {
@@ -181,7 +181,7 @@ export default {
 .slide-leave-to {
   transform: translate(0, 100%);
 }
-.seperator{
+.seperator {
   margin: 10px 0px;
 }
 .divider-horizontal {

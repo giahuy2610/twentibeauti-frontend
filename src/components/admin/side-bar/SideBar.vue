@@ -174,7 +174,7 @@ export default {
           name: "Yêu cầu hỗ trợ",
           icon: "pi-inbox",
           children: null,
-          path: "",
+          path: "/admin/support",
         },
         {
           name: "Giao diện",

@@ -15,7 +15,7 @@
         :rowsPerPageOptions="[10, 25, 50]"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         :globalFilterFields="[
-          'id',
+          'idorder',
           'idreturn',
           'reason',
           'status',
@@ -264,7 +264,7 @@
             total: 75000,
           },
           {
-            idorder: 1000,
+            idorder: 1500,
             idreturn: "RT2",
             datereturn: "2015-09-13",
             status: "Hàng bị lỗi",

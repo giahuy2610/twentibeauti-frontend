@@ -51,7 +51,7 @@
       <div
         class="button-more"
         @click="
-          $router.push({ path: '/collections/flash-sale', replace: true })
+          $router.push({ path: '/collections/flash-sale'})
         "
       >
         Xem tất cả
@@ -62,7 +62,7 @@
       <div
         class="button-more--small-screen"
         @click="
-          $router.push({ path: '/collections/flash-sale', replace: true })
+          $router.push({ path: '/collections/flash-sale'})
         "
       >
         Xem tất cả

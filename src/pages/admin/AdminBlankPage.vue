@@ -19,7 +19,7 @@ export default {};
     z-index: 10000000000000000000;
     top: 10px;
     right: 0;
-    width: calc(100% - 200px);
+    width: calc(100% - 220px);
     height: 70px;
     padding: 1rem 2rem;
     border-top-left-radius: 10px;
@@ -31,7 +31,7 @@ export default {};
   }
 
   main {
-    padding: 8rem 0rem 0rem 0rem;
+    padding: 8rem 0rem 0rem 1rem;
     min-height: 100vh;
     background-color: #f0f1f1;
     overflow-x: scroll;

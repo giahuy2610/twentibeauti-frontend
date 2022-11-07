@@ -18,24 +18,29 @@
     </AdminBlankPageVue>
 </template>
 <script>
-import AdminBlankPageVue from '../AdminBlankPage.vue';
+import AdminBlankPageVue from "../AdminBlankPage.vue";
 export default {
-    components : {
-        AdminBlankPageVue,
-    }
-}
+  components: {
+    AdminBlankPageVue,
+  },
+};
 </script>
 <style lang="scss" scoped>
 .header-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  
-    &__left {
-    }
-  
-    &__right {
-    }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &__left {
   }
+
+  &__right {
+  }
+}
+.main-wrapper {
+  .product-table {
+    width: 100%;
+  }
+}
 </style>

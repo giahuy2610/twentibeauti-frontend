@@ -26,17 +26,20 @@ import ListOrders from "../pages/admin/orders/ListOrders.vue";
 import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
 import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
 import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
-import Promotion from "../pages/admin/promotions/Promotion.vue";
+import ListPromotion from "../pages/admin/promotions/ListPromotion.vue";
+import PromotionCreate from "../pages/admin/promotions/PromotionCreate.vue";
 import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
 import AdminLoginPage from "../pages/admin/login/LoginAdminPage.vue";
 import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
-import AdminPromotion from "../pages/admin/promotion/AdminPromotion.vue";
+//import AdminPromotion from "../pages/admin/promotion/AdminPromotion.vue";
 import AdminCollections from "../pages/admin/collections/AdminCollections.vue";
 import CollectionCreate from "../pages/admin/collections/create/CollectionCreate.vue";
 import ListCus from "../pages/admin/customer/ListCus.vue";
 import DetailCustomer from "../pages/admin/customer/DetailCustomer.vue";
+import AdminSupportPage from "../pages/admin/support/SupportPage.vue";
+import AdminAdvertisingPage from "../pages/admin/advertising/AdvertisingPage.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -155,9 +158,14 @@ const routes = [
         component: CollectionCreate,
       },
       {
-        name: "promotions",
-        path: "promotions",
-        component: Promotion,
+        name: "list promotions",
+        path: "listpromotions",
+        component: ListPromotion,
+      },
+      {
+        name: "promotion create",
+        path: "listpromotions/create",
+        component: PromotionCreate,
       },
       {
         name: "list orders",
@@ -199,10 +207,20 @@ const routes = [
         path: "collections",
         component: AdminCollections,
       },
+      // {
+      //   name: "promotion",
+      //   path: "promotion",
+      //   component: AdminPromotion,
+      // },
       {
-        name: "promotion",
-        path: "promotion",
-        component: AdminPromotion,
+        name: "support",
+        path: "support",
+        component: AdminSupportPage,
+      },
+      {
+        name: "advertising",
+        path: "advertising",
+        component: AdminAdvertisingPage,
       },
       {
         name: "customer",

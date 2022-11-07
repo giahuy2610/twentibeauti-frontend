@@ -8,7 +8,7 @@
           <template #title> Ảnh sản phẩm </template>
           <template #content>
             <div>
-              <AddFile></AddFile>
+              <AddFile @geturl="getdata"></AddFile>
             </div>
           </template>
         </Card>
@@ -37,6 +37,11 @@ export default {
     AddInfoVue,
     FooterVue,
   },
+  methods: {
+    getdata(value) {
+      console.log(value);
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>
