@@ -38,6 +38,8 @@ import AdminCollections from "../pages/admin/collections/AdminCollections.vue";
 import CollectionCreate from "../pages/admin/collections/create/CollectionCreate.vue";
 import AdminSupportPage from "../pages/admin/support/SupportPage.vue";
 import AdminAdvertisingPage from "../pages/admin/advertising/AdvertisingPage.vue";
+import ListCus from "../pages/admin/customer/ListCus.vue";
+import DetailCustomer from "../pages/admin/customer/DetailCustomer.vue";
 const routes = [
   {
     path: "/:catchAll(.*)",
@@ -84,6 +86,7 @@ const routes = [
         path: "/details",
         component: AccountOrderDetails,
       },
+      
       {
         name: "account",
         path: "/account",
@@ -186,12 +189,12 @@ const routes = [
       },
       {
         name: "customer refund",
-        path: "order_return",
+        path: "order-return",
         component: OrderReturn,
       },
       {
         name: "create return",
-        path: "create_return",
+        path: "create-return",
         component: CreateReturn,
       },
       {
@@ -218,6 +221,16 @@ const routes = [
         name: "advertising",
         path: "advertising",
         component: AdminAdvertisingPage,
+      },
+      {
+        name: "customer",
+        path: "customer",
+        component: ListCus,
+      },
+      {
+        name: "customerdetails",
+        path: "customerdetails",
+        component: DetailCustomer,
       },
     ],
     meta: {

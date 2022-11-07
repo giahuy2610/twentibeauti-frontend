@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="tracking-return">
+  <div class="tracking-return shadow-2">
     <Card style="width: 100%; margin-top: 2em">
       <!-- <template #title>
             <div class="title">
@@ -55,11 +55,6 @@ export default {};
         font-weight: 500;
         display: inline-block;
       }
-      .done:active {
-        border: 1px solid #0088ff;
-        border-radius: 4px;
-        color:#0088ff;
-      } 
     }
   }
 }

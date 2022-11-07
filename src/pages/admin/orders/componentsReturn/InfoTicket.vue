@@ -10,14 +10,17 @@
             <div class="customer">
               <div class="label">Khách hàng</div>
               <div class="name-phone">
-                <div class="name">Chị Oanh</div>
-                <div class="phone">0945945453</div>
+                <a target="_blank" href="/admin/customerdetails">
+                  <div class="name">Dịu Ái</div>
+                <div class="phone">0868247806</div>
+                </a>
+                
               </div>
             </div>
             <div class="orderid">
               <div class="label">Mã đơn hàng gốc</div>
               <div class="id">
-                <a href="/admin/orderdetails">SS001</a>
+                <a href="/admin/orderdetails">1</a>
               </div>
             </div>
           </div>
@@ -33,7 +36,7 @@
           <div class="body">
             <div class="label">Ghi chú</div>
             <div class="text">
-               <Textarea v-model="value2" :autoResize="true" rows="1" cols="40" />
+               <Textarea v-model="note" :autoResize="true" rows="1" cols="40" />
             </div>
           </div>
         </template>
@@ -42,12 +45,16 @@
   </div>
 </template>
 <script>
+
+
 export default {
+
   data () {
     return {
+      note:null,
       order: [
         {
-          id: "SS001"
+          id: "1"
         }
       ]
     }
@@ -81,13 +88,22 @@ export default {
         flex-direction: column;
         gap: 5px;
         width: 50%;
+        .label {
+          font-weight: 500;
+        }
         .name-phone {
-          display: flex;
+          a{
+            display: flex;
           flex-direction: row;
           gap: 10px;
+          text-decoration: none;
+          }
           cursor:pointer;
           .name {
             color: #0088ff;
+          }
+          .phone {
+            color:#333;
           }
         }
         .id {
@@ -97,6 +113,10 @@ export default {
         text-decoration: none;
           }
         
+      }
+      .id:hover {
+        text-decoration: underline;
+  font-weight: 600;
       }
       }
 

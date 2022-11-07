@@ -153,7 +153,7 @@ export default {
             },
             {
               name: "Khách trả hàng",
-              path: "/admin/order_return",
+              path: "/admin/order-return",
             },
           ],
           path: "",
@@ -168,7 +168,7 @@ export default {
           name: "Khách hàng",
           icon: "pi-users",
           children: null,
-          path: "",
+          path: "/admin/customer",
         },
         {
           name: "Yêu cầu hỗ trợ",
