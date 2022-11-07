@@ -47,9 +47,45 @@
               </div>
             </div>
           </div>
-          
-       
-          
+          <div class="flex justify-content-around">
+            <select
+              name="conditions"
+              id="conditions"
+              style="padding: 10px; border-radius: 10px"
+            >
+              <option value="Nhà sản xuất">Nhà sản xuất</option>
+              <option value="Tên sản phẩm">Tên sản phẩm</option>
+              <option value="Loại sản phẩm">Loại sản phẩm</option>
+              <option value="Giá sản phẩm">Giá sản phẩm</option>
+              <option value="Tag sản phẩm">Tag sản phẩm</option>
+            </select>
+            <select
+              name="compare"
+              id="compare"
+              style="padding: 10px; border-radius: 10px"
+            >
+              <option value="bằng">bằng</option>
+              <option value="lớn hơn">lớn hơn</option>
+              <option value="nhỏ hơn">nhỏ hơn</option>
+              <option value="kết thúc với">kết thúc với</option>
+              <option value="chứa từ">chứa từ</option>
+            </select>
+            <input type="text" style="padding: 10px; border-radius: 10px" />
+          </div>
+          <div style="padding: 10px; padding-left: 26px">
+            <button
+              type="button"
+              style="
+                background: white;
+                padding: 10px;
+                cursor: pointer;
+                border-radius: 10px;
+                border-color: brown;
+              "
+            >
+              Thêm điều kiện
+            </button>
+          </div>
         </template>
       </Card>
     </template>
@@ -57,9 +93,6 @@
 </template>
 
 <script>
-
-
-
 export default {
   data() {
     return {
@@ -71,6 +104,13 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
+<style scoped>
+.conditions {
+  padding: 10px;
+}
+</style>
+=======
 <style></style> -->
 
 <template lang="">
@@ -123,3 +163,4 @@ export default {
 };
 </script>
 <style lang=""></style>
+>>>>>>> 374d4a83b47fef61cf0eca05bbbef5e6966bb644
