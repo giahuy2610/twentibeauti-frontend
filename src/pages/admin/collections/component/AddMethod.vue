@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <Card>
     <template #title>Chọn sản phẩm </template>
     <template #content>
@@ -47,11 +47,11 @@
               </div>
             </div>
           </div>
-          <div class="flex justify-content-around">
+          <div class="flex">
             <select
               name="conditions"
               id="conditions"
-              style="padding: 10px; border-radius: 10px"
+              style="padding: 10px; border-radius: 10px; margin: 10px"
             >
               <option value="Nhà sản xuất">Nhà sản xuất</option>
               <option value="Tên sản phẩm">Tên sản phẩm</option>
@@ -62,7 +62,7 @@
             <select
               name="compare"
               id="compare"
-              style="padding: 10px; border-radius: 10px"
+              style="padding: 10px; border-radius: 10px; margin: 10px"
             >
               <option value="bằng">bằng</option>
               <option value="lớn hơn">lớn hơn</option>
@@ -70,9 +70,12 @@
               <option value="kết thúc với">kết thúc với</option>
               <option value="chứa từ">chứa từ</option>
             </select>
-            <input type="text" style="padding: 10px; border-radius: 10px" />
+            <input
+              type="text"
+              style="padding: 10px; border-radius: 10px; margin: 10px"
+            />
           </div>
-          <div style="padding: 10px; padding-left: 26px">
+          <div style="padding: 10px">
             <button
               type="button"
               style="
@@ -104,63 +107,8 @@ export default {
 };
 </script>
 
-<<<<<<< HEAD
 <style scoped>
 .conditions {
   padding: 10px;
 }
 </style>
-=======
-<style></style> -->
-
-<template lang="">
-  <Card>
-    <template #title>Chọn sản phẩm </template>
-    <template #content>
-      <div class="px-3">
-        <label for="methodByHand">Thêm sản phẩm thủ công</label>
-      </div>
-      <div class="field-radiobutton px-3">
-        <div for="methodAuto">Thêm sản phẩm tự động</div>
-      </div>
-      <Card v-show="active">
-        <template #content>
-          <div class="flex">
-            <div class="">Sản phẩm phải thoả mãn</div>
-            <div class="flex">
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="allConditions"
-                  name="condition"
-                  value="Tất cả điều kiện"
-                  v-model="condition"
-                /><RadioButton name="city" value="Chicago" v-model="city" />
-                <label for="allConditions">Tất cả điều kiện</label>
-              </div>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="oneOfConditions"
-                  name="condition"
-                  value="Một trong các điều kiện"
-                  v-model="condition"
-                />
-                <label for="oneOfConditions">Một trong các điều kiện</label>
-              </div>
-            </div>
-          </div>
-        </template>
-      </Card>
-    </template>
-  </Card>
-</template>
-<script>
-export default {
-  data() {
-    return {
-      city: null,
-    };
-  },
-};
-</script>
-<style lang=""></style>
->>>>>>> 374d4a83b47fef61cf0eca05bbbef5e6966bb644
