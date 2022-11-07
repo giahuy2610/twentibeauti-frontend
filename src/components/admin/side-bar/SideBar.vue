@@ -158,12 +158,12 @@ export default {
           ],
           path: "",
         },
-        // {
-        //   name: "Vận chuyển",
-        //   icon: "pi-send",
-        //   children: null,
-        //   path: "",
-        // },
+        {
+          name: "Quảng cáo",
+          icon: "pi-send",
+          children: null,
+          path: "/admin/advertising",
+        },
         {
           name: "Khách hàng",
           icon: "pi-users",
