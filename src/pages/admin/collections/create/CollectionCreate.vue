@@ -24,7 +24,6 @@
       <div class="main-wrapper flex justify-content-center">
         <div class="left-content">
           <AddInfor> </AddInfor>
-
           <ProductTable></ProductTable>
           <AddMethod></AddMethod>
         </div>

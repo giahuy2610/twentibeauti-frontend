@@ -1,6 +1,6 @@
 <template lang="">
-  <div class="info-plus">
-    <Card style="width: 20rem; margin-bottom: 2em; margin-left: 2em">
+  <div class="info-plus ">
+    <Card style="width: 20rem; margin-bottom: 2em; margin-left: 3.2em">
       <template #title>
         <div class="title">Thông tin bổ sung</div>
       </template>

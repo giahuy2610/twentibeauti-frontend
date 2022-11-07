@@ -18,7 +18,25 @@
       
     </template>
   </Form>
+  <FormEdit v-if="modal">
+    <template v-slot:button>
+      <div class="btn-save">
+        <button @click="modal = false">Lưu</button>
+      </div>
+    </template>
+    <template v-slot:header>
+      <div class="m-header">
+        <div class="modal-title">
+          <div class="m-head">Sửa địa chỉ</div>
+        </div>
+        <div class="btn-close">
+          <i class="pi pi-times" @click="modal = false"></i>
+        </div>
 
+      </div>
+      
+    </template>
+  </FormEdit>
   <div class="right-column">
     <div class="header">Địa chỉ giao nhận</div>
     <div class="flex_column">
@@ -37,7 +55,7 @@
             <!-- <div class="space">                   
                 </div> -->
             <div class="icon">
-              <button type="button" class="icon_edit">
+              <button type="button" class="icon_edit" @click="modal= true">
                 <span class="pi pi-pencil"></span>
               </button>
               <button type="button" class="icon_del">
@@ -62,15 +80,17 @@
 </template>
 <script>
 import Form from "./Form_Modal.vue";
-
+import FormEdit from "./FormEditAddress.vue";
 export default {
   components: {
     Form,
+    FormEdit,
   },
 
   data() {
     return {
       modal1: false,
+      modal: false,
       position: "center",
     };
   },

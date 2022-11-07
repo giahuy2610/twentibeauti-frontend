@@ -53,12 +53,5 @@ export default {
         cursor: pointer;
     }
   }
-::v-deep(.field-checkbox)
-{
-    label
-    {
-        cursor: pointer;
-    }
-    margin-bottom: 0rem;
-}
+
 </style>

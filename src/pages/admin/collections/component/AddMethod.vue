@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <Card>
     <template #title>Chọn sản phẩm </template>
     <template #content>
@@ -104,8 +104,63 @@ export default {
 };
 </script>
 
+<<<<<<< HEAD
 <style scoped>
 .conditions {
   padding: 10px;
 }
 </style>
+=======
+<style></style> -->
+
+<template lang="">
+  <Card>
+    <template #title>Chọn sản phẩm </template>
+    <template #content>
+      <div class="px-3">
+        <label for="methodByHand">Thêm sản phẩm thủ công</label>
+      </div>
+      <div class="field-radiobutton px-3">
+        <div for="methodAuto">Thêm sản phẩm tự động</div>
+      </div>
+      <Card v-show="active">
+        <template #content>
+          <div class="flex">
+            <div class="">Sản phẩm phải thoả mãn</div>
+            <div class="flex">
+              <div class="field-radiobutton px-3">
+                <RadioButton
+                  inputId="allConditions"
+                  name="condition"
+                  value="Tất cả điều kiện"
+                  v-model="condition"
+                /><RadioButton name="city" value="Chicago" v-model="city" />
+                <label for="allConditions">Tất cả điều kiện</label>
+              </div>
+              <div class="field-radiobutton px-3">
+                <RadioButton
+                  inputId="oneOfConditions"
+                  name="condition"
+                  value="Một trong các điều kiện"
+                  v-model="condition"
+                />
+                <label for="oneOfConditions">Một trong các điều kiện</label>
+              </div>
+            </div>
+          </div>
+        </template>
+      </Card>
+    </template>
+  </Card>
+</template>
+<script>
+export default {
+  data() {
+    return {
+      city: null,
+    };
+  },
+};
+</script>
+<style lang=""></style>
+>>>>>>> 374d4a83b47fef61cf0eca05bbbef5e6966bb644
