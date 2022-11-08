@@ -1,6 +1,6 @@
 <template>
 <div class="product-table-wrapper">
-    <DataTable :value="categories" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :filters="filters" filterDisplay="menu" :loading="loading" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[10, 25, 50]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" :globalFilterFields="['name', 'id']" responsiveLayout="scroll" v-model:selection="selectedCategories">
+    <DataTable  :value="categories" :paginator="true" class="p-datatable-customers" :rows="10" dataKey="id" :rowHover="true" :filters="filters" filterDisplay="menu" :loading="loading" paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown" :rowsPerPageOptions="[10, 25, 50]" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" :globalFilterFields="['name', 'id']" responsiveLayout="scroll" v-model:selection="selectedCategories">
         <template #header>
             <div class="flex justify-content-between align-items-center">
                 <h5 class="m-0">Danh sách danh mục</h5>

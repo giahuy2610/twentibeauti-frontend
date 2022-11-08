@@ -1,64 +1,81 @@
 <template>
-	<div>
-        <div class="flex justify-content-end mt-1 mb-3">
-            <Button icon="pi pi-external-link" label="Nested Dialog" class="p-button-outlined p-button-success" @click="showInfo" />
-        </div>
-        <DataTable :value="products" responsiveLayout="scroll">
-			<Column field="code" header="Code"></Column>
-			<Column field="name" header="Name"></Column>
-            <Column header="Image">
-                <template #body="slotProps">
-                    <img :src="'demo/images/product/' + slotProps.data.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="slotProps.data.name" class="shadow-2 w-4rem" />
-                </template>
-            </Column>
-			<Column field="category" header="Category"></Column>
-			<Column field="quantity" header="Quantity"></Column>
-            <Column style="width:5rem">
-                <template #body="slotProps">
-                    <Button type="button" icon="pi pi-plus" class="p-button-text p-button-rounded" @click="selectProduct(slotProps.data)"></Button>
-                </template>
-            </Column>
-		</DataTable>
+<div>
+    <div class="flex justify-content-end mt-1 mb-3">
+        <Button icon="pi pi-external-link" label="Nested Dialog" class="p-button-outlined p-button-success" @click="showInfo" />
+    </div>
+    <DataTable :value="products" v-model:selection="getPromoItem._product" dataKey="id" :filters="filters" :globalFilterFields="['name', 'code']" filterDisplay="menu" responsiveLayout="scroll">
+        <template #header>
+            <div class="flex justify-content-between align-items-center">
+                <Button type="button" icon="pi pi-filter-slash" label="Clear" class="p-button-outlined" @click="clearFilter()" />
+                <span class="p-input-icon-left">
+                    <i class="pi pi-search" />
+                    <InputText v-model="filters['global'].value" placeholder="Tìm kiếm" />
+                </span>
+            </div>
+        </template>
+        <template #empty> No collections found. </template>
+        <template #loading> Loading collections data. Please wait. </template>
+        <Column selectionMode="multiple" headerStyle="width: 3em" ></Column>
+        <Column field="code" header="Code"></Column>
+        <Column field="name" header="Name"></Column>
+        <Column header="Image">
+            <template #body="slotProps">
+                <img :src="'demo/images/product/' + slotProps.data.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="slotProps.data.name" class="shadow-2 w-4rem" />
+            </template>
+        </Column>
+        <Column field="category" header="Category"></Column>
+        <Column field="quantity" header="Quantity"></Column>
+    </DataTable>
+    
 
-	</div>
+</div>
 </template>
 
 <script>
 import ProductService from './service/ProductService';
-
-import InfoDemo from './service/InfoDemo.vue';
-
+import { FilterMatchMode, FilterOperator } from "primevue/api";
+import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
+import { mapState, mapWritableState , mapActions } from "pinia";
 export default {
     inject: ['dialogRef'],
+    computed : {
+        ...mapWritableState(usePromotionStorePinia, {
+        getPromoItem: "getPromoItem",
+    }),
+    },
     data() {
         return {
-            products: null
+            filters: null,
+            loading: true,
+            products: null,
+            checked: null,
+            selectAll: false,
         }
     },
     productService: null,
     created() {
         this.productService = new ProductService();
+        this.initFilters();
     },
     mounted() {
-        this.productService.getProductsSmall().then(data => this.products = data.slice(0,5));
+        this.productService.getProductsSmall().then(data => this.products = data.slice(0, 5));
     },
     methods: {
-        
-        selectProduct(data) {
-            this.dialogRef.close(data);
+        clearFilter() {
+            this.initFilters();
+        },
+        initFilters() {
+            this.filters = { 'global': { value: null , matchMode: FilterMatchMode.CONTAINS } }
         },
         showInfo() {
-            this.$dialog.open(InfoDemo, {
-                props: {
-                    header: 'Information',
-                    modal: true,
-                    dismissableMask: true
-                },
-                data: {
-                    totalProducts: this.products ? this.products.length : 0
-                }
-            });
-        }
+            console.log(this.getPromoItem._product);
+        },
     }
 }
 </script>
+
+<style lang="scss" scoped>
+::v-deep(.p-datatable-thead) {
+    display: none !important;
+}
+</style>

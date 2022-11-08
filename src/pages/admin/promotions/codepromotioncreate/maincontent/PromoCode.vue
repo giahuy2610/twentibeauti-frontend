@@ -7,7 +7,7 @@
             </template>
             <template #content>
                 <span class="p-fluid">
-                    <InputText id="promocode" type="text" v-model="promocode" placeholder="Ví dụ: COUPON10%"/>
+                    <InputText id="promocode" type="text" v-model="getPromoItem._promoCode" @input="change" placeholder="Ví dụ: COUPON10%"/>
                 </span>
                 <p>Khách hàng sẽ nhập mã khuyến mãi này ở màn hình thanh toán.</p>
             </template>
@@ -15,7 +15,7 @@
         <Card>
             <template #content>
             <div class="field-checkbox">
-                <Checkbox inputId="binary" v-model="checked" :binary="true" />
+                <Checkbox @click="change" inputId="binary" v-model="getPromoItem._withCampaignPromo" :binary="true" />
                 <label for="binary">Áp dụng cùng với chương trình khuyến mãi</label>
             </div>
             </template>
@@ -23,11 +23,25 @@
     </div>
 </template>
 <script>
+import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
+import { mapState, mapWritableState , mapActions } from "pinia";
 export default {
     data()  {
         return {
-            checked: false,
+            
         }
+    },
+    computed: {
+    ...mapWritableState(usePromotionStorePinia, {
+        getPromoItem: "getPromoItem",
+    }),
+    },
+    
+    methods :{
+         change(){
+            console.log(this.getPromoItem._promoCode),
+            console.log(this.getPromoItem._withCampaignPromo)
+         }
     }
 };
 </script>

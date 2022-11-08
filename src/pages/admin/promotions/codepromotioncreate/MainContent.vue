@@ -25,14 +25,14 @@
     </div>
 </template>
 <script>
-import PromoCode from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCode.vue';
-import PromoType from '@/pages/admin/promotions/promotioncreate/maincontent/PromoType.vue';
-import PromoValue from '@/pages/admin/promotions/promotioncreate/maincontent/PromoValue.vue';
-import PromoCondition from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCondition.vue';
-import PromoCustomer from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCustomer.vue';
-import PromoRange from '@/pages/admin/promotions/promotioncreate/maincontent/PromoRange.vue';
-import PromoTime from '@/pages/admin/promotions/promotioncreate/maincontent/PromoTime.vue'; 
-import PromoCheck from '@/pages/admin/promotions/promotioncreate/maincontent/PromoCheck.vue'
+import PromoCode from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCode.vue';
+import PromoType from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoType.vue';
+import PromoValue from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoValue.vue';
+import PromoCondition from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCondition.vue';
+import PromoCustomer from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCustomer.vue';
+import PromoRange from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoRange.vue';
+import PromoTime from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoTime.vue'; 
+import PromoCheck from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCheck.vue'
 export default {
   components :
   {

@@ -8,12 +8,12 @@
             <div class="value">
                 <div class="left field col-12 md:col-3">
                     <label for="minmax-buttons">Giá trị khuyến mãi</label>
-                    <InputNumber v-show="!byPercent" showButtons inputId="minmax-buttons" v-model="value20" mode="currency" currency="VND" locale="de-DE" :min="0" :max="1000000000" />
-                    <InputNumber v-show="byPercent" showButtons inputId="minmax-buttons" v-model="value21" suffix="%" :min="0" :max="100" />
+                    <InputNumber @input="change" v-show="getPromoItem._promoType=='M'" showButtons inputId="minmax-buttons" v-model="getPromoItem._retailValue" mode="currency" currency="VND" locale="de-DE" :min="0" :max="1000000000" />
+                    <InputNumber @input="change" v-show="getPromoItem._promoType=='P'" showButtons inputId="minmax-buttons" v-model="getPromoItem._retailValue" suffix="%" :min="0" :max="100" />
                 </div>
-                <div class="right field col-12 md:col-3">
+                <div v-if="getPromoItem._promoType=='P'" class="right field col-12 md:col-3">
                     <label for="minmax-buttons">Giá trị giảm tối đa (tùy chọn) </label>
-                    <InputNumber showButtons inputId="minmax-buttons" v-model="value21" suffix="%" :min="0" :max="100" />
+                    <InputNumber type="text" @input="change"  showButtons inputId="minmax-buttons" v-model="getPromoItem._maxretailValue" mode="currency" currency="VND" locale="de-DE" :min="0" :max="1000000000"/>
                 </div>
             </div>
         </template>
@@ -29,6 +29,12 @@
             </div>
             <div class="search" v-show="selectedCategory === this.categories[2].name">
                 <DialogDataTable></DialogDataTable>
+            </div>
+            <div style="margin-top:10px" class="image" v-if="getPromoItem._product.length > 0">
+                <div style="display:flex; align-items:center; gap:10px; margin-bottom: 5px" v-for="(item,index) in getPromoItem._product" :key="index">
+                    <img :src="'demo/images/product/' + item.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="item.name" class="shadow-2 w-4rem" />
+                    <span>{{item.name}}</span>
+                </div>
             </div>
         </template>
     </Card>
@@ -46,14 +52,13 @@
 
 <script>
 import DialogDataTable from '@/pages/admin/promotions/components/DialogDataTable.vue';
-
+import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
+import { mapState, mapWritableState , mapActions } from "pinia";
 export default {
     
     components : {DialogDataTable,},
     data() {
         return {
-            value20: 4,
-            value21: 6,
             byPercent: true,
             categories: [
                 { name: "Tất cả sản phẩm", key: "A" },
@@ -67,7 +72,17 @@ export default {
     created() {
     this.selectedCategory = this.categories[1].name;
     },
-    
+    computed: {
+    ...mapWritableState(usePromotionStorePinia, {
+        getPromoItem: "getPromoItem",
+    }),
+    },
+    methods :{
+         change(){
+            console.log(this.getPromoItem._retailValue),
+            console.log(this.getPromoItem._maxretailValue)
+         }
+    }
    
 };
 </script>
