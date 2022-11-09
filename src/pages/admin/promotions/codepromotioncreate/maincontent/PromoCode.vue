@@ -41,6 +41,7 @@ export default {
          change(){
             console.log(this.getPromoItem._promoCode),
             console.log(this.getPromoItem._withCampaignPromo)
+            console.log(this.getPromoItem._appliedMode)
          }
     }
 };

@@ -1,7 +1,8 @@
 <template lang="">
         <span class="input p-input-icon-left">
             <i class="pi pi-search" />
-            <InputText  @input="onShow" placeholder="Tìm kiếm sản phẩm" /> <!--v-model="filters['global'].value"!-->
+            <InputText v-if="getPromoItem._appliedMode == 'B'"  @input="onShow" placeholder="Tìm kiếm danh mục" /> <!--v-model="filters['global'].value"!-->
+            <InputText v-if="getPromoItem._appliedMode == 'C'" @input="onShow" placeholder="Tìm kiếm sản phẩm" />
         </span>
         <Button class="button p-button-outlined" label="Tìm kiếm" @click="onShow()" />
         <DynamicDialog/>
@@ -11,8 +12,16 @@
 import { h } from 'vue';
 import Button from 'primevue/button';
 import ProductList from '@/pages/admin/promotions/components/dialogdatatable/ProductList.vue'
+import { FilterMatchMode, FilterOperator } from "primevue/api";
+import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
+import { mapState, mapWritableState , mapActions } from "pinia";
 export default {
     components : {ProductList,},
+    computed : {
+        ...mapWritableState(usePromotionStorePinia, {
+        getPromoItem: "getPromoItem",
+    }),
+    },
     methods:{
         
         onShow() {
@@ -25,7 +34,7 @@ export default {
                 
                 props: {
                     header: 'Product List',
-                    position : 'top',
+                    position : 'bottom',
                     style: {
                         
                         width: '50vw',

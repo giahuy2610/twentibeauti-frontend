@@ -59,6 +59,8 @@ import Textarea from "primevue/textarea";
 import ColorPicker from "primevue/colorpicker";
 import DynamicDialog from 'primevue/dynamicdialog';
 import DialogService from 'primevue/dialogservice';
+import ToggleButton from 'primevue/togglebutton';
+
 // import ButtonModule from 'primeng/button';
 
 // Import the functions you need from the SDKs you need
@@ -147,6 +149,7 @@ app.component("Skeleton", Skeleton);
 app.component("Paginator", Paginator);
 app.component("ColorPicker", ColorPicker);
 app.component("DynamicDialog", DynamicDialog);
+app.component("ToggleButton", ToggleButton);
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
