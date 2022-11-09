@@ -24,24 +24,37 @@
         </template>
         <template #content>
             <div v-for="category of categories" :key="category.key" class="field-radiobutton">
-                <RadioButton :inputId="category.key" name="category" :value="category.name" v-model="selectedCategory" :disabled="category.key === 'R'" />
+                <RadioButton :inputId="category.key" name="category" :value="category.key" v-model="getPromoItem._appliedMode"  />
                 <label :for="category.key">{{ category.name }}</label>
             </div>
-            <div class="search" v-show="selectedCategory === this.categories[2].name">
-                <DialogDataTable></DialogDataTable>
+            
+            <div class="search" v-show="getPromoItem._appliedMode === this.categories[2].key || getPromoItem._appliedMode === this.categories[1].key">
+                <ProductDialog></ProductDialog>
             </div>
-            <div style="margin-top:10px" class="image" v-if="getPromoItem._product.length > 0">
-                <div style="display:flex; align-items:center; gap:10px; margin-bottom: 5px" v-for="(item,index) in getPromoItem._product" :key="index">
-                    <img :src="'demo/images/product/' + item.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="item.name" class="shadow-2 w-4rem" />
-                    <span>{{item.name}}</span>
+            <div style="margin-top:10px" class="image" v-if="getPromoItem._collection.length > 0 && getPromoItem._appliedMode === this.categories[1].key">
+                <div style="display:flex;" v-for="(item,index) in getPromoItem._collection" :key="index">
+                    <div style="display:flex;align-items:center; gap:10px; margin-bottom: 5px;flex: 1 1 auto" class="item">
+                        <img :src="'demo/images/product/' + item.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="item.name" class="shadow-2 w-4rem" />
+                        <span>{{item.name}}</span>
+                    </div>
+                    <Button v-model="checked1" icon="pi pi-times" class="p-button-text" @click="getPromoItem._collection.splice(index,1)" />
+                </div>
+            </div>
+            <div style="margin-top:10px" class="image" v-if="getPromoItem._product.length > 0 && getPromoItem._appliedMode === this.categories[2].key">
+                <div style="display:flex;" v-for="(item,index) in getPromoItem._product" :key="index">
+                    <div style="display:flex;align-items:center; gap:10px; margin-bottom: 5px;flex: 1 1 auto" class="item">
+                        <img :src="'demo/images/product/' + item.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="item.name" class="shadow-2 w-4rem" />
+                        <span>{{item.name}}</span>
+                    </div>
+                    <Button v-model="checked2" icon="pi pi-times" class="p-button-text" @click="getPromoItem._product.splice(index,1)" />
                 </div>
             </div>
         </template>
     </Card>
-    <Card>
+    <Card v-if="getPromoItem._promoType == 'M' && getPromoItem._appliedMode != 'A'">
         <template #content>
             <div class="field-checkbox">
-                <Checkbox inputId="binary" v-model="checked" :binary="true" />
+                <Checkbox inputId="binary" v-model="getPromoItem._appliedProduct" :binary="true" />
                 <label for="binary">Mã giảm giá sẽ được tính 1 lần trên mỗi đơn hàng</label>
             </div>
             <span style="padding-left:30px">Bỏ tích nghĩa là mã giảm giá sẽ được áp dụng vào mỗi sản phẩm trong đơn hàng.</span>
@@ -51,26 +64,24 @@
 </template>
 
 <script>
-import DialogDataTable from '@/pages/admin/promotions/components/DialogDataTable.vue';
+import ProductDialog from '@/pages/admin/promotions/components/ProductDialog.vue';
 import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
 import { mapState, mapWritableState , mapActions } from "pinia";
 export default {
     
-    components : {DialogDataTable,},
+    components : {ProductDialog,},
     data() {
         return {
+            checked1:true,
+            checked2:true,
             byPercent: true,
             categories: [
                 { name: "Tất cả sản phẩm", key: "A" },
                 { name: "Danh mục sản phẩm", key: "B" },
                 { name: "Sản phẩm", key: "C" }
             ],
-            selectedCategory: null,
             checked : true,
         };
-    },
-    created() {
-    this.selectedCategory = this.categories[1].name;
     },
     computed: {
     ...mapWritableState(usePromotionStorePinia, {
@@ -81,7 +92,7 @@ export default {
          change(){
             console.log(this.getPromoItem._retailValue),
             console.log(this.getPromoItem._maxretailValue)
-         }
+         },
     }
    
 };

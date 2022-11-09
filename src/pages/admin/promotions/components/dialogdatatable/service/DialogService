@@ -1,0 +1,12 @@
+export default class DialogService {
+
+    getProductsSmall() {
+		return fetch('demo/data/products-small.json').then(res => res.json()).then(d => d.data);
+	}
+	getCollectionSmall() {
+		return fetch('demo/data/collections-small.json').then(res => res.json()).then(d => d.data);
+    }
+	getCustomerSmall() {
+		return fetch('demo/data/customers-small.json').then(res => res.json()).then(d => d.data);
+    }
+}

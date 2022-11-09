@@ -59,6 +59,8 @@ import Textarea from "primevue/textarea";
 import ColorPicker from "primevue/colorpicker";
 import DynamicDialog from 'primevue/dynamicdialog';
 import DialogService from 'primevue/dialogservice';
+import ToggleButton from 'primevue/togglebutton';
+
 // import ButtonModule from 'primeng/button';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
@@ -155,6 +157,7 @@ app.component("Inplace", Inplace);
 app.component("Fieldset", Fieldset);
 app.component("ToggleButton", ToggleButton);
 app.component("DynamicDialog", DynamicDialog);
+app.component("ToggleButton", ToggleButton);
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
