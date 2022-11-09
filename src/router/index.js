@@ -26,8 +26,8 @@ import ListOrders from "../pages/admin/orders/ListOrders.vue";
 import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
 import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
 import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
-import ListPromotion from "../pages/admin/promotions/ListPromotion.vue";
-import PromotionCreate from "../pages/admin/promotions/PromotionCreate.vue";
+import CodePromotion from "../pages/admin/promotions/CodePromotion.vue";
+import CodePromotionCreate from '../pages/admin/promotions/CodePromotionCreate.vue';
 import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
@@ -158,14 +158,14 @@ const routes = [
         component: CollectionCreate,
       },
       {
-        name: "list promotions",
-        path: "listpromotions",
-        component: ListPromotion,
+        name : "code promotions",
+        path : "codepromotions",
+        component: CodePromotion,
       },
       {
-        name: "promotion create",
-        path: "listpromotions/create",
-        component: PromotionCreate,
+        name : "code promotion create",
+        path : "codepromotions/create",
+        component: CodePromotionCreate,
       },
       {
         name: "list orders",
@@ -200,7 +200,7 @@ const routes = [
       {
         name: "theme handling",
         path: "theme-handling",
-        component: ThemeHandling,
+        zcomponent: ThemeHandling,
       },
       {
         name: "collections",

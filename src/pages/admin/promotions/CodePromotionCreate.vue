@@ -20,7 +20,7 @@
 </template>
 <script>
 import AdminBlankPage from '@/pages/admin/AdminBlankPage.vue'
-import MainContent from '@/pages/admin/promotions/promotioncreate/MainContent.vue'
+import MainContent from '@/pages/admin/promotions/codepromotioncreate/MainContent.vue'
 export default {
   components: {
     AdminBlankPage,
