@@ -59,7 +59,7 @@ export default {
                     'characters': 'ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890'
                 })
             });
-            const res = await fetch(request);
+            const res = await fetch(request);   
             const data = await res.json();
             this.getPromoItem._promoCode = data.codes[0];
         },
