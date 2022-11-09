@@ -11,6 +11,10 @@
                     <li v-show="this.show_appliedSummary">{{appliedSummary()}}</li>
                     <li v-show="this.show_maxretailValue">{{maxretailValue()}}</li>
                     <li v-show="this.show_appliedProduct">{{appliedProduct()}}</li>
+                    <li v-show="this.show_conditionPromo">{{conditionPromo()}}</li>
+                    <li v-show="this.show_customerPromo">{{customerPromo()}}</li>
+                    <li v-show="this.show_rangePromo">{{rangePromo()}}</li>
+                    <li v-show="this.show_timePromo">{{timePromo()}}</li>
                 </ul>
                 
             </template>
@@ -20,6 +24,8 @@
 <script>
 import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
 import { mapState, mapWritableState , mapActions } from "pinia";
+import moment from 'moment';
+
 export default {
     data()  {
         return {
@@ -27,6 +33,10 @@ export default {
             show_appliedSummary: false,
             show_maxretailValue: false,
             show_appliedProduct: false,
+            show_conditionPromo: false,
+            show_customerPromo: false,
+            show_rangePromo: false,
+            show_timePromo: false,
         }
     },
     computed: {
@@ -85,6 +95,65 @@ export default {
                 }
             }
             else this.show_appliedProduct = false;
+        },
+        conditionPromo(){
+            if (this.getPromoItem._condition = '1' && this.getPromoItem._conditionValue1 != null){
+                this.show_conditionPromo = true;
+                return `Tổng giá trị đơn hàng phải tối thiểu là ${this.getPromoItem._conditionValue1}₫`
+            }
+            else if (this.getPromoItem._condition = '1' && this.getPromoItem._conditionValue2 != null){
+                this.show_conditionPromo = true;
+                return `Tổng giá trị sản phẩm được khuyến mãi phải tối thiểu là ${this.getPromoItem._conditionValue2}₫`
+            }
+            else if (this.getPromoItem._condition = '1' && this.getPromoItem._conditionValue3 != null){
+                this.show_conditionPromo = true;
+                return `Tổng số lượng sản phẩm được khuyến mãi phải tối thiểu là ${this.getPromoItem._conditionValue1}`
+            }
+            this.show_conditionPromo = false;
+        },
+        customerPromo(){
+            if (this.getPromoItem._customerType == 'T' && this.getPromoItem._customer.length > 0){
+                this.show_customerPromo = true;
+                return `Áp dụng với ${this.getPromoItem._customer.length} nhóm khách hàng`;
+            }
+            else this.show_customerPromo = false;
+        },
+        rangePromo(){
+            if (this.getPromoItem._isNumRestrict == true && this.getPromoItem._numpromo > 0)
+            {
+                this.show_rangePromo = true;
+                if (this.getPromoItem._isRestrict == true)
+                {
+                    return `Mã được phép sử dụng ${this.getPromoItem._numpromo} lần, mỗi khách hàng được sử dụng 1 lần`;
+                }
+                else 
+                {
+                    return `Mã được phép sử dụng ${this.getPromoItem._numpromo} lần`;
+                }
+            }
+            if (this.getPromoItem._isRestrict == true)
+            {
+                return `Mỗi khách hàng được sử dụng 1 lần`;
+            }
+            this.show_rangePromo = false;
+        },
+        timePromo(){
+            if(this.show_appliedSummary == true)
+            {
+                if (this.getPromoItem._startDate != null && this.getPromoItem._startTime != null)
+                {
+                    this.show_timePromo = true;
+                    if (this.getPromoItem._endDate != null && this.getPromoItem._endTime != null)
+                    {
+                        return `Áp dụng từ ${moment(this.getPromoItem._startTime).format('LT')} ngày ${moment(this.getPromoItem._startDate).format('L')} đến ${moment(this.getPromoItem._endTime).format('LT')} ngày ${moment(this.getPromoItem._endDate).format('L')}`
+                    }
+                    else
+                    {
+                        return `Áp dụng từ ${moment(this.getPromoItem._startTime).format('LT')} ngày ${moment(this.getPromoItem._startDate).format('L')}`
+                    }
+                }
+                else this.show_timePromo = false;
+            }
         }
     }
 };

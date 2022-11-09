@@ -29,7 +29,7 @@
             </div>
             
             <div class="search" v-show="getPromoItem._appliedMode === this.categories[2].key || getPromoItem._appliedMode === this.categories[1].key">
-                <DialogDataTable></DialogDataTable>
+                <ProductDialog></ProductDialog>
             </div>
             <div style="margin-top:10px" class="image" v-if="getPromoItem._collection.length > 0 && getPromoItem._appliedMode === this.categories[1].key">
                 <div style="display:flex;" v-for="(item,index) in getPromoItem._collection" :key="index">
@@ -64,12 +64,12 @@
 </template>
 
 <script>
-import DialogDataTable from '@/pages/admin/promotions/components/DialogDataTable.vue';
+import ProductDialog from '@/pages/admin/promotions/components/ProductDialog.vue';
 import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
 import { mapState, mapWritableState , mapActions } from "pinia";
 export default {
     
-    components : {DialogDataTable,},
+    components : {ProductDialog,},
     data() {
         return {
             checked1:true,

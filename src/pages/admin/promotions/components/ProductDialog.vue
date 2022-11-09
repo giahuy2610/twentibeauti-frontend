@@ -34,7 +34,7 @@ export default {
                 
                 props: {
                     header: 'Product List',
-                    position : 'bottom',
+                    position : 'top',
                     style: {
                         
                         width: '50vw',

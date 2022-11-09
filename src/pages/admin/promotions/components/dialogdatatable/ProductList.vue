@@ -55,13 +55,13 @@
             <Column field="category" header="Category"></Column>
             <Column field="quantity" header="Quantity"></Column>
         </DataTable>
-        </div>
     </div>
+</div>
     
 </template>
 
 <script>
-import ProductService from './service/ProductService';
+import DialogService from './service/DialogService';
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
 import { mapState, mapWritableState , mapActions } from "pinia";
@@ -78,18 +78,19 @@ export default {
             loading: true,
             products: null,
             collections: null,
+            customers: null,
             checked: null,
             selectAll: false,
         }
     },
-    productService: null,
+    dialogService: null,
     created() {
-        this.productService = new ProductService();
+        this.dialogService = new DialogService();
         this.initFilters();
     },
     mounted() {
-        this.productService.getCollectionSmall().then(data => this.collections = data.slice(0, 5));
-        this.productService.getProductsSmall().then(data => this.products = data.slice(0, 5));
+        this.dialogService.getCollectionSmall().then(data => this.collections = data.slice(0, 5));
+        this.dialogService.getProductsSmall().then(data => this.products = data.slice(0, 5));
         
     },
     methods: {
