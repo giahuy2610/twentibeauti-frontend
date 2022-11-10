@@ -7,11 +7,11 @@
           <i class="pi pi-angle-left"></i>
           <span>Khuyến mãi</span>
         </div>
-        <h2>Thêm mới mã khuyến mãi</h2>
+        <h2>Thêm mới chương trình khuyến mãi</h2>
     </div>
     <div class="main_content">
         <div class="left">
-            <PromoCode></PromoCode>
+            <EventName></EventName>
             <PromoType></PromoType>
             <PromoValue></PromoValue>
             <PromoCondition></PromoCondition>
@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+import EventName from '@/pages/admin/promotions/codepromotioncreate/maincontent/EventName.vue';
 import PromoCode from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCode.vue';
 import PromoType from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoType.vue';
 import PromoValue from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoValue.vue';
