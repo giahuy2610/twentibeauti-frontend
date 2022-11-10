@@ -65,7 +65,7 @@ import ToggleButton from 'primevue/togglebutton';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
 import Fieldset from "primevue/fieldset";
-import ToggleButton from "primevue/togglebutton";
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -157,7 +157,8 @@ app.component("Inplace", Inplace);
 app.component("Fieldset", Fieldset);
 app.component("ToggleButton", ToggleButton);
 app.component("DynamicDialog", DynamicDialog);
-app.component("ToggleButton", ToggleButton);
+
+
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
