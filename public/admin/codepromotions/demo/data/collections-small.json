@@ -1,0 +1,9 @@
+{
+    "data": [
+        {"id": "1000","code": "000","name": "Sản phẩm mới"},
+        {"id": "1001","code": "111","name": "Trang chủ"},
+        {"id": "1002","code": "222","name": "Sản phẩm khuyến mãi"},
+        {"id": "1003","code": "333","name": "Sản phẩm nổi bật"},
+        {"id": "1004","code": "444","name": "Bracelet"}
+    ]
+}

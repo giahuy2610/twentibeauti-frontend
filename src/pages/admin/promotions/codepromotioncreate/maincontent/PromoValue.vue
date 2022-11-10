@@ -1,0 +1,126 @@
+<template lang="">
+<div class="promoValue">
+    <Card>
+        <template #title>
+            <span>Giá trị</span>
+        </template>
+        <template #content>
+            <div class="value">
+                <div class="left field col-12 md:col-3">
+                    <label for="minmax-buttons">Giá trị khuyến mãi</label>
+                    <InputNumber @input="change" v-show="getPromoItem._promoType=='M'" showButtons inputId="minmax-buttons" v-model="getPromoItem._retailValue" mode="currency" currency="VND" locale="de-DE" :min="0" :max="1000000000" />
+                    <InputNumber @input="change" v-show="getPromoItem._promoType=='P'" showButtons inputId="minmax-buttons" v-model="getPromoItem._retailValue" suffix="%" :min="0" :max="100" />
+                </div>
+                <div v-if="getPromoItem._promoType=='P'" class="right field col-12 md:col-3">
+                    <label for="minmax-buttons">Giá trị giảm tối đa (tùy chọn) </label>
+                    <InputNumber type="text" @input="change"  showButtons inputId="minmax-buttons" v-model="getPromoItem._maxretailValue" mode="currency" currency="VND" locale="de-DE" :min="0" :max="1000000000"/>
+                </div>
+            </div>
+        </template>
+    </Card>
+    <Card>
+        <template #title>
+            <span>Áp dụng cho</span>
+        </template>
+        <template #content>
+            <div v-for="category of categories" :key="category.key" class="field-radiobutton">
+                <RadioButton :inputId="category.key" name="category" :value="category.key" v-model="getPromoItem._appliedMode"  />
+                <label :for="category.key">{{ category.name }}</label>
+            </div>
+            
+            <div class="search" v-show="getPromoItem._appliedMode === this.categories[2].key || getPromoItem._appliedMode === this.categories[1].key">
+                <ProductDialog></ProductDialog>
+            </div>
+            <div style="margin-top:10px" class="image" v-if="getPromoItem._collection.length > 0 && getPromoItem._appliedMode === this.categories[1].key">
+                <div style="display:flex;" v-for="(item,index) in getPromoItem._collection" :key="index">
+                    <div style="display:flex;align-items:center; gap:10px; margin-bottom: 5px;flex: 1 1 auto" class="item">
+                        <img :src="'demo/images/product/' + item.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="item.name" class="shadow-2 w-4rem" />
+                        <span>{{item.name}}</span>
+                    </div>
+                    <Button v-model="checked1" icon="pi pi-times" class="p-button-text" @click="getPromoItem._collection.splice(index,1)" />
+                </div>
+            </div>
+            <div style="margin-top:10px" class="image" v-if="getPromoItem._product.length > 0 && getPromoItem._appliedMode === this.categories[2].key">
+                <div style="display:flex;" v-for="(item,index) in getPromoItem._product" :key="index">
+                    <div style="display:flex;align-items:center; gap:10px; margin-bottom: 5px;flex: 1 1 auto" class="item">
+                        <img :src="'demo/images/product/' + item.image" @error="(e) => e.target.src = 'https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png'" :alt="item.name" class="shadow-2 w-4rem" />
+                        <span>{{item.name}}</span>
+                    </div>
+                    <Button v-model="checked2" icon="pi pi-times" class="p-button-text" @click="getPromoItem._product.splice(index,1)" />
+                </div>
+            </div>
+        </template>
+    </Card>
+    <Card v-if="getPromoItem._promoType == 'M' && getPromoItem._appliedMode != 'A'">
+        <template #content>
+            <div class="field-checkbox">
+                <Checkbox inputId="binary" v-model="getPromoItem._appliedProduct" :binary="true" />
+                <label for="binary">Mã giảm giá sẽ được tính 1 lần trên mỗi đơn hàng</label>
+            </div>
+            <span style="padding-left:30px">Bỏ tích nghĩa là mã giảm giá sẽ được áp dụng vào mỗi sản phẩm trong đơn hàng.</span>
+        </template>
+    </Card>
+</div>
+</template>
+
+<script>
+import ProductDialog from '@/pages/admin/promotions/components/ProductDialog.vue';
+import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
+import { mapState, mapWritableState , mapActions } from "pinia";
+export default {
+    
+    components : {ProductDialog,},
+    data() {
+        return {
+            checked1:true,
+            checked2:true,
+            byPercent: true,
+            categories: [
+                { name: "Tất cả sản phẩm", key: "A" },
+                { name: "Danh mục sản phẩm", key: "B" },
+                { name: "Sản phẩm", key: "C" }
+            ],
+            checked : true,
+        };
+    },
+    computed: {
+    ...mapWritableState(usePromotionStorePinia, {
+        getPromoItem: "getPromoItem",
+    }),
+    },
+    methods :{
+         change(){
+            console.log(this.getPromoItem._retailValue),
+            console.log(this.getPromoItem._maxretailValue)
+         },
+    }
+   
+};
+</script>
+
+<style lang="scss" scoped>
+.value {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-top: 10px;
+
+    .left {
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+        flex: 1 1 auto;
+    }
+
+    .right {
+        width: 45%;
+        display: flex;
+        flex-direction: column;
+        margin: 10px;
+    }
+}
+.search
+{
+    display: flex;
+}
+</style>
