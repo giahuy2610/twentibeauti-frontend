@@ -101,11 +101,11 @@ export default {
                 this.show_conditionPromo = true;
                 return `Tổng giá trị đơn hàng phải tối thiểu là ${this.getPromoItem._conditionValue1}₫`
             }
-            else if (this.getPromoItem._condition = '1' && this.getPromoItem._conditionValue2 != null){
+            else if (this.getPromoItem._condition = '2' && this.getPromoItem._conditionValue2 != null){
                 this.show_conditionPromo = true;
                 return `Tổng giá trị sản phẩm được khuyến mãi phải tối thiểu là ${this.getPromoItem._conditionValue2}₫`
             }
-            else if (this.getPromoItem._condition = '1' && this.getPromoItem._conditionValue3 != null){
+            else if (this.getPromoItem._condition = '3' && this.getPromoItem._conditionValue3 != null){
                 this.show_conditionPromo = true;
                 return `Tổng số lượng sản phẩm được khuyến mãi phải tối thiểu là ${this.getPromoItem._conditionValue1}`
             }
