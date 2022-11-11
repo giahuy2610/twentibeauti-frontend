@@ -26,11 +26,11 @@ import ListOrders from "../pages/admin/orders/ListOrders.vue";
 import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
 import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
 import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
-import Promotion from '@/pages/admin/promotions/Promotion.vue';
+import Promotion from "@/pages/admin/promotions/Promotion.vue";
 import CodePromotion from "../pages/admin/promotions/CodePromotion.vue";
-import CodePromotionCreate from '../pages/admin/promotions/CodePromotionCreate.vue';
+import CodePromotionCreate from "../pages/admin/promotions/CodePromotionCreate.vue";
 import EventPromotion from "../pages/admin/promotions/EventPromotion.vue";
-import EventPromotionCreate from '../pages/admin/promotions/EventPromotionCreate.vue';
+import EventPromotionCreate from "../pages/admin/promotions/EventPromotionCreate.vue";
 import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
@@ -89,7 +89,7 @@ const routes = [
         path: "/details",
         component: AccountOrderDetails,
       },
-      
+
       {
         name: "account",
         path: "/account",
@@ -156,30 +156,38 @@ const routes = [
         component: ProductCreate,
       },
       {
-        name : "promotions",
-        path : "promotions",
+        name: "promotions",
+        path: "promotions",
         component: Promotion,
+        children: [
+          {
+            path: "",
+            redirect: { path: "promotions/code" },
+          },
+          {
+            name: "code promotion",
+            path: "code",
+            component: CodePromotion,
+          },
+          {
+            name: "event promotion",
+            path: "event",
+            component: EventPromotion,
+          },
+        ],
       },
+
       {
-        name : "code promotion",
-        path : "promotions/code",
-        component: CodePromotion,
-      },            
-      {
-        name : "code promotion create",
-        path : "promotions/code/create",
+        name: "code promotion create",
+        path: "promotions/code/create",
         component: CodePromotionCreate,
       },
+
       {
-        name : "event promotion",
-        path : "promotions/event",
-        component: EventPromotion,
-      },
-      {
-        name : "event promotion create",
-        path : "promotions/event/create",
+        name: "event promotion create",
+        path: "promotions/event/create",
         component: EventPromotionCreate,
-      },    
+      },
       {
         name: "list orders",
         path: "listorders",
