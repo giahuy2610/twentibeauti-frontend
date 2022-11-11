@@ -52,11 +52,11 @@ export default {
          appliedSummary(){
           if (this.getPromoItem._promoType == 'P')
           {
-            if(this.getPromoItem._appliedMode == 'B') {
+            if(this.getPromoItem._appliedMode == 'B' && this.getPromoItem._collection.length > 0) {
                 this.show_appliedSummary = true;
                 return  `Giảm ${this.getPromoItem._retailValue}% cho ${this.getPromoItem._collection.length} danh mục`;
             }
-            else if (this.getPromoItem._appliedMode == 'C') {
+            else if (this.getPromoItem._appliedMode == 'C' && this.getPromoItem._product.length > 0) {
                 this.show_appliedSummary = true;
                 return `Giảm ${this.getPromoItem._retailValue}% cho ${this.getPromoItem._product.length} sản phẩm`
             };
@@ -64,11 +64,11 @@ export default {
           else (this.getPromoItem._promoType == 'M')
           {
             
-            if(this.getPromoItem._appliedMode == 'B') {
+            if(this.getPromoItem._appliedMode == 'B' && this.getPromoItem._collection.length > 0) {
                 this.show_appliedSummary = true;
                 return `Giảm ${this.getPromoItem._retailValue}₫ cho ${this.getPromoItem._collection.length} danh mục`;
             }
-            else if (this.getPromoItem._appliedMode == 'C') {
+            else if (this.getPromoItem._appliedMode == 'C' && this.getPromoItem._product.length > 0) {
                 this.show_appliedSummary = true;
                 return `Giảm ${this.getPromoItem._retailValue}₫ cho ${this.getPromoItem._product.length} sản phẩm`
             };

@@ -140,14 +140,25 @@ export default {
         {
           name: "Khuyến mãi",
           icon: "pi-tags",
-          
-          path: "/admin/codepromotions",
+          path: "/admin/promotions",
           children: [
             {
-              name : "Tạo mã khuyến mãi",
-              path: "/admin/codepromotions/create",
+              name : "Mã khuyến mãi",
+              path: "/admin/promotions/code",
             },
-          ],
+            {
+              name : "Tạo mã khuyến mãi",
+              path: "/admin/promotions/code/create",
+            },
+            {
+              name : "Chương trình khuyến mãi",
+              path: "/admin/promotions/event",
+            },
+            {
+              name : "Tạo chương trình khuyến mãi",
+              path: "/admin/promotions/event/create",
+            }
+          ]
         },
         {
           name: "Đơn hàng",
