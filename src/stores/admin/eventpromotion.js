@@ -21,13 +21,7 @@ export const useEventStorePinia = defineStore('eventStorePinia', {
 ]
   }),
   getters: {
-    getPromoItems(state) {
-      return state.eventPromotions;
-    },
-    getPromoItemsNumber(state) {
-      return state.eventPromotions.length;
-    },
-    getPromoItem(state){
+    getEventPromoItem(state){
       return state.eventPromotions[state.eventPromotions.length-1];
     },
 
