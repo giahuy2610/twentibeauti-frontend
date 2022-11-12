@@ -160,7 +160,7 @@ const routes = [
       },
       //promotion handling
       {
-        name: "promotions",
+        name: "admin promotions",
         path: "promotions",
         component: Promotion,
         children: [

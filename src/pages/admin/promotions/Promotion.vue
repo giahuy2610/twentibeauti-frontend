@@ -29,7 +29,7 @@
               Chương trình khuyến mãi
             </p>
           </div>
-          <div class="promotion-handling-content">
+          <div class="promotion-handling__content">
             <router-view></router-view>
           </div>
         </div>
@@ -69,7 +69,7 @@ export default {
 
   .promotion-handling {
     &__header {
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid rgb(183, 178, 178);
       display: flex;
       padding: 0;
 
@@ -91,6 +91,7 @@ export default {
     }
 
     &__content {
+      padding: 2rem 0;
     }
   }
 }
