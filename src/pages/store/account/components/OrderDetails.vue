@@ -289,12 +289,18 @@ export default {
   }
   
   .order {
-    margin: 120px 0px;
+    margin: 130px 0px;
     border: 1px solid #d3d7d3;
     border-radius: 15px;
     padding: 20px;
     @include mobile {
       margin-top:20px;
+    }
+    @include mini-tablet {
+      margin-top:20px;
+    }
+    @include tablet {
+      margin-top:150px;
     }
     .title {
       margin-bottom: 20px;
