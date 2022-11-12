@@ -1,6 +1,6 @@
 <template lang="">
   <div>
-    <MegaMenu :model="items" />
+    <MegaMenu :model="items" ></MegaMenu>
     <!-- <MegaMenu :model="items" orientation="vertical" /> -->
   </div>
 </template>
@@ -16,6 +16,7 @@ export default {
             [
               {
                 items: [{ label: "HOT DEAL ĐỘC QUYỀN THÁNG 10" }],
+                to: '/options'
               },
               {
                 items: [{ label: "HOT DEAL ĐỘC QUYỀN THÁNG 10" }],

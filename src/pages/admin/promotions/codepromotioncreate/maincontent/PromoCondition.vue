@@ -36,7 +36,6 @@
 </template>
 
 <script>
-import CustomerDialog from '@/pages/admin/promotions/components/CustomerDialog.vue'
 import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
 import { mapState, mapWritableState , mapActions } from "pinia";
 export default {

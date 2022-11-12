@@ -12,39 +12,32 @@
     <div class="main_content">
         <div class="left">
             <EventName></EventName>
-            <PromoType></PromoType>
-            <PromoValue></PromoValue>
-            <PromoCondition></PromoCondition>
-            <PromoCustomer></PromoCustomer>
-            <PromoRange></PromoRange>
-            <PromoTime></PromoTime>
+            <EventType></EventType>
+            <EventValue></EventValue>
+            <EventCondition></EventCondition>
+            <EventTime></EventTime>
         </div>
         <div class="right">
-          <PromoCheck></PromoCheck>
+          <EventCheck></EventCheck>
         </div>
     </div>
 </template>
 <script>
 import EventName from '@/pages/admin/promotions/eventpromotioncreate/maincontent/EventName.vue';
-import PromoCode from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCode.vue';
-import PromoType from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoType.vue';
-import PromoValue from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoValue.vue';
-import PromoCondition from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCondition.vue';
-import PromoCustomer from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCustomer.vue';
-import PromoRange from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoRange.vue';
-import PromoTime from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoTime.vue'; 
-import PromoCheck from '@/pages/admin/promotions/codepromotioncreate/maincontent/PromoCheck.vue';
+import EventType from '@/pages/admin/promotions/eventpromotioncreate/maincontent/EventType.vue';
+import EventValue from '@/pages/admin/promotions/eventpromotioncreate/maincontent/EventValue.vue';
+import EventCondition from '@/pages/admin/promotions/eventpromotioncreate/maincontent/EventCondition.vue'
+import EventTime from '@/pages/admin/promotions/eventpromotioncreate/maincontent/EventTime.vue'
+import EventCheck from '@/pages/admin/promotions/eventpromotioncreate/maincontent/EventCheck.vue'
 export default {
   components :
   {
-    PromoCode,
-    PromoType,
-    PromoValue,
-    PromoCondition,
-    PromoCustomer,
-    PromoRange,
-    PromoTime,
-    PromoCheck,
+    EventName,
+    EventType,
+    EventValue,
+    EventCondition,
+    EventTime,
+    EventCheck
   }
 }
 </script>

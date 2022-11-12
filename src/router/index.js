@@ -26,11 +26,11 @@ import ListOrders from "../pages/admin/orders/ListOrders.vue";
 import OrderDetails from "../pages/admin/orders/OrderDetails.vue";
 import FormAddress from "../pages/admin/orders/components/FormAddress.vue";
 import ProductCreate from "../pages/admin/products/create/ProductCreate.vue";
-import Promotion from '@/pages/admin/promotions/Promotion.vue';
+import Promotion from "@/pages/admin/promotions/Promotion.vue";
 import CodePromotion from "../pages/admin/promotions/CodePromotion.vue";
-import CodePromotionCreate from '../pages/admin/promotions/CodePromotionCreate.vue';
+import CodePromotionCreate from "../pages/admin/promotions/CodePromotionCreate.vue";
 import EventPromotion from "../pages/admin/promotions/EventPromotion.vue";
-import EventPromotionCreate from '../pages/admin/promotions/EventPromotionCreate.vue';
+import EventPromotionCreate from "../pages/admin/promotions/EventPromotionCreate.vue";
 import EditOrder from "../pages/admin/orders/EditOrder.vue";
 import OrderReturn from "../pages/admin/orders/OrderReturn.vue";
 import CreateReturn from "../pages/admin/orders/CreateReturn.vue";
@@ -89,7 +89,7 @@ const routes = [
         path: "/details",
         component: AccountOrderDetails,
       },
-      
+
       {
         name: "account",
         path: "/account",
@@ -135,6 +135,7 @@ const routes = [
       },
     ],
   },
+  //admin partials
   {
     name: "admin",
     path: "/admin/",
@@ -144,7 +145,9 @@ const routes = [
         name: "dashboard",
         path: "",
         component: Dashboard,
+        //include charts, visualization, statistics
       },
+      //product handling
       {
         name: "products",
         path: "products",
@@ -155,31 +158,39 @@ const routes = [
         path: "products/create",
         component: ProductCreate,
       },
+      //promotion handling
       {
-        name : "promotions",
-        path : "promotions",
+        name: "admin promotions",
+        path: "promotions",
         component: Promotion,
+        children: [
+          {
+            path: "",
+            redirect: { path: "promotions/code" },
+          },
+          {
+            name: "code promotion",
+            path: "code",
+            component: CodePromotion,
+          },
+          {
+            name: "event promotion",
+            path: "event",
+            component: EventPromotion,
+          },
+        ],
       },
       {
-        name : "code promotion",
-        path : "promotions/code",
-        component: CodePromotion,
-      },            
-      {
-        name : "code promotion create",
-        path : "promotions/code/create",
+        name: "code promotion create",
+        path: "promotions/code/create",
         component: CodePromotionCreate,
       },
       {
-        name : "event promotion",
-        path : "promotions/event",
-        component: EventPromotion,
-      },
-      {
-        name : "event promotion create",
-        path : "promotions/event/create",
+        name: "event promotion create",
+        path: "promotions/event/create",
         component: EventPromotionCreate,
-      },    
+      },
+      //orders handling
       {
         name: "list orders",
         path: "listorders",
@@ -210,31 +221,36 @@ const routes = [
         path: "create-return",
         component: CreateReturn,
       },
+      //theme handlings
       {
         name: "theme handling",
         path: "theme-handling",
         component: ThemeHandling,
       },
+      //collections handlings
       {
-        name: "collections",
+        name: "admin collections",
         path: "collections",
         component: AdminCollections,
       },
-      // {
-      //   name: "promotion",
-      //   path: "promotion",
-      //   component: AdminPromotion,
-      // },
+      {
+        name: "admin collections create",
+        path: "collections/create",
+        component: CollectionCreate,
+      },
+      //support handling
       {
         name: "support",
         path: "support",
         component: AdminSupportPage,
       },
+      //advertising handling
       {
         name: "advertising",
         path: "advertising",
         component: AdminAdvertisingPage,
       },
+      //
       {
         name: "customer",
         path: "customer",
