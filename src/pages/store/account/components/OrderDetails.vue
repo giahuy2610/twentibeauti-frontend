@@ -1,5 +1,5 @@
 <template lang="">
-
+<Wrapper>
   <FormOrderAgain v-if="modal1">
     <template v-slot:button>
       <div class="btn-save">
@@ -118,14 +118,17 @@
       </div>
     </div>
   </div>
+</Wrapper>
 </template>
 <script>
 import FormOrderAgain from "./FormOrderAgain.vue";
 import Step from "./Step.vue";
+import Wrapper from "../../../Wrapper.vue";
 export default {
   components: {
     FormOrderAgain,
     Step,
+    Wrapper,
   },
   data() {
     return {
