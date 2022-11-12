@@ -95,7 +95,9 @@
               </div>
               <div
                 class="bar-submenu-item"
-                @click="(getUser = null), (visibleLogin = false), $router.push('/')"
+                @click="
+                  (getUser = null), (visibleLogin = false), $router.push('/')
+                "
               >
                 <i class="pi pi-sign-out"></i>
                 Đăng xuất
@@ -166,14 +168,13 @@
         </span>
       </div>
     </Wrapper>
-    
+
     <Wrapper
       style="
         height: 50px;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         border-top: 1px solid #d3d7d3;
-        overflow: hidden;
       "
       id="hidden-when-small-screen"
     >
