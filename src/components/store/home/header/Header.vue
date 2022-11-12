@@ -5,7 +5,7 @@
     position="left"
     class="p-sidebar-md"
   >
-<!-- <HeaderNavigation className= -->
+    <SidebarMobile />
   </Sidebar>
   <Sidebar
     v-model:visible="visibleCart"
@@ -13,7 +13,7 @@
     position="right"
     class="p-sidebar-md"
   >
-    <Cart></Cart>
+    <Cart />
   </Sidebar>
   <LoginOverlay
     :visible="visibleLogin"
@@ -25,12 +25,7 @@
       relative: $route.path === '/product' || $route.path === '/checkout',
       'w-full': $route.path !== '/product' || $route.path !== '/checkout',
     }"
-    style="
-      top: 0;
-      position: fixed;
-      z-index: 33;
-      background-color: #ffff;
-    "
+    style="top: 0; position: fixed; z-index: 33; background-color: #ffff"
   >
     <Wrapper id="header-first-row">
       <div class="main-content">
@@ -42,7 +37,6 @@
             <img src="@/assets/logo_nobg.png" alt="" style="height: 40px" />
             <h2>TWENTI</h2>
           </div>
-
           <span class="searcher p-input-icon-left mr-3 ml-3">
             <InputText
               style="border-radius: 30px; width: 21rem"
@@ -56,15 +50,58 @@
 
         <div class="header-wrapper__content__right-group-buttons">
           <i
-            @click="count++"
-            class="pi pi-ellipsis-h"
+            class="pi pi-ellipsis-h relative"
             style="font-size: 20px"
-          ></i>
+            @click="visibleBarSubmenu = true"
+            v-click-outside="() => (visibleBarSubmenu = false)"
+          >
+            <div class="bar-submenu shadow-2" v-show="visibleBarSubmenu">
+              <div class="bar-submenu-item">
+                <i class="pi pi-send"></i>
+                Trung tâm hỗ trợ
+              </div>
+              <div class="bar-submenu-item">
+                <i class="pi pi-search"></i>
+                Tra cứu đơn hàng
+              </div>
+            </div></i
+          >
           <i
-            @click="count++"
-            class="pi pi-user ml-3"
+            class="pi pi-user ml-3 relative"
             style="font-size: 20px"
-          ></i>
+            @click="
+              getUser == null
+                ? (visibleLogin = true)
+                : (visibleAccountSubmenu = true)
+            "
+            v-click-outside="
+              () =>
+                visibleAccountSubmenu == true
+                  ? (visibleAccountSubmenu = false)
+                  : 1
+            "
+          >
+            <div class="bar-submenu shadow-2" v-show="visibleAccountSubmenu">
+              <div class="bar-submenu-item" @click="$router.push('/account')">
+                <i class="pi pi-id-card"></i>
+                Thông tin tài khoản
+              </div>
+              <div
+                class="bar-submenu-item"
+                @click="$router.push('/account/orders')"
+              >
+                <i class="pi pi-list"></i>
+                Lịch sử đặt hàng
+              </div>
+              <div
+                class="bar-submenu-item"
+                @click="(getUser = null), (visibleLogin = false), $router.push('/')"
+              >
+                <i class="pi pi-sign-out"></i>
+                Đăng xuất
+              </div>
+            </div></i
+          >
 
           <i
             @click="count++"
@@ -89,7 +126,7 @@
 
       <div class="main-content-mobile">
         <div class="header-content-mobile">
-          <i class="pi pi-bars" @click="visibleSidebarMobile = true"></i>
+          <i class="pi pi-bars" @click="visibleSidebarMobile = true"> </i>
           <div
             @click="$router.push({ path: '/' })"
             class="cursor-pointer flex align-items-center"
@@ -129,61 +166,58 @@
         </span>
       </div>
     </Wrapper>
-
+    
     <Wrapper
       style="
         height: 50px;
         padding-top: 0 !important;
         padding-bottom: 0 !important;
         border-top: 1px solid #d3d7d3;
+        overflow: hidden;
       "
       id="hidden-when-small-screen"
     >
       <HeaderNavigation />
     </Wrapper>
   </div>
-  <!-- <div
-    class="sub-menu-wrapper"
-    style="position: absolute; z-index: 9999; background-color: #ffff"
-    v-show="hoveredItem > -1"
-  >
-    <div class="sub-menu-content">
-      <div
-        class="sub-menu-item"
-        v-for="(item, index) in dataList[hoveredItem]"
-      >
-        <h3>{{ item.heading }}</h3>
-        <p v-for="(item2, index) in item2.children">
-          {{ item2.name }}
-        </p>
-      </div>
-    </div>
-  </div> -->
 </template>
 
 <script>
 import Cart from "@/components/store/home/cart/Cart.vue";
 import Wrapper from "@/pages/Wrapper.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
-import { mapState, mapActions } from "pinia";
+import { mapState, mapWritableState } from "pinia";
 import HeaderNavigation from "./headerNavigation/HeaderNavigation.vue";
+import SidebarMobile from "./sidebarMobile/SidebarMobile.vue";
+import LoginOverlay from "./LoginOverlay.vue";
+import vClickOutside from "click-outside-vue3";
+
 export default {
   data() {
     return {
       visibleSidebarMobile: false,
       visibleCart: false,
+      visibleAccountSubmenu: false,
+      visibleBarSubmenu: false,
+      visibleLogin: false,
     };
   },
   components: {
     Cart,
     Wrapper,
     HeaderNavigation,
+    SidebarMobile,
+    LoginOverlay,
   },
   computed: {
-    ...mapState(useCartStorePinia, {
+    ...mapWritableState(useCartStorePinia, {
       getCartItemsNumber: "getCartItemsNumber",
+      getUser: "user",
+      total: "total",
     }),
   },
+  directives: {},
+  methods: {},
 };
 </script>
 
@@ -226,6 +260,33 @@ i {
   }
   @include mini-tablet {
     display: none;
+  }
+}
+
+.bar-submenu {
+  position: absolute;
+  min-width: 200px;
+  width: max-content;
+  padding: 1rem;
+  border-radius: 10px;
+  z-index: 99;
+  top: 1.5rem;
+  right: 0;
+  background-color: #fff;
+
+  .bar-submenu-item {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    gap: 1rem;
+
+    &:hover {
+      color: var(--primary-color);
+    }
   }
 }
 
