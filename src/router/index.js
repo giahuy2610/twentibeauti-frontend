@@ -135,6 +135,7 @@ const routes = [
       },
     ],
   },
+  //admin partials
   {
     name: "admin",
     path: "/admin/",
@@ -144,7 +145,9 @@ const routes = [
         name: "dashboard",
         path: "",
         component: Dashboard,
+        //include charts, visualization, statistics
       },
+      //product handling
       {
         name: "products",
         path: "products",
@@ -155,6 +158,7 @@ const routes = [
         path: "products/create",
         component: ProductCreate,
       },
+      //promotion handling
       {
         name: "promotions",
         path: "promotions",
@@ -176,18 +180,17 @@ const routes = [
           },
         ],
       },
-
       {
         name: "code promotion create",
         path: "promotions/code/create",
         component: CodePromotionCreate,
       },
-
       {
         name: "event promotion create",
         path: "promotions/event/create",
         component: EventPromotionCreate,
       },
+      //orders handling
       {
         name: "list orders",
         path: "listorders",
@@ -218,31 +221,36 @@ const routes = [
         path: "create-return",
         component: CreateReturn,
       },
+      //theme handlings
       {
         name: "theme handling",
         path: "theme-handling",
         component: ThemeHandling,
       },
+      //collections handlings
       {
-        name: "collections",
+        name: "admin collections",
         path: "collections",
         component: AdminCollections,
       },
-      // {
-      //   name: "promotion",
-      //   path: "promotion",
-      //   component: AdminPromotion,
-      // },
+      {
+        name: "admin collections create",
+        path: "collections/create",
+        component: CollectionCreate,
+      },
+      //support handling
       {
         name: "support",
         path: "support",
         component: AdminSupportPage,
       },
+      //advertising handling
       {
         name: "advertising",
         path: "advertising",
         component: AdminAdvertisingPage,
       },
+      //
       {
         name: "customer",
         path: "customer",
