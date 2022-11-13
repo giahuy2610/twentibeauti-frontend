@@ -11,8 +11,8 @@
       </template>
       <template v-slot:main>
         <div class="main-wrapper" style="margin-bottom:20px">
-          <div class="main-top shadow-2">
-            <Card>
+          <div class="main-top">
+            <Card >
             <template #title>
               <div class="header">
                 <div class="content-header">Đơn hàng cần xử lý</div>
@@ -74,7 +74,7 @@
             </template>
           </Card>
           </div>
-          <div class="main-bot shadow-2">
+          <div class="main-bot ">
             <Card style="margin-top:20px">
             <template #title></template>
             <template #content><OrderTable></OrderTable></template>

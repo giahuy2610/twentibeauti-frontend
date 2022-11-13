@@ -59,19 +59,6 @@
     <div class="step">
       <Step></Step>
     </div>
-    <!-- <div class="step">
-        <Toast />
-        
-        <div class="card">
-            <Steps :model="items" :readonly="true" />
-        </div>
-
-        <router-view v-slot="{Component}" :formData="formObject" @prevPage="prevPage($event)" @nextPage="nextPage($event)" @complete="complete">
-            <keep-alive>
-                <component :is="Component" />
-            </keep-alive>
-        </router-view>
-    </div> -->
     <div class="order">
       <div class="title">Đơn hàng</div>
       <div class="product">
@@ -386,7 +373,7 @@ export default {
     margin-left: 40%;
     width: 90px;
     height: 40px;
-    font-weight: 700;
+    font-weight: 600;
     box-sizing: border-box;
     color: #fff;
     text-shadow: 0-1px 0 rbg(0 0 0/12%);

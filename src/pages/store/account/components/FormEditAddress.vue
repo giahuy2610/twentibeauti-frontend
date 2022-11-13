@@ -1,13 +1,10 @@
 <template lang="">
     <div class="wrapper" :style="[isHidden ? 'display: none' : '']">
-      <ScrollPanel>
+      
         <div class="modal" >
+          <ScrollPanel style="width: 100%; height: 500px">
           <div class="modal-content" >
             <slot name="header"></slot>
-            <!-- <div class="m-icon">
-              <i class="pi pi-times" @click="modal=false"></i>
-            </div> -->
-            
             <div class="modal-context">
               <div class="row_home">
                 <span class="p-fluid">
@@ -112,8 +109,8 @@
               <slot name="button"></slot>
             </div>
           </div>
+        </ScrollPanel>  
         </div>
-      </ScrollPanel>
     </div>
   </template>
   <script>
@@ -124,11 +121,6 @@
         modal:false,
         position:"center",
       };
-    },
-    methods: {
-      close() {
-        this.isHidden = false;
-      },
     },
   };
   </script>
@@ -146,30 +138,38 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    overscroll-behavior: contain;
-    //height: 200vh;
-  
     .modal {
+      border-radius: 15px;
       background-clip: padding-box;
-      border: 0;
       box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
         0 9px 28px 8px rgb(0 0 0 / 5%);
       pointer-events: auto;
       position: fixed;
       width: 500px;
       left: calc(50% - 250px);
-      top: 80px;
+      top: 40px;
       text-decoration: none;
-      //-webkit-scrollbar{ display: none; }
-      //height: 200vh;
+      background-color: #fff;
+      overflow: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
       @include mobile {
-        top:5px;
+        top:20px;
         width: 450px;
         left: calc(50% - 230px);
       }
-  
+      @include mini-tablet {
+        top:20px;
+      }
+      @include tablet {
+        top:20px;
+      }
+      &::-webkit-scrollbar {
+    display: none;
+  }
       .modal-content {
-        padding: 18px 24px 16px;
+        padding: 20px;
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -179,72 +179,21 @@
         background-clip: padding-box;
         border: none rgba(0, 0, 0, 0.9);
         outline: none;
-        border-radius: 10px;
-        //height: 700vh;
-        .m-icon {
-          position: absolute;
-          top: 10;
-          right:5; 
-          z-index: 10;
-          padding: 0;
-          color: rgba(0, 0, 0, 0.45);
-          font-weight: 700;
-          line-height: 1;
-          text-decoration: none;
-          background: transparent;
-          border: 0;
-          outline: 0;
-          cursor: pointer;
-          transition: color 0.3s;
-        }
-        .pi {
-          display: block;
-          width: 80px;
-          height: 80px;
-          font-size: 16px;
-          font-style: normal;
-          line-height: 80px;
-          text-align: center;
-        }
+        overflow: auto;
+
+      
       }
   
-      .modal-title {
-        display: flex;
-        flex-direction: row;
-        width: 100%;
-        text-align: center;
-  
-        .m-head {
-          width: 100%;
-          text-align: center;
-          align-items: center;
-          margin-right: 250px;
-          font-size: 24px;
-          line-height: 36px;
-          font-weight: 700;
-          margin: 0;
-          color: rgba(0, 0, 0, 0.85);
-          box-sizing: inherit;
-        }
-      }
       .modal-context {
         width: 100%;
         display: block;
-        // padding: 24px;
-        // font-size: 14px;
-        // line-height: 1.5715;
-        //box-sizing: inherit;
-        //height: 100%;
+        padding-top:50px;
         -moz-box-flex: 1;
         -webkit-box-flex: 1;
         display: flex;
         flex-direction: column;
         gap: 15px;
-        .row_home {
-          //margin-top: 10px;
-          width: 100%;
-          background: palegreen;
-        }
+
         .row_fullname {
           display: flex;
           flex-direction: row;
@@ -279,11 +228,7 @@
          
         }
       }
-      .modal-footer {
-        button {
-          background-color: aqua;
-        }
-      }
+
     }
   }
   </style>
