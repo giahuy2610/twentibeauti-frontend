@@ -77,11 +77,8 @@ export default {
     .list {
       list-style: none;
       padding-inline-start: 10px;
-      padding-bottom: 10px;
+      padding: 10px;
       border-bottom: 1px solid #d3d7d3;
-      @include mobile {
-        //margin:0;
-      }
       .item {
         display: flex;
         flex-direction: column;
@@ -94,9 +91,6 @@ export default {
         .id-date {
           display: flex;
           flex-direction: row;
-          @include mobile {
-            gap: 20px;
-          }
         }
           .id-order,
           .delivery-form,
@@ -106,6 +100,9 @@ export default {
             width: 100%;
             .label {
               width:20%;
+              @include mobile {
+                width:30%;
+          }
             }
           }
         
@@ -121,7 +118,6 @@ export default {
       @include mobile {
         display: flex;
         flex-direction: column;
-        gap: 15px;
       }
       .status {
         padding-left: 5px;
@@ -129,11 +125,11 @@ export default {
         width:100%;
         flex-direction: row;
         font-weight: 600;
-        @include mobile {
-          padding-left: 5px;
-        }
         .label {
           width:25%;
+          @include mobile {
+            width:30%;  
+          }
         }
       }
       .btn-details {
@@ -156,6 +152,7 @@ export default {
             // margin-left: 250px;
             margin-top: 5px;
             margin-bottom: 5px;
+            float:right;
           }
         }
         .btn:hover {
