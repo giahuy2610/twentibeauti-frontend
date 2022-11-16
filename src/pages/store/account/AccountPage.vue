@@ -197,15 +197,7 @@ export default {
 
       font-weight: 600;
       text-decoration: none;
-      @include mobile {
-        border-bottom: 2px solid var(--primary-color);
-      }
-      @include mini-tablet {
-        border-bottom: 2px solid var(--primary-color);
-      }
-      @include tablet {
-        border-bottom: 2px solid var(--primary-color);
-      }
+      
     }
   }
 }
