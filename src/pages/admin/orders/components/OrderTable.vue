@@ -1,5 +1,5 @@
 <template >
-  <div class="order-table-wrapper ">
+  <div class="order-table-wrapper  ">
     <DataTable
       :value="orders"
       :paginator="true"

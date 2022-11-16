@@ -1,5 +1,5 @@
 <template lang="">
-
+<Wrapper>
   <FormOrderAgain v-if="modal1">
     <template v-slot:button>
       <div class="btn-save">
@@ -59,19 +59,6 @@
     <div class="step">
       <Step></Step>
     </div>
-    <!-- <div class="step">
-        <Toast />
-        
-        <div class="card">
-            <Steps :model="items" :readonly="true" />
-        </div>
-
-        <router-view v-slot="{Component}" :formData="formObject" @prevPage="prevPage($event)" @nextPage="nextPage($event)" @complete="complete">
-            <keep-alive>
-                <component :is="Component" />
-            </keep-alive>
-        </router-view>
-    </div> -->
     <div class="order">
       <div class="title">Đơn hàng</div>
       <div class="product">
@@ -118,14 +105,17 @@
       </div>
     </div>
   </div>
+</Wrapper>
 </template>
 <script>
 import FormOrderAgain from "./FormOrderAgain.vue";
 import Step from "./Step.vue";
+import Wrapper from "../../../Wrapper.vue";
 export default {
   components: {
     FormOrderAgain,
     Step,
+    Wrapper,
   },
   data() {
     return {
@@ -286,12 +276,18 @@ export default {
   }
   
   .order {
-    margin: 120px 0px;
+    margin: 130px 0px;
     border: 1px solid #d3d7d3;
     border-radius: 15px;
     padding: 20px;
     @include mobile {
       margin-top:20px;
+    }
+    @include mini-tablet {
+      margin-top:20px;
+    }
+    @include tablet {
+      margin-top:150px;
     }
     .title {
       margin-bottom: 20px;
@@ -377,7 +373,7 @@ export default {
     margin-left: 40%;
     width: 90px;
     height: 40px;
-    font-weight: 700;
+    font-weight: 600;
     box-sizing: border-box;
     color: #fff;
     text-shadow: 0-1px 0 rbg(0 0 0/12%);

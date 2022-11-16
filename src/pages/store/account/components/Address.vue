@@ -103,21 +103,21 @@ export default {
   display:flex;
   flex-direction: row;
   width: 100%;
-  gap:20px;
-  //background-color: aqua;
 .m-head {
-  //background-color: #94c83d;
   font-weight: 600;
   width:100%;
   font-size: 24px;
   text-align: center;
-  margin-left:115px;
-  padding-bottom: 10px;
+  position: absolute;
+  left:0;
+  top:10px;
 }
   .btn-close{
     cursor: pointer;
     //margin-top:-35px;
-    margin-left: 200px;
+    position: absolute;
+    top:15px;
+    right:20px;
   }
 }
 .right-column {
@@ -208,9 +208,6 @@ export default {
             box-sizing: border-box;
             width: 80%;
             display: flex;
-            //flex-wrap: wrap;
-            //flex-direction: column;
-            //overflow: hidden;
             overflow: hidden;
               text-overflow: ellipsis;
               display:-webkit-box;
@@ -218,7 +215,6 @@ export default {
               line-clamp: 2;
               -webkit-box-orient:vertical ;
               word-wrap: break-word;
-              //word-break: break-all;
             font-size: 14px;
             font-weight: 700;
             max-lines: 2;
@@ -229,7 +225,6 @@ export default {
             align-items: center;
             width: 20%;
             gap: 5px;
-
             .icon_edit,
             .icon_del {
               width: 50%;
@@ -273,7 +268,6 @@ export default {
 
     .address-box-create {
       display: flex;
-      cursor: pointer;
       align-items: center;
       justify-content: center;
       border-style: dashed;
@@ -292,14 +286,14 @@ export default {
         flex-direction: column;
         align-items: center;
         justify-content: center;
-
         .pi {
           cursor:pointer;
           font-size: 16px;
           color: black;
           border: none;
-
-          //text-justify: center;
+          &:hover {
+            font-weight: 700;
+          }
         }
         button {
           background: none;
@@ -324,7 +318,7 @@ export default {
       //margin-top: 40px;
       margin-left: 75%;
       width: 90px;
-      height: 40px;
+      padding: 10px;
       font-weight: 700;
       box-sizing: border-box;
       color: #fff;
@@ -336,5 +330,3 @@ export default {
 
 </style>
 
-{ nsame: 'bb', age: 12 } { name: '',car: 'gg'} var response = new object{ name:
-this.name, age: this.age }
