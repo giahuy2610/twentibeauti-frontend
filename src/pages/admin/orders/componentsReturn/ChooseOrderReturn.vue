@@ -110,7 +110,7 @@
                     <p
                       @click="
                         $router.push({
-                          path: '/admin/create_return',
+                          path: '/admin/create-return',
                           query: { sku: data.idreturn },
                         })
                       "
