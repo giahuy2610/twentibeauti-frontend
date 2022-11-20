@@ -47,6 +47,14 @@ export default {
           this.getUser = result;
           this.visibleLogin = false;
           console.log(result);
+          this.axios
+            .post(this.$API_URL + "/login", result)
+            .then(function (response) {
+              console.log(response.data);
+            })
+            .catch(function (error) {
+              console.log(error.response.data.message);
+            });
         })
         .catch((error) => {
           this.visibleLogin = false;
