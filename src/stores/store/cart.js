@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import axios from "axios";
 
 export const useCartStorePinia = defineStore("cartStorePinia", {
   state: () => ({
@@ -84,8 +85,15 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     removeItem(SKU) {
       this.cartItems = this.cartItems.filter((e) => e.SKU !== SKU);
     },
-    login(user) {
-      state.user = user;
+    async getCartItem() {
+      await axios
+        .post(app.config.globalProperties.API_URL + "/cart/show", { 'idcus': 1 })
+        .then((response) => {
+          console.log(response.data);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
   },
   persist: true,

@@ -37,7 +37,7 @@ import {
 } from "firebase/auth";
 import vClickOutside from "click-outside-vue3";
 import { useCartStorePinia } from "@/stores/store/cart.js";
-import { mapState, mapWritableState } from "pinia";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   methods: {
     signInWithPopup() {
@@ -45,15 +45,15 @@ export default {
       signInWithPopup(getAuth(), provider)
         .then((result) => {
           this.getUser = result;
+          this.getCartItem();
           this.visibleLogin = false;
-          console.log(result);
           this.axios
             .post(this.$API_URL + "/login", result)
             .then(function (response) {
               console.log(response.data);
             })
             .catch(function (error) {
-              console.log(error.response.data.message);
+              console.error(error.response.data.message);
             });
         })
         .catch((error) => {
@@ -64,6 +64,7 @@ export default {
     hideOverlay() {
       this.$emit("changeVisible", false);
     },
+    ...mapActions(useCartStorePinia, ["getCartItem"]),
   },
   props: ["visible"],
   data() {

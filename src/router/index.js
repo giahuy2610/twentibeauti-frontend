@@ -130,7 +130,7 @@ const routes = [
       },
       {
         name: "product",
-        path: "/product",
+        path: "/product/:productid",
         component: Product,
       },
     ],

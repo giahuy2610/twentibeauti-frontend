@@ -103,6 +103,15 @@ export default {
     },
   },
   mounted() {
+    this.axios
+      .get(this.$API_URL + "/product/show/" + this.$route.params.productid)
+      .then(function (response) {
+        console.log(response.data);
+      })
+      .catch(function (error) {
+        console.log(error.response.data.message);
+      });
+
     window.addEventListener("scroll", this.onScroll);
     //this.primaryColor = document.documentElement.style.getPropertyValue('--primary-color');
     //document.documentElement.style.setProperty('--primary-color', '#fff');
