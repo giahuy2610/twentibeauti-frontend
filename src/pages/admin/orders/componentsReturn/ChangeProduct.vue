@@ -10,27 +10,38 @@
       v-model:filters="filters"
       filterDisplay="menu"
       :loading="loading"
+      :globalFilterFields="[
+          'name',
+          'id',
+        ]"
       responsiveLayout="scroll"
     >
       <template #header>
         <div class="header">
           <h5 class="m-0">Đổi hàng</h5>
+          <span class="p-input-icon-left">
+            <i class="pi pi-search" />
+            <InputText
+              v-model="filters['global'].value"
+              placeholder="Tìm kiếm"
+            />
+          </span>
           <a class="check-stock" href="#check-stock">Kiểm tra tồn kho</a>
         </div>
 
         <div class="dialog overlay" id="check-stock">
-           <a class="overlay-close" href="#"></a>
-           <div class="dialog-stock">
+          <a class="overlay-close" href="#"></a>
+          <div class="dialog-stock">
             <div class="dialog-header">
               <a class="btn-close" href="#">
-                <i class="pi pi-times" style="margin-top:15px;"></i>
+                <i class="pi pi-times" style="margin-top: 15px"></i>
               </a>
               <h4>Kiểm tra tồn kho</h4>
             </div>
             <div class="dialog-body">
-              <table style="border: #E8EAEB" >
-                <tr >
-                  <th   rowspan="2">Mã SKU</th>
+              <table style="border: #e8eaeb">
+                <tr>
+                  <th rowspan="2">Mã SKU</th>
                   <th rowspan="2">Tên sản phẩm</th>
                   <th rowspan="2">Số lượng</th>
                   <th colspan="2">Chính sách giá</th>
@@ -53,8 +64,7 @@
                 </tr>
               </table>
             </div>
-           </div>
-         
+          </div>
         </div>
       </template>
       <template #empty> No customers found. </template>
@@ -65,9 +75,8 @@
         <template #body="{ data }">
           {{ data.id }}
         </template>
-        
       </Column>
-      <Column field="img" header="Ảnh" style="min-width: 5rem; cursor:pointer;">
+      <Column field="img" header="Ảnh" style="min-width: 5rem; cursor: pointer">
         <template #body="{ data }">
           <img
             :alt="data.images"
@@ -76,29 +85,26 @@
             style="vertical-align: middle"
           />
         </template>
-        
       </Column>
       <Column field="name" header="Tên sản phẩm" style="min-width: 10rem">
         <template #body="{ data }">
-          <p 
+          <p
             @click="
               $router.push({
                 path: '/admin/products/create',
                 query: { sku: data.name },
               })
             "
-            class=" namePro cursor-pointer"
+            class="namePro cursor-pointer"
           >
             {{ data.name }}
           </p>
         </template>
-        
       </Column>
       <Column field="quatity" header="Số lượng" style="min-width: 7rem">
         <template #body="{ data }">
           {{ data.number }}
         </template>
-        
       </Column>
       <Column
         field="price"
@@ -109,7 +115,6 @@
         <template #body="{ data }">
           {{ formatCurrency(data.listprice) }}
         </template>
-        
       </Column>
       <Column
         field="discount"
@@ -120,7 +125,6 @@
         <template #body="{ data }">
           {{ formatCurrency(data.salePrice) }}
         </template>
-        
       </Column>
       <Column
         field="total"
@@ -131,20 +135,22 @@
         <template #body="{ data }">
           {{ formatCurrency(data.salePrice) }}
         </template>
-        
       </Column>
-      <Column
-      style="min-width: 6rem"
-      >
+      <Column style="min-width: 6rem">
         <template #body>
-          <Button type="button"  icon="pi pi-times"
-              class="p-button-rounded p-button-danger p-button-text"></Button>
+          <Button
+            type="button"
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-text"
+          ></Button>
         </template>
       </Column>
       <template #footer>
         <div class="footer">
           <div class="note">
-            <div class="note-title" style="font-weight:600;">Ghi chú đơn hàng</div>
+            <div class="note-title" style="font-weight: 600">
+              Ghi chú đơn hàng
+            </div>
             <div class="text">
               <Textarea
                 v-model="value2"
@@ -192,6 +198,19 @@ export default {
       products: null,
       selectedProducts: null,
       loading: true,
+      filters: {
+        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
+          id: {
+            operator: FilterOperator.AND,
+            constraints: [
+              { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+            ],
+          },
+          name: {
+            operator: FilterOperator.AND,
+            constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
+          },
+        },
       products: [
         {
           id: 1000,
@@ -213,7 +232,7 @@ export default {
   },
   methods: {
     formatCurrency(value) {
-      return value.toLocaleString( {
+      return value.toLocaleString({
         style: "currency",
         currency: "VND",
       });
@@ -223,113 +242,111 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.namePro:hover{
+.namePro:hover {
   text-decoration: underline;
-  color:var(--text-admin-color);
+  color: var(--text-admin-color);
 }
 .dialog {
   position: fixed;
-  top:0;
-  right:0;
-  left:0;
-  bottom:0;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   z-index: 10;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   visibility: hidden;
-  
+
   .overlay-close {
     position: absolute;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
   }
 }
 .dialog:target {
   visibility: visible;
 }
 .dialog-stock {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 
-display:flex;
-flex-direction: column;
-width: 80%;
-  
   position: relative;
- 
+
   background-color: #fff;
- border-radius: 5px;
-  display:block;
-.dialog-header {
-  border-bottom: 1px solid #D3D5D7;
- // padding-bottom: 20px;
-//padding-top: 20px;
-  //margin-left: 10px;
-h4 {
-  margin-left:30px;
-  font-weight: 500;
-  line-height: 20px;
-}
-  .btn-close {
-    position:absolute;
-    top:5px;
-    right:20px;
-    text-decoration: none;
-    color:#607d8b;
+  border-radius: 5px;
+  display: block;
+  .dialog-header {
+    border-bottom: 1px solid #d3d5d7;
+    // padding-bottom: 20px;
+    //padding-top: 20px;
+    //margin-left: 10px;
+    h4 {
+      margin-left: 30px;
+      font-weight: 500;
+      line-height: 20px;
+    }
+    .btn-close {
+      position: absolute;
+      top: 5px;
+      right: 20px;
+      text-decoration: none;
+      color: #607d8b;
+    }
   }
-}
-.dialog-body {
-  margin:40px;
-  text-align: center;
-  border-collapse: collapse;
-  border-left: #d9d9d9;
-  border-bottom: #d9d9d9;
-  box-shadow: rgb(232 234 235) 1px 0px;
-  line-height: 20px;
+  .dialog-body {
+    margin: 40px;
+    text-align: center;
+    border-collapse: collapse;
+    border-left: #d9d9d9;
+    border-bottom: #d9d9d9;
+    box-shadow: rgb(232 234 235) 1px 0px;
+    line-height: 20px;
 
-  th {
-
-    background-color: #F4F6F8;
-    border-right: 1px solid #d9d9d9;
-    border-left: 1px solid #d9d9d9;
-    border-top: 1px solid #e6e6e6;
-    font-size:16px;
-    font-weight: 500;
-    height:50px;
+    th {
+      background-color: #f4f6f8;
+      border-right: 1px solid #d9d9d9;
+      border-left: 1px solid #d9d9d9;
+      border-top: 1px solid #e6e6e6;
+      font-size: 16px;
+      font-weight: 500;
+      height: 50px;
+    }
+    td {
+      border: 1px solid#d9d9d9;
+      font-size: 14px;
+      font-weight: 400;
+      height: 50px;
+    }
   }
-  td {
-  
-    border: 1px solid#d9d9d9;
-    font-size:14px;
-    font-weight: 400;
-    height: 50px;
-  }
-
-}
 }
 .overlay {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
-.header{
-  display:flex;
+.header {
+  display: flex;
   flex-direction: row;
+  width:100%;
   .m-0 {
-    font-size:18px;
+    font-size: 18px;
     font-weight: 500;
-    cursor:pointer;
-    width: 85%;
+    cursor: pointer;
+    width:35%;
   }
   .check-stock {
     text-decoration: none;
     font-size: 14px;
-    color: #0088FF;
-    cursor:pointer;
+    color: #0088ff;
+    cursor: pointer;
     padding-top: 5px;
+    text-align: right;
+    width:40%;
   }
-  .check-stock:hover{
+  .check-stock:hover {
     font-weight: 700;
   }
-
 }
 .footer {
   width: 100%;
@@ -344,7 +361,6 @@ h4 {
     .note-title {
       font-weight: 400;
     }
-
   }
   .info-payment {
     justify-content: space-between;
@@ -379,8 +395,6 @@ h4 {
     }
   }
 }
-
-
 
 ::v-deep(.p-progressbar) {
   height: 0.5rem;

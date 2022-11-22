@@ -15,9 +15,7 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         :globalFilterFields="[
           'name',
-          'country.name',
-          'representative.name',
-          'status',
+          'id',
         ]"
         responsiveLayout="scroll"
       >
