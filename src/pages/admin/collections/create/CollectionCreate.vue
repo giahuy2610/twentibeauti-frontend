@@ -31,26 +31,7 @@
           <Card>
             <template #title> Trạng thái</template>
             <template #content>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="statusHide"
-                  name="status"
-                  value="Ẩn"
-                  v-model="status"
-                />
-                <label for="status1">Ẩn</label>
-              </div>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="statusShow"
-                  name="status"
-                  value="Hiện"
-                  v-model="status"
-                />
-                <label for="statusShow">Hiện</label>
-              </div>
               <div class="p-2">Đặt lịch hiển thị</div>
-
               <Calendar
                 inputId="range"
                 v-model="value"
