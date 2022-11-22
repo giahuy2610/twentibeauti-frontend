@@ -46,7 +46,14 @@ export default {
         .then((result) => {
           this.getUser = result;
           this.visibleLogin = false;
-          console.log(result);
+          this.axios
+            .post("http://localhost:8000/api/dangnhap", result)
+            .then(function (response) {
+              console.log(response.data);
+            })
+            .catch(function (error) {
+              console.log(error.response.data.message);
+            });
         })
         .catch((error) => {
           this.visibleLogin = false;
