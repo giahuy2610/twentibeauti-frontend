@@ -48,7 +48,7 @@ export default {
           this.getCartItem();
           this.visibleLogin = false;
           this.axios
-            .post(this.$API_URL + "/login", result)
+            .post("login", result)
             .then(function (response) {
               console.log(response.data);
             })

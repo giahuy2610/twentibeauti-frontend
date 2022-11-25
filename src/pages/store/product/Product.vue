@@ -104,7 +104,7 @@ export default {
   },
   mounted() {
     this.axios
-      .get(this.$API_URL + "/product/show/" + this.$route.params.productid)
+      .get("product/show/" + this.$route.params.productid)
       .then(function (response) {
         console.log(response.data);
       })

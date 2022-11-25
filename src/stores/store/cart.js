@@ -89,7 +89,7 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     },
     async getCartItem() {
       await axios
-        .post("http://localhost:8000/api" + "/cart/show", { idcus: 1 })
+        .post("cart/show", { idcus: 1 })
         .then((response) => {
           this.cartItems = toRaw(response.data);
           console.log(this.cartItems);
@@ -102,16 +102,3 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
   persist: true,
 });
 
-axios.get('/api/product/show/'+ this.usser+'?searchvalue=1').then(
-  (response) => {
-    this.cartItems = toRaw(response.data);
-    console.log(this.cartItems);
-  }
-)
-
-
-json
-
-
-name: huy,
-phone: 123
