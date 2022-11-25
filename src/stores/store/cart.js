@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
+import { isProxy, toRaw } from "vue";
+import { send } from "vite";
 
 export const useCartStorePinia = defineStore("cartStorePinia", {
   state: () => ({
@@ -87,9 +89,10 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     },
     async getCartItem() {
       await axios
-        .post(app.config.globalProperties.API_URL + "/cart/show", { 'idcus': 1 })
+        .post("http://localhost:8000/api" + "/cart/show", { idcus: 1 })
         .then((response) => {
-          console.log(response.data);
+          this.cartItems = toRaw(response.data);
+          console.log(this.cartItems);
         })
         .catch(function (error) {
           console.error(error);
@@ -98,3 +101,17 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
   },
   persist: true,
 });
+
+axios.get('/api/product/show/'+ this.usser+'?searchvalue=1').then(
+  (response) => {
+    this.cartItems = toRaw(response.data);
+    console.log(this.cartItems);
+  }
+)
+
+
+json
+
+
+name: huy,
+phone: 123

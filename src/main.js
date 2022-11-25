@@ -162,6 +162,5 @@ app.component("DynamicDialog", DynamicDialog);
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
-app.config.globalProperties.$API_URL = "http://localhost:8000/api";
-
+axios.defaults.baseURL = "http://localhost:8000/api";
 app.mount("#app");

@@ -2,12 +2,12 @@
     <ProductItem
         class="mb-1"
         v-for="item in getCartItems"
-        :name="item.name"
-        :SKU="item.SKU"
+        :name="item.NameProduct"
+        :SKU="item.IDProduct"
         :imagePath="item.imagePath"
-        :routePath="item.routePath"
+        routePath="/product/1"
         :retailPrice="item.retailPrice"
-        :quantity="item.quantity"
+        :quantity="item.Quantity"
     ></ProductItem>
 </template>
 <script>
