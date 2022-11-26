@@ -10,6 +10,7 @@
         :discountPercent="this.discountPercent"
         :ratingStar="this.ratingStar"
         :numReviews="this.reviews.length"
+        :illustProducts="this.illustProducts"
       ></ProductInfor>
       <div class="seperator"></div>
       <div class="Ads">
@@ -17,7 +18,7 @@
       </div>
       <div class="divider-horizontal"></div>
       <div class="about">
-        <AboutProduct></AboutProduct>
+        <AboutProduct :descriptions="this.descriptions"></AboutProduct>
       </div>
       <div class="detail-rating">
         <RatingDetail :reviews="this.reviews"></RatingDetail>
@@ -71,8 +72,10 @@ export default {
       listPrice: 379000,
       retailPrice: 369000,
       discountPercent: 0,
+      descriptions:'',
       brandName: "THE FACE SHOP",
       ratingStar: 4,
+      illustProducts : [],
       reviews: [
         {
           numstar: 5,
@@ -106,11 +109,13 @@ export default {
   },
   mounted() {
     axios
-      .get('/product/show/1')
+      .get('/product/show/2')
       .then((response) => {
         //this.product_item = toRaw(response.data)
         this.productName = response.data.NameProduct;
         this.listPrice = response.data.ListPrice;
+        this.descriptions = response.data.Description;
+        this.illustProducts = response.data.Images;
       })
       .catch((error) => {
         console.log(error);

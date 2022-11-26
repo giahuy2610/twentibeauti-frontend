@@ -1,7 +1,7 @@
 <template lang="">
 <div class="over">
     <div class="imageProduct">
-        <ImageProduct></ImageProduct>
+        <ImageProduct :illustProducts="this.illustProducts"></ImageProduct>
     </div>
     <div class="infor">
         <Breadcrumb></Breadcrumb>
@@ -31,6 +31,7 @@ export default {
         "discountPercent",
         "ratingStar",
         "numReviews",
+        "illustProducts",
     ],
     components: {
         ImageProduct,

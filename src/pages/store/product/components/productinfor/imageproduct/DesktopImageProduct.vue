@@ -37,8 +37,10 @@
 </template>
 <script>
 export default {
+    props : ["illustProducts"],
     methods: {
     scrollDown() {
+      console.log(this.illustProducts)
       if (this.currentIllust != 1) {
         this.currentIllust--;
         this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight;
@@ -56,7 +58,7 @@ export default {
         this.isClick = !this.isClick;
       }, 100);
       // console.log(this.isClick);
-      console.log(this.selectedItem);
+      //console.log(this.selectedItem);
     },
     scrollUp() {
       if (this.currentIllust != this.illustProducts.length) {
@@ -99,14 +101,13 @@ export default {
       isClick: false,
       isClick_1: true,
       currentIllust: 1,
-      imageid: 1,
-      illustProducts: [
-        "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/1c7d5f29-0e3b-48d6-805f-deeafc29a01a.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/4622d29c-9c01-4a30-9ba2-6a4756b69514.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/27c2301d-ac0a-457a-b866-253dbf3a814e.webp",
-        "https://image.hsv-tech.io/0x400/tfs/common/2d266998-c491-4354-ad70-e3dd2954a80b.webp",
-      ],
+      // illustProducts: [
+      //   "https://image.hsv-tech.io/0x400/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp",
+      //   "https://image.hsv-tech.io/0x400/tfs/common/1c7d5f29-0e3b-48d6-805f-deeafc29a01a.webp",
+      //   "https://image.hsv-tech.io/0x400/tfs/common/4622d29c-9c01-4a30-9ba2-6a4756b69514.webp",
+      //   "https://image.hsv-tech.io/0x400/tfs/common/27c2301d-ac0a-457a-b866-253dbf3a814e.webp",
+      //   "https://image.hsv-tech.io/0x400/tfs/common/2d266998-c491-4354-ad70-e3dd2954a80b.webp",
+      // ],
     };
   },
   computed: {
