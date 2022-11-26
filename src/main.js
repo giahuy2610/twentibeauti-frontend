@@ -153,6 +153,5 @@ app.component("ToggleButton", ToggleButton);
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
-app.config.globalProperties.$API_URL = "https://localhost:7101/weatherforecast";
-
+axios.defaults.baseURL = "http://localhost:8000/api";
 app.mount("#app");

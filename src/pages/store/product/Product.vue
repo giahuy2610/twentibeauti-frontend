@@ -29,12 +29,12 @@
       <div class="bottom-navigation">
         <Transition name="slide">
           <BottomNavigation
-          class="bottomNavigation"
-          :productName="this.productName"
-          :listPrice="this.listPrice"
-          :retailPrice="this.retailPrice"
-          v-show="windowTop >= 400"
-        ></BottomNavigation>
+            class="bottomNavigation"
+            :productName="this.productName"
+            :listPrice="this.listPrice"
+            :retailPrice="this.retailPrice"
+            v-show="windowTop >= 400"
+          ></BottomNavigation>
         </Transition>
       </div>
     </Wrapper>
@@ -50,6 +50,8 @@ import ProductInfor from "@/pages/store/product/components/ProductInfor.vue";
 import BottomNavigation from "@/pages/store/product/components/BottomNavigation.vue";
 
 import Wrapper from "../../Wrapper.vue";
+import axios from "axios";
+import { isProxy, toRaw } from "vue";
 
 export default {
   components: {
@@ -63,11 +65,11 @@ export default {
   },
   data() {
     return {
+      //product_item:undefined,
       windowTop: 0,
-      productName:
-        "Mặt Nạ Kỳ Dịu Nhẹ THE FACE SHOP Smart Peeling Mild Papaya 150ml",
-      listPrice: 369000,
-      retailPrice: 379000,
+      productName: "AAAAAAAAAAAAA",
+      listPrice: 379000,
+      retailPrice: 369000,
       discountPercent: 0,
       brandName: "THE FACE SHOP",
       ratingStar: 4,
@@ -103,6 +105,17 @@ export default {
     },
   },
   mounted() {
+    axios
+      .get('/product/show/1')
+      .then((response) => {
+        //this.product_item = toRaw(response.data)
+        this.productName = response.data.NameProduct;
+        this.listPrice = response.data.ListPrice;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
     window.addEventListener("scroll", this.onScroll);
     //this.primaryColor = document.documentElement.style.getPropertyValue('--primary-color');
     //document.documentElement.style.setProperty('--primary-color', '#fff');
@@ -141,11 +154,14 @@ export default {
       );
     };
   },
+  unmounted() {
+    document.getElementById("fpt_ai_livechat_button").remove();
+    document.getElementById("fpt_ai_livechat_display_container").remove();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-
 @import "@/scss/mixin";
 .home__wrapper {
   min-height: 100vh;
@@ -159,14 +175,11 @@ export default {
   &__content {
     width: 100%;
   }
-} 
+}
 
 @include mobile {
-  
-
 }
 @include desktop {
-  
 }
 .slide-leave-active,
 .slide-enter-active {
@@ -181,7 +194,7 @@ export default {
 .slide-leave-to {
   transform: translate(0, 100%);
 }
-.seperator{
+.seperator {
   margin: 10px 0px;
 }
 .divider-horizontal {
