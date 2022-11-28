@@ -37,7 +37,7 @@
               placeholder="Select a City"
             />
           </span>
-
+          
           <span class="p-input-icon-left">
             <i class="pi pi-search" />
             <InputText

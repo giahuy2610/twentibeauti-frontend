@@ -14,9 +14,9 @@
           <Button
             label="Xem trước"
             class="p-button-success"
-            @click="$router.push({ path: '/collections' })"
+            @click="$router.push({ path: '/collection/:id' })"
           />
-          <Button label="Lưu" class="p-button-info" />
+          <Button label="Lưu" class="p-button-info" @click="createCollection" />
         </div>
       </div>
     </template>
@@ -103,6 +103,8 @@ import AddFileVue from "../../products/components/AddFile.vue";
 import AddInfor from "../component/AddInfor.vue";
 import ProductTable from "../component/ProductTable.vue";
 import AddMethod from "../component/AddMethod.vue";
+import { useCollectionStorePinia } from "@/stores/admin/collection.js";
+import { mapWritableState, mapActions } from "pinia";
 var minDateValue = new Date();
 console.log(minDateValue);
 export default {
@@ -118,10 +120,36 @@ export default {
   //   this.minDate.setMonth(prevMonth);
   //   this.minDate.setFullYear(prevYear);
   // },
+  computed: {
+    ...mapWritableState(useCollectionStorePinia, {
+      getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems",
+    }),
+  },
   methods: {
     onRadioChange: function (event) {
       alert(event.target.value);
     },
+    ...mapActions(useCollectionStorePinia, [
+      "createCollection",
+      "getInfoCollection",
+    ]),
+    getAllData: function () {
+      //checking if the current url is create or not
+      if (
+        this.$route.fullPath ==
+        `/admin/collections/edit/${this.$route.params.id}`
+      ) {
+        console.log(this.getInfoCollection(this.$route.params.id));
+        // return this.getInfoCollection(this.$route.params.id).save;
+        
+      } else {
+        // this.createCollection();
+      }
+    },
+  },
+  mounted() {
+    this.getAllData();
   },
   data() {
     return {

@@ -71,8 +71,8 @@ const routes = [
         component: BrandsPage,
       },
       {
-        name: "collections",
-        path: "/collections",
+        name: "collection",
+        path: "/collection/:id",
         component: CollectionsPage,
       },
       {
@@ -236,6 +236,11 @@ const routes = [
       {
         name: "admin collections create",
         path: "collections/create",
+        component: CollectionCreate,
+      },
+      {
+        name: "admin collections edit",
+        path: "collections/edit/:id",
         component: CollectionCreate,
       },
       //support handling

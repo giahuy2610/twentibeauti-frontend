@@ -18,6 +18,8 @@
 </template>
 <script>
 import $ from "jquery";
+import { useCollectionStorePinia } from '@/stores/admin/collection.js';
+import { mapState, mapActions } from "pinia";
 export default {
   methods: {
     toastSuccess() {
@@ -29,6 +31,8 @@ export default {
         life: 3000,
       });
     },
+    ...mapActions(useCollectionStorePinia,["getInfoCollection"],["createCollection"],
+    ),
     onUpload(event) {
       var $files = $("input[type=file]").get(0).files;
 
@@ -56,6 +60,12 @@ export default {
       });
       this.toastSuccess();
     },
+  },
+  computed: {
+    ...mapState(useCollectionStorePinia, {
+      // getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems",
+    }),
   },
 };
 </script>
