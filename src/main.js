@@ -12,7 +12,7 @@ import "./scss/_theme.scss";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
-import vClickOutside from "click-outside-vue3"
+import vClickOutside from "click-outside-vue3";
 // import MegaMenu from 'primevue/megamenu';
 import InputText from "primevue/inputtext";
 import SelectButton from "primevue/selectbutton";
@@ -62,6 +62,10 @@ import DialogService from 'primevue/dialogservice';
 import ToggleButton from 'primevue/togglebutton';
 
 // import ButtonModule from 'primeng/button';
+import ProgressSpinner from "primevue/progressspinner";
+import Inplace from "primevue/inplace";
+import Fieldset from "primevue/fieldset";
+
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -106,7 +110,7 @@ app.use(router);
 app.use(ToastService);
 app.use(VueAxios, axios);
 app.use(VueProgressBar, options);
-app.use(vClickOutside)
+app.use(vClickOutside);
 app.component("Textarea", Textarea);
 app.component("Calendar", Calendar);
 app.component("Avatar", Avatar);
@@ -148,8 +152,13 @@ app.component("Toast", Toast);
 app.component("Skeleton", Skeleton);
 app.component("Paginator", Paginator);
 app.component("ColorPicker", ColorPicker);
-app.component("DynamicDialog", DynamicDialog);
+app.component("ProgressSpinner", ProgressSpinner);
+app.component("Inplace", Inplace);
+app.component("Fieldset", Fieldset);
 app.component("ToggleButton", ToggleButton);
+app.component("DynamicDialog", DynamicDialog);
+
+
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 

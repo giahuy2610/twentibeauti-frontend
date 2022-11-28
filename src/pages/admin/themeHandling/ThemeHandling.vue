@@ -9,22 +9,79 @@
             class="p-button-outlined p-button-danger"
             @click="getCurrentColor"
           />
+          <Button
+            type="button"
+            label="Xem trước"
+            class="p-button-info ml-2"
+            badgeClass="p-badge-danger"
+            @click="$router.push({ path: '/' })"
+          />
+          <Button
+            type="button"
+            label="Lưu"
+            class="p-button-info ml-2"
+            badgeClass="p-badge-danger"
+            @click="$router.push({ path: '/admin/products/create' })"
+          />
         </div>
       </div>
     </template>
     <template v-slot:main>
       <div class="main-wrapper">
-        <Card>
-          <template #title>Màu chủ đề</template>
-          <template #content>
-            <div class="product-table">
-              {{ primaryColor }}
+        <div class="color-handling">
+          <Card>
+            <template #title>Màu chủ đề</template>
+            <template #content>
+              <div class="product-table">
+                {{ primaryColor }}
 
-              <ColorPicker v-model="primaryColor" />
-            </div>
-          </template>
+                <ColorPicker v-model="primaryColor" />
+              </div>
+            </template>
+          </Card>
+          <Card>
+            <template #title>Màu khung FlashSale</template>
+            <template #content>
+              <div class="product-table">
+                {{ primaryColor }}
+
+                <ColorPicker v-model="primaryColor" />
+              </div>
+            </template>
+          </Card>
+        </div>
+
+        <Fieldset legend="Quảng cáo nổi" :toggleable="true" collapsed="false">
+          <AdsPopupHandlingVue></AdsPopupHandlingVue> ></Fieldset
+        >
+        <Card>
+          <template #title>Quảng cáo cạnh</template>
+          <template #content> </template>
+        </Card>
+        <Card>
+          <template #title>Quảng cáo đầu</template>
+          <template #content> </template>
+        </Card>
+        <Fieldset
+          legend="Trang chủ - Khuyến mãi tường Slider"
+          :toggleable="true"
+          collapsed="false"
+        >
+          <WallpaperHomePageHandingVue></WallpaperHomePageHandingVue
+        ></Fieldset>
+        <Card>
+          <template #title>Trang chủ - Thương hiệu Slider</template>
+          <template #content> </template>
         </Card>
 
+        <Card>
+          <template #title>Trang chủ - Danh mục khuyến mãi Slider</template>
+          <template #content> </template>
+        </Card>
+        <Card>
+          <template #title>Trang chủ - Sản phẩm nổi bật</template>
+          <template #content> </template>
+        </Card>
       </div>
     </template>
   </AdminBlankPage>
@@ -32,9 +89,13 @@
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
 import Theme from "@/scss/test.module.scss";
+import WallpaperHomePageHandingVue from "./components/WallpaperHomePageHanding.vue";
+import AdsPopupHandlingVue from "./components/AdsPopupHandling.vue";
 export default {
   components: {
     AdminBlankPage,
+    WallpaperHomePageHandingVue,
+    AdsPopupHandlingVue,
   },
   data() {
     return {
@@ -58,44 +119,6 @@ export default {
       deep: true,
     },
   },
-  mounted() {
-    //this.primaryColor = document.documentElement.style.getPropertyValue('--primary-color');
-    //document.documentElement.style.setProperty('--primary-color', '#fff');
-    let __protocol = document.location.protocol;
-    let __baseUrl = __protocol + "//livechat.fpt.ai/v35/src";
-
-    let prefixNameLiveChat = "twenti";
-    let objPreDefineLiveChat = {
-        appCode: "871880b5f6606337b170c0132e4a0d9f",
-        themes: "",
-        appName: prefixNameLiveChat ? prefixNameLiveChat : "Live support",
-        thumb: "",
-        icon_bot: "",
-      },
-      appCodeHash = window.location.hash.substr(1);
-    if (appCodeHash.length == 32) {
-      objPreDefineLiveChat.appCode = appCodeHash;
-    }
-
-    let fpt_ai_livechat_script = document.createElement("script");
-    fpt_ai_livechat_script.id = "fpt_ai_livechat_script";
-    fpt_ai_livechat_script.src = __baseUrl + "/static/fptai-livechat.js";
-    document.body.appendChild(fpt_ai_livechat_script);
-
-    let fpt_ai_livechat_stylesheet = document.createElement("link");
-    fpt_ai_livechat_stylesheet.id = "fpt_ai_livechat_script";
-    fpt_ai_livechat_stylesheet.rel = "stylesheet";
-    fpt_ai_livechat_stylesheet.href = __baseUrl + "/static/fptai-livechat.css";
-    document.body.appendChild(fpt_ai_livechat_stylesheet);
-
-    fpt_ai_livechat_script.onload = function () {
-      fpt_ai_render_chatbox(
-        objPreDefineLiveChat,
-        __baseUrl,
-        "livechat.fpt.ai:443"
-      );
-    };
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -112,6 +135,15 @@ export default {
   }
 }
 .main-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  .color-handling {
+    display: flex;
+    gap: 1rem;
+  }
+
   .product-table {
     width: 100%;
   }

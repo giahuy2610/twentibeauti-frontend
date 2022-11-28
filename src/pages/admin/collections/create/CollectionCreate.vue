@@ -23,64 +23,21 @@
     <template v-slot:main>
       <div class="main-wrapper flex justify-content-center">
         <div class="left-content">
-          <div>
-            <AddInfor> </AddInfor>
-          </div>
-          <Card>
-            <template #title>Chọn sản phẩm </template>
-            <template #content>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="methodByHand"
-                  name="method"
-                  value="Thêm sản phẩm thủ công"
-                  v-model="method"
-                />
-                <label for="methodByHand">Thêm sản phẩm thủ công</label>
-              </div>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="methodAuto"
-                  name="method"
-                  value="Thêm sản phẩm tự động"
-                  v-model="method"
-                />
-                <label for="methodAuto">Thêm sản phẩm tự động</label>
-              </div>
-            </template>
-          </Card>
-          <Card>
-            <template #title> Xem trước kết quả tìm kiếm </template>
-            <template #content>
-              Xin hãy nhập Tiêu đề và Mô tả để xem trước kết quả tìm kiếm của
-              danh mục này
-            </template>
-          </Card>
+          <AddInfor> </AddInfor>
+          <ProductTable></ProductTable>
+          <AddMethod></AddMethod>
         </div>
         <div class="right-content">
           <Card>
             <template #title> Trạng thái</template>
             <template #content>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="statusHide"
-                  name="status"
-                  value="Ẩn"
-                  v-model="status"
-                />
-                <label for="status1">Ẩn</label>
-              </div>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="statusShow"
-                  name="status"
-                  value="Hiện"
-                  v-model="status"
-                />
-                <label for="statusShow">Hiện</label>
-              </div>
               <div class="p-2">Đặt lịch hiển thị</div>
-              <Calendar v-model="value" :showTime="true" :touchUI="true" />
+              <Calendar
+                inputId="range"
+                v-model="value"
+                selectionMode="range"
+                :manualInput="false"
+              />
             </template>
           </Card>
           <Card>
@@ -125,12 +82,33 @@
 import AdminBlankPage from "../../AdminBlankPage.vue";
 import AddFileVue from "../../products/components/AddFile.vue";
 import AddInfor from "../component/AddInfor.vue";
-
+import ProductTable from "../component/ProductTable.vue";
+import AddMethod from "../component/AddMethod.vue";
+var minDateValue = new Date();
+console.log(minDateValue);
 export default {
   components: {
     AdminBlankPage,
     AddFileVue,
     AddInfor,
+    AddMethod,
+    ProductTable,
+  },
+  // created() {
+  //   this.minDate = new Date();
+  //   this.minDate.setMonth(prevMonth);
+  //   this.minDate.setFullYear(prevYear);
+  // },
+  methods: {
+    onRadioChange: function (event) {
+      alert(event.target.value);
+    },
+  },
+  data() {
+    return {
+      status: null,
+      value: null,
+    };
   },
 };
 </script>
@@ -150,7 +128,6 @@ export default {
   }
 }
 .right-content {
-  padding: 10px;
 }
 .right-content h3 {
   padding: 10px;
@@ -162,5 +139,8 @@ export default {
   padding: 5px;
   margin: 8px;
   border-radius: 13px;
+}
+:deep(.p-radiobutton-icon) {
+  background-color: black;
 }
 </style>

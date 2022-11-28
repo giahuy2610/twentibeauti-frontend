@@ -2,11 +2,8 @@
     <AdminBlankPage>
       <template v-slot:header>
         <div class="header-wrapper">
-          <div class="header-wrapper__left">
-            <!-- <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
-              Quay lại danh sách đơn hàng
-            </i> -->
-            <i class="pi pi-angle-left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
+          <div class="header-wrapper__left" style="cursor:pointer" @click="$router.push({ path: '/admin/listorders' })">
+            <i class="pi pi-angle-left" >
             </i>
             Quay lại danh sách đơn hàng
             </div>
@@ -18,7 +15,7 @@
               class="p-button-info ml-2"
               badgeClass="p-badge-danger"
               style="background-color: #0088FF"
-              @click="$router.push({ path: '/admin/create_return' })"
+              @click="$router.push({ path: '/admin/create-return' })"
             />
           </div>
         </div>
@@ -32,11 +29,11 @@
             <div class="body-left">
               <InfoCus></InfoCus>
             </div>
-            <div class="body-right">
+            <div class="body-right ">
               <InfoPlus></InfoPlus>
             </div>
           </div>
-          <div class="info-product">
+          <div class="info-product shadow-2">
             <InfoProductTable></InfoProductTable>
           </div>
           
@@ -75,6 +72,9 @@
       //font-family: 'Arial';
       border:none;
       background: rgba(255, 255, 255, 0.25);
+    }
+    .header-wrapper__left:hover{
+      color:var(--primary-color);
     }
   }
   .main-wrapper {

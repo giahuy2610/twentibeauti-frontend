@@ -1,8 +1,13 @@
 <template lang="">
   <Wrapper>
     <div class="content">
-      <div class="item" v-for="index in 16">
-        <CouponCard></CouponCard>
+      <div class="item" v-for="(item, index) in couponList">
+        <CouponCard
+          :couponValue="item.CodeCoupon"
+          :couponDescription="item.Description"
+          :startOn="item.StartOn"
+          :endOn="item.EndOn"
+        ></CouponCard>
       </div>
     </div>
   </Wrapper>
@@ -15,6 +20,22 @@ export default {
     CouponCard,
     Wrapper,
   },
+  data() {
+    return {
+      couponList: [],
+    };
+  },
+  async mounted() {
+    await this.axios
+      .get(this.$API_URL + "/coupon/available")
+      .then((response) => {
+        console.log(response.data);
+        this.couponList = response.data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -24,7 +45,6 @@ export default {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
 
   .item {
     max-width: 25%;

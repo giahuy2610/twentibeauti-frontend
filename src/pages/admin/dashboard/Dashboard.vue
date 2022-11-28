@@ -2,12 +2,12 @@
   <AdminBlankPage>
     <template v-slot:header>
       <div class="header-wrapper">
-        <div class="header-wrapper__left">Tạo đơn hàng</div>
+        <div class="header-wrapper__left">Chúc ngày làm việc vui vẻ!</div>
         <div class="header-wrapper__right">
           <Button label="Thoát" class="p-button-outlined p-button-danger" />
           <Button
             type="button"
-            label="Thêm đơn hàng"
+            label="In báo cáo"
             icon="pi pi-plus"
             class="p-button-info ml-2"
             badgeClass="p-badge-danger"
@@ -20,12 +20,24 @@
         <Card>
           <template #title>Doanh số</template>
           <template #content>
-            <div class="">
-              <LineChartVue></LineChartVue>
-              <div class="" style="width: 45%">
+            <div class="flex">
+              <div class="" style="width: 60%">
+                <LineChartVue></LineChartVue>
+              </div>
+              <div class="" style="width: 40%"></div>
+            </div>
+          </template>
+        </Card>
+        <Card>
+          <template #content>
+            <div class="percentage-card flex gap-1">
+              <div class="flex-1">
                 <DoughnutVue></DoughnutVue>
               </div>
-              <div class="" style="width: 45%">
+              <div class="flex-1">
+                <InvoiceChartVue></InvoiceChartVue>
+              </div>
+              <div class="flex-1">
                 <PolarAreaVue></PolarAreaVue>
               </div>
             </div>
@@ -38,14 +50,16 @@
 <script>
 import AdminBlankPage from "../AdminBlankPage.vue";
 import LineChartVue from "./components/LineChart.vue";
-import DoughnutVue from "./components/Doughnut.vue";
-import PolarAreaVue from "./components/PolarArea.vue";
+import DoughnutVue from "./components/RatingChart.vue";
+import PolarAreaVue from "./components/CategoriesChart.vue";
+import InvoiceChartVue from "./components/InvoiceChart.vue";
 export default {
   components: {
     AdminBlankPage,
     LineChartVue,
     DoughnutVue,
     PolarAreaVue,
+    InvoiceChartVue
   },
   data() {
     return {};
@@ -64,5 +78,11 @@ export default {
 
   &__right {
   }
+}
+
+.main-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 </style>

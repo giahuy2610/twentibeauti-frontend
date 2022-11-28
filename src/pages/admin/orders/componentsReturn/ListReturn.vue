@@ -1,13 +1,13 @@
 <template>
-    <div class="product-table-wrapper">
+    <div class="return-table-wrapper shadow-2">
       <DataTable
-        :value="products"
+        :value="returnOrder"
         :paginator="true"
-        class="p-datatable-customers"
+        class="p-datatable-return-orders"
         :rows="10"
-        dataKey="id"
+        dataKey="idreturn"
         :rowHover="true"
-        v-model:selection="selectedCustomers"
+        v-model:selection="selectedReturn"
         v-model:filters="filters"
         filterDisplay="menu"
         :loading="loading"
@@ -15,10 +15,13 @@
         :rowsPerPageOptions="[10, 25, 50]"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         :globalFilterFields="[
-          'name',
-          'country.name',
-          'representative.name',
+          'idorder',
+          'idreturn',
+          'reason',
           'status',
+          'returnmoney',
+          'date',
+
         ]"
         responsiveLayout="scroll"
       >
@@ -38,39 +41,40 @@
         <template #empty> No customers found. </template>
         <template #loading> Loading customers data. Please wait. </template>
         <!-- <Column selectionMode="multiple" headerStyle="width: 3rem"></Column> -->
-        <Column field="name" header="Mã đơn trả hàng" style="min-width: 12rem">
+        <Column field="idreturn" header="Mã đơn trả hàng" style="min-width: 12rem">
           <template #body="{ data }">
           <p
             @click="
               $router.push({
-                path: '/admin/create_return',
+                path: '/admin/create-return',
                 query: { sku: data.idreturn },
               })
             "
-            class="cursor-pointer hover-primary-color"
+            class=" idre cursor-pointer hover-primary-color"
             style="color: #0088FF;"
           >
             {{ data.idreturn }}
           </p>
         </template>
         </Column>
-        <Column field="name" header="Mã đơn hàng" style="min-width: 11rem">
+        <Column field="id" header="Mã đơn hàng" style="min-width: 11rem">
           <template #body="{ data }">
           <p
             @click="
               $router.push({
                 path: '/admin/orderdetails',
-                query: { sku: data.id },
+                query: { sku: data.idorder },
               })
             "
-            class="cursor-pointer hover-primary-color"
+            class=" idod cursor-pointer hover-primary-color"
             style="color: #0088FF;"
           >
-            {{ data.id }}
+            {{ data.idorder }}
           </p>
         </template>
         </Column>       
         <Column
+        field="status"
           header="Trạng thái"
           :showFilterMatchModes="false"
           :filterMenuStyle="{ width: '11rem' }"
@@ -103,7 +107,7 @@
             </MultiSelect>
           </template>
         </Column>
-        <Column field="name" header="Hoàn tiền" style="min-width: 10rem">
+        <Column field="returnmoney" header="Hoàn tiền" style="min-width: 10rem">
             <template #body="{ data }">
               {{ data.namereturn }}
             </template>
@@ -117,14 +121,14 @@
             </template>
           </Column>
         <Column
-          field="balance"
+          field="total"
           header="Tổng tiền"
           sortable
           dataType="numeric"
           style="min-width: 10rem"
         >
           <template #body="{ data }">
-            {{ formatCurrency(data.salePrice) }}
+            {{ formatCurrency(data.total) }}
           </template>
         </Column>
         <Column
@@ -135,7 +139,7 @@
           style="min-width: 14rem"
         >
           <template #body="{ data }">
-            {{ data.createdOn }}
+            {{ data.datereturn }}
           </template>
           <template #filter="{ filterModel }">
             <Calendar
@@ -147,7 +151,7 @@
         </Column>
         
         <Column
-          field="status"
+          field="reason"
           header="Lí do trả hàng"
           :filterMenuStyle="{ width: '10rem' }"
           style="min-width: 11rem"
@@ -197,28 +201,27 @@
   export default {
     data() {
       return {
-        customers: null,
-        selectedCustomers: null,
+        returnOrder: null,
+        selectedReturn: null,
         filters: {
           global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-          name: {
+          idorder: {
             operator: FilterOperator.AND,
             constraints: [
               { value: null, matchMode: FilterMatchMode.STARTS_WITH },
             ],
           },
-          "country.name": {
+          idreturn: {
             operator: FilterOperator.AND,
             constraints: [
               { value: null, matchMode: FilterMatchMode.STARTS_WITH },
             ],
           },
-          representative: { value: null, matchMode: FilterMatchMode.IN },
           date: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
           },
-          balance: {
+          total: {
             operator: FilterOperator.AND,
             constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
           },
@@ -226,8 +229,15 @@
             operator: FilterOperator.OR,
             constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
           },
-          activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-          verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+          reason: {
+            operator: FilterOperator.OR,
+            constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
+          },
+          returnmoney: {
+            operator: FilterOperator.OR,
+            constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
+          },
+
         },
         loading: true,
         statuses: [
@@ -243,25 +253,24 @@
         "Đã nhận",
           "Chưa nhận",
         ],
-        products: [
+        returnOrder: [
           {
-            id: 1000,
+            idorder: 1000,
             idreturn: "RT1",
-            createdOn: "2015-09-13",
+            datereturn: "2015-09-13",
             status: "Hàng bị lỗi",
             statusreturn: "Đã nhận",
             namereturn: "Đã nhận",
-            stock: 20,
-            images: ["abc.png", "bcd.png"],
-            listprice: 80000,
-            salePrice: 75000,
-            description:
-              "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-            category: {
-              name: "Trang điểm",
-              id: "1",
-              path: "/categories/trang-diem",
-            },
+            total: 75000,
+          },
+          {
+            idorder: 1500,
+            idreturn: "RT2",
+            datereturn: "2015-09-13",
+            status: "Hàng bị lỗi",
+            statusreturn: "Đã nhận",
+            namereturn: "Đã nhận",
+            total: 75000,
           },
         ],
       };
@@ -275,7 +284,7 @@
     },
     methods: {
       formatDate(value) {
-        return value.toLocaleDateString("en-US", {
+        return value.toLocaleDateString( {
           day: "2-digit",
           month: "2-digit",
           year: "numeric",
@@ -292,15 +301,15 @@
   </script>
   
   <style lang="scss" scoped>
-  .product-table-wrapper {
-    
+
+  .idod:hover {
+    text-decoration: underline;
+  font-weight: 600;
   }
-  
-  ::v-deep(.p-paginator) {
-    .p-paginator-current {
-    }
+  .idre:hover {
+    text-decoration: underline;
+  font-weight: 600;
   }
-  
   ::v-deep(.p-progressbar) {
     height: 0.5rem;
     background-color: #d8dadc;
@@ -318,7 +327,7 @@
     }
   }
   
-  ::v-deep(.p-datatable.p-datatable-customers) {
+  ::v-deep(.p-datatable.p-datatable-return-orders) {
     .p-datatable-header {
       padding: 1rem;
       text-align: left;

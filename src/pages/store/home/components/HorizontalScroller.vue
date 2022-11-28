@@ -71,13 +71,13 @@ export default {
   .btn-right {
     position: absolute;
     top: 50%;
-    z-index: 45;
+    z-index: 30;
     transform: translateX(-50%);
   }
   .btn-left {
     position: absolute;
     top: 50%;
-    z-index: 45;
+    z-index: 30;
     right: 0;
     transform: translateX(50%);
   }

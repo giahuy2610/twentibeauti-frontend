@@ -48,14 +48,16 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/mixin";
 .step {
-  // margin:20px 0px;
 
   .progressbar {
     counter-reset: step;
     padding: 0;
 
-
     @include mobile {
+      display: flex;
+      flex-direction: column;
+    }
+    @include mini-tablet {
       display: flex;
       flex-direction: column;
     }
@@ -74,6 +76,10 @@ export default {
        //text-align: right;
        //text-decoration: none;
        //margin-left:10px;
+    }
+    @include mini-tablet {
+      width:auto;
+       margin-top: 3rem;
     }
   }
   .progressbar li:before {
@@ -110,7 +116,14 @@ export default {
         width: 3px;
         height: 4rem;
         left: 50%;
-        top: -60%;
+        top: -55%;
+        transform: translate(-50%);
+    }
+    @include mini-tablet {
+        width: 3px;
+        height: 4rem;
+        left: 50%;
+        top: -55%;
         transform: translate(-50%);
     }
   }

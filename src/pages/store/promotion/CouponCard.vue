@@ -17,8 +17,12 @@
         {{ couponDescription }}
       </h3>
       <div class="expired">
-        <h5>Hiệu lực từ: <span>21/09/20</span></h5>
-        <h5>Hết hạn: <span>21/09/20</span></h5>
+        <h5>
+          Hiệu lực từ: <span>{{ startOn }}</span>
+        </h5>
+        <h5>
+          Hết hạn: <span>{{ endOn }}</span>
+        </h5>
       </div>
     </div>
     <hr />
@@ -45,18 +49,12 @@ export default {
       default: "TIETKIEM4 - Giảm 1.500k cho đơn từ 10.000K",
     },
     startOn: {
-      type: Date,
+      type: String,
       required: true,
-      default: function () {
-        return new Date();
-      },
     },
     endOn: {
-      type: Date,
+      type: String,
       required: true,
-      default: function () {
-        return new Date();
-      },
     },
   },
   data() {
@@ -76,7 +74,6 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-
 .coupon-card {
   padding: 1rem;
   border-radius: 10px;
@@ -86,6 +83,7 @@ export default {
   .expired {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
   }
 
   &__main {
@@ -93,7 +91,5 @@ export default {
       width: 100%;
     }
   }
-
-
 }
 </style>

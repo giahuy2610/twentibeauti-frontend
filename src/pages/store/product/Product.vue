@@ -116,6 +116,7 @@ export default {
         this.listPrice = response.data.ListPrice;
         this.descriptions = response.data.Description;
         this.illustProducts = response.data.Images;
+        this.brandName = response.data.Brand;
       })
       .catch((error) => {
         console.log(error);

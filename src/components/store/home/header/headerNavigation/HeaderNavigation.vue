@@ -1,6 +1,10 @@
 <template lang="">
   <div>
-    <MegaMenu :model="items" />
+    <MegaMenu :model="items">
+      <template #item="{ item }">
+        <a style="text-decoration: none" :href="item.url">{{ item.label }}</a>
+      </template>
+    </MegaMenu>
     <!-- <MegaMenu :model="items" orientation="vertical" /> -->
   </div>
 </template>
@@ -11,6 +15,7 @@ export default {
       items: [
         {
           label: "Khuyến mãi",
+          url: "/promotion",
 
           items: [
             [
@@ -25,6 +30,7 @@ export default {
         },
         {
           label: "Thương hiệu",
+          url: "/collections",
           //   icon: "pi-angle-down",
           items: [
             [
@@ -39,9 +45,11 @@ export default {
         },
         {
           label: "Sản phẩm mới",
+          url: "/collections",
         },
         {
           label: "Trang điểm",
+          url: "/collections",
 
           items: [
             [
@@ -64,6 +72,7 @@ export default {
         },
         {
           label: "Dưỡng da",
+          url: "collections",
 
           items: [
             [
@@ -86,6 +95,7 @@ export default {
         },
         {
           label: "Chăm sóc cơ thể",
+          url: "/collections",
 
           items: [
             [
@@ -111,6 +121,7 @@ export default {
         },
         {
           label: "Nhận mã ưu đãi",
+          url: "/promotion",
         },
       ],
     };

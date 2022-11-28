@@ -11,7 +11,8 @@
       </template>
       <template v-slot:main>
         <div class="main-wrapper" style="margin-bottom:20px">
-          <Card>
+          <div class="main-top">
+            <Card >
             <template #title>
               <div class="header">
                 <div class="content-header">Đơn hàng cần xử lý</div>
@@ -72,11 +73,14 @@
               </div>
             </template>
           </Card>
-
-          <Card style="margin-top:20px">
+          </div>
+          <div class="main-bot ">
+            <Card style="margin-top:20px">
             <template #title></template>
             <template #content><OrderTable></OrderTable></template>
           </Card>
+          </div>
+         
         </div>
       </template>
     </AdminBlankPage>
@@ -136,33 +140,6 @@ export default {
       ],
     };
   },
-  methods: {
-    close() {
-      this.modal1 = false;
-    },
-    open() {
-      this.modal1 = true;
-    },
-
-    openBasic() {
-      this.displayBasic = true;
-    },
-    closeBasic() {
-      this.displayBasic = false;
-    },
-    openBasic2() {
-      this.displayBasic2 = true;
-    },
-    closeBasic2() {
-      this.displayBasic2 = false;
-    },
-    openModal() {
-      this.displayModal = true;
-    },
-    closeModal() {
-      this.displayModal = false;
-    },
-  },
 };
 </script>
 <style lang="scss" scoped>
@@ -218,7 +195,7 @@ export default {
           text-align: left;
         }
         .count {
-          color: #0099ff;
+          color: var(--text-admin-color);
           font-weight: 500;
           width: 20%;
           text-align: center;

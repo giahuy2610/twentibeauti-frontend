@@ -65,6 +65,7 @@ export default {
     .infomation-tracking {
         display: flex;
         flex-direction: row;
+        align-content: space-between;
         width:100%;
        margin-bottom:1rem;
        .info-print {
@@ -73,7 +74,7 @@ export default {
         .infoID {
             display: flex;
             flex-direction: row;
-            gap:30px;
+            gap:40px;
             margin-bottom: 1rem;
             //width:0%;
             .order-id {
@@ -96,9 +97,7 @@ export default {
                 text-align: center;
                 vertical-align: middle;
             }
-            .card {
-                
-            }
+
         }
         .print-order {
             display:flex;
@@ -119,7 +118,7 @@ export default {
        
         .tracking {
             width:60%;
-            margin-left:15rem;
+            margin-left: 14rem;
             background-color: none;
             border: 1px solid #fff;
             background: #fff;

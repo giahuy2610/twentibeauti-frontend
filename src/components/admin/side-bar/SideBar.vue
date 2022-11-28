@@ -138,29 +138,6 @@ export default {
           path: "",
         },
         {
-          name: "Khuyến mãi",
-          icon: "pi-tags",
-          path: "/admin/promotions",
-          children: [
-            {
-              name : "Mã khuyến mãi",
-              path: "/admin/promotions/code",
-            },
-            {
-              name : "Tạo mã khuyến mãi",
-              path: "/admin/promotions/code/create",
-            },
-            {
-              name : "Chương trình khuyến mãi",
-              path: "/admin/promotions/event",
-            },
-            {
-              name : "Tạo chương trình khuyến mãi",
-              path: "/admin/promotions/event/create",
-            }
-          ]
-        },
-        {
           name: "Đơn hàng",
           icon: "pi-box",
           children: [
@@ -170,22 +147,37 @@ export default {
             },
             {
               name: "Khách trả hàng",
-              path: "/admin/order_return",
+              path: "/admin/order-return",
             },
           ],
           path: "",
         },
         {
-          name: "Vận chuyển",
+          name: "Khuyến mãi",
+          icon: "pi-tags",
+          path: "",
+          children: [
+            {
+              name: "Mã khuyến mãi",
+              path: "/admin/promotions/code",
+            },
+            {
+              name: "Chương trình khuyến mãi",
+              path: "/admin/promotions/event",
+            },
+          ],
+        },
+        {
+          name: "Quảng cáo",
           icon: "pi-send",
           children: null,
-          path: "",
+          path: "/admin/advertising",
         },
         {
           name: "Khách hàng",
           icon: "pi-users",
           children: null,
-          path: "",
+          path: "/admin/customer",
         },
         {
           name: "Yêu cầu hỗ trợ",

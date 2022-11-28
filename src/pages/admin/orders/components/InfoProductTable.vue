@@ -1,22 +1,15 @@
 <template>
-  <div class="product-table-wrapper">
+  <div class="product-table-wrapper shadow-2">
     <DataTable
       :value="products"
-      class="p-datatable-customers"
+      class="p-datatable-products"
       :rows="10"
       dataKey="id"
       :rowHover="true"
-      v-model:selection="selectedCustomers"
+      v-model:selection="selectedProducts"
       v-model:filters="filters"
       filterDisplay="menu"
       :loading="loading"
-      
-      :globalFilterFields="[
-        'name',
-        'country.name',
-        'representative.name',
-        'status',
-      ]"
       responsiveLayout="scroll"
     >
       <template #header>
@@ -29,7 +22,9 @@
            <a class="overlay-close" href="#"></a>
            <div class="dialog-stock">
             <div class="dialog-header">
-              <a class="btn-close" href="#">&times;</a>
+              <a class="btn-close" href="#">
+                <i class="pi pi-times" style="margin-top:15px;"></i>
+              </a>
               <h4>Kiểm tra tồn kho</h4>
             </div>
             <div class="dialog-body">
@@ -66,16 +61,16 @@
       <template #loading> Loading customers data. Please wait. </template>
       <!-- <Column selectionMode="multiple" headerStyle="width: 1rem"></Column> -->
 
-      <Column field="name" header="STT" style="min-width: 5rem">
+      <Column field="stt" header="STT" style="min-width: 5rem">
         <template #body="{ data }">
           {{ data.id }}
         </template>
         
       </Column>
-      <Column field="name" header="Ảnh" style="min-width: 5rem; cursor:pointer;">
+      <Column field="img" header="Ảnh" style="min-width: 5rem; cursor:pointer;">
         <template #body="{ data }">
           <img
-            :alt="data.category.name"
+            :alt="data.images"
             src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
             width="32"
             style="vertical-align: middle"
@@ -85,39 +80,39 @@
       </Column>
       <Column field="name" header="Tên sản phẩm" style="min-width: 10rem">
         <template #body="{ data }">
-          <p
+          <p 
             @click="
               $router.push({
                 path: '/admin/products/create',
                 query: { sku: data.name },
               })
             "
-            class="cursor-pointer hover-primary-color"
+            class=" namePro cursor-pointer"
           >
             {{ data.name }}
           </p>
         </template>
         
       </Column>
-      <Column field="name" header="Số lượng" style="min-width: 7rem">
+      <Column field="quatity" header="Số lượng" style="min-width: 7rem">
         <template #body="{ data }">
           {{ data.number }}
         </template>
         
       </Column>
       <Column
-        field="balance"
+        field="price"
         header="Đơn giá"
         dataType="numeric"
         style="min-width: 7rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.salePrice) }}
+          {{ formatCurrency(data.listprice) }}
         </template>
         
       </Column>
       <Column
-        field="balance"
+        field="discount"
         header="Chiết khấu"
         dataType="numeric"
         style="min-width: 7rem"
@@ -128,7 +123,7 @@
         
       </Column>
       <Column
-        field="balance"
+        field="total"
         header="Thành tiền"
         dataType="numeric"
         style="min-width: 7rem"
@@ -175,96 +170,17 @@ import { FilterMatchMode, FilterOperator } from "primevue/api";
 export default {
   data() {
     return {
-      customers: null,
-      selectedCustomers: null,
-      filters: {
-        global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        "country.name": {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
-        date: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
-        },
-        balance: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        status: {
-          operator: FilterOperator.OR,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS },
-      },
+      products: null,
+      selectedProducts: null,
       loading: true,
-      representatives: [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
-      ],
-      statuses: [
-        "Đang giao dịch",
-        "Hoàn thành",
-      ],
       products: [
         {
           id: 1000,
           name: "Kem Nền 20g",
           number: 10,
-          brand: {
-            name: "The Face Shop",
-            id: 100,
-            path: "/collections/the-face-shop",
-            country: "Hàn Quốc",
-          },
-          
-          stock: 20,
           images: ["abc.png", "bcd.png"],
           listprice: 80000,
           salePrice: 75000,
-          description:
-            "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-          category: {
-            name: "Trang điểm",
-            id: "1",
-            path: "/categories/trang-diem",
-          },
-          review: [
-            {
-              id: 111,
-              userId: 1112,
-              rating: 4,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-13",
-              invoice: { id: 152 },
-            },
-            {
-              id: 115,
-              userId: 1113,
-              rating: 2,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-14",
-              invoice: { id: 165 },
-            },
-          ],
         },
       ],
     };
@@ -277,13 +193,6 @@ export default {
     this.loading = false;
   },
   methods: {
-    formatDate(value) {
-      return value.toLocaleDateString( {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      });
-    },
     formatCurrency(value) {
       return value.toLocaleString( {
         style: "currency",
@@ -295,7 +204,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.namePro:hover{
+  text-decoration: underline;
+  color:var(--text-admin-color);
+}
 .dialog {
   position: fixed;
   top:0;
@@ -396,13 +308,16 @@ h4 {
     cursor:pointer;
     padding-top: 5px;
   }
+  .check-stock:hover{
+    font-weight: 700;
+  }
 
 }
 .footer {
   width: 100%;
   .info-payment {
     justify-content: space-between;
-    margin-left: 400px;
+    margin-left: 450px;
     display: flex;
     flex-direction: column;
     width: 50%;
