@@ -31,22 +31,22 @@ export default {
         {
           label: "Thẻ tín dụng / ATM",
           img: "https://inkythuatso.com/uploads/images/2021/12/payoo-logo-inkythuatso-02-15-47-06.jpg",
-          id: "idpay1",
+          id: "1",
         },
         {
           label: "Ví momo",
           img: "https://play-lh.googleusercontent.com/dQbjuW6Jrwzavx7UCwvGzA_sleZe3-Km1KISpMLGVf1Be5N6hN6-tdKxE5RDQvOiGRg",
-          id: "idpay2",
+          id: "2",
         },
         {
           label: "Trả góp Flik - MoMo",
           img: "https://static.mservice.io/fileuploads/svg/momo-file-220802114354.svg",
-          id: "idpay3",
+          id: "3",
         },
         {
           label: "Trả tiền mặt khi nhận hàng",
           img: "https://cdn.pixabay.com/photo/2013/07/13/12/03/banknotes-159085_960_720.png",
-          id: "idpay4",
+          id: "4",
         },
       ],
     };

@@ -75,7 +75,12 @@
 </template>
 <script>
 import ProductItemList from "@/components/store/home/cart/ProductItemList.vue";
+//import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+//import { mapWritableState, mapActions } from "pinia";
 export default {
+  methods: {
+    //...mapActions()
+  },
   components: {
     ProductItemList,
   },
@@ -87,8 +92,10 @@ export default {
   },
 };
 </script>
+
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+
 .right {
   width: 50%;
   margin-left: 20px;

@@ -35,7 +35,7 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
 } from "firebase/auth";
-import vClickOutside from "click-outside-vue3";
+//import vClickOutside from "click-outside-vue3";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapWritableState, mapActions } from "pinia";
 export default {
