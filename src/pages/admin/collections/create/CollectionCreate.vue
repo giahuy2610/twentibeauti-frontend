@@ -14,7 +14,7 @@
           <Button
             label="Xem trước"
             class="p-button-success"
-            @click="$router.push({ path: '/collection/:id' })"
+            @click="$router.push({ path: `/collection/${this.$route.params.id}` })"
           />
           <Button label="Lưu" class="p-button-info" @click="createCollection" />
         </div>
@@ -63,7 +63,7 @@
             <template #title> Ảnh bìa </template>
             <template #content>
               <div>
-                <AddFileVue></AddFileVue>
+                <AddFileVue @geturl="wallimg">{{getCollectionItems.WallPaperPath}} ></AddFileVue>
               </div>
             </template>
           </Card>
@@ -71,7 +71,9 @@
             <template #title> Ảnh logo </template>
             <template #content>
               <div>
-                <AddFileVue></AddFileVue>
+                {{logoimg}} ad
+                <AddFileVue @geturl="logoimg">{{getCollectionItems.LogoImagePath}}
+                </AddFileVue>
               </div>
             </template>
           </Card>
@@ -79,7 +81,7 @@
             <template #title> Ảnh danh mục </template>
             <template #content>
               <div>
-                <AddFileVue></AddFileVue>
+                <AddFileVue @geturl="coverimg">{{getCollectionItems.CoverImagePath}} ></AddFileVue>
               </div>
             </template>
           </Card>
@@ -99,7 +101,7 @@
 </template>
 <script>
 import AdminBlankPage from "../../AdminBlankPage.vue";
-import AddFileVue from "../../products/components/AddFile.vue";
+import AddFileVue from "@/components/admin/add-image/AddImage.vue";
 import AddInfor from "../component/AddInfor.vue";
 import ProductTable from "../component/ProductTable.vue";
 import AddMethod from "../component/AddMethod.vue";
@@ -133,6 +135,7 @@ export default {
     ...mapActions(useCollectionStorePinia, [
       "createCollection",
       "getInfoCollection",
+      "updateCollection",
     ]),
     getAllData: function () {
       //checking if the current url is create or not
@@ -146,7 +149,14 @@ export default {
       } else {
         // this.createCollection();
       }
+      // window.location.reload();
     },
+    // reset() {
+    //   window.location.reload();
+    // },
+    logoimg(n) {
+      console.log(n)
+    }
   },
   mounted() {
     this.getAllData();

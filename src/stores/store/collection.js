@@ -67,6 +67,8 @@ export const useCollectionStorePinia = defineStore({
           // localStorage.NameCollection= this.NameCollection;
           this.collectionItems.NameCollection=response.data.NameCollection;
            this.collectionItems.Description=response.data.Description;
+           this.collectionItems.WallPaperPath=response.data.WallPaperPath;
+           this.collectionItems.LogoImagePath=response.data.LogoImagePath;
           return response.data;
         })
         .catch(function (error) {

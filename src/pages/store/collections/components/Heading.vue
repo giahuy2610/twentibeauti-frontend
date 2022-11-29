@@ -9,7 +9,7 @@
       >
       </Skeleton>
       <img
-        src=""
+        :src="getCollectionItems.WallPaperPath"
         alt=""
         style="width: 100%; object-fit: fill; border-radius: 10px"
         @load="isLoaded = true"
@@ -21,7 +21,7 @@
         <Skeleton shape="square" size="100%" v-show="!isLoadedLogo"> </Skeleton>
         <img
           class="shadow-2"
-          :LogoImagePath="getCollectionItems.LogoImagePath"
+          :src="getCollectionItems.LogoImagePath"
           style="width: 100%; object-fit: fill; border-radius: 10px"
           @load="isLoadedLogo = true"
           alt=""
@@ -48,7 +48,7 @@ import WallpaperVue from "./Wallpaper.vue";
 import AdsSlider from "@/pages/store/home/components/AdsSlider2.vue";
 import DescriptionVue from "@/pages/store/product/components/aboutproduct/RightAbout.vue";
 import { useCollectionStorePinia } from "@/stores/store/collection.js";
-import { mapState, mapActions } from "pinia";
+import { mapWritableState, mapActions } from "pinia";
 import { stringLength } from "@firebase/util";
 export default {
   components: {
@@ -60,8 +60,9 @@ export default {
     LogoImagePath: String,
   },
   computed: {
-    ...mapState(useCollectionStorePinia, {
+    ...mapWritableState(useCollectionStorePinia, {
       getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems",
     }),
   },
   methods: {
