@@ -31,12 +31,25 @@
 import AdminBlankPage from "../AdminBlankPage.vue";
 import CollectionTable from "../collections/component/CollectionTable.vue";
 import AddFileVue from "../../admin/products/components/AddFile.vue";
+import { useCollectionStorePinia } from "@/stores/store/collection";
+import { mapState, mapActions } from "pinia";
 export default {
   components: {
     AdminBlankPage,
     CollectionTable,
     AddFileVue,
   },
+  computed: {
+    ...mapState(useCollectionStorePinia, {
+      getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems"
+    }),
+  },
+  methods: {
+    ...mapActions(useCollectionStorePinia,["getInfoCollection"],["createCollection"],
+    ),
+  },
+  
 };
 </script>
 <style scoped>

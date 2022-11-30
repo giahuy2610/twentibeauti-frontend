@@ -81,4 +81,5 @@ export const usePromotionStorePinia = defineStore("promotionStorePinia", {
     //return state.promotions[state.promotions.length-1].promoCode;
   },
   actions: {},
+  persist: true,
 });

@@ -53,6 +53,7 @@ export default {
       settings.data = formData;
       $.ajax(settings).done(function (response) {
         self.$emit("geturl", JSON.parse(response).data.link);
+        console.log(JSON.parse(response).data.link)
       });
       this.toastSuccess();
     },
@@ -64,6 +65,7 @@ export default {
     },
   },
   emitUrl(link) {
+    console.log(link)
     this.$emit("geturl", link);
   },
 };
