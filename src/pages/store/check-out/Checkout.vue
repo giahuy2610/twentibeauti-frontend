@@ -3,7 +3,10 @@
     <div class="content">
       <Header></Header>
       <Bodypay></Bodypay>
-      <a href="http://localhost/vnpay_php/vnpay_create_payment.php">redirect</a>
+      <a
+        href="http://localhost/vnpay_php/vnpay_create_payment.php?order_desc=Thanh+toan+don+hang125&amount=10000000"
+        >redirect</a
+      >
     </div>
   </Wrapper>
 </template>
@@ -11,7 +14,6 @@
 import Wrapper from "../../Wrapper.vue";
 import Header from "./components/Header.vue";
 import Bodypay from "./components/body/Bodypay.vue";
-
 
 export default {
   components: {

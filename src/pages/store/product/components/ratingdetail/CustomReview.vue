@@ -1,34 +1,49 @@
 <template lang="">
-    <div class="list-item">
-        <div class="item-region">
-            <div class="item">
-                <div class="avatar">
-                    <span class="avatar-image">
-                        <img src="https://joeschmoe.io/api/v1/random" alt="avatar">
-                    </span>
-                </div>
-                <div class="seperator">&nbsp;</div>
-                <div class="date">
-                    {{date}}
-                </div>
-                <div class="star-rate">
-                    <Rating v-model="numstar" :readonly="true" :cancel="false" offIcon="pi pi-star-fill" />
-                </div>
-            </div>
-            <div class="short-review">
-                {{short}}
-            </div>
-            <div class="long-review">
-                {{long}}
-            </div>
+  <div class="list-item">
+    <div class="item-region">
+      <div class="item">
+        <div class="avatar">
+          <span class="avatar-image">
+            <Skeleton shape="circle" size="32px" v-show="!isLoaded"> </Skeleton>
+            <img
+              src="https://joeschmoe.io/api/v1/random"
+              alt="avatar"
+              @load="isLoaded = true"
+              v-show="isLoaded"
+            />
+          </span>
         </div>
+        <div class="seperator">&nbsp;</div>
+        <div class="date">
+          {{ date }}
+        </div>
+        <div class="star-rate">
+          <Rating
+            v-model="numstar"
+            :readonly="true"
+            :cancel="false"
+            offIcon="pi pi-star-fill"
+          />
+        </div>
+      </div>
+      <div class="short-review">
+        {{ short }}
+      </div>
+      <div class="long-review">
+        {{ long }}
+      </div>
     </div>
+  </div>
 </template>
 <script>
 export default {
-    props: ["numstar","date","short","long"],
+  props: ["numstar", "date", "short", "long"],
+  data() {
+    return {
+        isLoaded: false
+    }
+  }
 };
-  
 </script>
 <style lang="scss" scoped>
 .list-item {
@@ -65,25 +80,22 @@ export default {
           object-fit: cover;
         }
       }
-      .date
-      {
+      .date {
         line-height: 20px;
         font-size: 14px;
-        font-weight: 400;;
+        font-weight: 400;
       }
     }
-    .short-review
-    {
-        margin-bottom: 12px;
-        line-height: 23px;
-        font-size: 16px;
-        font-weight: 700;
+    .short-review {
+      margin-bottom: 12px;
+      line-height: 23px;
+      font-size: 16px;
+      font-weight: 700;
     }
-    .long-review
-    {
-        line-height: 23px;
-        font-size: 16px;
-        font-weight: 400;
+    .long-review {
+      line-height: 23px;
+      font-size: 16px;
+      font-weight: 400;
     }
   }
 }
