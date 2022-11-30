@@ -10,7 +10,7 @@
               <InputText
                 id="nameprod"
                 type="text"
-                v-model="nameprod"
+                v-model="collectionItems.NameCollection"
                 placeholder="Nhập tên danh mục"
               />
             </span>
@@ -22,10 +22,11 @@
           <PanelMenu />
           <h5>Mô tả danh mục</h5>
           <Editor
-            v-model="description"
+            v-model="collectionItems.Description"
             editorStyle="height: 320px"
             @textChange="contentChangedEditor"
             contentType="html"
+            
           />
         </div>
       </template>
@@ -33,20 +34,30 @@
   </div>
 </template>
 <script>
+import axios from 'axios'
+import { useCollectionStorePinia } from '@/stores/admin/collection.js';
+import { mapWritableState, mapActions } from "pinia";
 export default {
+  name: 'Addinfo',
   data() {
     return {
-      description: null,
-      nameprod: null,
-      codeprod: null,
-      mass: 0,
-      unit: null,
+      addinfor: [],
     };
+  },
+  created () {
+  },
+  computed: {
+    ...mapWritableState(useCollectionStorePinia, {
+      getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems"
+    }),
   },
   methods: {
     contentChangedEditor(event) {
       console.log(event.htmlValue);
     },
+    ...mapActions(useCollectionStorePinia,["getInfoCollection"],["createCollection"],
+    ),
   },
 };
 </script>

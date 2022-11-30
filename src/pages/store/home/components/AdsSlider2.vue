@@ -4,7 +4,7 @@
       <!-- <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
       </Skeleton> -->
       <img
-        @click="$router.push({ path: '/collections/' })"
+        @click="$router.push({ path: '/collection/' })"
         v-for="(item, index) in arrThumbnailScr"
         :src="item"
         alt="sale thumbnail"
@@ -28,7 +28,7 @@
               <div class="slide-track">
                 <div class="img-div" ref="ads" v-for="(item, index) in arrThumbnailScr">
                 <img
-                  @click="$router.push({ path: '/collections/' }),(isClick = !isClick)"
+                  @click="$router.push({ path: '/collection/' }),(isClick = !isClick)"
                   :src="item"
                   alt="sale thumbnail"
                   :clas="{ shadow2: selectedItem == index }"

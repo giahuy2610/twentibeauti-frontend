@@ -9,7 +9,7 @@
       >
       </Skeleton>
       <img
-        src="https://image.hsv-tech.io/1920x0/tfs/common/43ab5b36-fedc-4d8c-a24f-cd8ecfe05564.webp"
+        :src="getCollectionItems.WallPaperPath"
         alt=""
         style="width: 100%; object-fit: fill; border-radius: 10px"
         @load="isLoaded = true"
@@ -21,7 +21,7 @@
         <Skeleton shape="square" size="100%" v-show="!isLoadedLogo"> </Skeleton>
         <img
           class="shadow-2"
-          src="https://image.hsv-tech.io/400x0/tfs/common/ef78ea2a-5c56-48bb-814c-b3e1bacc4bea.webp"
+          :src="getCollectionItems.LogoImagePath"
           style="width: 100%; object-fit: fill; border-radius: 10px"
           @load="isLoadedLogo = true"
           alt=""
@@ -29,8 +29,8 @@
         />
       </div>
       <div class="brand-info">
-        <h2 class="uppercase">THE FACE SHOP</h2>
-        <p>Hàn quốc</p>
+        <h2 class="uppercase">{{getCollectionItems.NameCollection}}</h2>
+        <p></p>
       </div>
     </div>
     <div class="description-wrapper">
@@ -47,11 +47,27 @@
 import WallpaperVue from "./Wallpaper.vue";
 import AdsSlider from "@/pages/store/home/components/AdsSlider2.vue";
 import DescriptionVue from "@/pages/store/product/components/aboutproduct/RightAbout.vue";
+import { useCollectionStorePinia } from "@/stores/store/collection.js";
+import { mapWritableState, mapActions } from "pinia";
+import { stringLength } from "@firebase/util";
 export default {
   components: {
     WallpaperVue,
     AdsSlider,
     DescriptionVue,
+  },
+  props: {
+    LogoImagePath: String,
+  },
+  computed: {
+    ...mapWritableState(useCollectionStorePinia, {
+      getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems",
+    }),
+  },
+  methods: {
+    ...mapActions(useCollectionStorePinia,["getInfoCollection"],
+    ),
   },
   data() {
     return {
@@ -72,7 +88,6 @@ export default {
     width: 100%;
     height: fit-content;
   }
-
   .logo-wrapper {
     width: 100%;
     display: flex;
