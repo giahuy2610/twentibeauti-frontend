@@ -1,7 +1,7 @@
 <template>
   <div class="product-table-wrapper">
     <DataTable
-      :value="categories"
+      :value="list"
       :paginator="true"
       class="p-datatable-customers"
       :rows="10"
@@ -33,19 +33,18 @@
       <template #loading> Loading collections data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 
-      <Column header="Mã danh mục" sortable style="min-width: 12rem" field="id">
+      <Column header="Mã danh mục" sortable style="min-width: 11rem" field="id">
         <template #body="{ data }">
           <p
             @click="
               $router.push({
-                path: '/admin/collections/create',
-                query: { id: data.id },
+                path: `/admin/collections/edit/${data.IDCollection}`,
               })
             "
             class="cursor-pointer"
             style="color: var(--primary-color)"
           >
-            {{ data.id }}
+            {{ data.IDCollection }}
           </p>
         </template>
       </Column>
@@ -59,7 +58,7 @@
         style="min-width: 13rem"
       >
         <template #body="{ data }">
-          <span>{{ data.name }}</span>
+          <span>{{ data.NameCollection }}</span>
         </template>
       </Column>
 
@@ -71,7 +70,7 @@
         style="min-width: 10rem"
       >
         <template #body="{ data }">
-          {{ data.startOn }}
+          {{ data.StartOn }}
         </template>
         <template #filter="{ filterModel }">
           <Calendar
@@ -90,7 +89,7 @@
         style="min-width: 10rem"
       >
         <template #body="{ data }">
-          {{ data.endOn }}
+          {{ data.EndOn }}
         </template>
         <template #filter="{ filterModel }">
           <Calendar
@@ -109,7 +108,7 @@
         style="min-width: 10rem"
       >
         <template #body="{ data }">
-          {{ data.createdOn }}
+          {{ data.CreatedOn }}
         </template>
         <template #filter="{ filterModel }">
           <Calendar
@@ -125,7 +124,10 @@
         bodyStyle="text-align: center; overflow: visible"
       >
         <template #body>
-          <Button type="button" icon="pi pi-cog"></Button>
+          <Button
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-text"
+          />
         </template>
       </Column>
     </DataTable>
@@ -134,7 +136,8 @@
 
 <script>
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-
+import { useCollectionStorePinia } from "@/stores/admin/collection";
+import { mapState, mapActions } from "pinia";
 export default {
   data() {
     return {
@@ -169,38 +172,20 @@ export default {
         verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
-      categories: [
-        {
-          id: 1000,
-          name: "Sản phẩm mới",
-          createdOn: "2015-09-13",
-          startOn: "2015-09-13",
-          endOn: "2015-09-13",
-        },
-        {
-          id: 1002,
-          name: "Sản phẩm giả",
-          createdOn: "2015-09-12",
-          startOn: "2015-09-13",
-          endOn: "2015-09-13",
-        },
-        {
-          id: 1004,
-          name: "Sản phẩm cũ",
-          createdOn: "2015-09-13",
-          startOn: "2015-09-13",
-          endOn: "2015-09-13",
-        },
-      ],
+      list: [],
       selectedCategories: [],
     };
   },
+  computed: {
+    ...mapState(useCollectionStorePinia, {
+      getCollectionItems: "getCollectionItems",
+    }),
+  },
   created() {},
-  mounted() {
-    // this.products.forEach(
-    //   (products) => (products.createdOn = new Date(products.createdOn))
-    // );
+  async mounted() {
+    this.list = await this.getInfoCollection('');
     this.loading = false;
+    console.log(this.list);
   },
   methods: {
     formatDate(value) {
@@ -210,6 +195,7 @@ export default {
         year: "numeric",
       });
     },
+    ...mapActions(useCollectionStorePinia, ["getInfoCollection"]),
   },
 };
 </script>
