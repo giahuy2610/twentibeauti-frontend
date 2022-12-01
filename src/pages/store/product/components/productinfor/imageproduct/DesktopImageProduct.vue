@@ -142,6 +142,7 @@ export default {
 }
 @media desktop {
   .image__size{
+    min-width: 100%;
     max-width: 100%;
     height: auto;
     width: auto\9;
@@ -239,6 +240,7 @@ export default {
   }
   .img {
     &__size{
+    width:  400px;
     position: relative;
     border-radius: 10px;   
     }

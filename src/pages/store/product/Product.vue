@@ -115,7 +115,7 @@ export default {
     },
     mounted() {
         axios
-            .get('/product/show/2')
+            .get('/product/show/34420128')
             .then((response) => {
                 this.productName = response.data.NameProduct;
                 this.listPrice = response.data.ListPrice;

@@ -41,13 +41,9 @@ export default {
 </script>
 
 <style lang="scss">
-@font-face {
-  font-family: "BioSans";
-  src: local("BioSans") url('public/fonts/BioSans.ttf') format("truetype");
-}
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-
+  font-family: 'Nunito' , Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
