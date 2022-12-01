@@ -51,8 +51,8 @@
         <div class="apply">
           <div class="grid p-fluid">
             <div class="p-inputgroup p-fluid">
-              <InputText placeholder="Nhập mã giảm giá (nếu có)" />
-              <Button label="Áp dụng" />
+              <InputText placeholder="Nhập mã giảm giá (nếu có)" v-model="magiamgia" />
+              <Button label="Áp dụng" @click="getCoupon"/>
             </div>
           </div>
         </div>
@@ -75,17 +75,18 @@
 </template>
 <script>
 import ProductItemList from "@/components/store/home/cart/ProductItemList.vue";
-//import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
-//import { mapWritableState, mapActions } from "pinia";
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   methods: {
-    //...mapActions()
+    ...mapActions(useCheckoutStorePinia, ["getCoupon"])
   },
   components: {
     ProductItemList,
   },
   data() {
     return {
+      magiamgia: "",
       total: 0,
       discount: 0,
     };

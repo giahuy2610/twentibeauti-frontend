@@ -1,6 +1,7 @@
 <template lang="">
   <div class="payment shadow-5">
     <div class="h2">
+      {{selectedPayment}}
       <b>Phương thức thanh toán</b>
       <br />
     </div>
@@ -22,7 +23,9 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="js">
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
@@ -57,7 +60,9 @@ export default {
   }
 };
 </script>
+
 <style lang="scss" scoped>
+
 .payment {
   border-radius: 10px;
 

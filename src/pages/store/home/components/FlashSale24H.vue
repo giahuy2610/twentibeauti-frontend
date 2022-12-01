@@ -4,7 +4,7 @@
       <img src="@/assets/flashsalelogo.png" alt="Flash Sale 24H" />
 
       <div v-if="timeLeft === 0" class="time-out-msg">
-        Flash Sale đã kết thúc
+        Flash Sale đã kết thúc*6
       </div>
 
       <div v-else class="count-down">

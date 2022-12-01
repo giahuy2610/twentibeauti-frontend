@@ -121,7 +121,7 @@
 
 <script lang="js">
 import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
-import { useCartStorePinia } from "@/stores/store/cart.js";
+import { useInfoAccountStorePinia } from "@/stores/store/InfoAccount.js";
 import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
@@ -138,11 +138,12 @@ export default {
   },
   computed: {
 ...mapWritableState(useCheckoutStorePinia, {
-  getInfCus: "getInfCus",
   receiverInfo: "receiverInfo",
-  districts: "districts",
   //getReceiverInfo: "getReceiverInfo",
 }),
+...mapWritableState(useInfoAccountStorePinia,{
+  infoCus: "infoCus"
+})
 
 },
   methods: {
@@ -208,11 +209,26 @@ export default {
         });
       });
     },
+    // getAlldata() {
+    //   if (this.$route.fullPath ==  `/checkout`)
+    //      {
+    //     console.log(this.getInfoCus(6));
+    //     // return this.getInfoCollection(this.$route.params.id).save;
+        
+    //   } 
+    // },
     ...mapActions(useCheckoutStorePinia, ["increaseTotal","loadDefaultInfo"]),
+    ...mapActions(useInfoAccountStorePinia, ["loadDefaultInfoCus"]),
   },
   mounted() {
-    this.loadDefaultInfo();
+
     this.loadProvinces();
+    this.loadDefaultInfoCus();
+    this.receiverInfo.FirstName = this.infoCus.FirstName;
+    this.receiverInfo.LastName = this.infoCus.LastName;
+    this.receiverInfo.Email = this.infoCus.Email;
+    this.receiverInfo.Phone = this.infoCus.Phone;
+    //this.getAlldata();
   },
   watch: {
     selectedProvince(newSelectedProvince, oldSelectedProvince) {
