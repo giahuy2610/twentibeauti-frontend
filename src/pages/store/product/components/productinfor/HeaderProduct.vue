@@ -30,6 +30,7 @@ export default {
         text-decoration: underline;
         }
     .info-title {
+        
         font-size: 18px;
         width: 95%;
     }

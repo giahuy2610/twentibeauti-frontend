@@ -9,24 +9,24 @@
                 </div>
                 <div class="seperator">&nbsp;</div>
                 <div class="date">
-                    {{date}}
+                    {{Creaton}}
                 </div>
                 <div class="star-rate">
-                    <Rating v-model="numstar" :readonly="true" :cancel="false" offIcon="pi pi-star-fill" />
+                    <Rating v-model="Rating" :readonly="true" :cancel="false" offIcon="pi pi-star-fill" />
                 </div>
             </div>
             <div class="short-review">
-                {{short}}
+                {{ContentShort}}
             </div>
             <div class="long-review">
-                {{long}}
+                {{ContentLong}}
             </div>
         </div>
     </div>
 </template>
 <script>
 export default {
-    props: ["numstar","date","short","long"],
+    props: ["Rating","Creaton","ContentShort","ContentLong"],
 };
   
 </script>

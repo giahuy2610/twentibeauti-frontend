@@ -29,7 +29,7 @@
         <div
           ref="image"
           class="img__margin"
-          :class="[isClick ? 'img__appear' : 'img__show']"
+          :class="[isClick ? 'img__show' : 'img__appear']"
         >
           <img class="img__size" :src="currentImg" alt="Ảnh sản phẩm" />
         </div>
@@ -244,11 +244,17 @@ export default {
     }
     
     &__margin {
+      
       position: sticky;
       position: -webkit-sticky;
       top: 0;
       margin-top: 10px;
       margin-right: 2rem;
+    }
+    &__margin:hover {
+      -ms-transform: scale(1.05); /* IE 9 */
+      -webkit-transform: scale(1.05); /* Safari 3-8 */
+      transform: scale(1.05); 
     }
     &__appear {
       

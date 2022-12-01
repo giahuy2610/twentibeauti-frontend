@@ -41,8 +41,13 @@ export default {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: "BioSans";
+  src: local("BioSans") url('public/fonts/BioSans.ttf') format("truetype");
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
+
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
