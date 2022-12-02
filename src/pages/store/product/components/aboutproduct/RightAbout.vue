@@ -7,13 +7,16 @@
             <div :class="{'background-cover': showingFullText}"></div>
             <div class="centered btn-showingFullText">
                 <Button class="p-button-secondary p-button-outlined p-button-rounded">
-                    {{showMoreContent}}
+                    <span v-if="showingFullText == true">Xem thêm nội dung</span>
+                    <span v-if="showingFullText == false">Ẩn bớt nội dung</span>
                 </Button>    
             </div>
         </div>
     </div>
 </template>
 <script>
+import { useCollectionStorePinia } from "@/stores/store/collection.js";
+import { mapState, mapActions } from "pinia";
 export default {
     props: ["descriptions"],
     data() {
@@ -21,11 +24,7 @@ export default {
       showingFullText: true,
     };
   },
-  computed: {
-    showMoreContent() {
-      return this.showingFullText ? "Xem thêm nội dung" : "Ẩn bớt nội dung";
-    },
-  },
+ 
 };
 </script>
 <style lang="scss" scoped>

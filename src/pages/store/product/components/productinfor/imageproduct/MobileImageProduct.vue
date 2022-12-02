@@ -4,13 +4,14 @@
         <span class="icon-chevron-thin-left"></span>
     </button>
     <div class="scroll-wrapper">
-
         <div class="container-slide" ref="slide">
+            <Skeleton shape="square" size="300px" v-show="!isLoaded">
+            </Skeleton>
             <div class="slick-slider">
                 <div class="slick-list">
                     <div :style="maxWidth" class="slide-track">
-                        <div ref="img" v-for="(item, index) in illustProducts" class="image-box">
-                            <img :src="item"  />
+                        <div ref="img" v-for="(item, index) in illustProducts">
+                            <img :src="item" @load="isLoaded = true" v-show="isLoaded" />
                         </div>
                     </div>
                 </div>
@@ -25,11 +26,11 @@
 
 <script>
 export default {
-    props : ["illustProducts"],
+    props: ["illustProducts"],
     computed: {
         maxWidth() {
             return {
-                "--max-width": (this.illustProducts.length * 350) + "px",
+                "--max-width": this.illustProducts.length * 350 + "px",
             };
         },
     },
@@ -66,6 +67,7 @@ export default {
             //     "https://image.hsv-tech.io/0x400/tfs/common/27c2301d-ac0a-457a-b866-253dbf3a814e.webp",
             //     "https://image.hsv-tech.io/0x400/tfs/common/2d266998-c491-4354-ad70-e3dd2954a80b.webp",
             // ],
+            isLoaded: false
         };
     },
 };
@@ -159,9 +161,9 @@ export default {
                         position: relative;
                         min-width: var(--max-width);
 
-                        .image_box{
-                          width: 300px;
-                          height: 300px;
+                        .image_box {
+                            width: 300px;
+                            height: 300px;
                         }
                     }
                 }
@@ -170,3 +172,4 @@ export default {
     }
 }
 </style>
+1

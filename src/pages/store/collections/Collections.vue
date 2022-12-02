@@ -46,7 +46,9 @@ import CollectionFilterSider from "@/components/atoms/collectionFilterSider/Coll
 import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
 import ButtonPrimary from "@/components/atoms/buttonPrimary/ButtonPrimary.vue";
 import Heading from "./components/Heading.vue";
-
+import { useCollectionStorePinia } from "@/stores/store/collection.js";
+import { mapWritableState, mapActions } from "pinia";
+import axios from "axios";
 export default {
   components: {
     Wrapper,
@@ -54,14 +56,32 @@ export default {
     ProductCard,
     ButtonPrimary,
     Heading,
-
+  },
+  computed: {
+    ...mapWritableState(useCollectionStorePinia, {
+      getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems",
+    }),
+  },
+  methods: {
+    ...mapActions(useCollectionStorePinia,["getInfoCollection"],
+    ),
+    getAllData: function () {
+      console.log(this.$route.params.id)
+      //checking if the current url is create or not
+      console.log(this.getInfoCollection(this.$route.params.id));
+      // return this.getInfoCollection(this.$route.params.id).save;
+    },
+  },
+  mounted() {
+    //  this.getInfoCollection();
+     this.getAllData();
   },
   data() {
     return {
       countProductsInCollection: 2,
       filterChooser: ["Giá tăng dần", "Giá giảm dần", "% giảm", "Mua nhiều"],
       filtered: 2, //default: % giảm
-      title: 'The face shop',
       isFilterChose: false
     };
   },

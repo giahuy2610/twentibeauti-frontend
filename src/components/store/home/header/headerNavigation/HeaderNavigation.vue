@@ -1,10 +1,6 @@
 <template lang="">
   <div>
-    <MegaMenu :model="items">
-      <template #item="{ item }">
-        <a style="text-decoration: none" :href="item.url">{{ item.label }}</a>
-      </template>
-    </MegaMenu>
+    <MegaMenu :model="items"> </MegaMenu>
     <!-- <MegaMenu :model="items" orientation="vertical" /> -->
   </div>
 </template>
@@ -20,25 +16,28 @@ export default {
           items: [
             [
               {
-                items: [{ label: "HOT DEAL ĐỘC QUYỀN THÁNG 10" }],
+                items: [
+                  { label: "HOT DEAL ĐỘC QUYỀN THÁNG 10", url: "/promotions" },
+                ],
               },
               {
-                items: [{ label: "HOT DEAL ĐỘC QUYỀN THÁNG 10" }],
+                items: [
+                  { label: "HOT DEAL ĐỘC QUYỀN THÁNG 10", url: "/promotions" },
+                ],
               },
             ],
           ],
         },
         {
           label: "Thương hiệu",
-          url: "/collections",
           //   icon: "pi-angle-down",
           items: [
             [
               {
-                items: [{ label: "THEFACESHOP" }],
+                items: [{ label: "THEFACESHOP", url: "/collections" }],
               },
               {
-                items: [{ label: "CNP" }],
+                items: [{ label: "CNP", url: "/collections" }],
               },
             ],
           ],
@@ -55,17 +54,26 @@ export default {
             [
               {
                 label: "Trang điểm mặt",
-                items: [{ label: "Kem nền" }, { label: "Kem lót" }],
+                items: [
+                  { label: "Kem nền", url: "/collections" },
+                  { label: "Kem lót", url: "/collections" },
+                ],
               },
               {
                 label: "Trang điểm môi",
-                items: [{ label: "Dưỡng môi" }, { label: "Son bóng" }],
+                items: [
+                  { label: "Dưỡng môi", url: "/collections" },
+                  { label: "Son bóng", url: "/collections" },
+                ],
               },
             ],
             [
               {
                 label: "Trang điểm mắt",
-                items: [{ label: "Kẻ mắt" }, { label: "Kẻ lông mày" }],
+                items: [
+                  { label: "Kẻ mắt", url: "/collections" },
+                  { label: "Kẻ lông mày", url: "/collections" },
+                ],
               },
             ],
           ],
@@ -78,17 +86,26 @@ export default {
             [
               {
                 label: "Dưỡng da mặt",
-                items: [{ label: "Dưỡng ẩm" }, { label: "Tẩy tế bào chết" }],
+                items: [
+                  { label: "Dưỡng ẩm", url: "/collections" },
+                  { label: "Tẩy tế bào chết", url: "/collections" },
+                ],
               },
               {
                 label: "Làm sạch",
-                items: [{ label: "Sữa rửa mặt" }, { label: "Nước tẩy trang" }],
+                items: [
+                  { label: "Sữa rửa mặt", url: "/collections" },
+                  { label: "Nước tẩy trang", url: "/collections" },
+                ],
               },
             ],
             [
               {
                 label: "Mặt nạ",
-                items: [{ label: "Mặt nạ ngủ" }, { label: "Mặt nạ dưỡng" }],
+                items: [
+                  { label: "Mặt nạ ngủ", url: "/collections" },
+                  { label: "Mặt nạ dưỡng", url: "/collections" },
+                ],
               },
             ],
           ],
@@ -102,8 +119,8 @@ export default {
               {
                 label: "Chăm sóc BODY",
                 items: [
-                  { label: "Dưỡng cơ thể" },
-                  { label: "Tẩy tế bào chết " },
+                  { label: "Dưỡng cơ thể", url: "/collections" },
+                  { label: "Tẩy tế bào chết ", url: "/collections" },
                 ],
               },
               {
@@ -114,14 +131,17 @@ export default {
             [
               {
                 label: "Chăm sóc tay/chân",
-                items: [{ label: "Dưỡng da" }, { label: "Tẩy tế bào chết" }],
+                items: [
+                  { label: "Dưỡng da", url: "/collections" },
+                  { label: "Tẩy tế bào chết", url: "/collections" },
+                ],
               },
             ],
           ],
         },
         {
           label: "Nhận mã ưu đãi",
-          url: "/promotion",
+          url: "/promotions",
         },
       ],
     };
@@ -134,7 +154,6 @@ export default {
   border: none;
   border-radius: 20px;
 }
-
 :deep(.p-megamenu-root-list) {
   justify-content: space-between;
   background-color: white;
@@ -143,7 +162,6 @@ export default {
   max-width: 100%;
   flex-wrap: nowrap !important;
 }
-
 :deep(.p-megamenu-panel) {
   border-radius: 14px;
 }
