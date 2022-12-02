@@ -95,6 +95,7 @@ export default {
         scrollTo(index) {
             this.$refs.slide.scrollTop +=
                 this.$refs.btn[0].offsetHeight * (index + 1 - this.currentIllust);
+            this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth * (index + 1 - this.currentIllust) ;
             this.currentIllust = index + 1;
             setTimeout(() => {
                 this.isClick = !this.isClick;
