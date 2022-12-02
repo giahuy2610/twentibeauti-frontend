@@ -5,12 +5,13 @@
                 <h2>Giới thiệu</h2>
             </div>
         </div>
-        <RightAbout></RightAbout>
+        <RightAbout :descriptions="this.descriptions"></RightAbout>
     </div>
 </template>
 <script>
 import RightAbout from '../components/aboutproduct/RightAbout.vue';
 export default {
+  props: ["descriptions"],
   components: {
     RightAbout,
   }

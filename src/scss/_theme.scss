@@ -1,6 +1,12 @@
 
 
 :root {
+    @font-face {
+      font-family: "BioSans" ;
+      src: local("BioSans") url('../../public/fonts/BioSans.otf') format("truetype");
+      font-family: "BioSansLight" ;
+      src: local("BioSansLight") url('../../public/fonts/BioSansLight.otf') format("truetype");
+    }
     --surface-a:#ffffff;
     --surface-b:#f8f9fa;
     --surface-c:#e9ecef;

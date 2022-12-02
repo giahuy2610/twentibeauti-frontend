@@ -1,11 +1,12 @@
 <template lang="">
-    <DesktopImageProductVue class="desktop"></DesktopImageProductVue>
-    <MobileImageProductVue class="mobile"></MobileImageProductVue>
+    <DesktopImageProductVue :illustProducts="this.illustProducts" class="desktop"></DesktopImageProductVue>
+    <MobileImageProductVue :illustProducts="this.illustProducts" class="mobile"></MobileImageProductVue>
 </template>
 <script>
 import MobileImageProductVue from './imageproduct/MobileImageProduct.vue';
 import DesktopImageProductVue from './imageproduct/DesktopImageProduct.vue';
 export default {
+  props: ["illustProducts"],
   components: {
     MobileImageProductVue,
     DesktopImageProductVue,

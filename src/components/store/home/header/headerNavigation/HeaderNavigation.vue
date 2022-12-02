@@ -11,6 +11,7 @@ export default {
       items: [
         {
           label: "Khuyến mãi",
+          url: "/promotion",
 
           items: [
             [
@@ -29,7 +30,6 @@ export default {
         },
         {
           label: "Thương hiệu",
-
           //   icon: "pi-angle-down",
           items: [
             [
@@ -48,6 +48,7 @@ export default {
         },
         {
           label: "Trang điểm",
+          url: "/collections",
 
           items: [
             [
@@ -79,6 +80,7 @@ export default {
         },
         {
           label: "Dưỡng da",
+          url: "collections",
 
           items: [
             [
@@ -110,6 +112,7 @@ export default {
         },
         {
           label: "Chăm sóc cơ thể",
+          url: "/collections",
 
           items: [
             [

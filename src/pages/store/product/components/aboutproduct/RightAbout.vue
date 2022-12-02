@@ -1,12 +1,14 @@
 <template lang="">
     <div class="right-col">
         <div @click="showingFullText = !showingFullText" class="product-content">
-            <div  :class="{ shorten: showingFullText }" v-html="getCollectionItems.Description" >
-              </div>
+            <div  :class="{ shorten: showingFullText }">
+              <div v-html="descriptions"></div>
+            </div>
             <div :class="{'background-cover': showingFullText}"></div>
             <div class="centered btn-showingFullText">
                 <Button class="p-button-secondary p-button-outlined p-button-rounded">
-                    {{showMoreContent}}
+                    <span v-if="showingFullText == true">Xem thêm nội dung</span>
+                    <span v-if="showingFullText == false">Ẩn bớt nội dung</span>
                 </Button>    
             </div>
         </div>
@@ -16,21 +18,7 @@
 import { useCollectionStorePinia } from "@/stores/store/collection.js";
 import { mapState, mapActions } from "pinia";
 export default {
-  computed: {
-    showMoreContent() {
-      return this.showingFullText ? "Xem thêm nội dung" : "Ẩn bớt nội dung";
-    },
-    ...mapState(useCollectionStorePinia, {
-      getCollectionItems: "getCollectionItems",
-    }),
-  },
-  methods: {
-    ...mapActions(useCollectionStorePinia,["getInfoCollection"],
-    ),
-  },
-  mounted() {
-    //  this.getInfoCollection();
-  },
+    props: ["descriptions"],
     data() {
     return {
       showingFullText: true,

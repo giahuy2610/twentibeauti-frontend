@@ -3,10 +3,10 @@
     <div class="section-region">
       <CustomReview
         v-for="(item, index) in reviews"
-        :numstar="this.reviews[index].numstar"
-        :date="this.reviews[index].date"
-        :short="this.reviews[index].short"
-        :long="this.reviews[index].long"
+        :Rating="this.reviews[index].Rating"
+        :Creaton="this.reviews[index].Creaton"
+        :ContentShort="this.reviews[index].ContentShort"
+        :ContentLong="this.reviews[index].ContentLong"
       ></CustomReview>
     </div>
   </div>

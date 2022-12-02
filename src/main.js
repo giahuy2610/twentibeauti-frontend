@@ -8,6 +8,7 @@ import VueAxios from "vue-axios";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import "./scss/_theme.scss";
+
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
@@ -60,7 +61,6 @@ import ColorPicker from "primevue/colorpicker";
 import DynamicDialog from 'primevue/dynamicdialog';
 import DialogService from 'primevue/dialogservice';
 import ToggleButton from 'primevue/togglebutton';
-
 // import ButtonModule from 'primeng/button';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
@@ -164,5 +164,4 @@ app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
 axios.defaults.baseURL = "http://localhost:8000/api";
-
 app.mount("#app");

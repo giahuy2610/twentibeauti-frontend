@@ -3,14 +3,14 @@
     <div class="section-region">
         <h2 class="header">Đánh giá</h2>
         <div class="flex-row num-review">
-            <div class=""><strong>3</strong>&nbsp;Đánh giá</div>
+            <div class=""><strong>{{reviews.length}}</strong>&nbsp;Đánh giá</div>
             <div class="seperator">&nbsp;</div>
             <Button class="p-button-text" @click="Popup">
                 <span class="review" style="white-space: nowrap">Viết đánh giá</span>
             </Button>
         </div>
         <div class="star-rate">
-            <Rating v-model="averageRating" :readonly="true" :cancel="false" offIcon="pi pi-star-fill" >
+            <Rating v-model="avarageStar[5]" :readonly="true" :cancel="false" offIcon="pi pi-star-fill" >
                 <template #officon>
                     <i class="pi pi-star-fill star"></i>
                 </template>
@@ -26,35 +26,35 @@
                 <div class="progress-line__get get__5" :style="barWidth"></div>
             </div>
 
-            <div class="num-rate">({{count_star_5}})</div>
+            <div class="num-rate">({{this.count_star_5}})</div>
         </div>
         <div class="rate flex-row">
             <div class="score">4</div>
             <div class="progress-line">
                 <div class="progress-line__get get__4" :style="barWidth"></div>
             </div>
-            <div class="num-rate">({{count_star_4}})</div>
+            <div class="num-rate">({{this.count_star_4}})</div>
         </div>
         <div class="rate flex-row">
             <div class="score">3</div>
             <div class="progress-line">
                 <div class="progress-line__get get__3" :style="barWidth"></div>
             </div>
-            <div class="num-rate">({{count_star_3}})</div>
+            <div class="num-rate">({{this.count_star_3}})</div>
         </div>
         <div class="rate flex-row">
             <div class="score">2</div>
             <div class="progress-line">
                 <div class="progress-line__get get__2" :style="barWidth"></div>
             </div>
-            <div class="num-rate">({{count_star_2}})</div>
+            <div class="num-rate">({{this.count_star_2}})</div>
         </div>
         <div class="rate flex-row">
             <div class="score">1</div>
             <div class="progress-line">
                 <div class="progress-line__get get__1" :style="barWidth"></div>
             </div>
-            <div class="num-rate">({{count_star_1}})</div>
+            <div class="num-rate">({{this.count_star_1}})</div>
         </div>
     </div>
 </div>
@@ -62,6 +62,7 @@
 
 <script>
 export default {
+    props: ["reviews"],
     data() {
         return {
             count_star_1: 0,
@@ -78,39 +79,36 @@ export default {
         };
     },
     mounted() {
-        console.log(this.reviews[1].numstar);
+        
+    },
+    computed: {
+      avarageStar()
+      {
+        
         this.reviews.map((review) => {
-            if (Number(review.num) == 1) {
+            if (Number(review.Rating) == 1) {
                 this.count_star_1 += 1;
-            } else if (Number(review.numstar) == 2) {
+            } else if (Number(review.Rating) == 2) {
                 this.count_star_2 += 1;
-            } else if (Number(review.numstar) == 3) {
+            } else if (Number(review.Rating) == 3) {
                 this.count_star_3 += 1;
-            } else if (Number(review.numstar) == 4) {
+            } else if (Number(review.Rating) == 4) {
                 this.count_star_4 += 1;
-            } else if (Number(review.numstar) == 5) {
+            } else if (Number(review.Rating) == 5) {
                 this.count_star_5 += 1;
             }
             return { ...review };
         });
-        const totalRatings = this.reviews.reduce((acc, { numstar }) => (acc += Number(numstar)),0);
+        const totalRatings = this.reviews.reduce((acc, { Rating }) => (acc += Number(Rating)),0);
         this.average_1 = this.count_star_1 / this.reviews.length * 100;
         this.average_2 = this.count_star_2 / this.reviews.length * 100;
         this.average_3 = this.count_star_3 / this.reviews.length * 100;
         this.average_4 = this.count_star_4 / this.reviews.length * 100;
         this.average_5 = this.count_star_5 / this.reviews.length * 100;
         this.averageRating = totalRatings / this.reviews.length;
-        console.log(
-            this.average_1,
-            this.average_2,
-            this.average_3,
-            this.average_4,
-            this.average_5,
-            totalRatings,
-            this.averageRating,
-        );
-    },
-    computed: {
+        
+        return [this.count_star_1,this.count_star_2,this.count_star_3,this.count_star_4,this.count_star_5,this.averageRating]
+      },
       barWidth() {
             return {
                 "--bar-width-1": this.average_1 +'%',
@@ -121,9 +119,7 @@ export default {
             };
         },
     },
-    props: ["reviews"],
     methods: {
-        
         Popup() {
             this.$emit("popupmsg");
         },
