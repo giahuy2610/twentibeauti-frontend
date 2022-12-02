@@ -100,7 +100,7 @@ export default {
                   // console.log(marginTopRating,innerHeight)
                     this.load_detail = true;
                     axios
-                        .get('/review/showproduct/1')
+                        .get('/review/showproduct/53050323')
                         .then((response) => {
                             //this.product_item = toRaw(response.data)
                             this.reviews = response.data;
@@ -115,7 +115,7 @@ export default {
     },
     mounted() {
         axios
-            .get('/product/show/36000048')
+            .get('/product/show/53050323')
             .then((response) => {
                 this.productName = response.data.NameProduct;
                 this.listPrice = response.data.ListPrice;

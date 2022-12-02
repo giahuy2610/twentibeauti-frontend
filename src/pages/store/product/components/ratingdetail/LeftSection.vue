@@ -3,7 +3,7 @@
     <div class="section-region">
         <h2 class="header">Đánh giá</h2>
         <div class="flex-row num-review">
-            <div class=""><strong>3</strong>&nbsp;Đánh giá</div>
+            <div class=""><strong>{{reviews.length}}</strong>&nbsp;Đánh giá</div>
             <div class="seperator">&nbsp;</div>
             <Button class="p-button-text" @click="Popup">
                 <span class="review" style="white-space: nowrap">Viết đánh giá</span>
@@ -62,6 +62,7 @@
 
 <script>
 export default {
+    props: ["reviews"],
     data() {
         return {
             count_star_1: 0,
@@ -83,7 +84,7 @@ export default {
     computed: {
       avarageStar()
       {
-        console.log(this.reviews[0].Rating);
+        
         this.reviews.map((review) => {
             if (Number(review.Rating) == 1) {
                 this.count_star_1 += 1;
@@ -105,15 +106,7 @@ export default {
         this.average_4 = this.count_star_4 / this.reviews.length * 100;
         this.average_5 = this.count_star_5 / this.reviews.length * 100;
         this.averageRating = totalRatings / this.reviews.length;
-        console.log(
-            this.average_1,
-            this.average_2,
-            this.average_3,
-            this.average_4,
-            this.average_5,
-            totalRatings,
-            this.averageRating,
-        );
+        
         return [this.count_star_1,this.count_star_2,this.count_star_3,this.count_star_4,this.count_star_5,this.averageRating]
       },
       barWidth() {
@@ -126,9 +119,7 @@ export default {
             };
         },
     },
-    props: ["reviews"],
     methods: {
-        
         Popup() {
             this.$emit("popupmsg");
         },
