@@ -25,15 +25,15 @@
             <span class="icon-chevron-thin-down"></span>
         </button>
     </div>
-    <div class="scroll-wrapper-horizontal" >
+    <div class="scroll-wrapper-horizontal">
         <div class="container-slide-horizontal" ref="slideHorizal">
             <Skeleton shape="square" size="400px" v-show="!isLoaded">
             </Skeleton>
-            <div class="slick-slider-horizontal" >
-                <div class="slick-list-horizontal" >
-                    <div :style="maxWidth" class="slide-track-horizontal" >
-                        <div ref="img" v-for="(item, index) in illustProducts" >
-                            <img :src="item" @load="isLoaded = true" v-show="isLoaded" class="img__margin flex justify-content-center align-items-center"/>
+            <div class="slick-slider-horizontal">
+                <div class="slick-list-horizontal">
+                    <div :style="maxWidth" class="slide-track-horizontal">
+                        <div ref="img" v-for="(item, index) in illustProducts">
+                            <img :src="item" @load="isLoaded = true" v-show="isLoaded" class="img__margin flex justify-content-center align-items-center" />
                         </div>
                     </div>
                 </div>
@@ -55,12 +55,12 @@ export default {
         scrollDown() {
             if (this.currentIllust != 1) {
                 this.currentIllust--;
-                this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight ;
-                this.$refs.slideHorizal.scrollLeft -= this.$refs.img[0].scrollWidth ;
+                this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight;
+                this.$refs.slideHorizal.scrollLeft -= this.$refs.img[0].scrollWidth;
                 console.log(this.$refs.slideHorizal.scrollLeft)
             } else {
-                this.$refs.slide.scrollTop +=this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
-                this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth  * (this.illustProducts.length - 1);
+                this.$refs.slide.scrollTop += this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1);
+                this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth * (this.illustProducts.length - 1);
                 this.currentIllust = this.illustProducts.length;
             }
             if (this.selectedItem <= 0) {
@@ -76,10 +76,10 @@ export default {
             if (this.currentIllust != this.illustProducts.length) {
                 this.currentIllust++;
                 this.$refs.slide.scrollTop += this.$refs.btn[0].offsetHeight;
-                this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth ;
+                this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth;
             } else {
-                this.$refs.slide.scrollTop -=this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1)
-                this.$refs.slideHorizal.scrollLeft -= this.$refs.img[0].scrollWidth  * (this.illustProducts.length - 1);
+                this.$refs.slide.scrollTop -= this.$refs.btn[0].offsetHeight * (this.illustProducts.length - 1)
+                this.$refs.slideHorizal.scrollLeft -= this.$refs.img[0].scrollWidth * (this.illustProducts.length - 1);
                 this.currentIllust = 1;
             }
             if (this.selectedItem >= this.illustProducts.length - 1) {
@@ -95,7 +95,7 @@ export default {
         scrollTo(index) {
             this.$refs.slide.scrollTop +=
                 this.$refs.btn[0].offsetHeight * (index + 1 - this.currentIllust);
-            this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth * (index + 1 - this.currentIllust) ;
+            this.$refs.slideHorizal.scrollLeft += this.$refs.img[0].scrollWidth * (index + 1 - this.currentIllust);
             this.currentIllust = index + 1;
             setTimeout(() => {
                 this.isClick = !this.isClick;
@@ -109,7 +109,7 @@ export default {
     },
     data() {
         return {
-            
+
             selectedItem: 0,
             isClick: false,
             isClick_1: true,
@@ -189,7 +189,7 @@ export default {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
-    
+
     flex-basis: 100px;
     align-items: center;
 
@@ -206,14 +206,12 @@ export default {
         .slick-slider {
             margin: -20px;
             touch-action: pan-y;
-
             .slick-list {
                 padding: 20px;
                 height: 30vh !important;
                 transform: translateZ(0);
                 position: relative;
                 display: block;
-                
 
                 .slick-track {
                     opacity: 1;
@@ -273,43 +271,45 @@ export default {
 }
 
 .scroll-wrapper-horizontal {
-  position: relative;
-  left: 0;
-  margin-top: 10px;
-  display: flex;
-  flex-direction: row;
-  
-  align-items: center;
-  overflow: hidden;
-  margin: 0px auto;
-
-  .container-slide-horizontal {
-    width: var(--max-width) !important;
     position: relative;
-    touch-action: pan-x;
-    overflow-x: scroll;
+    left: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
     overflow: hidden;
-    scroll-behavior: smooth;
+    margin: 0px auto;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .slick-slider-horizontal {
-      height: 100%;
+    .container-slide-horizontal {
+        width: var(--max-width) !important;
+        position: relative;
+        touch-action: pan-x;
+        overflow-x: scroll;
+        overflow: hidden;
+        scroll-behavior: smooth;
 
-      .slick-list-horizontal {
-        
-        .slide-track-horizontal {
-          -webkit-box-pack: justify;
-          display: flex;
-          position: relative;
-          width: var(--max-width) !important;
-          justify-content: space-between;
+        &::-webkit-scrollbar {
+            display: none;
         }
-      }
+
+        .slick-slider-horizontal {
+            height: 100%;
+
+            .slick-list-horizontal {
+
+                .slide-track-horizontal {
+                    -webkit-box-pack: justify;
+                    display: flex;
+                    position: relative;
+                    width: var(--max-width) !important;
+                    justify-content: space-between;
+                }
+            }
+        }
     }
-  }
 }
+
 .img {
     &__size {
         position: relative;

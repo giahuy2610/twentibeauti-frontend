@@ -3,6 +3,7 @@
     <div class="region">
       <div class="item bottom_animation">
         <ProductBottom class="productBottom"
+          :illustProducts="this.illustProducts"
           :productName="this.productName"
           :listPrice="this.listPrice"
           :retailPrice="this.retailPrice"
@@ -23,7 +24,7 @@ export default {
     ProductBottom,
     CheckCard,
   },
-  props: ["productName", "listPrice", "retailPrice"],
+  props: ["illustProducts","productName", "listPrice", "retailPrice"],
 };
 </script>
 

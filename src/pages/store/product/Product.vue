@@ -20,7 +20,7 @@
         </div>
         <div class="bottom-navigation">
             <Transition name="slide">
-                <BottomNavigation class="bottomNavigation" :productName="this.productName" :listPrice="this.listPrice" :retailPrice="this.retailPrice" v-show="windowTop >= 400"></BottomNavigation>
+                <BottomNavigation class="bottomNavigation" :illustProducts="this.illustProducts" :productName="this.productName" :listPrice="this.listPrice" :retailPrice="this.retailPrice" v-show="windowTop >= 400"></BottomNavigation>
             </Transition>
         </div>
     </Wrapper>
