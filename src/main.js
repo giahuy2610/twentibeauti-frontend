@@ -60,7 +60,8 @@ import ColorPicker from "primevue/colorpicker";
 import DynamicDialog from 'primevue/dynamicdialog';
 import DialogService from 'primevue/dialogservice';
 import ToggleButton from 'primevue/togglebutton';
-
+import ConfirmationService from 'primevue/confirmationservice';
+import ConfirmDialog from 'primevue/confirmdialog';
 // import ButtonModule from 'primeng/button';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
@@ -110,6 +111,7 @@ app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
 app.use(VueAxios, axios);
+app.use(VueAxios, {$request: axios});
 app.use(VueProgressBar, options);
 app.use(vClickOutside);
 app.component("Textarea", Textarea);
@@ -158,8 +160,9 @@ app.component("Inplace", Inplace);
 app.component("Fieldset", Fieldset);
 app.component("ToggleButton", ToggleButton);
 app.component("DynamicDialog", DynamicDialog);
-
-
+app.component("ConfirmDialog", ConfirmDialog);
+//app.component("ConfirmationService",ConfirmationService);
+app.use(ConfirmationService);
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 

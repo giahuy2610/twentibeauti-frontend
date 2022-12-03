@@ -14,9 +14,15 @@
           <Button
             label="Xem trước"
             class="p-button-success"
-            @click="$router.push({ path: `/collection/${this.$route.params.id}` })"
+            @click="
+              $router.push({ path: `/collection/${this.$route.params.id}` })
+            "
           />
-          <Button label="Lưu" class="p-button-info"  @click=" backpage()" />
+          <Button
+            label="Cập nhật"
+            class="p-button-info"
+            @click="updateCollection(this.$route.params.id)"
+          />
         </div>
       </div>
     </template>
@@ -63,7 +69,11 @@
             <template #title> Ảnh bìa </template>
             <template #content>
               <div>
-                <AddFileVue @geturl="wallimg">{{getCollectionItems.WallPaperPath}} ></AddFileVue>
+                {{getCollectionItems.WallPaperPath}}
+                <AddFileVue @geturl="wallimg"
+                  >
+                  </AddFileVue
+                >
               </div>
             </template>
           </Card>
@@ -71,8 +81,11 @@
             <template #title> Ảnh logo </template>
             <template #content>
               <div>
-                {{logoimg}} ad
-                <AddFileVue @geturl="logoimg">{{getCollectionItems.LogoImagePath}}
+                {{logoimg}}
+                <!-- {{getCollectionItems.LogoImagePath+".png"}} -->
+                <AddFileVue @geturl="logoimg"
+                
+                  >{{ getCollectionItems.LogoImagePath }}
                 </AddFileVue>
               </div>
             </template>
@@ -81,7 +94,10 @@
             <template #title> Ảnh danh mục </template>
             <template #content>
               <div>
-                <AddFileVue @geturl="coverimg">{{getCollectionItems.CoverImagePath}} ></AddFileVue>
+                {{ coverimg }}
+                <AddFileVue @geturl="coverimg"
+                  >{{ getCollectionItems.CoverImagePath }} ></AddFileVue
+                >
               </div>
             </template>
           </Card>
@@ -107,7 +123,6 @@ import ProductTable from "../component/ProductTable.vue";
 import AddMethod from "../component/AddMethod.vue";
 import { useCollectionStorePinia } from "@/stores/admin/collection.js";
 import { mapWritableState, mapActions } from "pinia";
-import AdminCollectionsVue from '../AdminCollections.vue';
 var minDateValue = new Date();
 console.log(minDateValue);
 export default {
@@ -118,11 +133,12 @@ export default {
     AddMethod,
     ProductTable,
   },
-  // created() {
-  //   this.minDate = new Date();
-  //   this.minDate.setMonth(prevMonth);
-  //   this.minDate.setFullYear(prevYear);
-  // },
+  created() {
+    let id = this.$route.params.id;
+    if (id) {
+      this.getInfoCollection(id);
+    }
+  },
   computed: {
     ...mapWritableState(useCollectionStorePinia, {
       getCollectionItems: "getCollectionItems",
@@ -134,9 +150,8 @@ export default {
       alert(event.target.value);
     },
     ...mapActions(useCollectionStorePinia, [
-      "createCollection",
       "getInfoCollection",
-      "insertdata",
+      "updateCollection",
     ]),
     getAllData: function () {
       //checking if the current url is create or not
@@ -146,19 +161,21 @@ export default {
       ) {
         console.log(this.getInfoCollection(this.$route.params.id));
         // return this.getInfoCollection(this.$route.params.id).save;
-        
       } else {
+        // this.createCollection();
       }
+      // window.location.reload();
     },
-    backpage:function()  {
-      this.insertdata();
-      
-      this.reset();
+
+    // getAllData: function () {
+    //     return this.getInfoCollection(this.$route.params.id);
+    // },
+    getAllData(id) {
+      return this.getInfoCollection(this.$route.params.id);
     },
-    reset() {
-      this.$router.push({ path: '/admin/collections' }); 
-      // this.$router.go();
-    },
+    // reset() {
+    //   window.location.reload();
+    // },
     logoimg(n) {
       console.log(n)
       //mỗi hàm này tương ứng sẽ chạy khi mà m upload ảnh, giá trị n là cái link ảnh
@@ -174,7 +191,7 @@ export default {
       this.collectionItems.CoverImagePath = n;
     }
   },
-  mounted() {
+  async mounted() {
     this.getAllData();
   },
   data() {

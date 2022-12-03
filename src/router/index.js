@@ -39,6 +39,8 @@ import ThemeHandling from "../pages/admin/themeHandling/ThemeHandling.vue";
 //import AdminPromotion from "../pages/admin/promotion/AdminPromotion.vue";
 import AdminCollections from "../pages/admin/collections/AdminCollections.vue";
 import CollectionCreate from "../pages/admin/collections/create/CollectionCreate.vue";
+import CollectionEdit from "../pages/admin/collections/create/CollectionEdit.vue";
+import CollectionTable from "../pages/admin/collections/component/CollectionTable.vue"
 import ListCus from "../pages/admin/customer/ListCus.vue";
 import DetailCustomer from "../pages/admin/customer/DetailCustomer.vue";
 import AdminSupportPage from "../pages/admin/support/SupportPage.vue";
@@ -241,8 +243,13 @@ const routes = [
       {
         name: "admin collections edit",
         path: "collections/edit/:id",
-        component: CollectionCreate,
+        component: CollectionEdit,
       },
+      // {
+      //   name: "collectiontable",
+      //   component: CollectionTable,
+      // },
+
       //support handling
       {
         name: "support",
