@@ -2,7 +2,7 @@
   <AdminBlankPage>
     <template v-slot:header>
       <div class="header-wrapper">
-        <div class="header-wrapper__left">Tạo đơn hàng</div>
+        <div class="header-wrapper__left">Sản phẩm</div>
         <div class="header-wrapper__right">
           <Button label="Thoát" class="p-button-outlined p-button-danger" />
           <Button

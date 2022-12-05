@@ -1,14 +1,17 @@
 <template lang="">
-    <ProductItem
-        class="mb-1"
-        v-for="item in getCartItems"
-        :name="item.name"
-        :SKU="item.SKU"
-        :imagePath="item.imagePath"
-        :routePath="item.routePath"
-        :retailPrice="item.retailPrice"
-        :quantity="item.quantity"
-    ></ProductItem>
+  <ProductItem
+    class="mb-1"
+    v-for="item in cartItems"
+    :name="item.NameProduct"
+    :SKU="item.IDProduct"
+    :imagePath="
+      item.Images.length > 0
+        ? item.Images[0]['Path']
+        : 'https://catalogue.bticino.com/app/webroot/img/img_not_found_prod_it.jpg'
+    "
+    :retailPrice="item.RetailPrice"
+    :quantity="item.Quantity"
+  ></ProductItem>
 </template>
 <script>
 import ProductItem from "./ProductItem.vue";
@@ -17,27 +20,14 @@ import { mapState, mapActions } from "pinia";
 
 export default {
   data() {
-    return {
-    };
+    return {};
   },
   components: {
     ProductItem,
   },
   computed: {
     ...mapState(useCartStorePinia, {
-      getCartItems: "getCartItems",
-    }),
-    total() {
-      let totaltemp = 0;
-      this.getCartItems.forEach((element) => {
-        totaltemp += element.retailPrice*element.quantity
-      });
-      return totaltemp;
-    },
-  },
-  methods: {
-    ...mapActions(useCartStorePinia, {
-      increaseTotal: "increaseTotal",
+      cartItems: "cartItems",
     }),
   },
 };

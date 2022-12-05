@@ -1,35 +1,45 @@
 <template lang="">
   <div
-    @click="$router.push({ path: '/product/{{}}'})"
+    @click="
+      $router.push({
+        name: 'product',
+        params: { productid: info['IDProduct'] },
+      })
+    "
     class="product-card"
   >
     <div class="product-card__img">
-      <img :src="imgScr" alt="" />
+      <img
+        :src="
+          info['Images'].length > 0
+            ? info['Images'][0]['Path']
+            : 'https://catalogue.bticino.com/app/webroot/img/img_not_found_prod_it.jpg'
+        "
+        alt=""
+      />
     </div>
     <div class="product-card__detail">
       <h4
         class="brand-name--hover"
-        @click="
-          $router.push({ path: '/categories/{{brandPath}}'})
-        "
+        @click="$router.push({ path: `/categories/{{info['IDBrand']}}` })"
       >
-        {{ brandName }}
+        {{ info["Brand"]["NameBrand"] }}
       </h4>
-      <p>{{ productName }}</p>
+      <p>{{ info["NameProduct"] }}</p>
       <div class="product-card__detail__price-row">
-        <h4>{{ Intl.NumberFormat().format(retailPrice) }}đ</h4>
+        <h4>{{ Intl.NumberFormat().format(info["RetailPrice"]) }}đ</h4>
         <p
-          v-if="retailPrice !== listPrice"
+          v-if="info[retailPrice] !== listPrice"
           style="text-decoration: line-through; margin: 0 20px 0 10px"
         >
-          {{ Intl.NumberFormat().format(listPrice) }}đ
+          {{ Intl.NumberFormat().format(info["ListPrice"]) }}đ
         </p>
-        <div v-if="retailPrice !== listPrice" class="discount-tag">
+        <div v-if="info[retailPrice] !== listPrice" class="discount-tag">
           {{ -calcDiscount }}%
         </div>
       </div>
       <Rating
-        :modelValue="ratingStar"
+        :modelValue="info['Rating']"
         :readonly="true"
         :stars="5"
         :cancel="false"
@@ -44,29 +54,24 @@
 <script>
 import { computed } from "@vue/runtime-core";
 export default {
-  props: {
-    uid: {
-      type: Number,
-      required: true,
-    },
-  },
-  data() {
-    return {
-      imgScr:
-        "https://file.hstatic.net/1000036599/file/55_24eeae81610d42e1be5114ca815d7ba6.png",
-      brandPath: "/categories/the-face-shop",
-      brandName: "THE FACE SHOP",
-      productName:
-        "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
-      listPrice: 1000000,
-      retailPrice: 560000,
-      discountPercent: 0,
-      ratingStar: 5,
-      isCountingStock: false,
-      countingStock: 99,
-      isSoldOut: false,
-    };
-  },
+  props: ["info"],
+  // data() {
+  //   return {
+  //     imgScr:
+  //       "https://file.hstatic.net/1000036599/file/55_24eeae81610d42e1be5114ca815d7ba6.png",
+  //     brandPath: "/categories/the-face-shop",
+  //     brandName: "THE FACE SHOP",
+  //     productName:
+  //       "Combo Mix 14 Mặt Nạ THEFACESHOP THE SOLUTION DOUBLE-UP 20ml (3 BRIGHTENING, 4 FIRMING, 3 NOURISHING, 4 PORE CARE)",
+  //     listPrice: 1000000,
+  //     retailPrice: 560000,
+  //     discountPercent: 0,
+  //     ratingStar: 5,
+  //     isCountingStock: false,
+  //     countingStock: 99,
+  //     isSoldOut: false,
+  //   };
+  // },
   watch: {
     countingStock() {
       //if countingStock equal to 0 then isSoldOut is true

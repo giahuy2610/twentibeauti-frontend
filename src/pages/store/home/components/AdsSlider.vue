@@ -13,7 +13,7 @@
       />
       <div class="pag">
         <div
-          v-for="index in allProducts"
+          v-for="index in adsList"
           class="circle-pag"
           :style="[index === currentPage ? ' background-color:white ' : '']"
           @click="scrollTo(index)"
@@ -23,11 +23,9 @@
       <img
         ref="image"
         class="appear"
-        v-for="item in allProducts"
-        src="https://image.hsv-tech.io/1920x0/tfs/common/5e1e5fb5-8cc3-4da9-94c1-4bd9f9e55a79.webp"
-        :uid="item"
-        :key="item"
-        @click="$router.push({ path: '/collections/flash-sale' })"
+        v-for="item in adsList"
+        :src="item['Path']"
+        @click="$router.push({ path: item['Route'] })"
       />
     </div>
   </div>
@@ -41,8 +39,7 @@ export default {
   },
   data() {
     return {
-      allProducts: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-      currentDisplayProducts: [],
+      adsList: [],
       currentPage: 1,
       count: 0,
       autoScrollLeft: null,
@@ -50,7 +47,7 @@ export default {
   },
   methods: {
     scrollLeft: function () {
-      if (this.currentPage != this.allProducts.length) {
+      if (this.currentPage != this.adsList.length) {
         this.currentPage++;
         console.log(this.currentPage);
         this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
@@ -64,9 +61,8 @@ export default {
         this.currentPage--;
         this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
       } else {
-        this.currentPage = this.allProducts.length;
-        this.$refs.wrapper.scrollLeft =
-          window.innerWidth * this.allProducts.length;
+        this.currentPage = this.adsList.length;
+        this.$refs.wrapper.scrollLeft = window.innerWidth * this.adsList.length;
       }
       //this.$refs.wrapper.scrollLeft -= (window.innerWidth - this.$refs.image[0].offsetinnerWidth) ;
     },
@@ -76,8 +72,17 @@ export default {
       this.currentPage = pageNum;
     },
   },
-  mounted() {
+  async mounted() {
     this.autoScrollLeft = setInterval(() => this.scrollLeft(), 3000);
+
+    await this.axios
+      .get("/image-slider/available")
+      .then((response) => {
+        this.adsList = response.data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   },
   unmounted() {
     clearInterval(this.autoScrollLeft);

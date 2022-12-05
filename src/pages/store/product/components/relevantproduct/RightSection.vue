@@ -3,7 +3,7 @@
             <div class="section-region">
                 <div class="wrapper__products">
                     <div class="item" v-for="(item, index) in products">
-                      <ProductCard></ProductCard>
+                      <ProductCard :info="item"></ProductCard>
                     </div>
                 </div>
             </div>
@@ -12,11 +12,7 @@
 <script>
 import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
 export default {
-  data() {
-    return {
-      products: [1, 2, 3, 4, 5, 6, 7, 8],
-    };
-  },
+  props: ['products'],
   components: {
     ProductCard,
   },

@@ -1,28 +1,28 @@
 <template lang="">
-    <div class="product-bottom">
-        <div class="image-bottom">
-            <div class="product-thumbnail">
-                <img src="https://image.hsv-tech.io/400x0/tfs/common/fda5ef41-4b41-4bfb-9b07-6cdcdad2f0e9.webp" alt="product-thumbnail">
-            </div>
-        </div>
-        <div class="infor-bottom">
-            <div class="name-product">
-                <span>{{productName}}</span>
-            </div>
-            <Price 
-            :listPrice="this.listPrice"
-            :retailPrice="this.retailPrice"
-            ></Price>
-        </div>
+  <div class="product-bottom">
+    <div class="image-bottom">
+      <div class="product-thumbnail">
+        <img :src="!productImage ?? productImage['Path']" alt="product-thumbnail" />
+      </div>
     </div>
+    <div class="infor-bottom">
+      <div class="name-product">
+        <span>{{ productName }}</span>
+      </div>
+      <Price
+        :listPrice="this.listPrice"
+        :retailPrice="this.retailPrice"
+      ></Price>
+    </div>
+  </div>
 </template>
 <script>
-import Price from '@/pages/store/product/components/productinfor/Price.vue'
+import Price from "@/pages/store/product/components/productinfor/Price.vue";
 export default {
-  components:{
+  components: {
     Price,
   },
-  props: ["productName","listPrice","retailPrice"],
+  props: ["productName", "listPrice", "retailPrice", "productImage"],
 };
 </script>
 <style lang="scss" scoped>
@@ -42,28 +42,26 @@ export default {
         display: block;
         height: 100%;
         width: 100%;
-        object-fit: cover;  
-        max-width: 100%;      }
+        object-fit: cover;
+        max-width: 100%;
+      }
     }
   }
-  .infor-bottom
-  {
+  .infor-bottom {
     overflow: hidden;
-    white-space:nowrap;
-    text-overflow: ellipsis; 
-    .name-product
-    {
-        font-size: 16px;
-        font-weight: 700;
-        
-        span 
-        {
-            display: inline-block;
-            max-width: 100%;
-            white-space: nowrap;
-            color: var(--text-primary);
-            overflow-wrap: break-word;
-        }
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    .name-product {
+      font-size: 16px;
+      font-weight: 700;
+
+      span {
+        display: inline-block;
+        max-width: 100%;
+        white-space: nowrap;
+        color: var(--text-primary);
+        overflow-wrap: break-word;
+      }
     }
   }
 }

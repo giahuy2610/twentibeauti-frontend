@@ -18,7 +18,11 @@
               $router.push({ path: `/collection/${this.$route.params.id}` })
             "
           />
-          <Button label="Lưu" class="p-button-info" @click="backpage()" />
+          <Button
+            label="Cập nhật"
+            class="p-button-info"
+            @click="updateCollection(this.$route.params.id)"
+          />
         </div>
       </div>
     </template>
@@ -33,24 +37,42 @@
           <Card>
             <template #title> Trạng thái</template>
             <template #content>
+              <div class="field-radiobutton px-3">
+                <RadioButton
+                  inputId="statusHide"
+                  name="status"
+                  value="Ẩn"
+                  v-model="status"
+                />
+                <label for="status1">Ẩn</label>
+              </div>
+              <div class="field-radiobutton px-3">
+                <RadioButton
+                  inputId="statusShow"
+                  name="status"
+                  value="Hiện"
+                  v-model="status"
+                />
+                <label for="statusShow">Hiện</label>
+              </div>
               <div class="p-2">Đặt lịch hiển thị</div>
+
               <Calendar
-                inputId="time24"
-                v-model="rangeAvailableDate"
-                :showTime="true"
-                :showSeconds="true"
+                inputId="range"
+                v-model="value"
                 selectionMode="range"
+                :manualInput="false"
               />
-              {{ rangeAvailableDate }}
+              {{collectionItems.StartOn}}
+              {{collectionItems.EndOn}}
             </template>
           </Card>
           <Card>
             <template #title> Ảnh bìa </template>
             <template #content>
               <div>
-                <AddFileVue @geturl="wallimg"
-                  >{{ getCollectionItems.WallPaperPath }} ></AddFileVue
-                >
+                {{ getCollectionItems.WallPaperPath }}
+                <AddFileVue @geturl="wallimg"> </AddFileVue>
               </div>
             </template>
           </Card>
@@ -68,7 +90,9 @@
             <template #title> Ảnh danh mục </template>
             <template #content>
               <div>
-                <AddFileVue @geturl="coverimg"></AddFileVue>
+                <AddFileVue @geturl="coverimg"
+                  >{{ getCollectionItems.CoverImagePath }} ></AddFileVue
+                >
               </div>
             </template>
           </Card>
@@ -94,7 +118,6 @@ import ProductTable from "../component/ProductTable.vue";
 import AddMethod from "../component/AddMethod.vue";
 import { useCollectionStorePinia } from "@/stores/admin/collection.js";
 import { mapWritableState, mapActions } from "pinia";
-import AdminCollectionsVue from "../AdminCollections.vue";
 var minDateValue = new Date();
 console.log(minDateValue);
 export default {
@@ -104,6 +127,12 @@ export default {
     AddInfor,
     AddMethod,
     ProductTable,
+  },
+  created() {
+    let id = this.$route.params.id;
+    if (id) {
+      this.getInfoCollection(id);
+    }
   },
   computed: {
     ...mapWritableState(useCollectionStorePinia, {
@@ -116,10 +145,8 @@ export default {
       alert(event.target.value);
     },
     ...mapActions(useCollectionStorePinia, [
-      "createCollection",
       "getInfoCollection",
-      "insertdata",
-      "resetPinia"
+      "updateCollection",
     ]),
     getAllData: function () {
       //checking if the current url is create or not
@@ -130,16 +157,20 @@ export default {
         console.log(this.getInfoCollection(this.$route.params.id));
         // return this.getInfoCollection(this.$route.params.id).save;
       } else {
+        // this.createCollection();
       }
+      // window.location.reload();
     },
-    backpage: function () {
-      this.insertdata();
 
-      this.reset();
+    // getAllData: function () {
+    //     return this.getInfoCollection(this.$route.params.id);
+    // },
+    getAllData(id) {
+      return this.getInfoCollection(this.$route.params.id);
     },
-    reset() {
-      this.$router.push({ path: "/admin/collections" });
-    },
+    // reset() {
+    //   window.location.reload();
+    // },
     logoimg(n) {
       console.log(n);
       //mỗi hàm này tương ứng sẽ chạy khi mà m upload ảnh, giá trị n là cái link ảnh
@@ -155,20 +186,14 @@ export default {
       this.collectionItems.CoverImagePath = n;
     },
   },
-  mounted() {
-    this.resetPinia()
+  async mounted() {
+    this.getAllData();
   },
   data() {
     return {
       status: null,
-      rangeAvailableDate: null,
+      value: null,
     };
-  },
-  watch: {
-    rangeAvailableDate(newValue, oldValue) {
-      // this.collectionItems.StartOn = newValue[0];
-      // this.collectionItems.EndOn = newValue[1];
-    },
   },
 };
 </script>

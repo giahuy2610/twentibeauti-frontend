@@ -40,8 +40,8 @@ export default {
   methods: {
     getdata(value) {
       console.log(value);
-    }
-  }
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>

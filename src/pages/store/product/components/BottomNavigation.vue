@@ -2,10 +2,12 @@
   <div class="bottom-navigation">
     <div class="region">
       <div class="item bottom_animation">
-        <ProductBottom class="productBottom"
+        <ProductBottom
+          class="productBottom"
           :productName="this.productName"
           :listPrice="this.listPrice"
           :retailPrice="this.retailPrice"
+          :productImage="this.productImage"
         ></ProductBottom>
         <div class="button">
           <CheckCard></CheckCard>
@@ -23,7 +25,7 @@ export default {
     ProductBottom,
     CheckCard,
   },
-  props: ["productName", "listPrice", "retailPrice"],
+  props: ["productName", "listPrice", "retailPrice", "productImage"],
 };
 </script>
 
@@ -53,7 +55,6 @@ export default {
     width: 90%;
 
     .item {
-      
       gap: 22px;
       display: flex;
       -webkit-box-align: center;
@@ -62,7 +63,7 @@ export default {
       justify-content: space-between;
       width: 100%;
       white-space: nowrap;
-      overflow:hidden
+      overflow: hidden;
     }
 
     .button {
@@ -71,7 +72,7 @@ export default {
       align-items: center;
       -webkit-box-pack: justify;
       justify-content: space-between;
-      
+
       float: right;
       right: 0px;
     }
@@ -102,7 +103,7 @@ export default {
       .item {
         gap: 0px;
       }
-      .button{
+      .button {
         margin: 0 auto;
       }
     }
@@ -123,7 +124,7 @@ export default {
     .item {
       gap: 0px;
     }
-    .button{
+    .button {
       margin: 0 auto;
     }
   }

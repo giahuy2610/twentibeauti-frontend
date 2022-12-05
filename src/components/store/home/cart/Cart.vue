@@ -43,12 +43,12 @@ export default {
   },
   computed: {
     ...mapState(useCartStorePinia, {
-      getCartItems: "getCartItems",
+      cartItems: "cartItems",
     }),
     total() {
       let totaltemp = 0;
-      this.getCartItems.forEach((element) => {
-        totaltemp += element.retailPrice * element.quantity;
+      this.cartItems.forEach((element) => {
+        totaltemp += element.RetailPrice * element.Quantity;
       });
       return totaltemp;
     },
@@ -56,7 +56,12 @@ export default {
   methods: {
     ...mapActions(useCartStorePinia, {
       increaseTotal: "increaseTotal",
+      getCartItem: "getCartItem"
     }),
+  },
+  async mounted() {
+    //call api to get new data
+    await this.getCartItem();
   },
 };
 </script>

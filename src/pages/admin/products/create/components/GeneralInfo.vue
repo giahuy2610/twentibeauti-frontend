@@ -7,7 +7,12 @@
         <div class="nameprod">
           <div class="nameinf">
             <span class="p-fluid">
-              <InputText id="nameprod" type="text" v-model="nameprod" placeholder="Nhập tên sản phẩm"/>
+              <InputText
+                id="nameprod"
+                type="text"
+                v-model="nameprod"
+                placeholder="Nhập tên sản phẩm"
+              />
             </span>
           </div>
         </div>
@@ -18,7 +23,12 @@
             <div class="fillinf">
               <div class="nameinf">
                 <span class="p-fluid"
-                  ><InputText id="codeprod" type="text" v-model="codeprod" placeholder="Nhập mã sản phẩm"/>
+                  ><InputText
+                    id="codeprod"
+                    type="text"
+                    v-model="codeprod"
+                    placeholder="Nhập mã sản phẩm"
+                  />
                 </span>
               </div>
             </div>
@@ -71,10 +81,10 @@ export default {
   data() {
     return {
       description: null,
-      nameprod:null,
-      codeprod:null,
-      mass:0,
-      unit:null,
+      nameprod: null,
+      codeprod: null,
+      mass: 0,
+      unit: null,
     };
   },
   methods: {

@@ -1,24 +1,41 @@
 <template lang="">
-<div class="flex-align">
+  <div class="flex-align">
     <div class="confirm-add">
-        <button type="button" class="btn-confirm flex-row nowrap" >
-            <span class="icon-shopping-bag"></span>
-            <span class="ml-2 font-bold ">Thêm vào giỏ hàng</span>
-        </button>
+      <button type="button" class="btn-confirm flex-row nowrap">
+        <span class="icon-shopping-bag"></span>
+        <span
+          class="ml-2 font-bold"
+          @click="increaseQuantity($route.params.productid)"
+          >Thêm vào giỏ hàng</span
+        >
+      </button>
     </div>
     <div class="buy">
-        <button type="button" class="btn-buy flex-row nowrap">
-            <span class="">MUA NGAY</span>
-        </button>
+      <button type="button" class="btn-buy flex-row nowrap">
+        <span class="">MUA NGAY</span>
+      </button>
     </div>
     <div class="add-favourite">
-        <Button type="button" class="love pi pi-heart p-button-rounded p-button-outlined"></Button>
+      <Button
+        type="button"
+        class="love pi pi-heart p-button-rounded p-button-outlined"
+      ></Button>
     </div>
-</div>
+  </div>
 </template>
 
 <script>
-export default {};
+import { useCartStorePinia } from "@/stores/store/cart.js";
+import { mapActions } from "pinia";
+export default {
+  methods: {
+    ...mapActions(useCartStorePinia, {
+      increaseQuantity: "increaseQuantity",
+      decreaseQuantity: "decreaseQuantity",
+      removeItem: "removeItem",
+    }),
+  },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -65,7 +82,6 @@ export default {};
 .love {
   width: 3rem;
   height: 3rem;
-  
 }
 .flex-align {
   gap: 10px;

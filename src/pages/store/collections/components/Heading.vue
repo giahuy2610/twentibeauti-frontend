@@ -1,6 +1,6 @@
 <template lang="">
   <div class="heading-wrapper">
-    <div class="wallpaper-wrapper">
+    <div class="wallpaper-wrapper"  >
       <Skeleton
         shape="rectangle"
         width="100%"
@@ -9,6 +9,7 @@
       >
       </Skeleton>
       <img
+      @geturl="wallimg"
         :src="getCollectionItems.WallPaperPath"
         alt=""
         style="width: 100%; object-fit: fill; border-radius: 10px"
@@ -17,8 +18,9 @@
       />
     </div>
     <div class="logo-wrapper">
-      <div class="logo-img">
-        <Skeleton shape="square" size="100%" v-show="!isLoadedLogo"> </Skeleton>
+      <div class="logo-img" @geturl="logoimg">
+        <Skeleton shape="square" 
+        size="100%" v-show="!isLoadedLogo"  > </Skeleton>
         <img
           class="shadow-2"
           :src="getCollectionItems.LogoImagePath"
@@ -33,9 +35,9 @@
         <p></p>
       </div>
     </div>
-    <div class="description-wrapper">
+    <div class="description-wrapper" v-if="collectionItems.Description != null">
       <div class="description-content">
-        <DescriptionVue></DescriptionVue>
+        <DescriptionVue :descriptions="collectionItems.Description"></DescriptionVue>
       </div>
     </div>
     <div class="ads-slider">

@@ -1,7 +1,11 @@
 <template lang="">
   <Wrapper>
     <div class="content">
-      <div class="item" v-for="(item, index) in couponList">
+      <div
+        class="item"
+        v-for="(item, index) in couponList"
+        v-if="couponList.length > 0"
+      >
         <CouponCard
           :couponValue="item.CodeCoupon"
           :couponDescription="item.Description"
@@ -9,6 +13,7 @@
           :endOn="item.EndOn"
         ></CouponCard>
       </div>
+      <div class="" v-else>Không có mã khuyến mãi nào khả dụng</div>
     </div>
   </Wrapper>
 </template>
@@ -27,7 +32,7 @@ export default {
   },
   async mounted() {
     await this.axios
-      .get(this.$API_URL + "/coupon/available")
+      .get("/coupon/available")
       .then((response) => {
         console.log(response.data);
         this.couponList = response.data;

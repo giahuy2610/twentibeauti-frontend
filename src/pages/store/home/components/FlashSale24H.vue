@@ -50,20 +50,16 @@
       </div>
       <div
         class="button-more"
-        @click="
-          $router.push({ path: '/collections/flash-sale'})
-        "
+        @click="$router.push({ path: '/collections/flash-sale' })"
       >
         Xem tất cả
       </div>
     </div>
-    <HorizontalScroller></HorizontalScroller>
+    <HorizontalScroller :products="productList"></HorizontalScroller>
     <div class="flash-sale__bottom">
       <div
         class="button-more--small-screen"
-        @click="
-          $router.push({ path: '/collections/flash-sale'})
-        "
+        @click="$router.push({ path: '/collections/flash-sale' })"
       >
         Xem tất cả
       </div>
@@ -77,6 +73,7 @@ export default {
   components: {
     HorizontalScroller,
   },
+  props: ["collectionFlashSaleID"],
   data() {
     return {
       timeLeft: {
@@ -86,6 +83,7 @@ export default {
         seconds: 0,
       },
       timeInSeconds: 15227,
+      productList: [],
     };
   },
   created() {
@@ -97,14 +95,37 @@ export default {
   watch: {
     timeInSeconds: {
       handler(newValue, oldValue) {
-        this.timeLeft.days = parseInt(newValue/(24*60*60));
-        this.timeLeft.hours = parseInt(newValue/(60*60)-24*this.timeLeft.days);
-        this.timeLeft.minutes = parseInt(newValue/(60)-24*60*this.timeLeft.days-60*this.timeLeft.hours);
-        this.timeLeft.seconds = parseInt(newValue - 24*60*60*this.timeLeft.days-60*60*this.timeLeft.hours-60*this.timeLeft.minutes);
+        this.timeLeft.days = parseInt(newValue / (24 * 60 * 60));
+        this.timeLeft.hours = parseInt(
+          newValue / (60 * 60) - 24 * this.timeLeft.days
+        );
+        this.timeLeft.minutes = parseInt(
+          newValue / 60 -
+            24 * 60 * this.timeLeft.days -
+            60 * this.timeLeft.hours
+        );
+        this.timeLeft.seconds = parseInt(
+          newValue -
+            24 * 60 * 60 * this.timeLeft.days -
+            60 * 60 * this.timeLeft.hours -
+            60 * this.timeLeft.minutes
+        );
       },
-      deep: true
-    }
-  }
+      deep: true,
+    },
+  },
+
+  async mounted() {
+    await this.axios
+      .get("/collection/show/" + this.collectionFlashSaleID)
+      .then((response) => {
+        this.timeInSeconds = new Date(response.data.EndOn) - new Date();
+        this.productList = response.data.Products;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  },
 };
 </script>
 <style lang="scss" scoped>

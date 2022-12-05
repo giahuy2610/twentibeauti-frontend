@@ -15,8 +15,6 @@
     </div>
 </template>
 <script>
-import { useCollectionStorePinia } from "@/stores/store/collection.js";
-import { mapState, mapActions } from "pinia";
 export default {
     props: ["descriptions"],
     data() {

@@ -28,8 +28,8 @@
             </p>
           </div>
           <div class="products-wrapper__content">
-            <div class="item" v-for="(item, index) in 10">
-              <ProductCard></ProductCard>
+            <div class="item" v-for="(item, index) in getCollectionItems.Products">
+              <ProductCard :info="item"></ProductCard>
             </div>
           </div>
           <div class="products-wrapper__bottom">
@@ -48,7 +48,6 @@ import ButtonPrimary from "@/components/atoms/buttonPrimary/ButtonPrimary.vue";
 import Heading from "./components/Heading.vue";
 import { useCollectionStorePinia } from "@/stores/store/collection.js";
 import { mapWritableState, mapActions } from "pinia";
-import axios from "axios";
 export default {
   components: {
     Wrapper,
@@ -60,22 +59,14 @@ export default {
   computed: {
     ...mapWritableState(useCollectionStorePinia, {
       getCollectionItems: "getCollectionItems",
-      collectionItems: "collectionItems",
     }),
   },
   methods: {
     ...mapActions(useCollectionStorePinia,["getInfoCollection"],
     ),
-    getAllData: function () {
-      console.log(this.$route.params.id)
-      //checking if the current url is create or not
-      console.log(this.getInfoCollection(this.$route.params.id));
-      // return this.getInfoCollection(this.$route.params.id).save;
-    },
   },
   mounted() {
-    //  this.getInfoCollection();
-     this.getAllData();
+    this.getInfoCollection(this.$route.params.id)
   },
   data() {
     return {

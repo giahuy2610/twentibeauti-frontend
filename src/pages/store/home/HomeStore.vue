@@ -4,7 +4,7 @@
     <Wrapper>
       <div class="home__wrapper__content">
         <BrandsSlider></BrandsSlider>
-        <FlashSale24H></FlashSale24H>
+        <FlashSale24H collectionFlashSaleID="1"></FlashSale24H>
         <AdsSlider2 style="margin: 2rem 0"></AdsSlider2>
         <SignatureProductsTabView></SignatureProductsTabView>
       </div>
@@ -31,7 +31,11 @@ export default {
     BrandsSlider,
     Wrapper,
   },
-
+  data() {
+    return {
+      adsList: []
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

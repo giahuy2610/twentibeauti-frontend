@@ -42,14 +42,16 @@ export default {
   computed: {
     ...mapState(useCollectionStorePinia, {
       getCollectionItems: "getCollectionItems",
-      collectionItems: "collectionItems"
+      collectionItems: "collectionItems",
     }),
   },
   methods: {
-    ...mapActions(useCollectionStorePinia,["getInfoCollection"],["createCollection"],
+    ...mapActions(
+      useCollectionStorePinia,
+      ["getInfoCollection"],
+      ["createCollection"]
     ),
   },
-  
 };
 </script>
 <style scoped>

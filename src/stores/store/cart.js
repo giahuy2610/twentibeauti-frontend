@@ -4,43 +4,12 @@ import axios from "axios";
 export const useCartStorePinia = defineStore("cartStorePinia", {
   state: () => ({
     // @type {{ name: string, SKU: int, retailPrice: int, imagePath: string, routePath: string, quantity: int}[]}
-    cartItems: [
-      {
-        name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-        SKU: 30700710,
-        retailPrice: 289000,
-        quantity: 1,
-        imagePath:
-          "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7",
-        routePath: "/product",
-      },
-      {
-        name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-        SKU: 30700711,
-        retailPrice: 289000,
-        quantity: 1,
-        imagePath:
-          "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7",
-        routePath: "/product",
-      },
-      {
-        name: "Gel Tắm Cung Cấp Ẩm AVOCADO BODY WASH 300ml (GZ) Cấp Ẩm AVOCADO BODY WASH 300ml (GZ)",
-        SKU: 30700712,
-        retailPrice: 289000,
-        quantity: 1,
-        imagePath:
-          "https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.15752-9/304828676_529058492554304_1256913194660052362_n.png?_nc_cat=109&ccb=1-7&_nc_sid=ae9488&_nc_ohc=4oWy57Sa9ScAX-QGGDv&_nc_ht=scontent.fsgn13-2.fna&oh=03_AVJevcEs0QQ5_zJJ0qnd5oxk4EBG_SZ3UfHkLkoCpE4efw&oe=635A92F7",
-        routePath: "/product",
-      },
-    ],
-    total: 10,
+    cartItems: [],
+    total: 0,
     user: null,
     isVisibleLogin: true,
   }),
   getters: {
-    getCartItems(state) {
-      return state.cartItems;
-    },
     getCartItemsNumber(state) {
       return state.cartItems.length;
     },
@@ -49,47 +18,101 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     increaseTotal() {
       this.total++;
     },
-    addCartItem(newItem) {
-      //newItem @type {{ name: string, SKU: int, retailPrice: int, imagePath: string, routePath: string}[]}
-      // check if the item already
-      if (this.cartItems.find((e) => e.SKU === newItem.SKU)) {
-        //increase quantity
-        this.cartItems.find((e) => e.SKU === newItem.SKU).quantity++;
-      } else {
-        //add new item to cartItems list, remember to init the quantity for it
-        newItem.quantity = 1;
-        this.cartItems.push(newItem);
-      }
+    // async addCartItem(newItem) {
+    //   //newItem @type {{ name: string, SKU: int, retailPrice: int, imagePath: string, routePath: string}[]}
+    //   // check if the item already
+    //   // if (this.cartItems.find((e) => e.IDProduct === newItem.IDProduct)) {
+    //   //   //increase quantity
+    //   //   this.cartItems.find((e) => e.IDProduct === newItem.IDProduct)
+    //   //     .Quantity++;
+    //   // } else {
+    //   //   //add new item to cartItems list, remember to init the Quantity for it
+    //   //   newItem.Quantity = 1;
+    //   //   this.cartItems.push(newItem);
+    //   // }
+    //   console.log(newItem.IDProduct);
+    //   await axios
+    //     .post("/cart/update", {
+    //       IDCus: this.user["IDCus"],
+    //       IDProduct: newItem.IDProduct,
+    //       IsAdd: 1,
+    //     })
+    //     .then((response) => {
+    //       console.log(response.data);
+    //     })
+    //     .catch(function (error) {
+    //       console.error(error);
+    //     });
+    // },
+    async increaseQuantity(IDProduct) {
+      // //check available quantity
+      // var available = 10;
+      // var item = this.cartItems.find((e) => e.IDProduct === SKU);
+      // if (available < item.Quantity + 1) {
+      //   return "Không đủ số lượng";
+      // } else {
+      //   item.Quantity++;
+      // }
+      console.log(IDProduct);
+      await axios
+        .post("/cart/update", {
+          IDCus: this.user["IDCus"],
+          IDProduct: IDProduct,
+          IsAdd: 1,
+        })
+        .then((response) => {
+          this.cartItems = response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
-    increaseQuantity(SKU) {
-      //check available quantity
-      var available = 10;
-      var item = this.cartItems.find((e) => e.SKU === SKU);
-      if (available < item.quantity + 1) {
-        return "Không đủ số lượng";
-      } else {
-        item.quantity++;
-      }
+    async decreaseQuantity(IDProduct) {
+      // var available = 10;
+      // var item = this.cartItems.find((e) => e.IDProduct === SKU);
+      // if (available < item.Quantity - 1) {
+      //   return "Không đủ số lượng";
+      // } else {
+      //   item.Quantity--;
+      //   //remove if the quantity isn't greater than 0
+      //   if (item.Quantity === 0) this.removeItem(SKU);
+      // }
+      console.log(IDProduct);
+      await axios
+        .post("/cart/update", {
+          IDCus: this.user["IDCus"],
+          IDProduct: IDProduct,
+          IsAdd: 0,
+        })
+        .then((response) => {
+          this.cartItems = response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
-    decreaseQuantity(SKU) {
-      var available = 10;
-      var item = this.cartItems.find((e) => e.SKU === SKU);
-      if (available < item.quantity - 1) {
-        return "Không đủ số lượng";
-      } else {
-        item.quantity--;
-        //remove if the quantity isn't greater than 0
-        if (item.quantity === 0) this.removeItem(SKU);
-      }
-    },
-    removeItem(SKU) {
-      this.cartItems = this.cartItems.filter((e) => e.SKU !== SKU);
+    async removeItem(IDProduct) {
+      // this.cartItems = this.cartItems.filter((e) => e.IDProduct !== SKU);
+      await axios
+        .post("/cart/destroy", {
+          IDCus: this.user["IDCus"],
+          IDProduct: IDProduct,
+        })
+        .then((response) => {
+          this.cartItems = response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
     },
     async getCartItem() {
+      console.log(this.user["IDCus"]);
       await axios
-        .post(app.config.globalProperties.API_URL + "/cart/show", { 'idcus': 1 })
+        .post("/cart/show", { IDCus: this.user["IDCus"] })
         .then((response) => {
           console.log(response.data);
+          this.cartItems = response.data;
+          this.total = 10;
         })
         .catch(function (error) {
           console.error(error);

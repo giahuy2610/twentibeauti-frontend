@@ -8,19 +8,16 @@
         class="btn-right p-button-rounded p-button-success p-button-outlined"
       />
       <Button
-        v-show="currentPage < Math.ceil(allProducts.length / 5)"
+        v-show="currentPage < Math.ceil(products.length / 5)"
         @click="scrollLeft"
         icon="pi pi-angle-right"
         class="btn-left p-button-rounded p-button-success p-button-outlined"
       />
-      <div class="item">
-        
-      </div>
+      <div class="item"></div>
       <ProductCard
         class="appear"
-        v-for="item in allProducts"
-        :uid="item"
-        :key="item"
+        v-for="item in products"
+        :info="item"
       ></ProductCard>
     </div>
   </div>
@@ -32,9 +29,9 @@ export default {
   components: {
     ProductCard,
   },
+  props: ["products"],
   data() {
     return {
-      allProducts: [1, 2, 3, 4, 5, 6, 7, 8, 9],
       currentDisplayProducts: [],
       currentPage: 1,
       count: 0,

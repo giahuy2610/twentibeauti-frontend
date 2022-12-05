@@ -15,7 +15,9 @@
         <div class="product-wrapper__right__info__main">
           <p
             class="font-semibold under-hover"
-            @click="$router.push({ path: routePath })"
+            @click="
+              $router.push({ name: 'product', params: { productid: SKU } })
+            "
           >
             {{ name }}
           </p>

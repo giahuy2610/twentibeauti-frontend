@@ -12,7 +12,7 @@
     </div>
     <div class="wrapper__products">
       <div class="item" v-for="(item, index) in tabs[tabActived].products">
-        <ProductCard></ProductCard>
+        <ProductCard :info="item"></ProductCard>
       </div>
     </div>
     <ButtonPrimary
@@ -43,21 +43,38 @@ export default {
       tabs: [
         {
           category: "Chăm sóc cơ thể",
-          path: "/categories/cham-soc-co-the",
-          products: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          path: "",
+          products: [],
+          idCollection: 1,
         },
         {
           category: "Trang điểm",
-          path: "/categories/trang-diem",
-          products: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          path: "",
+          products: [],
+          idCollection: 2,
         },
         {
           category: "Dưỡng da",
-          path: "/categories/duong-da",
-          products: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+          path: "",
+          products: [],
+          idCollection: 3,
         },
       ],
     };
+  },
+  async mounted() {
+    this.tabs.forEach(async (tab) => {
+      await this.axios
+        .get("/collection/show/" + tab.idCollection)
+        .then((response) => {
+          console.log(response.data);
+          tab.products = response.data.Products;
+          tab.path = "/collection/" + tab.idCollection;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    });
   },
 };
 </script>

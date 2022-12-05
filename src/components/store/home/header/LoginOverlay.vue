@@ -45,12 +45,13 @@ export default {
       signInWithPopup(getAuth(), provider)
         .then((result) => {
           this.getUser = result;
-          this.getCartItem();
-          this.visibleLogin = false;
           this.axios
-            .post(this.$API_URL + "/login", result)
-            .then(function (response) {
+            .post("/login", result)
+            .then(async (response) => {
               console.log(response.data);
+              this.getUser = response.data;
+              await this.getCartItem();
+              this.visibleLogin = false;
             })
             .catch(function (error) {
               console.error(error.response.data.message);
