@@ -16,7 +16,7 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
   },
   actions: {
     increaseTotal() {
-      this.total++;
+      this.total++; 
     },
     // async addCartItem(newItem) {
     //   //newItem @type {{ name: string, SKU: int, retailPrice: int, imagePath: string, routePath: string}[]}

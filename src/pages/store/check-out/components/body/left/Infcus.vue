@@ -10,7 +10,7 @@
           <InputText
             id="firstname"
             type="text"
-            v-model="firstname"
+            v-model="receiverInfo.FirstName"
             placeholder="Tên"
           />
         </span>
@@ -20,7 +20,7 @@
           <InputText
             id="lastname"
             type="text"
-            v-model="lastname"
+            v-model="receiverInfo.LastName"
             placeholder="Họ"
           />
         </span>
@@ -30,10 +30,10 @@
       <div class="nameinf">
         <span class="p-fluid">
           <InputText
-            id="lastname"
+            id="phone"
             type="text"
-            v-model="lastname"
-            placeholder="Họ"
+            v-model="receiverInfo.Phone"
+            placeholder="Số điện thoại"
             class="p-invalid"
           />
         </span>
@@ -43,7 +43,7 @@
           <InputText
             id="email"
             type="text"
-            v-model="email"
+            v-model="receiverInfo.Email"
             placeholder="Email"
           />
         </span>
@@ -102,55 +102,58 @@
           <InputText
             id="address"
             type="text"
-            v-model="address"
+            v-model="receiverInfo.AddressDetail"
             placeholder="Địa chỉ"
           />
         </span>
       </div>
       <br />
-      <div class="namefor">
-        <span class="p-fluid">
-          <InputText
-            id="address"
-            type="text"
-            v-model="address"
-            placeholder="Tên địa chỉ(vd:Văn phòng,Nhà,..."
-          />
-        </span>
-      </div>
+
       <br />
       <div class="field-checkbox">
         <Checkbox inputId="binary" v-model="checked" :binary="true" />
         <label for="binary">Tạo tài khoản với thông tin này </label>
       </div>
     </div>
-    {{ this.selectedProvince }}
+    <Button label="Đặt hàng" class="p-button-rounded" @click="increaseTotal" />
   </div>
 </template>
+
 <script lang="js">
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { useInfoAccountStorePinia } from "@/stores/store/InfoAccount.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
-      checked: false,
-      provinces: [],//provinces = [{name: "abc", code: 11}]
+      checked:false,
       selectedProvince: null,
-      districts: [],
       selectedDistrict: null,
-      wards: [],
       selectedWard: null,
-      firstName: null,
-      lastName: null,
+      provinces: [],
+      districts: [],
+      wards: []
 
-    };
+        }
   },
+  computed: {
+...mapWritableState(useCheckoutStorePinia, {
+  receiverInfo: "receiverInfo",
+  //getReceiverInfo: "getReceiverInfo",
+}),
+...mapWritableState(useInfoAccountStorePinia,{
+  infoCus: "infoCus"
+})
+
+},
   methods: {
     getProvinces() {
       return fetch("./src/assets/address/provinces.json").then((res) =>
         res.json()
       );
     },
-    getDistrict(selectedProvince) {
-      var path = "./src/assets/address/districts/"+ selectedProvince +".json";
+    getDistrict(City) {
+      var path = "./src/assets/address/districts/"+ City +".json";
       return fetch(path).then((res) =>
         res.json()
       );
@@ -176,10 +179,10 @@ export default {
       });
     });
     },
-    loadDistricts(selectedProvince) {
+    loadDistricts(City) {
       this.districts =[];
       this.selectedDistrict = null;
-      this.getDistrict(selectedProvince).then((data) => {
+      this.getDistrict(City).then((data) => {
         var item;
         for (item in data) {
           this.districts.push({ name: data[item].name, code: data[item].code }) ;
@@ -191,10 +194,10 @@ export default {
         });
       });
     },
-    loadWards(selectedProvince) {
+    loadWards(City) {
       this.wards = [];
       this.selectedWard = null;
-      this.getWard(selectedProvince).then((data) => {
+      this.getWard(City).then((data) => {
         var item;
         for (item in data) {
           this.wards.push({ name: data[item].name, code: data[item].code }) ;
@@ -206,25 +209,45 @@ export default {
         });
       });
     },
-    confirmOrder() {
-
-    }
+    // getAlldata() {
+    //   if (this.$route.fullPath ==  `/checkout`)
+    //      {
+    //     console.log(this.getInfoCus(6));
+    //     // return this.getInfoCollection(this.$route.params.id).save;
+        
+    //   } 
+    // },
+    ...mapActions(useCheckoutStorePinia, ["increaseTotal","loadDefaultInfo"]),
+    ...mapActions(useInfoAccountStorePinia, ["loadDefaultInfoCus"]),
   },
   mounted() {
+
     this.loadProvinces();
+    this.loadDefaultInfoCus();
+    this.receiverInfo.FirstName = this.infoCus.FirstName;
+    this.receiverInfo.LastName = this.infoCus.LastName;
+    this.receiverInfo.Email = this.infoCus.Email;
+    this.receiverInfo.Phone = this.infoCus.Phone;
+    //this.getAlldata();
   },
   watch: {
     selectedProvince(newSelectedProvince, oldSelectedProvince) {
       if (Number.isInteger(parseInt(newSelectedProvince)))
         this.loadDistricts(newSelectedProvince);
+        this.receiverInfo.City = this.provinces.find((e) => e.code == newSelectedProvince).name;
 
     },
     selectedDistrict(newSelectedDistrict, oldSelecteDistrict) {
       if (Number.isInteger(parseInt(newSelectedDistrict)))
         this.loadWards(newSelectedDistrict);
+        this.receiverInfo.District = this.districts.find((e) => e.code == newSelectedDistrict).name;
+    },
+    selectedWard(newSelectedWard, oldSelecteWard) {
+      if (Number.isInteger(parseInt(newSelectedWard)))
+        this.receiverInfo.Ward = this.wards.find((e) => e.code == newSelectedWard).name;
+    },
+  },
 
-    }
-  }
 
 };
 </script>

@@ -17,7 +17,7 @@
 import ProductItem from "./ProductItem.vue";
 import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
-
+import { useCheckoutStorePinia } from "../../../../stores/store/checkout";
 export default {
   data() {
     return {};
@@ -29,6 +29,9 @@ export default {
     ...mapState(useCartStorePinia, {
       cartItems: "cartItems",
     }),
+    ...mapActions(useCheckoutStorePinia, {
+      
+    })
   },
 };
 </script>

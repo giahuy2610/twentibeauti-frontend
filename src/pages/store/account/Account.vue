@@ -1,3 +1,4 @@
+
 <template lang="">
   <Wrapper>
     <div class="content">
@@ -89,6 +90,8 @@
 </template>
 <script>
 import Wrapper from "../../Wrapper.vue";
+import axios from 'axios';
+import { defineState, defineActions } from "pinia";
 export default {
   components: {
     Wrapper,
@@ -97,8 +100,11 @@ export default {
     return {
       
       position: "center",
-    };
+    };    
   },
+  computed: {
+    ...defineState
+  }
 
 };
 </script>
