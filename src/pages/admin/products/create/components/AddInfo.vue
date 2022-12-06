@@ -7,10 +7,10 @@
         <p>Loại sản phẩm</p>
         <div class="flex">
           <Dropdown
-            v-model="typeproduct"
-            :options="typeproduct"
-            optionLabel="typeproduct"
-            optionValue="code"
+            v-model="type"
+            :options="listOfType"
+            optionLabel="NameTypeProduct"
+            optionValue="IDType"
             placeholder="Chọn loại sản phẩm"
             :editable="true"
             style="width: 100%"
@@ -31,9 +31,7 @@
         >
           <span class="p-fluid">
             <p>Tên loại sản phẩm</p>
-            <InputText
-              type="text"
-            />
+            <InputText type="text" />
           </span>
           <template #footer>
             <Button
@@ -52,10 +50,10 @@
         <p>Nhãn hiệu</p>
         <div class="flex">
           <Dropdown
-            v-model="typeBrand"
-            :options="typeBrand"
-            optionLabel="typeBrand"
-            optionValue="code"
+            v-model="productInfo.IDBrand"
+            :options="listOfBrand"
+            optionLabel="NameBrand"
+            optionValue="IDBrand"
             placeholder="Chọn nhãn hiệu"
             :editable="true"
             style="width: 100%"
@@ -107,11 +105,11 @@
         <p>Tags</p>
         <div class="flex">
           <Dropdown
-            v-model="Tags"
-            :options="Tags"
-            optionLabel="Tags"
-            optionValue="code"
-            placeholder="Tags"
+            v-model="productInfo.IDTag"
+            :options="listOfTag"
+            optionLabel="NameTag"
+            optionValue="IDTag"
+            placeholder="Chọn Tag sản phẩm"
             :editable="true"
             style="width: 100%"
           />
@@ -130,9 +128,7 @@
         >
           <span class="p-fluid">
             <p>Nhãn hiệu</p>
-            <InputText
-              type="text"
-            />
+            <InputText type="text" />
           </span>
           <template #footer>
             <Button
@@ -152,6 +148,8 @@
   </div>
 </template>
 <script>
+import { useProductStorePinia } from "@/stores/admin/product";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
@@ -163,6 +161,10 @@ export default {
       inputPath: null,
       isValidNameBrand: false,
       isValidInputPath: false,
+      listOfBrand: [],
+      listOfTag: [],
+      listOfType: [],
+      type: null,
     };
   },
   methods: {
@@ -219,6 +221,11 @@ export default {
       return !/^[a-zA-Z-0-9-_ ]+$/i.test(value); //return true if the url is wrong
     },
   },
+  computed: {
+    ...mapWritableState(useProductStorePinia, {
+      productInfo: "productInfo",
+    }),
+  },
   watch: {
     nameBrand: {
       handler(newValue, oldValue) {
@@ -259,6 +266,51 @@ export default {
       },
       deep: true,
     },
+    async type(newValue, old) {
+      console.log(newValue);
+      this.productInfo.IDType = newValue;
+      await this.axios
+        .get("/tag/index/" + newValue)
+        .then((response) => {
+          console.log(response.data);
+          this.listOfTag = response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
+  },
+  async mounted() {
+    //get list of brand
+    await this.axios
+      .get("/brand/index")
+      .then((response) => {
+        console.log(response.data);
+        this.listOfBrand = response.data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    //get list of tag
+    await this.axios
+      .get("/tag/index")
+      .then((response) => {
+        console.log(response.data);
+        this.listOfTag = response.data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+    //get list of types
+    await this.axios
+      .get("/type/index/")
+      .then((response) => {
+        console.log(response.data);
+        this.listOfType = response.data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
   },
 };
 </script>

@@ -47,8 +47,15 @@
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
       <Column field="details" header="SKU" style="min-width: 10rem">
         <template #body="{ data }">
-          <p @click="1" class="cursor-pointer hover-primary-color">
-            {{data.IDProduct}}
+          <p
+            @click="
+              $router.push({
+                path: `/admin/products/edit/${data.IDProduct}`,
+              })
+            "
+            class="cursor-pointer hover-primary-color"
+          >
+            {{ data.IDProduct }}
           </p>
         </template>
       </Column>
@@ -294,7 +301,6 @@ export default {
       products: [],
     };
   },
-  created() {},
   async mounted() {
     await this.axios
       .get("/product/index")

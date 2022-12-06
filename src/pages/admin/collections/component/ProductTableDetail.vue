@@ -1,40 +1,34 @@
 <template>
   <div class="product-table-wrapper">
+    {{ selectedProducts.map((product) => product["IDProduct"]) }}
     <DataTable
-      :value="products"
+      v-model:value="products"
       :paginator="true"
-      class="p-datatable-customers"
+      class="p-datatable-customize"
       :rows="10"
-      dataKey="id"
+      dataKey="IDProduct"
       :rowHover="true"
-      v-model:selection="selectedCustomers"
+      v-model:selection="selectedProducts"
       v-model:filters="filters"
       filterDisplay="menu"
       :loading="loading"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="[
-        'name',
-        'country.name',
-        'representative.name',
-        'status',
-      ]"
+      :globalFilterFields="['name']"
       responsiveLayout="scroll"
-      @rowSelect="onRowSelect"
-      selectionMode="single"
     >
       <template #header>
         <div class="flex justify-content-between align-items-center">
           <h5 class="m-0">Sản phẩm</h5>
-          <span v-show="selectedCustomers.length > 0">
+          <span v-show="selectedProducts.length > 0">
             Chọn thao tác
             <Dropdown
               v-model="selectedCity1"
-              :options="cities"
+              :options="optionOnClick"
               optionLabel="name"
               optionValue="code"
-              placeholder="Select a City"
+              placeholder="Chọn thao tác"
             />
           </span>
 
@@ -47,27 +41,26 @@
           </span>
         </div>
       </template>
-      <template #empty> No customers found. </template>
-      <template #loading> Loading customers data. Please wait. </template>
+      <template #empty> Không có sản phẩm </template>
+      <template #loading> Đang lấy dữ liệu. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="details" header="Chi tiết">
+      <Column field="details" header="SKU" style="min-width: 10rem">
         <template #body="{ data }">
           <p
             @click="
               $router.push({
-                path: '/admin/products/create',
-                query: { sku: data.id },
+                path: `/admin/products/edit/${data.IDProduct}`,
               })
             "
             class="cursor-pointer hover-primary-color"
           >
-            Xem chi tiết
+            {{ data.IDProduct }}
           </p>
         </template>
       </Column>
       <Column field="name" header="Tên" sortable style="min-width: 14rem">
         <template #body="{ data }">
-          {{ data.name }}
+          {{ data.NameProduct }}
         </template>
         <template #filter="{ filterModel }">
           <InputText
@@ -78,38 +71,186 @@
           />
         </template>
       </Column>
-
+      <!-- <Column
+        field="brand.name"
+        header="Hãng"
+        sortable
+        filterMatchMode="contains"
+        style="min-width: 14rem"
+      >
+        <template #body="{ data }">
+          <span class="image-text">{{ data.Brand.NameBrand }}</span>
+        </template>
+        <template #filter="{ filterModel }">
+          <InputText
+            type="text"
+            v-model="filterModel.value"
+            class="p-column-filter"
+            placeholder="Search by country"
+          />
+        </template>
+      </Column>
+      <Column
+        header="Danh mục"
+        sortable
+        filterField="representative"
+        sortField="representative.name"
+        :showFilterMatchModes="false"
+        :filterMenuStyle="{ width: '14rem' }"
+        style="min-width: 14rem"
+      >
+        <template #body="{ data }">
+          {{ data.Brand["NameBrand"] }}
+        </template>
+        <template #filter="{ filterModel }">
+          <div class="mb-3 font-bold">Agent Picker</div>
+          <MultiSelect
+            v-model="filterModel.value"
+            :options="representatives"
+            optionLabel="name"
+            placeholder="Any"
+            class="p-column-filter"
+          >
+            <template #option="slotProps">
+              <div class="p-multiselect-representative-option">
+                <img
+                  :alt="slotProps.option.name"
+                  src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+                  width="32"
+                  style="vertical-align: middle"
+                />
+                <span class="image-text">{{ slotProps.option.name }}</span>
+              </div>
+            </template>
+          </MultiSelect>
+        </template>
+      </Column>
+      <Column
+        field="date"
+        header="Ngày tạo"
+        sortable
+        dataType="date"
+        style="min-width: 8rem"
+      >
+        <template #body="{ data }">
+          {{ data.CreatedOn }}
+        </template>
+        <template #filter="{ filterModel }">
+          <Calendar
+            v-model="filterModel.value"
+            dateFormat="mm/dd/yy"
+            placeholder="mm/dd/yyyy"
+          />
+        </template>
+      </Column>
+      <Column
+        field="listPrice"
+        header="Giá gốc"
+        sortable
+        dataType="numeric"
+        style="min-width: 8rem"
+      >
+        <template #body="{ data }">
+          {{ formatCurrency(data.ListPrice) }}
+        </template>
+        <template #filter="{ filterModel }">
+          <InputNumber
+            v-model="filterModel.value"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+          />
+        </template>
+      </Column>
+      <Column
+        field="balance"
+        header="Giá bán lẻ"
+        sortable
+        dataType="numeric"
+        style="min-width: 8rem"
+      >
+        <template #body="{ data }">
+          {{ formatCurrency(data.RetailPrice) }}
+        </template>
+        <template #filter="{ filterModel }">
+          <InputNumber
+            v-model="filterModel.value"
+            mode="currency"
+            currency="USD"
+            locale="en-US"
+          />
+        </template>
+      </Column>
+      <Column
+        field="status"
+        header="Tình trạng"
+        sortable
+        :filterMenuStyle="{ width: '14rem' }"
+        style="min-width: 10rem"
+      >
+        <template #body="{ data }">
+          <span :class="'customer-badge status-' + data.IsDeleted">{{
+            !data.IsDeleted ? "Khả dụng" : "Xóa mềm"
+          }}</span>
+        </template>
+        <template #filter="{ filterModel }">
+          <Dropdown
+            v-model="filterModel.value"
+            :options="statuses"
+            placeholder="Any"
+            class="p-column-filter"
+            :showClear="true"
+          >
+            <template #value="slotProps">
+              <span :class="'customer-badge status-' + slotProps.value">{{
+                slotProps.value
+              }}</span>
+            </template>
+            <template #option="slotProps">
+              <span :class="'customer-badge status-' + slotProps.option">{{
+                slotProps.option
+              }}</span>
+            </template>
+          </Dropdown>
+        </template>
+      </Column>
+      <Column
+        field="stock"
+        header="Tồn kho"
+        sortable
+        :showFilterMatchModes="false"
+        style="min-width: 10rem"
+      >
+        <template #body="{ data }">
+          <ProgressBar :value="data.Stock" :showValue="false" />
+        </template>
+        <template #filter="{ filterModel }">
+          <Slider v-model="filterModel.value" range class="m-3"></Slider>
+          <div class="flex align-items-center justify-content-between px-2">
+            <span>{{ filterModel.value ? filterModel.value[0] : 0 }}</span>
+            <span>{{ filterModel.value ? filterModel.value[1] : 100 }}</span>
+          </div>
+        </template>
+      </Column> -->
       <Column
         headerStyle="width: 4rem; text-align: center"
         bodyStyle="text-align: center; overflow: visible"
       >
         <template #body>
-          <div class="flex">
-            <Button
-              icon="pi pi-pencil"
-              class="p-button-rounded p-button-success mr-2"
-              @click="editProduct(slotProps.data)"
-            />
-            <Button
-              icon="pi pi-trash"
-              class="p-button-rounded p-button-warning"
-              @click="confirmDeleteProduct(slotProps.data)"
-            />
-          </div>
+          <Button type="button" icon="pi pi-cog"></Button>
         </template>
       </Column>
     </DataTable>
   </div>
 </template>
-
 <script>
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-
+import { useCollectionStorePinia } from "@/stores/admin/collection.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
-      customers: null,
-      selectedCustomers: [],
+      selectedProducts: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
         name: {
@@ -141,18 +282,7 @@ export default {
         verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
-      representatives: [
-        { name: "Amy Elsner", image: "amyelsner.png" },
-        { name: "Anna Fali", image: "annafali.png" },
-        { name: "Asiya Javayant", image: "asiyajavayant.png" },
-        { name: "Bernardo Dominic", image: "bernardodominic.png" },
-        { name: "Elwin Sharvill", image: "elwinsharvill.png" },
-        { name: "Ioni Bowcher", image: "ionibowcher.png" },
-        { name: "Ivan Magalhaes", image: "ivanmagalhaes.png" },
-        { name: "Onyama Limba", image: "onyamalimba.png" },
-        { name: "Stephen Shaw", image: "stephenshaw.png" },
-        { name: "XuXue Feng", image: "xuxuefeng.png" },
-      ],
+      representatives: [{ name: "Amy Elsner", image: "amyelsner.png" }],
       statuses: [
         "unqualified",
         "qualified",
@@ -161,65 +291,26 @@ export default {
         "renewal",
         "proposal",
       ],
-      products: [
-        {
-          id: 1000,
-          name: "Kem Nền Hiệu Ứng Căng Mướt THEFACESHOP AURA CC CREAM SPF30 PA++ 20g",
-          brand: {
-            name: "The Face Shop",
-            id: 100,
-            path: "/collections/the-face-shop",
-            country: "Hàn Quốc",
-          },
-          createdOn: "2015-09-13",
-          status: "unqualified",
-          stock: 20,
-          images: ["abc.png", "bcd.png"],
-          listPrice: 80000,
-          salePrice: 75000,
-          description:
-            "Công dụng chính: Kem nền hiệu chỉnh sắc diện da, giúp làn da rạng rỡ và tỏa sáng.Hiệu ứng: Nâng tông, căng mướt da",
-          category: {
-            name: "Trang điểm",
-            id: "1",
-            path: "/categories/trang-diem",
-          },
-          review: [
-            {
-              id: 111,
-              userId: 1112,
-              rating: 4,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-13",
-              invoice: { id: 152 },
-            },
-            {
-              id: 115,
-              userId: 1113,
-              rating: 2,
-              content: "Sản phẩm tốt",
-              createdOn: "2015-09-14",
-              invoice: { id: 165 },
-            },
-          ],
-        },
-      ],
-      cities: [
-        { name: "New York", code: "NY" },
-        { name: "Rome", code: "RM" },
-        { name: "London", code: "LDN" },
-        { name: "Istanbul", code: "IST" },
-        { name: "Paris", code: "PRS" },
+
+      optionOnClick: [
+        { name: "Sửa", code: "1" },
+        { name: "Xóa", code: "2" },
       ],
       selectedCity1: null,
+      products: [],
     };
   },
-  created() {},
-  mounted() {
-    // this.products.forEach(
-    //   (products) => (products.createdOn = new Date(products.createdOn))
-    // );
-    this.loading = false;
+  async mounted() {
+    await this.axios
+      .get("/product/index")
+      .then((response) => {
+        this.products = response.data;
+        this.loading = false;
+        console.log(this.products);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
   methods: {
     formatDate(value) {
@@ -235,16 +326,21 @@ export default {
         currency: "USD",
       });
     },
-    onRowSelect(event) {
-      // this.$router.push({
-      //   path: "/admin/products/create",
-      //   query: { sku: event.data.id },
-      // });
+  },
+  computed: {
+    ...mapWritableState(useCollectionStorePinia, {
+      collectionItems: "collectionItems",
+    }),
+  },
+  watch: {
+    selectedProducts(newValue, oldValue) {
+      this.collectionItems.Products = newValue.map(
+        (product) => product["IDProduct"]
+      );
     },
   },
 };
 </script>
-
 <style lang="scss" scoped>
 .hover-primary-color {
   text-decoration: underline;

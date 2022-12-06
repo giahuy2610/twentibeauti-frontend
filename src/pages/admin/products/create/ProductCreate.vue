@@ -4,7 +4,7 @@
       <div class="header-wrapper">
         <div
           class="header-wrapper__left flex align-items-center cursor-pointer"
-          @click="$router.push({ path: '/admin/products'})"
+          @click="$router.push({ path: '/admin/products' })"
         >
           <i class="pi pi-angle-left"></i>
           <span>Quay lại</span>
@@ -14,9 +14,20 @@
           <Button
             label="Xem trước"
             class="p-button-success"
-            @click="$router.push({ path: '/product'})"
+            @click="$route.push({ path: '/product' })"
           />
-          <Button label="Lưu" class="p-button-info" />
+          <Button
+            label="Lưu"
+            class="p-button-info"
+            @click="createNewProduct()"
+            v-if='$route.path == "/admin/products/create"'
+          />
+          <Button
+            label="Cập nhật"
+            class="p-button-info"
+            @click="updateProduct()"
+            v-else
+          />
         </div>
       </div>
     </template>
@@ -30,8 +41,15 @@
 <script>
 import AdminBlankPage from "../../AdminBlankPage.vue";
 import Main_content from "./components/Main_content.vue";
+import { useProductStorePinia } from "@/stores/admin/product";
+import { mapWritableState, mapActions } from "pinia";
 export default {
-  watch: {
+  methods: {
+    ...mapActions(useProductStorePinia, [
+      "createNewProduct",
+      "getAPIProductInfo",
+      "updateProduct",  
+    ]),
   },
   components: {
     AdminBlankPage,
@@ -39,6 +57,11 @@ export default {
   },
   data() {
     return {};
+  },
+  async mounted() {
+    if (this.$route.path != "/admin/products/create") {
+      await this.getAPIProductInfo(this.$route.params.id);
+    }
   },
 };
 </script>
@@ -50,7 +73,7 @@ export default {
   align-items: center;
 
   .header-wrapper__left:hover {
-    color: var(--primary-color)
+    color: var(--primary-color);
   }
 
   .header-wrapper__right {

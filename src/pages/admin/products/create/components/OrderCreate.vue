@@ -4,47 +4,63 @@
       <template #title> Khởi tạo kho hàng</template>
       <template #subtitle>
         Ghi nhận số lượng Tồn kho ban đầu và Giá vốn của sản phẩm
-    </template>
+      </template>
       <template #content>
-    <div class="order">
-        <div class="orderinf">
+        <div class="order">
+          <div class="orderinf">
             <p>Tồn kho ban đầu</p>
-          <span class="p-fluid">
-            <InputText id="inventory" type="text" v-model="inventory" placeholder="0"/>
-          </span>
-        </div>
-        <div class="orderinf">
+            <span class="p-fluid">
+              <InputText
+                id="inventory"
+                type="text"
+                v-model="productInfo.Stock"
+                placeholder="0"
+              />
+            </span>
+          </div>
+          <div class="orderinf">
             <p>Giá vốn</p>
-          <span class="p-fluid">
-            <InputText id="costprice" type="text" v-model="costprice" placeholder="0"/>
-          </span>
+            <span class="p-fluid">
+              <InputText
+                id="costprice"
+                type="text"
+                v-model="costprice"
+                placeholder="0"
+              />
+            </span>
+          </div>
         </div>
-      </div>
-    </template>
+      </template>
     </Card>
-    
   </div>
 </template>
 <script>
-export default {};
+import { useProductStorePinia } from "@/stores/admin/product";
+import { mapWritableState, mapActions } from "pinia";
+
+export default {
+  computed: {
+    ...mapWritableState(useProductStorePinia, {
+      productInfo: "productInfo",
+    }),
+  },
+};
 </script>
 <style lang="scss" scoped>
 .addinfo {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
-  .order{
+  .order {
     display: flex;
     flex-direction: row;
-    
-    .orderinf{
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        padding-right: 10px;
-      }
-  }
-  
 
+    .orderinf {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      padding-right: 10px;
+    }
+  }
 }
 </style>

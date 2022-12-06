@@ -1,15 +1,15 @@
 <template>
   <Toast />
-        <ConfirmDialog></ConfirmDialog>
-        <ConfirmDialog group="templating">
-                <template #message="slotProps">
-                    <div class="flex p-4">
-                        <i :class="slotProps.message.icon" style="font-size: 1.5rem"></i>
-                        <p class="pl-2">{{slotProps.message.message}}</p>
-                    </div>
-                </template>
-        </ConfirmDialog>
-        <ConfirmDialog group="positionDialog"></ConfirmDialog>
+  <ConfirmDialog></ConfirmDialog>
+  <ConfirmDialog group="templating">
+    <template #message="slotProps">
+      <div class="flex p-4">
+        <i :class="slotProps.message.icon" style="font-size: 1.5rem"></i>
+        <p class="pl-2">{{ slotProps.message.message }}</p>
+      </div>
+    </template>
+  </ConfirmDialog>
+  <ConfirmDialog group="positionDialog"></ConfirmDialog>
   <div class="product-table-wrapper">
     <DataTable
       :value="list"
@@ -131,13 +131,17 @@
       </Column>
 
       <Column
-      style="min-width: 3rem"
+        style="min-width: 3rem"
         headerStyle="text-align: center"
         bodyStyle="text-align: center; overflow: visible"
       >
-        <template #body="{data}">
-          <Button  @click="onDelete(data.IDCollection)" icon="pi pi-times" class="p-button-rounded p-button-danger p-button-text" >
-            </Button>
+        <template #body="{ data }">
+          <Button
+            @click="onDelete(data.IDCollection)"
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-text"
+          >
+          </Button>
         </template>
       </Column>
       <!-- <Column
@@ -206,12 +210,12 @@ export default {
   computed: {
     ...mapState(useCollectionStorePinia, {
       getCollectionItems: "getCollectionItems",
-      collectionItems: "collectionItems"
+      collectionItems: "collectionItems",
     }),
   },
   created() {},
   async mounted() {
-    this.list = await this.getInfoCollection('');
+    this.list = await this.getInfoCollection("");
     this.loading = false;
     console.log(this.list);
   },
@@ -223,25 +227,36 @@ export default {
         year: "numeric",
       });
     },
-    ...mapActions(useCollectionStorePinia, ["getInfoCollection","delCollection"]),
+    ...mapActions(useCollectionStorePinia, [
+      "getInfoCollection",
+      "delCollection",
+    ]),
     onDelete(IDCollection) {
-            this.$confirm.require({
-                message: 'Bạn có chắc chắn muốn xóa không ?',
-                header: 'Delete Confirmation',
-                icon: 'pi pi-info-circle',
-                acceptClass: 'p-button-danger',
-                accept: () => {
-                    this.delCollection(IDCollection);
-                    this.$toast.add({severity:'info', summary:'Confirmed', detail:'Xóa thành công',life: 3000});
-                },
-                reject: () => {
-                    this.$toast.add({severity:'error', summary:'Rejected', detail:'Đã hủy thao tác xóa', life: 3000});
-                }
-            });
+      this.$confirm.require({
+        message: "Bạn có chắc chắn muốn xóa không ?",
+        header: "Delete Confirmation",
+        icon: "pi pi-info-circle",
+        acceptClass: "p-button-danger",
+        accept: () => {
+          this.delCollection(IDCollection);
+          this.$toast.add({
+            severity: "info",
+            summary: "Confirmed",
+            detail: "Xóa thành công",
+            life: 3000,
+          });
         },
-    
+        reject: () => {
+          this.$toast.add({
+            severity: "error",
+            summary: "Rejected",
+            detail: "Đã hủy thao tác xóa",
+            life: 3000,
+          });
+        },
+      });
+    },
   },
-  
 };
 </script>
 

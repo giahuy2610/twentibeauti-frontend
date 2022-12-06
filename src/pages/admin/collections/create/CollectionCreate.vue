@@ -41,7 +41,6 @@
                 :showSeconds="true"
                 selectionMode="range"
               />
-              {{ rangeAvailableDate }}
             </template>
           </Card>
           <Card>
@@ -119,7 +118,7 @@ export default {
       "createCollection",
       "getInfoCollection",
       "insertdata",
-      "resetPinia"
+      "resetPinia",
     ]),
     getAllData: function () {
       //checking if the current url is create or not
@@ -156,18 +155,19 @@ export default {
     },
   },
   mounted() {
-    this.resetPinia()
+    this.resetPinia();
   },
   data() {
     return {
       status: null,
-      rangeAvailableDate: null,
+      rangeAvailableDate: [],
     };
   },
   watch: {
     rangeAvailableDate(newValue, oldValue) {
-      // this.collectionItems.StartOn = newValue[0];
-      // this.collectionItems.EndOn = newValue[1];
+      this.collectionItems.StartOn = new Date(newValue[0]);
+      this.collectionItems.EndOn = new Date(newValue[1]);
+      console.log(this.collectionItems.StartOn);
     },
   },
 };

@@ -8,9 +8,9 @@
             <p>Giá bán lẻ</p>
             <span class="p-fluid">
               <InputText
-                id="retailprice"
+                id="listprice"
                 type="text"
-                v-model="retailprice"
+                v-model="productInfo.ListPrice"
                 placeholder="0"
               />
             </span>
@@ -32,7 +32,15 @@
   </div>
 </template>
 <script>
-export default {};
+import { useProductStorePinia } from "@/stores/admin/product";
+import { mapWritableState, mapActions } from "pinia";
+export default {
+  computed: {
+    ...mapWritableState(useProductStorePinia, {
+      productInfo: "productInfo",
+    }),
+  },
+};
 </script>
 <style lang="scss" scoped>
 .productprice {

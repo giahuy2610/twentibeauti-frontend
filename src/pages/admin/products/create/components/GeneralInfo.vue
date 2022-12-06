@@ -10,7 +10,7 @@
               <InputText
                 id="nameprod"
                 type="text"
-                v-model="nameprod"
+                v-model="productInfo.NameProduct"
                 placeholder="Nhập tên sản phẩm"
               />
             </span>
@@ -26,7 +26,7 @@
                   ><InputText
                     id="codeprod"
                     type="text"
-                    v-model="codeprod"
+                    v-model="productInfo.IDProduct"
                     placeholder="Nhập mã sản phẩm"
                   />
                 </span>
@@ -36,10 +36,10 @@
           <div class="mass">
             <p>Khối lượng</p>
             <div class="fillinf">
-              <InputText id="mass" type="text" v-model="mass" />
+              <InputText id="mass" type="text" v-model="productInfo.Mass" />
               <Dropdown
-                v-model="selectedWard"
-                :options="wards"
+                v-model="productInfo.UnitsOfMass"
+                :options="massList"
                 optionLabel="name"
                 optionValue="code"
                 :editable="true"
@@ -52,8 +52,8 @@
           <div class="nameinf">
             <span class="p-fluid">
               <Dropdown
-                v-model="unit"
-                :options="wards"
+                v-model="productInfo.Units"
+                :options="unitList"
                 optionLabel="name"
                 optionValue="code"
                 placeholder="Đơn vị tính"
@@ -66,9 +66,8 @@
           <PanelMenu />
           <h5>Mô tả sản phẩm</h5>
           <Editor
-            v-model="description"
+            v-model="productInfo.Description"
             editorStyle="height: 320px"
-            @textChange="contentChangedEditor"
             contentType="html"
           />
         </div>
@@ -77,20 +76,27 @@
   </div>
 </template>
 <script>
+import { useProductStorePinia } from "@/stores/admin/product";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
-      description: null,
-      nameprod: null,
-      codeprod: null,
-      mass: 0,
-      unit: null,
+      massList: [
+        { name: "g", code: "gam" },
+        { name: "kg", code: "kilogram" },
+        { name: "ml", code: "ml" },
+      ],
+      unitList: [
+        { name: "cái", code: "unit" },
+        { name: "cặp", code: "couple" },
+        { name: "combo", code: "combo" },
+      ],
     };
   },
-  methods: {
-    contentChangedEditor(event) {
-      console.log(event.htmlValue);
-    },
+  computed: {
+    ...mapWritableState(useProductStorePinia, {
+      productInfo: "productInfo",
+    }),
   },
 };
 </script>

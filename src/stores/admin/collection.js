@@ -1,8 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
 import "vue-router";
-export const useCollectionStorePinia = defineStore({
-  id: "collectionStorePinia",
+export const useCollectionStorePinia = defineStore("collectionStorePinia", {
   state: () => ({
     collectionItems: {
       IDCollection: null,
@@ -13,6 +12,7 @@ export const useCollectionStorePinia = defineStore({
       StartOn: null,
       EndOn: null,
       CoverImagePath: null,
+      Products: [],
     },
   }),
   getters: {
@@ -30,20 +30,9 @@ export const useCollectionStorePinia = defineStore({
     saveData() {
       this.createCollection();
     },
-    createCollection() {
-      console.log(this.collectionItems);
-      axios
-        .post(`/collection/create`, this.collectionItems)
-        .then((response) => {
-          console.log(response.data);
-          this.$router.push({ path: "/admin/collections" });
-          return response.data;
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    },
+
     async insertdata() {
+      console.log(this.collectionItems);
       await axios
         .post(`/collection/create`, this.collectionItems)
         .then((response) => {

@@ -4,23 +4,19 @@ import { defineStore } from "pinia";
 export const useProductStorePinia = defineStore("productStorePinia", {
   state: () => ({
     productInfo: {
-      NameProduct:
-        "Kem Chống Nắng Nâng Tone Da THE FACE SHOP Power Long Lasting Pink Tone Up Sun Cream Spf50+ Pa++++ 50ml",
-      IDBrand: 1,
+      IDProduct: 0,
+      NameProduct: "",
+      IDBrand: null,
       Description: "",
-      CreatedOn: "2022-11-21 09:14:10",
-      IsDeleted: 0,
       Stock: 0,
-      TotalPurchaseQuantity: 0,
       Mass: 0,
       UnitsOfMass: "gam",
-      Units: "Unit",
+      Units: "",
       ApplyTaxes: 0,
       StatusSale: 0,
-      IDTags: 1,
-      IDType: 1,
-      ListPrice: 100000,
-      RetailPrice: 100000,
+      IDTag: null,
+      IDType: null,
+      ListPrice: 0,
       Images: [],
     },
   }),
@@ -28,10 +24,31 @@ export const useProductStorePinia = defineStore("productStorePinia", {
     async createNewProduct() {
       console.log(this.productInfo);
       await axios
-        .post("/collection/create", this.productInfo)
+        .post("/product/create", this.productInfo)
+        .then((response) => {
+          return response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
+    async getAPIProductInfo(IDProduct) {
+      useProductStorePinia().$reset;
+      this.productInfo.IDProduct = IDProduct;
+      await axios
+        .get("/product/show/" + IDProduct)
+        .then((response) => {
+          this.productInfo = response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
+    async updateProduct() {
+      await axios
+        .post("/product/update", this.productInfo)
         .then((response) => {
           console.log(response.data);
-          return response.data;
         })
         .catch(function (error) {
           console.error(error);
