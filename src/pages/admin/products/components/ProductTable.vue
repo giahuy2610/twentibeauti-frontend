@@ -1,11 +1,11 @@
 <template>
   <div class="product-table-wrapper">
     <DataTable
-      v-model:value="products"
+      :value="products"
       :paginator="true"
       class="p-datatable-customize"
       :rows="10"
-      dataKey="IDProduct"
+      dataKey="id"
       :rowHover="true"
       v-model:selection="selectedProducts"
       v-model:filters="filters"
@@ -13,11 +13,10 @@
       :loading="loading"
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
-      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="['name']"
+      :globalFilterFields="['IDProduct', 'NameProduct']"
       responsiveLayout="scroll"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       @rowSelect="onRowSelect"
-      selectionMode="single"
     >
       <template #header>
         <div class="flex justify-content-between align-items-center">
@@ -45,7 +44,12 @@
       <template #empty> Không có sản phẩm </template>
       <template #loading> Đang lấy dữ liệu. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="details" header="SKU" style="min-width: 10rem">
+      <Column
+      field="id"
+        header="SKU"
+        style="min-width: 3rem"
+        v-bind:sortable="true"
+      >
         <template #body="{ data }">
           <p
             @click="
@@ -59,7 +63,12 @@
           </p>
         </template>
       </Column>
-      <Column field="name" header="Tên" sortable style="min-width: 14rem">
+      <Column
+        field="name"
+        header="Tên"
+        sortable="true"
+        style="min-width: 14rem"
+      >
         <template #body="{ data }">
           {{ data.NameProduct }}
         </template>
@@ -254,7 +263,7 @@ export default {
       selectedProducts: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: {
+        NameProduct: {
           operator: FilterOperator.AND,
           constraints: [
             { value: null, matchMode: FilterMatchMode.STARTS_WITH },
@@ -322,9 +331,9 @@ export default {
       });
     },
     formatCurrency(value) {
-      return value.toLocaleString("en-US", {
+      return value.toLocaleString( {
         style: "currency",
-        currency: "USD",
+        currency: "VND",
       });
     },
     onRowSelect(event) {

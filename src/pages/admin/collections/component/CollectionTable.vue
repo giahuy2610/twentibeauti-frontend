@@ -24,7 +24,7 @@
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="['name', 'id']"
+      :globalFilterFields="['IDCollection', 'NameCollection']"
       responsiveLayout="scroll"
       v-model:selection="selectedCategories"
     >
@@ -44,7 +44,7 @@
       <template #loading> Loading collections data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 
-      <Column header="Mã danh mục" sortable style="min-width: 9rem" field="id">
+      <Column header="Mã danh mục" :sortable="true" style="min-width: 9rem" field="id">
         <template #body="{ data }">
           <p
             @click="
@@ -63,7 +63,7 @@
       <Column
         field="name"
         header="Tên danh mục"
-        sortable
+        :sortable="true"
         filterField="representative"
         sortField="representative.name"
         style="min-width: 11rem"

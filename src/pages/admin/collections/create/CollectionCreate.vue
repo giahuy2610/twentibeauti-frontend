@@ -33,14 +33,12 @@
           <Card>
             <template #title> Trạng thái</template>
             <template #content>
-              <div class="p-2">Đặt lịch hiển thị</div>
-              <Calendar
-                inputId="time24"
-                v-model="rangeAvailableDate"
-                :showTime="true"
-                :showSeconds="true"
-                selectionMode="range"
-              />
+              <div class="p-2">Ngày bắt đầu</div>
+              <!-- <Calendar :showIcon="true" :showTime="true" :showSeconds="true" inputId="basic" v-model="getCollectionItems.StartOn" autocomplete="off"  :showButtonBar="true"/>  -->
+              <!-- <Calendar :showIcon="true"  icon="pi pi-clock" inputId="time24" v-model="getCollectionItems.StartOn" :showTime="true" :timeOnly="true" hourFormat="24" /> -->
+          <input type="datetime-local" step="1"  class="datetime" v-model="collectionItems.StartOn" />
+          <div class="p-2">Ngày kết thúc</div>
+          <input type="datetime-local" step="1"  class="datetime" v-model="collectionItems.EndOn" />
             </template>
           </Card>
           <Card>
@@ -93,6 +91,7 @@ import ProductTable from "../component/ProductTable.vue";
 import AddMethod from "../component/AddMethod.vue";
 import { useCollectionStorePinia } from "@/stores/admin/collection.js";
 import { mapWritableState, mapActions } from "pinia";
+import moment from 'moment';
 import AdminCollectionsVue from "../AdminCollections.vue";
 var minDateValue = new Date();
 console.log(minDateValue);
@@ -109,7 +108,15 @@ export default {
       getCollectionItems: "getCollectionItems",
       collectionItems: "collectionItems",
     }),
+    // dateTime: function() {
+    //   return moment(this.collectionItems.StartOn).format('yy-mm-dd');
+    // },
   },
+  created()
+    {
+         this.getCollectionItems.StartOn = moment().format('H:i:s');
+        // this.getPromoItem._startTime = moment().format('LT');
+    },
   methods: {
     onRadioChange: function (event) {
       alert(event.target.value);
@@ -160,13 +167,13 @@ export default {
   data() {
     return {
       status: null,
-      rangeAvailableDate: [],
+      //rangeAvailableDate: [],
     };
   },
   watch: {
     rangeAvailableDate(newValue, oldValue) {
       this.collectionItems.StartOn = new Date(newValue[0]);
-      this.collectionItems.EndOn = new Date(newValue[1]);
+      // this.collectionItems.EndOn = new Date(newValue[1]);
       console.log(this.collectionItems.StartOn);
     },
   },
@@ -188,6 +195,14 @@ export default {
   }
 }
 .right-content {
+  .datetime {
+    width: 14rem;
+    height: 2rem;
+    color:rgb(116, 114, 114);
+    border: 1px solid rgb(213, 209, 209);
+    border-radius: 5px;
+    font-size: 15px;
+  }
 }
 .right-content h3 {
   padding: 10px;

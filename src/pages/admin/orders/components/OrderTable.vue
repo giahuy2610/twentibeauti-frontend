@@ -17,10 +17,7 @@
       :globalFilterFields="[
         'id',
         'nameCus',
-        'total',
         'date',
-        'status',
-        'statuses.name',
       ]"
       responsiveLayout="scroll"
     >
@@ -54,6 +51,7 @@
         field="id"
         header="Mã đơn hàng"
         style="min-width: 3rem"
+        :sortable="true"
       >
         <template #body="{ data }">
           <p 
@@ -74,6 +72,7 @@
         field="nameCus"
         header="Tên khách hàng"
         style="min-width: 6rem"
+        :sortable="true"
       >
         <template #body="{ data }">         
             {{ data.nameCus }}
@@ -83,7 +82,7 @@
       <Column
         field="date"
         header="Ngày tạo"
-        sortable
+        :sortable="true"
         dataType="date"
         style="min-width: 6rem"
       >
@@ -211,8 +210,8 @@ export default {
         },
         {
           id: 2,
-          nameCus: "Dịu Ái",
-          createdOn: "2015-09-13",
+          nameCus: "Ái",
+          createdOn: "2015-09-14",
           status: "Đang giao hàng",
           total: 80000,
         },

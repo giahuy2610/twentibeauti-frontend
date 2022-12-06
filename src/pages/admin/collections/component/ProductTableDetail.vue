@@ -44,7 +44,7 @@
       <template #empty> Không có sản phẩm </template>
       <template #loading> Đang lấy dữ liệu. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="details" header="SKU" style="min-width: 10rem">
+      <Column field="details" header="SKU" :sortable="true" style="min-width: 10rem">
         <template #body="{ data }">
           <p
             @click="

@@ -8,7 +8,7 @@ import VueAxios from "vue-axios";
 import { createPinia } from "pinia";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
 import "./scss/_theme.scss";
-
+import moment from "moment";
 //import 'primevue/resources/themes/saga-green/theme.css';
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
@@ -67,8 +67,15 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
 import Fieldset from "primevue/fieldset";
+import DatePick from 'vue-date-pick';
+import 'vue-date-pick/dist/vueDatePick.css';
+// import { SetupCalendar, Calendar, DatePicker } from 'v-calendar';
 
-
+// // Setup plugin for defaults or `$screens` (optional)
+// app.use(SetupCalendar, {})
+// // Use the components
+// app.component('Calendar', Calendar)
+// app.component('DatePicker', DatePicker)
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { useCollectionStorePinia } from "./stores/store/collection";
@@ -107,7 +114,9 @@ const options = {
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
+
 app.use(pinia);
+app.use(moment)
 app.use(PrimeVue);
 app.use(router);
 app.use(ToastService);
@@ -115,6 +124,8 @@ app.use(VueAxios, axios);
 app.use(VueAxios, {$request: axios});
 app.use(VueProgressBar, options);
 app.use(vClickOutside);
+app.use(DatePick);
+//app.component("DatePick", Datepick);
 app.component("Textarea", Textarea);
 app.component("Calendar", Calendar);
 app.component("Avatar", Avatar);
