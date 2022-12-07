@@ -1,4 +1,3 @@
-
 <template lang="">
   <Wrapper>
     <div class="content">
@@ -22,22 +21,21 @@
                     @complete="searchFName($event)"
                     optionLabel="text"
                     placeholder="Nhập Tên"
-                    
                   />
                 </span>
               </form>
             </div>
             <div class="lastname">
               <form>
-                <div class="txtLName">Họ <br /> </div>
+                <div class="txtLName">Họ <br /></div>
                 <span class="p-fluid">
-                <AutoComplete
-                  v-model="v_lname"
-                  :suggestions="filterLName"
-                  @complete="searchLName($event)"
-                  optionLabel="text"
-                  placeholder="Nhập Họ"
-                />
+                  <AutoComplete
+                    v-model="v_lname"
+                    :suggestions="filterLName"
+                    @complete="searchLName($event)"
+                    optionLabel="text"
+                    placeholder="Nhập Họ"
+                  />
                 </span>
               </form>
             </div>
@@ -47,13 +45,13 @@
               <form>
                 <div class="txtEmail">Email <br /></div>
                 <span class="p-fluid">
-                <AutoComplete
-                  v-model="v_email"
-                  :suggestions="filterEmail"
-                  @complete="searchEmail($event)"
-                  optionLabel="mail"
-                  placeholder="Nhập Email"
-                />
+                  <AutoComplete
+                    v-model="v_email"
+                    :suggestions="filterEmail"
+                    @complete="searchEmail($event)"
+                    optionLabel="mail"
+                    placeholder="Nhập Email"
+                  />
                 </span>
               </form>
             </div>
@@ -61,28 +59,36 @@
               <form>
                 <div class="txtPhone">Số điện thoại <br /></div>
                 <span class="p-fluid">
-                <AutoComplete
-                  v-model="v_phone"
-                  :suggestions="filterPhone"
-                  @complete="searchPhone($event)"
-                  optionLabel="phone"
-                  placeholder="Nhập Số Điện Thoại"
-                />
+                  <AutoComplete
+                    v-model="v_phone"
+                    :suggestions="filterPhone"
+                    @complete="searchPhone($event)"
+                    optionLabel="phone"
+                    placeholder="Nhập Số Điện Thoại"
+                  />
                 </span>
               </form>
             </div>
           </div>
           <div class="button">
-          <button type="button">Lưu</button>
+            <button type="button">Lưu</button>
           </div>
         </div>
       </div>
       <div class="left-column">
         <div class="sidebar-account">
-          <p><li><a href="#">Tài khoản</a></li></p>
-          <p><li><a href="#">Đơn hàng</a></li></p>
-          <p><li><a href="#">Địa chỉ giao nhận</a></li></p>
-          <p><li><a href="#">Ưu đãi của tôi</a></li></p>
+          <p>
+            <li><a href="#">Tài khoản</a></li>
+          </p>
+          <p>
+            <li><a href="#">Đơn hàng</a></li>
+          </p>
+          <p>
+            <li><a href="#">Địa chỉ giao nhận</a></li>
+          </p>
+          <p>
+            <li><a href="#">Ưu đãi của tôi</a></li>
+          </p>
         </div>
       </div>
     </div>
@@ -90,7 +96,7 @@
 </template>
 <script>
 import Wrapper from "../../Wrapper.vue";
-import axios from 'axios';
+import axios from "axios";
 import { defineState, defineActions } from "pinia";
 export default {
   components: {
@@ -98,14 +104,12 @@ export default {
   },
   data() {
     return {
-      
       position: "center",
-    };    
+    };
   },
   computed: {
-    ...defineState
-  }
-
+    ...defineState,
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -113,7 +117,7 @@ export default {
 ul.breadcrumb {
   padding: 10px 16px;
   list-style: none;
- // background-color: #eee;
+  // background-color: #eee;
 }
 
 /* Display list items side by side */
@@ -123,7 +127,7 @@ ul.breadcrumb li {
 }
 
 /* Add a slash symbol (/) before/behind each list item */
-ul.breadcrumb li+li:before {
+ul.breadcrumb li + li:before {
   padding: 8px;
   color: #797979;
   content: ">\00a0";
@@ -137,7 +141,7 @@ ul.breadcrumb li a {
 
 /* Add a color on mouse-over */
 ul.breadcrumb li a:hover {
-  color: #797979 ;
+  color: #797979;
   font-weight: 600;
   text-decoration: underline;
 }
@@ -148,61 +152,63 @@ ul.breadcrumb li a:hover {
   flex-direction: column;
   display: flex;
   .info {
-    width:100%;
+    width: 100%;
     h2 {
       font-weight: 700;
     }
-    .txtLName,.txtFName,.txtPhone,.txtEmail {
+    .txtLName,
+    .txtFName,
+    .txtPhone,
+    .txtEmail {
       margin-bottom: 15px;
     }
-  .fullname {
-    display: flex;
-    flex-direction: row;
-    .lastname {
-      width: 50%;
-      margin-left: 10px;
-      //margin-top:10px;
+    .fullname {
+      display: flex;
+      flex-direction: row;
+      .lastname {
+        width: 50%;
+        margin-left: 10px;
+        //margin-top:10px;
+      }
+      .firstname {
+        width: 50%;
+        //margin: 50%;
+        margin-right: 5px;
+        //margin-top: 10px;
+      }
     }
-    .firstname {
-      width:50%;
-      //margin: 50%;
-      margin-right: 5px;
-      //margin-top: 10px;
+    .emailphone {
+      display: flex;
+      flex-direction: row;
+      margin-top: 60px;
+      width: 100%;
+      .email {
+        margin-right: 10px;
+        width: 50%;
+      }
+      .phone {
+        //margin-right: 10px;
+        width: 50%;
+      }
+    }
+    button {
+      border: none;
+      background-color: #94c83d;
+      text-align: center;
+      display: inline-block;
+      font-size: 24px;
+      border-radius: 38px;
+      margin-top: 40px;
+      margin-left: 75%;
+      width: 200px;
+      height: 50px;
+      font-weight: 700;
+      box-sizing: border-box;
+      color: #fff;
+      text-shadow: 0-1px 0 rbg(0 0 0/12%);
+      box-shadow: 0-2px rbg(0 0 0 /5%);
     }
   }
-  .emailphone {
-    display: flex;
-    flex-direction: row;
-    margin-top: 60px;
-    width: 100%;
-    .email {
-      margin-right: 10px;
-      width: 50%;
-    }
-    .phone {
-      //margin-right: 10px;
-      width: 50%;
-    }
-  }
-  button {
-    border:none;
-    background-color: #94C83D;
-    text-align: center;
-    display: inline-block;
-    font-size:24px;  
-    border-radius: 38px;
-    margin-top:40px;
-    margin-left:75%;
-    width:200px;
-    height: 50px;
-    font-weight: 700;
-    box-sizing: border-box;
-    color: #fff;
-    text-shadow: 0-1px 0 rbg(0 0 0/12%);
-    box-shadow: 0-2px rbg(0 0 0 /5%);
-  
-  }
-}
 }
 
 .left-column {
@@ -212,10 +218,9 @@ ul.breadcrumb li a:hover {
   list-style-type: none;
   display: flex;
   flex-direction: column;
-  
+
   .sidebar-account a {
-    
-    padding:14px;
+    padding: 14px;
     text-decoration: none;
     color: #333;
     h4 {
@@ -228,7 +233,6 @@ ul.breadcrumb li a:hover {
   }
 }
 ::selection {
-  background:#94C83D ;
+  background: #94c83d;
 }
-
 </style>

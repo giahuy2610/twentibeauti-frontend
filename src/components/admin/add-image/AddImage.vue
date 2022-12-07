@@ -47,14 +47,17 @@ export default {
         },
         mimeType: "multipart/form-data",
       };
-      var formData = new FormData();
-      // console.log($files[0].type, $files.type);
-      formData.append("image", event.files[0]);
-      settings.data = formData;
-      $.ajax(settings).done(function (response) {
-        self.$emit("geturl", JSON.parse(response).data.link);
-        console.log(JSON.parse(response).data.link)
-      });
+      var urlList = [];
+      for (var i = 0; i < event.files.length; i++) {
+        var formData = new FormData();
+        formData.append("image", event.files[i]);
+        settings.data = formData;
+        $.ajax(settings).done(function (response) {
+          console.log(JSON.parse(response).data.link);
+          urlList.push(JSON.parse(response).data.link);
+        });
+      }
+      self.$emit("geturl", urlList);
       this.toastSuccess();
     },
     emits: ["geturl"],
@@ -65,7 +68,7 @@ export default {
     },
   },
   emitUrl(link) {
-    console.log(link)
+    console.log(link);
     this.$emit("geturl", link);
   },
 };

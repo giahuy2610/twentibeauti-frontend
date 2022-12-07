@@ -32,7 +32,7 @@ export const useCollectionStorePinia = defineStore("collectionStorePinia", {
     },
 
     async insertdata() {
-      console.log(this.collectionItems);
+      console.log(this.collectionItems.Products);
       await axios
         .post(`/collection/create`, this.collectionItems)
         .then((response) => {
@@ -86,6 +86,9 @@ export const useCollectionStorePinia = defineStore("collectionStorePinia", {
           this.collectionItems.LogoImagePath = response.data.LogoImagePath;
           this.collectionItems.WallPaperPath = response.data.WallPaperPath;
           this.collectionItems.CoverImagePath = response.data.CoverImagePath;
+          this.collectionItems.StartOn = response.data.StartOn;
+          this.collectionItems.EndOn = response.data.EndOn;
+          this.collectionItems.Products = response.data.Products;
           return response.data;
         })
         .catch(function (error) {

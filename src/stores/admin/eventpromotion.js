@@ -44,5 +44,4 @@ export const useEventStorePinia = defineStore('eventStorePinia', {
   actions: {
     
   },
-  persist: true,
 })

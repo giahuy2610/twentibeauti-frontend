@@ -1,9 +1,8 @@
 <template lang="">
   <div class="wrapper" :style="[isHidden ? 'display: none' : '']">
-    
-      <div class="modal" >
-        <ScrollPanel style="width: 100%; height: 500px">
-        <div class="modal-content" >
+    <div class="modal">
+      <ScrollPanel style="width: 100%; height: 500px">
+        <div class="modal-content">
           <slot name="header"></slot>
           <div class="modal-context">
             <div class="row_home">
@@ -109,8 +108,8 @@
             <slot name="button"></slot>
           </div>
         </div>
-      </ScrollPanel>  
-      </div>
+      </ScrollPanel>
+    </div>
   </div>
 </template>
 <script>
@@ -118,8 +117,8 @@ export default {
   data() {
     return {
       isHidden: false,
-      modal:false,
-      position:"center",
+      modal: false,
+      position: "center",
     };
   },
 };
@@ -151,23 +150,23 @@ export default {
     text-decoration: none;
     background-color: #fff;
     overflow: auto;
-white-space: nowrap;
--ms-overflow-style: none; /* IE and Edge */
-scrollbar-width: none;
+    white-space: nowrap;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
     @include mobile {
-      top:20px;
+      top: 20px;
       width: 450px;
       left: calc(50% - 230px);
     }
     @include mini-tablet {
-      top:20px;
+      top: 20px;
     }
     @include tablet {
-      top:20px;
+      top: 20px;
     }
     &::-webkit-scrollbar {
-  display: none;
-}
+      display: none;
+    }
     .modal-content {
       padding: 20px;
       display: flex;
@@ -180,14 +179,12 @@ scrollbar-width: none;
       border: none rgba(0, 0, 0, 0.9);
       outline: none;
       overflow: auto;
-
-    
     }
 
     .modal-context {
       width: 100%;
       display: block;
-      padding-top:50px;
+      padding-top: 50px;
       -moz-box-flex: 1;
       -webkit-box-flex: 1;
       display: flex;
@@ -199,36 +196,35 @@ scrollbar-width: none;
         flex-direction: row;
         width: 100%;
         gap: 15px;
-        @include mobile{
+        @include mobile {
           flex-direction: column;
         }
-        .firstName,.lastName {
+        .firstName,
+        .lastName {
           width: 50%;
-          @include mobile{
+          @include mobile {
             flex-direction: column;
-            width:100%;
+            width: 100%;
           }
         }
-        
       }
       .row_city_district {
         display: flex;
         flex-direction: row;
         width: 100%;
         gap: 15px;
-        @include mobile{
+        @include mobile {
           flex-direction: column;
         }
-        .row_city,.row_district {
+        .row_city,
+        .row_district {
           width: 50%;
-          @include mobile{
-            width:100%;
+          @include mobile {
+            width: 100%;
           }
         }
-       
       }
     }
-
   }
 }
 </style>

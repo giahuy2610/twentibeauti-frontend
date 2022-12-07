@@ -5,7 +5,6 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
   state: () => ({
     // @type {{ name: string, SKU: int, retailPrice: int, imagePath: string, routePath: string, quantity: int}[]}
     cartItems: [],
-    total: 0,
     user: null,
     isVisibleLogin: true,
   }),
@@ -15,8 +14,12 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
     },
   },
   actions: {
-    increaseTotal() {
-      this.total++; 
+    total() {
+      let totaltemp = 0;
+      this.cartItems.forEach((element) => {
+        totaltemp += element.RetailPrice * element.Quantity;
+      });
+      return totaltemp;
     },
     // async addCartItem(newItem) {
     //   //newItem @type {{ name: string, SKU: int, retailPrice: int, imagePath: string, routePath: string}[]}
@@ -112,7 +115,6 @@ export const useCartStorePinia = defineStore("cartStorePinia", {
         .then((response) => {
           console.log(response.data);
           this.cartItems = response.data;
-          this.total = 10;
         })
         .catch(function (error) {
           console.error(error);

@@ -11,7 +11,7 @@
           :inputId="item.id"
           name="patransporty"
           :value="item.id"
-          v-model="selectedTransport"
+          v-model="receiverInfo.MethodTransfer"
         />
         <label :for="item.id">{{ item.label }}</label>
       </div>
@@ -19,6 +19,8 @@
   </div>
 </template>
 <script>
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
@@ -34,7 +36,12 @@ export default {
     };
   },
   mounted() {
-    this.selectedTransport = this.array[0].id;
+    this.receiverInfo.MethodTransfer = this.array[0].id;
+  },
+  computed: {
+    ...mapWritableState(useCheckoutStorePinia, {
+      receiverInfo: "receiverInfo",
+    }),
   },
 };
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div class="product-table-wrapper">
-    {{ selectedProducts.map((product) => product["IDProduct"]) }}
     <DataTable
       v-model:value="products"
       :paginator="true"
@@ -306,11 +305,15 @@ export default {
       .then((response) => {
         this.products = response.data;
         this.loading = false;
-        console.log(this.products);
       })
       .catch((error) => {
         console.log(error);
       });
+    if (
+      this.$route.path.slice(0, this.$route.path.lastIndexOf("/") + 1) ==
+      "/admin/collections/edit/"
+    )
+      this.selectedProducts = this.collectionItems.Products;
   },
   methods: {
     formatDate(value) {
@@ -337,6 +340,7 @@ export default {
       this.collectionItems.Products = newValue.map(
         (product) => product["IDProduct"]
       );
+      console.log(this.collectionItems.Products);
     },
   },
 };

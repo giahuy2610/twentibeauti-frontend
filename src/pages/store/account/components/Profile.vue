@@ -60,7 +60,7 @@
     </div>
   </div>
 </template>
-<script >
+<script>
 import { useInfoAccountStorePinia } from "@/stores/store/InfoAccount.js";
 import { mapWritableState, mapActions } from "pinia";
 export default {
@@ -75,15 +75,15 @@ export default {
   computed: {
     ...mapWritableState(useInfoAccountStorePinia, {
       infoCus: "infoCus",
-      getInfoCus: "getInfoCus"
+      getInfoCus: "getInfoCus",
     }),
   },
   methods: {
-    ...mapActions(useInfoAccountStorePinia, ["loadDefaultInfoCus","updatedInfoCus"]),
+    ...mapActions(useInfoAccountStorePinia, [
+      "loadDefaultInfoCus",
+      "updatedInfoCus",
+    ]),
   },
-  mounted() {
-    this.loadDefaultInfoCus();
-  }
 
 };
 </script>

@@ -20,7 +20,7 @@
             label="Lưu"
             class="p-button-info"
             @click="createNewProduct()"
-            v-if='$route.path == "/admin/products/create"'
+            v-if="$route.path == '/admin/products/create'"
           />
           <Button
             label="Cập nhật"
@@ -48,15 +48,12 @@ export default {
     ...mapActions(useProductStorePinia, [
       "createNewProduct",
       "getAPIProductInfo",
-      "updateProduct",  
+      "updateProduct",
     ]),
   },
   components: {
     AdminBlankPage,
     Main_content,
-  },
-  data() {
-    return {};
   },
   async mounted() {
     if (this.$route.path != "/admin/products/create") {

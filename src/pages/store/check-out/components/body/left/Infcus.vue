@@ -110,12 +110,11 @@
       <br />
 
       <br />
-      <div class="field-checkbox">
+      <!-- <div class="field-checkbox">
         <Checkbox inputId="binary" v-model="checked" :binary="true" />
         <label for="binary">Tạo tài khoản với thông tin này </label>
-      </div>
+      </div> -->
     </div>
-    <Button label="Đặt hàng" class="p-button-rounded" @click="increaseTotal" />
   </div>
 </template>
 
@@ -139,7 +138,6 @@ export default {
   computed: {
 ...mapWritableState(useCheckoutStorePinia, {
   receiverInfo: "receiverInfo",
-  //getReceiverInfo: "getReceiverInfo",
 }),
 ...mapWritableState(useInfoAccountStorePinia,{
   infoCus: "infoCus"
@@ -214,16 +212,16 @@ export default {
     //      {
     //     console.log(this.getInfoCus(6));
     //     // return this.getInfoCollection(this.$route.params.id).save;
-        
-    //   } 
+
+    //   }
     // },
-    ...mapActions(useCheckoutStorePinia, ["increaseTotal","loadDefaultInfo"]),
+    // ...mapActions(useCheckoutStorePinia, ["increaseTotal","loadDefaultInfo"]),
     ...mapActions(useInfoAccountStorePinia, ["loadDefaultInfoCus"]),
   },
-  mounted() {
+  async mounted() {
 
-    this.loadProvinces();
-    this.loadDefaultInfoCus();
+    await this.loadProvinces();
+    await this.loadDefaultInfoCus();
     this.receiverInfo.FirstName = this.infoCus.FirstName;
     this.receiverInfo.LastName = this.infoCus.LastName;
     this.receiverInfo.Email = this.infoCus.Email;

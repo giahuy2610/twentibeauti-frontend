@@ -1,111 +1,138 @@
 <template lang="">
-<Wrapper>
-  <FormOrderAgain v-if="modal1">
-    <template v-slot:button>
-      <div class="btn-save">
-        <button @click="modal1 = false">Mua lại</button>
-      </div>
-    </template>
-    <template v-slot:header>
-      <div class="m-header">
-        <div class="modal-title">
-          <div class="m-head">Thêm vào giỏ hàng</div>
+  <Wrapper>
+    <FormOrderAgain v-if="modal1">
+      <template v-slot:button>
+        <div class="btn-save">
+          <button @click="modal1 = false">Mua lại</button>
         </div>
-        <div class="btn-close">
-          <i class="pi pi-times" @click="modal1 = false"></i>
+      </template>
+      <template v-slot:header>
+        <div class="m-header">
+          <div class="modal-title">
+            <div class="m-head">Thêm vào giỏ hàng</div>
+          </div>
+          <div class="btn-close">
+            <i class="pi pi-times" @click="modal1 = false"></i>
+          </div>
         </div>
-      </div>
-    </template>
-  </FormOrderAgain>
-  <div class="header-bread">
-    <ul class="breadcrumb">
-      <li><a href="/">Trang chủ</a></li>
-      <li><a href="/account/orders">Tài khoản</a></li>
-      <li>Đơn hàng</li>
-
-    </ul>
-  </div>
-  <div class="order-detail">
-    <div class="header">
-      <div class="header-id">
-        <h1 class="order-id">Đơn hàng SS001</h1>
-        <h5 class="time-delivery">
-          Giao hàng dự kiến: 03/10/2022 - 06/10/2022
-        </h5>
-      </div>
-      <div class="btn-buy-again">
-        <button type="button" @click="modal1 = true">Mua lại</button>
-      </div>
+      </template>
+    </FormOrderAgain>
+    <div class="header-bread">
+      <ul class="breadcrumb">
+        <li><a href="/">Trang chủ</a></li>
+        <li><a href="/account/orders">Tài khoản</a></li>
+        <li>Đơn hàng</li>
+      </ul>
     </div>
-    <div class="box-info">
-      <div class="box-info-order">
-        <div class="title">Thông tin nhận hàng</div>
-        <div class="name">Ái Dịu</div>
-        <div class="phone">0868247806</div>
-        <div class="address">Phường Hiệp Thành, Quận 12, Hồ Chí Minh</div>
-      </div>
-      <div class="box-info-payment">
-        <div class="title">Phương thức thanh toán</div>
-        <div class="payment">Trả tiền mặt khi nhận hàng (COD)</div>
-        <div class="script">
-          Quý khách vui lòng thanh toán 850.000đ khi nhận hàng
+    <div class="order-detail">
+      <div class="header">
+        <div class="header-id">
+          <h1 class="order-id">Đơn hàng SS00{{ invoiceData.IDInvoice }}</h1>
+          <h5 class="time-delivery">
+            Giao hàng dự kiến: 03/10/2022 - 06/10/2022
+          </h5>
+        </div>
+        <div class="btn-buy-again">
+          <button type="button" @click="modal1 = true">Mua lại</button>
         </div>
       </div>
-      <div class="box-info-delivery">
-        <div class="title">Thông tin vận chuyển</div>
-        <div class="id-delivery">SS001</div>
-      </div>
-    </div>
-    <div class="step">
-      <Step></Step>
-    </div>
-    <div class="order">
-      <div class="title">Đơn hàng</div>
-      <div class="product">
-        <div class="img">
-          <img
-            src="https://image.hsv-tech.io/65x65/tfs/products/5a9dd1c9-efec-41f6-b956-13d49e792d3e.webp"
-            alt="Ảnh sản phẩm"
-          />
-        </div>
-        <div class="nameproduct">
+      <div class="box-info">
+        <div class="box-info-order">
+          <div class="title">Thông tin nhận hàng</div>
           <div class="name">
-            <router-link
-              role="presentation"
-              to="/product"
-            >
-              Kem chống nắng hiệu chỉnh da BELIF UV PROTECTOR MULTI SUNSCREEN
-              SPF50++ PA++++ 50ml
-            </router-link>
+            {{ invoiceData.Address.FirstName }}
+            {{ invoiceData.Address.LastName }}
           </div>
-          <div class="number-sku">
-            <div class="sku">SKU: 52101289</div>
-            <div class="number">x1</div>
+          <div class="phone">{{ invoiceData.Address.Phone }}</div>
+          <div class="address">
+            {{ invoiceData.Address.AddressDetail }}
+            {{ invoiceData.Address.Ward }}
+            {{ invoiceData.Address.District }}
+            {{ invoiceData.Address.City }}
           </div>
         </div>
-        <div class="price">850.000đ</div>
+        <div class="box-info-payment">
+          <div class="title">Phương thức thanh toán</div>
+          <div class="payment">
+            {{
+              invoiceData.MethodPay == "1"
+                ? "Trả tiền mặt khi nhận hàng (COD)"
+                : "Thanh toán qua VNPay"
+            }}
+          </div>
+          <div class="script">
+            {{
+              invoiceData.MethodPay == 1 &&
+              invoiceData.IsPaid == 0 &&
+              invoiceData.IDTracking == 1
+                ? "Quý khách vui lòng thanh toán 850.000đ khi nhận hàng"
+                : ""
+            }}
+          </div>
+        </div>
+        <div class="box-info-delivery">
+          <div class="title">Thông tin vận chuyển</div>
+          <div class="id-delivery">SS00{{ invoiceData.IDInvoice }}</div>
+        </div>
       </div>
-      <div class="payment">
-        <div class="list">
-          <div class="label">Tạm tính</div>
-          <div class="money">850.000đ</div>
+      <div class="step">
+        <Step :statusNum="invoiceData.IDTracking"></Step>
+      </div>
+      <div class="order">
+        <div class="title">Đơn hàng</div>
+        <div class="product" v-for="(item, index) in invoiceData.Products">
+          <div class="img">
+            <img :src="item.Images[0]['Path']" alt="Ảnh sản phẩm" />
+          </div>
+
+          <div class="nameproduct">
+            <div class="name">
+              <router-link role="presentation" to="/product">
+                {{ item.NameProduct }}
+              </router-link>
+            </div>
+            <div class="number-sku">
+              <div class="sku">SKU: {{ item.IDProduct }}</div>
+              <div class="number">x{{ item.Quantity }}</div>
+            </div>
+          </div>
+          <div class="price">
+            {{ Intl.NumberFormat().format(item.RetailPrice) }}đ
+          </div>
         </div>
-        <div class="list">
-          <div class="label">Giảm giá</div>
-          <div class="money">0 đ</div>
-        </div>
-        <div class="list">
-          <div class="label">Phí giao hàng</div>
-          <div class="money">0 đ</div>
-        </div>
-        <div class="list">
-          <div class="label">Tổng</div>
-          <div class="money">850.000đ</div>
+        <div class="payment">
+          <div class="list">
+            <div class="label">Tạm tính</div>
+            <div class="money">
+              {{
+                Intl.NumberFormat().format(
+                  invoiceData.TotalValue + invoiceData.Coupon.ValueDiscount
+                )
+              }}đ
+            </div>
+          </div>
+          <div class="list">
+            <div class="label">Giảm giá</div>
+            <div class="money">
+              {{
+                Intl.NumberFormat().format(invoiceData.Coupon.ValueDiscount)
+              }}đ
+            </div>
+          </div>
+          <div class="list">
+            <div class="label">Phí giao hàng</div>
+            <div class="money">{{ Intl.NumberFormat().format(0) }}đ</div>
+          </div>
+          <div class="list">
+            <div class="label">Tổng</div>
+            <div class="money">
+              {{ Intl.NumberFormat().format(invoiceData.TotalValue) }}đ
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</Wrapper>
+  </Wrapper>
 </template>
 <script>
 import FormOrderAgain from "./FormOrderAgain.vue";
@@ -143,14 +170,103 @@ export default {
           to: "/status",
         },
       ],
+      invoiceData: {
+        IDInvoice: 0,
+        IDTracking: 1,
+        IDAddress: 1,
+        IDCoupon: null,
+        IDCus: 2,
+        Note: null,
+        TotalValue: 0,
+        MethodPay: 0,
+        MethodTransfer: 0,
+        CreatedOn: "2022-12-03 16:30:50",
+        IsPrintInvoice: 0,
+        IsPaid: 0,
+        Products: [
+          {
+            IDProduct: 0,
+            NameProduct: "",
+            IDBrand: 6,
+            Description: "",
+            CreatedOn: "",
+            IsDeleted: 0,
+            Stock: 0,
+            TotalPurchaseQuantity: 0,
+            Mass: 0,
+            UnitsOfMass: "",
+            Units: "Unit",
+            ApplyTaxes: 0,
+            StatusSale: 1,
+            IDTag: 2,
+            IDType: 3,
+            ListPrice: 699000,
+            RetailPrice: 699000,
+            Brand: {
+              IDBrand: 0,
+              NameBrand: "",
+              IDCollection: "",
+              Country: "",
+              CreatedOn: "",
+              IsDeleted: 0,
+              TotalProduct: 0,
+              TotalPurchaseQuantity: 0,
+            },
+            Images: [
+              {
+                Path: "",
+              },
+            ],
+            Rating: 0,
+            Reviews: [],
+            Quantity: 1,
+          },
+        ],
+        Address: {
+          IDAddress: 0,
+          City: "",
+          District: "",
+          AddressDetail: "",
+          Ward: "",
+          Phone: 0,
+          IsDeleted: 0,
+          FirstName: "",
+          LastName: "",
+          Email: "",
+        },
+        Coupon: {
+          IDCoupon: 0,
+          ValueDiscount: 0,
+          StartOn: "",
+          EndOn: "",
+          Description: "",
+          IsDeleted: 0,
+          MinInvoiceValue: 0,
+          CodeCoupon: "",
+          Quantity: 0,
+          IsMutualEvent: 0,
+          Stock: 0,
+        },
+      },
     };
+  },
+  async mounted() {
+    await this.axios
+      .get("/invoice/show/1")
+      .then((response) => {
+        this.invoiceData = response.data;
+        console.log(this.invoiceData);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import "@/scss/mixin";
-.header-bread{
+.header-bread {
   ul.breadcrumb {
     padding: 20px 40px;
     list-style: none;
@@ -206,7 +322,7 @@ export default {
   }
 }
 .order-detail {
-  margin:0px 80px;
+  margin: 0px 80px;
   .header {
     display: flex;
     flex-direction: row;
@@ -222,9 +338,8 @@ export default {
     .btn-buy-again {
       margin-top: 50px;
       @include mobile {
-          
         margin-top: 0px;
-        margin-bottom:10px;
+        margin-bottom: 10px;
       }
       button {
         background-color: #fff;
@@ -274,20 +389,20 @@ export default {
       }
     }
   }
-  
+
   .order {
     margin: 130px 0px;
     border: 1px solid #d3d7d3;
     border-radius: 15px;
     padding: 20px;
     @include mobile {
-      margin-top:20px;
+      margin-top: 20px;
     }
     @include mini-tablet {
-      margin-top:20px;
+      margin-top: 20px;
     }
     @include tablet {
-      margin-top:150px;
+      margin-top: 150px;
     }
     .title {
       margin-bottom: 20px;
@@ -322,14 +437,13 @@ export default {
             font-size: 14px;
           }
         }
-        
       }
       .price {
         //font-weight: 600;
         @include mobile {
           //font-weight: 600;
           margin-top: 10px;
-          margin-left:15px;
+          margin-left: 15px;
         }
       }
     }
