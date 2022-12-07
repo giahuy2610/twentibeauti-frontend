@@ -13,7 +13,7 @@
     <div class="cart__footer">
       <div class="flex justify-content-between">
         <h4>Tổng giá trị đơn hàng</h4>
-        <h4>{{ Intl.NumberFormat().format(total) }}đ</h4>
+        <h4>{{ Intl.NumberFormat().format(total()) }}đ</h4>
       </div>
 
       <p>Bạn có thể xem các chương trình khuyến mãi ở màn hình kế tiếp</p>
@@ -45,18 +45,12 @@ export default {
     ...mapState(useCartStorePinia, {
       cartItems: "cartItems",
     }),
-    total() {
-      let totaltemp = 0;
-      this.cartItems.forEach((element) => {
-        totaltemp += element.RetailPrice * element.Quantity;
-      });
-      return totaltemp;
-    },
   },
   methods: {
     ...mapActions(useCartStorePinia, {
       increaseTotal: "increaseTotal",
-      getCartItem: "getCartItem"
+      getCartItem: "getCartItem",
+      total: "total",
     }),
   },
   async mounted() {

@@ -40,6 +40,5 @@ export const useCollectionStorePinia = defineStore({
           console.error(error);
         });
     },
-  },
-  persist: true,
+  }
 });

@@ -39,6 +39,7 @@ export const useProductStorePinia = defineStore("productStorePinia", {
         .get("/product/show/" + IDProduct)
         .then((response) => {
           this.productInfo = response.data;
+          console.log(response.data)
         })
         .catch(function (error) {
           console.error(error);

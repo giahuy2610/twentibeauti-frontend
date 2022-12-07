@@ -3,38 +3,50 @@
     <div class="righttop shadow-3">
       <h2>Đơn hàng</h2>
       <div class="cart__body">
-        <ScrollPanel style="width: 100%; max-height:500px ; height:fit-content">
+        <ScrollPanel
+          style="width: 100%; max-height: 500px; height: fit-content"
+        >
           <ProductItemList></ProductItemList>
         </ScrollPanel>
       </div>
       <div class="cart__footer">
         <div class="flex justify-content-between">
           <h4>Tổng giá trị đơn hàng</h4>
-          <h4>{{ total }}</h4>
+          <h4>{{ Intl.NumberFormat().format(total()) }}</h4>
         </div>
         <div class="coupon">
           <div class="flex justify-content-between">
             <h4>Giảm giá</h4>
-            <h4>{{ discount }}</h4>
+            <h4>
+              {{
+                Intl.NumberFormat().format(couponSelected["ValueDiscount"] ?? 0)
+              }}
+            </h4>
           </div>
-          <div class="idcoupon">
-            <p>magiamgia</p>
-            <i class="pi pi-times"></i>
+          <div class="idcoupon" v-if="couponSelected['CodeCoupon'] != null">
+            <p>{{ couponSelected["CodeCoupon"] }}</p>
+            <i class="pi pi-times" @click="couponSelected = {}"></i>
           </div>
         </div>
         <div class="flex justify-content-between">
           <h4>Tổng tiền ship</h4>
-          <h4>{{ total }}</h4>
+          <h4>0đ</h4>
         </div>
 
         <div class="flex justify-content-between">
           <h4>Tổng (đã bao gồm VAT)</h4>
-          <h4>{{ total }}</h4>
+          <h4>
+            {{
+              Intl.NumberFormat().format(
+                total() - (couponSelected["ValueDiscount"] ?? 0)
+              )
+            }}
+          </h4>
         </div>
 
         <div class="order">
           <span class="p-fluid">
-            <Button label="Đặt hàng" class="p-button-rounded" />
+            <Button label="Đặt hàng" class="p-button-rounded" @click="createInvoice()"/>
           </span>
         </div>
         <div class="footer">
@@ -51,8 +63,11 @@
         <div class="apply">
           <div class="grid p-fluid">
             <div class="p-inputgroup p-fluid">
-              <InputText placeholder="Nhập mã giảm giá (nếu có)" />
-              <Button label="Áp dụng" />
+              <InputText
+                placeholder="Nhập mã giảm giá (nếu có)"
+                v-model="couponCode"
+              />
+              <Button label="Áp dụng" @click="getCoupon(couponCode);couponCode = ''" />
             </div>
           </div>
         </div>
@@ -75,26 +90,38 @@
 </template>
 <script>
 import ProductItemList from "@/components/store/home/cart/ProductItemList.vue";
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { useCartStorePinia } from "@/stores/store/cart.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
+  methods: {
+    ...mapActions(useCheckoutStorePinia, ["getCoupon","createInvoice"]),
+    ...mapActions(useCartStorePinia, ["total"]),
+  },
   components: {
     ProductItemList,
   },
   data() {
     return {
-      total: 0,
+      couponCode: "",
       discount: 0,
     };
   },
+  computed: {
+    ...mapWritableState(useCheckoutStorePinia, ["couponSelected"]),
+    ...mapWritableState(useCartStorePinia, []),
+  },
 };
 </script>
+
 <style lang="scss" scoped>
 @import "@/scss/mixin";
+
 .right {
   width: 50%;
   margin-left: 20px;
   padding-right: 10pt;
   @include mobile {
-    
     width: 100%;
   }
   @include mini-tablet {
@@ -112,7 +139,7 @@ export default {
     padding: 10px;
     display: flex;
     flex-direction: column;
-    
+
     .cart__body {
       border-top: 1px solid rgb(235, 224, 224);
       border-bottom: 1px solid rgb(235, 224, 224);

@@ -34,12 +34,12 @@
 </template>
 <script>
 import Wrapper from "../../Wrapper.vue";
-import SideBar from "./components/SideBar.vue";
 import SavePointCard from "./components/SavePointCard.vue";
+import { useInfoAccountStorePinia } from "@/stores/store/InfoAccount.js";
+import { mapActions } from "pinia";
 export default {
   components: {
     Wrapper,
-    SideBar,
     SavePointCard,
   },
   data() {
@@ -63,6 +63,15 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    this.loadDefaultInfoCus();
+  },
+  methods: {
+    ...mapActions(useInfoAccountStorePinia, [
+      "loadDefaultInfoCus",
+      "updatedInfoCus",
+    ]),
   },
 };
 </script>
@@ -197,7 +206,6 @@ export default {
 
       font-weight: 600;
       text-decoration: none;
-      
     }
   }
 }

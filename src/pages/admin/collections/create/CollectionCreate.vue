@@ -93,8 +93,8 @@ import { useCollectionStorePinia } from "@/stores/admin/collection.js";
 import { mapWritableState, mapActions } from "pinia";
 import moment from 'moment';
 import AdminCollectionsVue from "../AdminCollections.vue";
-var minDateValue = new Date();
-console.log(minDateValue);
+import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
+
 export default {
   components: {
     AdminBlankPage,
@@ -150,15 +150,15 @@ export default {
       console.log(n);
       //mỗi hàm này tương ứng sẽ chạy khi mà m upload ảnh, giá trị n là cái link ảnh
       //giờ có link ảnh rồi thì gán vô pinia
-      this.collectionItems.LogoImagePath = n;
+      this.collectionItems.LogoImagePath = n[0];
     },
     wallimg(n) {
       console.log(n);
-      this.collectionItems.WallPaperPath = n;
+      this.collectionItems.WallPaperPath = n[0];
     },
     coverimg(n) {
       console.log(n);
-      this.collectionItems.CoverImagePath = n;
+      this.collectionItems.CoverImagePath = n[0];
     },
   },
   mounted() {
@@ -172,9 +172,14 @@ export default {
   },
   watch: {
     rangeAvailableDate(newValue, oldValue) {
-      this.collectionItems.StartOn = new Date(newValue[0]);
-      // this.collectionItems.EndOn = new Date(newValue[1]);
-      console.log(this.collectionItems.StartOn);
+      this.collectionItems.StartOn = format(
+        new Date(newValue[0]),
+        "yyyy-MM-dd HH:mm:ss"
+      ).toString();
+      this.collectionItems.EndOn = format(
+        new Date(newValue[1]),
+        "yyyy-MM-dd HH:mm:ss"
+      ).toString();
     },
   },
 };

@@ -13,9 +13,7 @@
         <div class="btn-close">
           <i class="pi pi-times" @click="modal1 = false"></i>
         </div>
-
       </div>
-      
     </template>
   </Form>
   <FormEdit v-if="modal">
@@ -32,9 +30,7 @@
         <div class="btn-close">
           <i class="pi pi-times" @click="modal = false"></i>
         </div>
-
       </div>
-      
     </template>
   </FormEdit>
   <div class="right-column">
@@ -50,12 +46,14 @@
         <div class="address-box">
           <div class="frame_add">
             <div class="address">
-              <p>phamlediuaiphamlediuaiphamlediuaiphamlediuaianhtudiuaiabcdiuai</p>
+              <p>
+                phamlediuaiphamlediuaiphamlediuaiphamlediuaianhtudiuaiabcdiuai
+              </p>
             </div>
             <!-- <div class="space">                   
                 </div> -->
             <div class="icon">
-              <button type="button" class="icon_edit" @click="modal= true">
+              <button type="button" class="icon_edit" @click="modal = true">
                 <span class="pi pi-pencil"></span>
               </button>
               <button type="button" class="icon_del">
@@ -69,7 +67,9 @@
               <div class="info_phone">0868247806</div>
               <div class="info_email">diuai4232@gmail.com</div>
               <div class="info_home">
-                44/37/1/3, HT43, phường Hiệp Thành, Quận 12, Hồ Chí Minh abcabcabcba bcbabcb abcdiuai1412ahajsjxcnxjisisiọdedeopnsdobsdobdsoiboiboisbfoiboisbfoisfdbosfbsoibsoibsoisdbosfid
+                44/37/1/3, HT43, phường Hiệp Thành, Quận 12, Hồ Chí Minh
+                abcabcabcba bcbabcb
+                abcdiuai1412ahajsjxcnxjisisiọdedeopnsdobsdobdsoiboiboisbfoiboisbfoisfdbosfbsoibsoibsoisdbosfid
               </div>
             </div>
           </div>
@@ -100,42 +100,42 @@ export default {
 @import "@/scss/mixin";
 .m-header {
   text-align: center;
-  display:flex;
+  display: flex;
   flex-direction: row;
   width: 100%;
-.m-head {
-  font-weight: 600;
-  width:100%;
-  font-size: 24px;
-  text-align: center;
-  position: absolute;
-  left:0;
-  top:10px;
-}
-  .btn-close{
+  .m-head {
+    font-weight: 600;
+    width: 100%;
+    font-size: 24px;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 10px;
+  }
+  .btn-close {
     cursor: pointer;
     //margin-top:-35px;
     position: absolute;
-    top:15px;
-    right:20px;
+    top: 15px;
+    right: 20px;
   }
 }
 .right-column {
   display: flex;
   float: right;
   width: 60%;
-  gap:10px;
+  gap: 10px;
   min-height: 200px;
   flex-direction: column;
   @include tablet {
-    width:100%;
+    width: 100%;
   }
   @include mini-tablet {
-    width:100%;
+    width: 100%;
     //color:blue;
   }
   @include mobile {
-    width:100%;
+    width: 100%;
     //color:green;
   }
   .header {
@@ -144,15 +144,13 @@ export default {
     margin-bottom: 15px;
     font-weight: 700;
     box-sizing: border-box;
-      font-weight: 700;
+    font-weight: 700;
     @include tablet {
-      
     }
     @include mini-tablet {
-      
     }
     @include mobile {
-    display:none;
+      display: none;
     }
   }
   .flex_column {
@@ -162,15 +160,15 @@ export default {
     width: 100%;
     gap: 10px;
     @include tablet {
-      width:100%;
+      width: 100%;
       //color:palevioletred;
     }
     @include mini-tablet {
-      width:100%;
+      width: 100%;
     }
     @include mobile {
-      width:100%;
-      display:flex;
+      width: 100%;
+      display: flex;
       flex-direction: column;
     }
     .box {
@@ -181,7 +179,7 @@ export default {
       margin: 0;
       padding: 0;
       @include mobile {
-        width:100%;
+        width: 100%;
       }
       .test_show {
         color: black;
@@ -209,12 +207,12 @@ export default {
             width: 80%;
             display: flex;
             overflow: hidden;
-              text-overflow: ellipsis;
-              display:-webkit-box;
-              -webkit-line-clamp: 2;
-              line-clamp: 2;
-              -webkit-box-orient:vertical ;
-              word-wrap: break-word;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            word-wrap: break-word;
             font-size: 14px;
             font-weight: 700;
             max-lines: 2;
@@ -230,7 +228,7 @@ export default {
               width: 50%;
               border: none;
               background-color: white;
-              cursor:pointer;
+              cursor: pointer;
             }
           }
         }
@@ -240,7 +238,7 @@ export default {
           overflow: hidden;
           .info {
             width: 100%;
-           //margin:15px;
+            //margin:15px;
             line-height: 1.5715;
             gap: 5px;
             box-sizing: border-box;
@@ -251,13 +249,13 @@ export default {
               font-weight: 700;
             }
             .info_home {
-              width:100%;
+              width: 100%;
               overflow: hidden;
               text-overflow: ellipsis;
-              display:-webkit-box;
+              display: -webkit-box;
               -webkit-line-clamp: 2;
               line-clamp: 2;
-              -webkit-box-orient:vertical ;
+              -webkit-box-orient: vertical;
               word-wrap: break-word;
               //word-break: break-all;
             }
@@ -279,7 +277,7 @@ export default {
       width: 45%;
       //padding: 20px;
       @include mobile {
-        width:100%;
+        width: 100%;
       }
       .plus {
         display: flex;
@@ -287,7 +285,7 @@ export default {
         align-items: center;
         justify-content: center;
         .pi {
-          cursor:pointer;
+          cursor: pointer;
           font-size: 16px;
           color: black;
           border: none;
@@ -310,23 +308,21 @@ export default {
 .btn-save {
   button {
     border: none;
-      background-color: #94c83d;
-      text-align: center;
-      display: inline-block;
-      font-size: 18px;
-      border-radius: 20px;
-      //margin-top: 40px;
-      margin-left: 75%;
-      width: 90px;
-      padding: 10px;
-      font-weight: 700;
-      box-sizing: border-box;
-      color: #fff;
-      text-shadow: 0-1px 0 rbg(0 0 0/12%);
-      box-shadow: 0-2px rbg(0 0 0 /5%);
-      cursor:pointer;
+    background-color: #94c83d;
+    text-align: center;
+    display: inline-block;
+    font-size: 18px;
+    border-radius: 20px;
+    //margin-top: 40px;
+    margin-left: 75%;
+    width: 90px;
+    padding: 10px;
+    font-weight: 700;
+    box-sizing: border-box;
+    color: #fff;
+    text-shadow: 0-1px 0 rbg(0 0 0/12%);
+    box-shadow: 0-2px rbg(0 0 0 /5%);
+    cursor: pointer;
   }
 }
-
 </style>
-

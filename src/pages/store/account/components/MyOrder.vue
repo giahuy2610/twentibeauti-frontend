@@ -1,24 +1,29 @@
 <template lang="">
   <Wrapper>
-    <div class="myorder" v-for="item in 2">
+    <div class="myorder" v-for="(item, index) in orders">
       <div class="myorder-top">
         <div class="list-items">
           <ul class="list">
             <li class="item">
-              <div class="id-date">30/09/2022</div>
+              <div class="id-date">{{ item.CreatedOn }}</div>
               <div class="id-order">
                 <span class="label">Mã đơn hàng:</span>
-                <span class="id">SS001</span>
+                <span class="id">SS00{{ item.IDInvoice }}</span>
               </div>
 
               <div class="delivery-form">
                 <span class="label">Tổng tiền:</span>
-                <span class="total">850.000đ</span>
+                <span class="total"
+                  >{{ Intl.NumberFormat().format(item.TotalValue) }}đ</span
+                >
               </div>
               <div class="address">
                 <span class="label">Giao đến:</span>
-                <span class="txtaddress"
-                  >Phường Linh Trung, Quận Thủ Đức, TPHCM</span
+                <span class="txtaddress">
+                  {{ item.Address.AddressDetail }}
+                  {{ item.Address.Ward }}
+                  {{ item.Address.District }}
+                  {{ item.Address.City }}</span
                 >
               </div>
             </li>
@@ -29,13 +34,20 @@
         <div class="tracking">
           <div class="status">
             <span class="label">Tình trạng:</span>
-            <span class="status-order">Giao hàng không thành công</span>
+            <span class="status-order">{{
+              trackingStatus[item.IDTracking - 1]["label"]
+            }}</span>
           </div>
           <div class="btn-details">
             <button
               type="button"
               class="btn"
-              @click="$router.push({ path: '/details' })"
+              @click="
+                $router.push({
+                  name: 'order details',
+                  params: { id: 1 },
+                })
+              "
             >
               Xem chi tiết
             </button>
@@ -54,11 +66,34 @@ export default {
   components: {
     Wrapper,
   },
+  props: ["orders"],
   data() {
     return {
       first: 0,
       totalRecords: 120,
       totalRecords2: 12,
+      trackingStatus: [
+        {
+          label: "Đã đặt đơn hàng",
+          to: "/",
+        },
+        {
+          label: "Xác nhận đơn hàng",
+          to: "/confirm",
+        },
+        {
+          label: "Đang chuẩn bị đơn hàng",
+          to: "/prepare",
+        },
+        {
+          label: "Đang vận chuyển",
+          to: "/delivery",
+        },
+        {
+          label: "Giao hàng không thành công",
+          to: "/status",
+        },
+      ],
     };
   },
 };
@@ -92,20 +127,19 @@ export default {
           display: flex;
           flex-direction: row;
         }
-          .id-order,
-          .delivery-form,
-          .address {
-            display: flex;
-            flex-direction: row;
-            width: 100%;
-            .label {
-              width:20%;
-              @include mobile {
-                width:30%;
-          }
+        .id-order,
+        .delivery-form,
+        .address {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          .label {
+            width: 20%;
+            @include mobile {
+              width: 30%;
             }
           }
-        
+        }
       }
     }
   }
@@ -122,13 +156,13 @@ export default {
       .status {
         padding-left: 5px;
         display: flex;
-        width:100%;
+        width: 100%;
         flex-direction: row;
         font-weight: 600;
         .label {
-          width:25%;
+          width: 25%;
           @include mobile {
-            width:30%;  
+            width: 30%;
           }
         }
       }
@@ -152,7 +186,7 @@ export default {
             // margin-left: 250px;
             margin-top: 5px;
             margin-bottom: 5px;
-            float:right;
+            float: right;
           }
         }
         .btn:hover {

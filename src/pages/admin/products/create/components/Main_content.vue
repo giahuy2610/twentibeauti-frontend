@@ -7,6 +7,9 @@
         <Card>
           <template #title> Ảnh sản phẩm </template>
           <template #content>
+            <a :href="item.Path" v-for="(item, index) in productInfo.Images"
+              >Ảnh {{ index }}</a
+            >
             <div>
               <AddFile @geturl="getdata"></AddFile>
             </div>
@@ -28,6 +31,8 @@ import AddFile from "@/components/admin/add-image/AddImage.vue";
 import OrderCreate from "./OrderCreate.vue";
 import AddInfoVue from "./AddInfo.vue";
 import FooterVue from "./Footer.vue";
+import { useProductStorePinia } from "@/stores/admin/product";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   components: {
     GeneralInfoVue,
@@ -39,8 +44,11 @@ export default {
   },
   methods: {
     getdata(value) {
-      console.log(value);
+      this.productInfo.Images = value;
     },
+  },
+  computed: {
+    ...mapWritableState(useProductStorePinia, ["productInfo"]),
   },
 };
 </script>

@@ -7,7 +7,7 @@
           <div class="txtFName">Tên</div>
           <span class="p-fluid">
             <InputText
-              v-model="fName"
+              v-model="getInfoCus.FirstName"
               :suggestions="filterFName"
               @complete="searchFName($event)"
               optionLabel="text"
@@ -19,7 +19,7 @@
           <div class="txtLName">Họ <br /></div>
           <span class="p-fluid">
             <InputText
-              v-model="lName"
+              v-model="getInfoCus.LastName"
               :suggestions="filterLName"
               @complete="searchLName($event)"
               optionLabel="text"
@@ -33,7 +33,7 @@
           <div class="txtEmail">Email <br /></div>
           <span class="p-fluid">
             <InputText
-              v-model="email"
+              v-model="getInfoCus.Email"
               :suggestions="filterEmail"
               @complete="searchEmail($event)"
               optionLabel="mail"
@@ -45,7 +45,7 @@
           <div class="txtPhone">Số điện thoại <br /></div>
           <span class="p-fluid">
             <InputText
-              v-model="phone"
+              v-model="getInfoCus.Phone"
               :suggestions="filterPhone"
               @complete="searchPhone($event)"
               optionLabel="phone"
@@ -55,21 +55,36 @@
         </div>
       </div>
       <div class="button flex justify-content-center">
-        <button type="button">Lưu</button>
+        <button type="button" @click="updatedInfoCus">Lưu</button>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { useInfoAccountStorePinia } from "@/stores/store/InfoAccount.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
-      fName: null,
-      lName: null,
-      email: null,
-      phone: null,
+      FirstName: null,
+      LastName: null,
+      Email: null,
+      Phone: null,
     };
   },
+  computed: {
+    ...mapWritableState(useInfoAccountStorePinia, {
+      infoCus: "infoCus",
+      getInfoCus: "getInfoCus",
+    }),
+  },
+  methods: {
+    ...mapActions(useInfoAccountStorePinia, [
+      "loadDefaultInfoCus",
+      "updatedInfoCus",
+    ]),
+  },
+
 };
 </script>
 <style lang="scss" scoped>

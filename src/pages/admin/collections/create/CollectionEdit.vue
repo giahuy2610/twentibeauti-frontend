@@ -37,7 +37,7 @@
           <Card>
             <template #title> Trạng thái</template>
             <template #content>
-              <div class="field-radiobutton px-3">
+              <!-- <div class="field-radiobutton px-3">
                 <RadioButton
                   inputId="statusHide"
                   name="status"
@@ -54,17 +54,16 @@
                   v-model="status"
                 />
                 <label for="statusShow">Hiện</label>
-              </div>
+              </div> -->
               <div class="p-2">Đặt lịch hiển thị</div>
 
               <Calendar
-                inputId="range"
-                v-model="value"
+                inputId="time24"
+                v-model="rangeAvailableDate"
+                :showTime="true"
+                :showSeconds="true"
                 selectionMode="range"
-                :manualInput="false"
               />
-              {{collectionItems.StartOn}}
-              {{collectionItems.EndOn}}
             </template>
           </Card>
           <Card>
@@ -118,8 +117,8 @@ import ProductTable from "../component/ProductTable.vue";
 import AddMethod from "../component/AddMethod.vue";
 import { useCollectionStorePinia } from "@/stores/admin/collection.js";
 import { mapWritableState, mapActions } from "pinia";
-var minDateValue = new Date();
-console.log(minDateValue);
+import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
+
 export default {
   components: {
     AdminBlankPage,
@@ -161,39 +160,46 @@ export default {
       }
       // window.location.reload();
     },
-
-    // getAllData: function () {
-    //     return this.getInfoCollection(this.$route.params.id);
-    // },
-    getAllData(id) {
-      return this.getInfoCollection(this.$route.params.id);
-    },
-    // reset() {
-    //   window.location.reload();
-    // },
     logoimg(n) {
       console.log(n);
       //mỗi hàm này tương ứng sẽ chạy khi mà m upload ảnh, giá trị n là cái link ảnh
       //giờ có link ảnh rồi thì gán vô pinia
-      this.collectionItems.LogoImagePath = n;
+      this.collectionItems.LogoImagePath = n[0];
     },
     wallimg(n) {
       console.log(n);
-      this.collectionItems.WallPaperPath = n;
+      this.collectionItems.WallPaperPath = n[0];
     },
     coverimg(n) {
       console.log(n);
-      this.collectionItems.CoverImagePath = n;
+      this.collectionItems.CoverImagePath = n[0];
     },
   },
   async mounted() {
-    this.getAllData();
+    await this.getInfoCollection(this.$route.params.id);
+    this.rangeAvailableDate = [
+      new Date(this.collectionItems.StartOn),
+      new Date(this.collectionItems.EndOn),
+    ];
   },
   data() {
     return {
       status: null,
       value: null,
+      rangeAvailableDate: [],
     };
+  },
+  watch: {
+    rangeAvailableDate(newValue, oldValue) {
+      this.collectionItems.StartOn = format(
+        new Date(newValue[0]),
+        "yyyy-MM-dd HH:mm:ss"
+      ).toString();
+      this.collectionItems.EndOn = format(
+        new Date(newValue[1]),
+        "yyyy-MM-dd HH:mm:ss"
+      ).toString();
+    },
   },
 };
 </script>

@@ -65,8 +65,8 @@ export default {
     ...mapActions(useCollectionStorePinia,["getInfoCollection"],
     ),
   },
-  mounted() {
-    this.getInfoCollection(this.$route.params.id)
+  async mounted() {
+    await this.getInfoCollection(this.$route.params.id)
   },
   data() {
     return {

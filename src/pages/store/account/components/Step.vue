@@ -1,46 +1,54 @@
 <template lang="">
   <div class="step">
     <ul class="progressbar">
-      <!-- <li :class="{complete: }">Đã đặt đơn hàng</li>
-      <li class="complete">Xác nhận đơn hàng</li>
-      <li class="active">Đang chuẩn bị đơn hàng</li>
-      <li>Đang vận chuyển</li>
-      <li>Giao hàng không thành công</li> -->
       <li
         v-for="(item, index) in statusName"
-        :class="{
-          complete: index + 1 < statusNum,
-          active: index + 1 === statusNum,
-        }"
+        :class="
+          statusNum != 6
+            ? {
+                complete: index + 1 < statusNum,
+                active: index + 1 === statusNum,
+              }
+            : {
+                complete: index < 1,
+                active: index + 1 === statusNum,
+              }
+        "
       >
-        {{ item }} 
-        <p style="margin:5px; color:rgba(0,0,0,0.45); font-size:14px; font-weight:500">
-            {{statusDate[index]}} days ago
-        </p>
-       
+        {{
+          index + 1 == statusNum && statusNum == 5
+            ? "Giao hàng không thành công"
+            : index == 0 && statusNum == 6
+            ? "Đơn đã hủy"
+            : item
+        }}
+        <!-- <p
+          style="
+            margin: 5px;
+            color: rgba(0, 0, 0, 0.45);
+            font-size: 14px;
+            font-weight: 500;
+          "
+        >
+          {{ statusDate[index] }} days ago
+        </p> -->
       </li>
     </ul>
   </div>
 </template>
 <script>
 export default {
+  props: ["statusNum"],
   data() {
     return {
-      statusNum: 3,
       statusName: [
         "Đã đặt đơn hàng",
         "Xác nhận đơn hàng",
         "Đang chuẩn bị đơn hàng",
         "Đang vận chuyển",
-        "Giao hàng không thành công",
+        "Giao hàng thành công",
       ],
-      statusDate: [
-        15 ,
-        15,
-        14,
-        14,
-        13,
-      ],
+      statusDate: [15, 15, 14, 14, 13],
     };
   },
 };
@@ -48,7 +56,6 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/mixin";
 .step {
-
   .progressbar {
     counter-reset: step;
     padding: 0;
@@ -71,15 +78,15 @@ export default {
     width: calc(100% / 5);
 
     @include mobile {
-        width:auto;
-       margin-top: 3rem;
-       //text-align: right;
-       //text-decoration: none;
-       //margin-left:10px;
+      width: auto;
+      margin-top: 3rem;
+      //text-align: right;
+      //text-decoration: none;
+      //margin-left:10px;
     }
     @include mini-tablet {
-      width:auto;
-       margin-top: 3rem;
+      width: auto;
+      margin-top: 3rem;
     }
   }
   .progressbar li:before {
@@ -97,10 +104,9 @@ export default {
     text-align: center;
     width: 30px;
     @include mobile {
-        //height:20px;
-        //width:50px;
+      //height:20px;
+      //width:50px;
     }
-
   }
   .progressbar li:after {
     background: #979797;
@@ -113,18 +119,18 @@ export default {
     z-index: -1;
 
     @include mobile {
-        width: 3px;
-        height: 4rem;
-        left: 50%;
-        top: -55%;
-        transform: translate(-50%);
+      width: 3px;
+      height: 4rem;
+      left: 50%;
+      top: -55%;
+      transform: translate(-50%);
     }
     @include mini-tablet {
-        width: 3px;
-        height: 4rem;
-        left: 50%;
-        top: -55%;
-        transform: translate(-50%);
+      width: 3px;
+      height: 4rem;
+      left: 50%;
+      top: -55%;
+      transform: translate(-50%);
     }
   }
   .progressbar li:first-child:after {

@@ -2,8 +2,8 @@
   <div class="card-wrapper shadow-2">
     <div class="top flex align-items-center">
       <i class="pi pi-user"></i>
-      <h3 class="ml-1">{{ userName }}</h3>
-      <h5 style="margin-left: auto">{{ userPoint }} điểm</h5>
+      <h3 class="ml-1">{{ infoCus.FirstName }}</h3>
+      <h5 style="margin-left: auto">{{ 0 }} điểm</h5>
     </div>
     <div class="bar-code flex justify-content-center">
       <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
@@ -17,13 +17,13 @@
     </div>
     <div class="phone flex justify-content-between">
       <p class="font-bold">SĐT tích điểm</p>
-      <p>{{ userPhone }}</p>
+      <p>{{ infoCus.Phone }}</p>
     </div>
     <div class="point-reward"></div>
   </div>
 </template>
 <script>
-import { useIndexStorePinia } from "@/stores/store/index.js";
+import { useInfoAccountStorePinia } from "@/stores/store/infoAccount.js";
 import { mapState, mapActions } from "pinia";
 export default {
   data() {
@@ -32,11 +32,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(useIndexStorePinia, {
-      userName: "userName",
-      userPhone: "userPhone",
-      userPoint: "userPoint",
-    }),
+    ...mapState(useInfoAccountStorePinia, ["infoCus"]),
   },
 };
 </script>
@@ -47,26 +43,26 @@ export default {
   border-radius: 10px;
   @include mobile {
     max-width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     //color:red;
   }
   @include mini-tablet {
     max-width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     //color:blue;
   }
   @include tablet {
     max-width: 100%;
-    display:flex;
+    display: flex;
     flex-direction: column;
     //color:palevioletred;
   }
   .top {
     @include mobile {
       max-width: 100%;
-      display:flex;
+      display: flex;
       flex-direction: row;
       //color:green;
     }

@@ -10,7 +10,7 @@
           :inputId="item.id"
           name="pay"
           :value="item.id"
-          v-model="selectedPayment"
+          v-model="receiverInfo.MethodPay"
         />
         <label class="ml-1" :for="item.id">{{ item.label }}</label>
       </div>
@@ -22,41 +22,54 @@
     </div>
   </div>
 </template>
-<script>
+<script lang="js">
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   data() {
     return {
       selectedPayment: null,
       array: [
-        {
-          label: "Thẻ tín dụng / ATM",
-          img: "https://inkythuatso.com/uploads/images/2021/12/payoo-logo-inkythuatso-02-15-47-06.jpg",
-          id: "idpay1",
-        },
-        {
-          label: "Ví momo",
-          img: "https://play-lh.googleusercontent.com/dQbjuW6Jrwzavx7UCwvGzA_sleZe3-Km1KISpMLGVf1Be5N6hN6-tdKxE5RDQvOiGRg",
-          id: "idpay2",
-        },
-        {
-          label: "Trả góp Flik - MoMo",
-          img: "https://static.mservice.io/fileuploads/svg/momo-file-220802114354.svg",
-          id: "idpay3",
-        },
+        // {
+        //   label: "Thẻ tín dụng / ATM",
+        //   img: "https://inkythuatso.com/uploads/images/2021/12/payoo-logo-inkythuatso-02-15-47-06.jpg",
+        //   id: "1",
+        // },
+        // {
+        //   label: "Ví momo",
+        //   img: "https://play-lh.googleusercontent.com/dQbjuW6Jrwzavx7UCwvGzA_sleZe3-Km1KISpMLGVf1Be5N6hN6-tdKxE5RDQvOiGRg",
+        //   id: "2",
+        // },
+        // {
+        //   label: "Trả góp Flik - MoMo",
+        //   img: "https://static.mservice.io/fileuploads/svg/momo-file-220802114354.svg",
+        //   id: "3",
+        // },
         {
           label: "Trả tiền mặt khi nhận hàng",
           img: "https://cdn.pixabay.com/photo/2013/07/13/12/03/banknotes-159085_960_720.png",
-          id: "idpay4",
+          id: "1",
+        },
+        {
+          label: "Thanh toán qua VNPAY",
+          img: "https://doanhnghiep.quocgiakhoinghiep.vn/wp-content/uploads/2020/07/1581089357407-1580819448160-vnpay.png",
+          id: "2",
         },
       ],
     };
   },
   mounted() {
     //set default
-    this.selectedPayment = this.array[3].id;
-  }
+    this.receiverInfo.MethodPay = this.array[0].id;
+  },
+  computed: {
+    ...mapWritableState(useCheckoutStorePinia, {
+      receiverInfo: "receiverInfo",
+    }),
+  },
 };
 </script>
+
 <style lang="scss" scoped>
 .payment {
   border-radius: 10px;

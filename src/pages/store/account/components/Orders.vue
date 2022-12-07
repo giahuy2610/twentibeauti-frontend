@@ -2,18 +2,12 @@
   <div class="right-column">
     <div class="header">Đơn hàng</div>
     <div class="scrollmenu">
-      <!-- <a href="#home"></a>
-      <a href="#blog"></a>
-      <a href="#tools"></a>
-      <a href="#news"></a>
-      <a href="#contact"></a>
-      <a href="#about"></a>
-      <a href="#support"></a> -->
       <a
         v-for="(item, index) in title"
         :class="index === selected ? 'active' : ''"
         @click="selected = index"
-        >{{ item }}</a>
+        >{{ item }}</a
+      >
     </div>
     <div class="search">
       <span class="p-fluid">
@@ -29,15 +23,20 @@
       </span>
     </div>
     <div class="my-order">
-      <MyOrder></MyOrder>
+      <MyOrder :orders="ordersDisplay"></MyOrder>
     </div>
   </div>
 </template>
 <script>
+import { useInfoAccountStorePinia } from "@/stores/store/infoAccount.js";
+import { mapState, mapActions } from "pinia";
 import MyOrder from "./MyOrder.vue";
 export default {
   components: {
     MyOrder,
+  },
+  computed: {
+    ...mapState(useInfoAccountStorePinia, ["infoCus"]),
   },
   data() {
     return {
@@ -51,7 +50,29 @@ export default {
         "Đã hủy",
         "Đơn không thành công",
       ],
+      orders: [],
+      ordersDisplay: [],
     };
+  },
+  async mounted() {
+    await this.axios
+      .get("/invoice/customer/1")
+      .then((response) => {
+        this.orders = response.data;
+        this.ordersDisplay = response.data;
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  },
+  watch: {
+    selected(newValue, oldValue) {
+      if (newValue == 0) this.ordersDisplay = this.orders;
+      else
+        this.ordersDisplay = this.orders.filter(
+          (e) => e.IDTracking == newValue
+        );
+    },
   },
 };
 </script>
@@ -69,15 +90,15 @@ export default {
   flex-direction: column;
   gap: 10px;
   @include mobile {
-    width:100%;
+    width: 100%;
     //color:red;
   }
   @include mini-tablet {
-    width:100%;
+    width: 100%;
     //color:blue;
   }
   @include tablet {
-    width:100%;
+    width: 100%;
     //color:green;
   }
   .header {

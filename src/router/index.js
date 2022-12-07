@@ -17,6 +17,7 @@ import AccountOrders from "../pages/store/account/components/Orders.vue";
 import AccountAddress from "../pages/store/account/components/Address.vue";
 import AccountPromotions from "../pages/store/account/components/MyPromotions.vue";
 import AccountOrderDetails from "../pages/store/account/components/OrderDetails.vue";
+import SearchPage from "../pages/store/search/Search.vue";
 //admin
 import AdminLayout from "../layouts/AdminLayout.vue";
 import Dashboard from "../pages/admin/dashboard/Dashboard.vue";
@@ -78,6 +79,11 @@ const routes = [
         component: CollectionsPage,
       },
       {
+        name: "search",
+        path: "/search/:key",
+        component: SearchPage,
+      },
+      {
         name: "promotions",
         path: "/promotions",
         component: PromotionsPage,
@@ -88,7 +94,8 @@ const routes = [
         component: CategoriesPage,
       },
       {
-        path: "/details",
+        name: "order details",
+        path: "/details/:id",
         component: AccountOrderDetails,
       },
 
@@ -204,7 +211,7 @@ const routes = [
         component: ListOrders,
       },
       {
-        name: "order details",
+        name: "admin order details",
         path: "orderdetails",
         component: OrderDetails,
       },
