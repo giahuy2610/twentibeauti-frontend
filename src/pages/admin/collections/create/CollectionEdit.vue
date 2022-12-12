@@ -37,26 +37,7 @@
           <Card>
             <template #title> Trạng thái</template>
             <template #content>
-              <!-- <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="statusHide"
-                  name="status"
-                  value="Ẩn"
-                  v-model="status"
-                />
-                <label for="status1">Ẩn</label>
-              </div>
-              <div class="field-radiobutton px-3">
-                <RadioButton
-                  inputId="statusShow"
-                  name="status"
-                  value="Hiện"
-                  v-model="status"
-                />
-                <label for="statusShow">Hiện</label>
-              </div> -->
               <div class="p-2">Đặt lịch hiển thị</div>
-
               <Calendar
                 inputId="time24"
                 v-model="rangeAvailableDate"
@@ -70,8 +51,23 @@
             <template #title> Ảnh bìa </template>
             <template #content>
               <div>
-                <!-- {{ getCollectionItems.WallPaperPath }} -->
-                <AddFileVue @geturl="wallimg"> </AddFileVue>
+                {{}}
+                <Chip
+                  :label="getCollectionItems.WallPaperPath"
+                  :image="getCollectionItems.WallPaperPath"
+                  class="custom-chip mb-2"
+                  removable
+                  @remove="getCollectionItems.WallPaperPath = ''"
+                  v-if="getCollectionItems.WallPaperPath != null"
+                />
+                <AddFileVue
+                  @geturl="wallimg"
+                  v-if="
+                    getCollectionItems.WallPaperPath == null ||
+                    getCollectionItems.WallPaperPath == ''
+                  "
+                  >{{ getCollectionItems.WallPaperPath }} ></AddFileVue
+                >
               </div>
             </template>
           </Card>
@@ -79,7 +75,20 @@
             <template #title> Ảnh logo </template>
             <template #content>
               <div>
-                <AddFileVue @geturl="logoimg"
+                <Chip
+                  :label="getCollectionItems.LogoImagePath"
+                  :image="getCollectionItems.LogoImagePath"
+                  class="custom-chip mb-2"
+                  removable
+                  @remove="getCollectionItems.LogoImagePath = ''"
+                  v-if="getCollectionItems.LogoImagePath != null"
+                />
+                <AddFileVue
+                  @geturl="logoimg"
+                  v-if="
+                    getCollectionItems.LogoImagePath == null ||
+                    getCollectionItems.LogoImagePath == ''
+                  "
                   >{{ getCollectionItems.LogoImagePath }}
                 </AddFileVue>
               </div>
@@ -89,9 +98,21 @@
             <template #title> Ảnh danh mục </template>
             <template #content>
               <div>
-                <AddFileVue @geturl="coverimg"
-                  >{{ getCollectionItems.CoverImagePath }} ></AddFileVue
-                >
+                <Chip
+                  :label="getCollectionItems.CoverImagePath"
+                  :image="getCollectionItems.CoverImagePath"
+                  class="custom-chip mb-2"
+                  removable
+                  @remove="getCollectionItems.CoverImagePath = ''"
+                  v-if="getCollectionItems.CoverImagePath != null"
+                />
+                <AddFileVue
+                  @geturl="coverimg"
+                  v-if="
+                    getCollectionItems.CoverImagePath == null ||
+                    getCollectionItems.CoverImagePath == ''
+                  "
+                ></AddFileVue>
               </div>
             </template>
           </Card>

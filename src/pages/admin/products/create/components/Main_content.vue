@@ -7,12 +7,21 @@
         <Card>
           <template #title> Ảnh sản phẩm </template>
           <template #content>
-            <a :href="item.Path" v-for="(item, index) in productInfo.Images"
-              >Ảnh {{ index }}</a
-            >
-            <div>
-              <AddFile @geturl="getdata"></AddFile>
-            </div>
+            <Chip
+              v-for="(item, index) in productInfo.Images"
+              :label="item"
+              :image="item"
+              class="custom-chip mb-2"
+              removable
+              @remove="
+                productInfo.Images = productInfo.Images.filter(function (
+                  value
+                ) {
+                  return value != item;
+                })
+              "
+            />
+            <AddFile @geturl="getdata"></AddFile>
           </template>
         </Card>
       </div>
@@ -44,7 +53,7 @@ export default {
   },
   methods: {
     getdata(value) {
-      this.productInfo.Images = value;
+      this.productInfo.Images = this.productInfo.Images.concat(value);
     },
   },
   computed: {

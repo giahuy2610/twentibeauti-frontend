@@ -122,6 +122,7 @@ export default {
         this.timeInSeconds =
           (new Date(response.data.EndOn) - new Date()) / 1000;
         this.productList = response.data.Products;
+        this.productList.length = Math.min(this.productList.length, 10);
       })
       .catch(function (error) {
         console.error(error);

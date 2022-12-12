@@ -67,8 +67,8 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import ProgressSpinner from "primevue/progressspinner";
 import Inplace from "primevue/inplace";
 import Fieldset from "primevue/fieldset";
-
-
+import Message from 'primevue/message';
+import Chip from 'primevue/chip';
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 
@@ -162,6 +162,8 @@ app.component("Fieldset", Fieldset);
 app.component("ToggleButton", ToggleButton);
 app.component("DynamicDialog", DynamicDialog);
 app.component("ConfirmDialog", ConfirmDialog);
+app.component("Message", Message);
+app.component("Chip", Chip);
 //app.component("ConfirmationService",ConfirmationService);
 app.use(ConfirmationService);
 app.use(DialogService);

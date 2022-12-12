@@ -40,7 +40,7 @@ export const useProductStorePinia = defineStore("productStorePinia", {
         .get("/product/show/" + IDProduct)
         .then((response) => {
           this.productInfo = response.data;
-          console.log(response.data);
+          this.productInfo.Images = this.productInfo.Images.map((image) => image.Path);
         })
         .catch(function (error) {
           console.error(error);
