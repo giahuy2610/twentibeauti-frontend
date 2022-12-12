@@ -62,7 +62,7 @@ export const useEventStorePinia = defineStore("eventStorePinia", {
   },
   actions: {
     async createEvent() {
-      console.log(this.eventPromotion)
+      console.log(this.eventPromotion);
       await axios
         .post("/event/create", this.eventPromotion)
         .then((response) => {
@@ -73,11 +73,11 @@ export const useEventStorePinia = defineStore("eventStorePinia", {
     },
     async getEvent($IDEvent) {
       await axios
-        .get("/event/show/"+$IDEvent)
+        .get("/event/show/" + $IDEvent)
         .then((response) => {
           this.eventPromotion = response.data;
         })
         .catch((e) => console.error(e));
-    }
+    },
   },
 });

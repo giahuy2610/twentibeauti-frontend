@@ -13,11 +13,13 @@
               </div>
               <div class="name-phone">
                 <a target="_blank" href="/admin/customerdetails">
-                  <h6
-                    class="name-cus">
-                    Dịu Ái
+                  <h6 class="name-cus">
+                    {{
+                      invoice.Address?.FirstName +
+                      " " +
+                      invoice.Address?.LastName
+                    }}
                   </h6>
-                  <h6 class="phone-cus">- 0868247806</h6>
                 </a>
               </div>
             </div>
@@ -57,13 +59,16 @@
                               class="address-list-phone"
                               style="font-weight: 500; line-height: 20px"
                             >
-                              0868247806
+                              {{ invoice.Address?.Phone }}
                             </div>
                             <div
                               class="address-list-home"
                               style="font-weight: 400; line-height: 20px"
                             >
-                            44/37/1/3,HT43,khu phố 4, phường Hiệp Thành,quận 12,TPHCM
+                              {{ invoice.Address?.Ward }}
+                              {{ invoice.Address?.District }}
+                              {{ invoice.Address?.City }}
+                              {{ invoice.Address?.AddressDetail }}
                             </div>
                           </div>
                           <div class="address-list edit">
@@ -101,9 +106,12 @@
                   </div>
                 </div>
               </div>
-              <div class="phone-order">0868247806</div>
+              <div class="phone-order">{{ invoice.Address?.Phone }}</div>
               <div class="address">
-                44/37/1/3,HT43,khu phố 4, phường Hiệp Thành,quận 12,TPHCM
+                {{ invoice.Address?.AddressDetail }}
+                {{ invoice.Address?.Ward }}
+                {{ invoice.Address?.District }}
+                {{ invoice.Address?.City }}
               </div>
             </div>
           </div>
@@ -161,6 +169,7 @@ export default {
     Wrapper,
     FormEditAddress,
   },
+  props: ["invoice"],
   data() {
     return {
       displayBasic: false,

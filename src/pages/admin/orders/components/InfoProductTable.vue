@@ -1,12 +1,11 @@
 <template>
   <div class="product-table-wrapper shadow-2">
     <DataTable
-      :value="products"
+      :value="invoice.Products"
       class="p-datatable-products"
       :rows="10"
       dataKey="id"
       :rowHover="true"
-      v-model:selection="selectedProducts"
       v-model:filters="filters"
       filterDisplay="menu"
       :loading="loading"
@@ -19,86 +18,74 @@
         </div>
 
         <div class="dialog overlay" id="check-stock">
-           <a class="overlay-close" href="#"></a>
-           <div class="dialog-stock">
+          <a class="overlay-close" href="#"></a>
+          <div class="dialog-stock">
             <div class="dialog-header">
               <a class="btn-close" href="#">
-                <i class="pi pi-times" style="margin-top:15px;"></i>
+                <i class="pi pi-times" style="margin-top: 15px"></i>
               </a>
               <h4>Kiểm tra tồn kho</h4>
             </div>
             <div class="dialog-body">
-              <table style="border: #E8EAEB" >
-                <tr >
-                  <th   rowspan="2">Mã SKU</th>
+              <table style="border: #e8eaeb">
+                <tr>
+                  <th rowspan="2">Mã SKU</th>
                   <th rowspan="2">Tên sản phẩm</th>
-                  <th rowspan="2">Số lượng</th>
-                  <th colspan="2">Chính sách giá</th>
+                  <th rowspan="2">Số lượng cần</th>
+                  <th colspan="3">Chính sách giá</th>
                   <th colspan="2">Kho</th>
                 </tr>
                 <tr>
-                  <th>Giá bán lẻ</th>
-                  <th>Giá bán buôn</th>
+                  <th>Giá gốc</th>
+                  <th>Giá bán lúc tạo hóa đơn</th>
+                  <th>Giá bán hiện tại</th>
                   <th>Tồn kho</th>
                   <th>Có thể bán</th>
                 </tr>
-                <tr>
-                  <td>PVN03</td>
-                  <td>Nước hoa</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>96</td>
-                  <td>96</td>
+                <tr v-for="(item, index) in invoice.Products">
+                  <td>{{ item.IDProduct }}</td>
+                  <td>{{ item.NameProduct }}</td>
+                  <td>{{ item.Quantity }}</td>
+                  <td>{{ item.ListPrice }}</td>
+                  <td>{{ item.RetailPrice }}</td>
+                  <td>{{ item.RetailPrice }}</td>
+                  <td>{{ item.Stock }}</td>
+                  <td>{{ item.Stock }}</td>
                 </tr>
               </table>
             </div>
-           </div>
-         
+          </div>
         </div>
       </template>
       <template #empty> No customers found. </template>
       <template #loading> Loading customers data. Please wait. </template>
       <!-- <Column selectionMode="multiple" headerStyle="width: 1rem"></Column> -->
 
-      <Column field="stt" header="STT" style="min-width: 5rem">
+      <Column field="stt" header="SKU" style="min-width: 5rem">
         <template #body="{ data }">
-          {{ data.id }}
+          <p
+            @click="
+              $router.push({
+                path: '/admin/products/edit/' + data.IDProduct,
+              })
+            "
+            class="namePro cursor-pointer"
+          >
+            {{ data.IDProduct }}
+          </p>
         </template>
-        
-      </Column>
-      <Column field="img" header="Ảnh" style="min-width: 5rem; cursor:pointer;">
-        <template #body="{ data }">
-          <img
-            :alt="data.images"
-            src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-            width="32"
-            style="vertical-align: middle"
-          />
-        </template>
-        
       </Column>
       <Column field="name" header="Tên sản phẩm" style="min-width: 10rem">
         <template #body="{ data }">
-          <p 
-            @click="
-              $router.push({
-                path: '/admin/products/create',
-                query: { sku: data.name },
-              })
-            "
-            class=" namePro cursor-pointer"
-          >
-            {{ data.name }}
+          <p>
+            {{ data.NameProduct }}
           </p>
         </template>
-        
       </Column>
       <Column field="quatity" header="Số lượng" style="min-width: 7rem">
         <template #body="{ data }">
-          {{ data.number }}
+          {{ data.Quantity }}
         </template>
-        
       </Column>
       <Column
         field="price"
@@ -107,21 +94,19 @@
         style="min-width: 7rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.listprice) }}
+          {{ data.RetailPrice }}
         </template>
-        
       </Column>
-      <Column
+      <!-- <Column
         field="discount"
         header="Chiết khấu"
         dataType="numeric"
         style="min-width: 7rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.salePrice) }}
+          {{ data.RetailPrice }}
         </template>
-        
-      </Column>
+      </Column> -->
       <Column
         field="total"
         header="Thành tiền"
@@ -129,33 +114,44 @@
         style="min-width: 7rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.salePrice) }}
+          {{ data.RetailPrice * data.Quantity }}
         </template>
-        
       </Column>
       <template #footer>
         <div class="footer">
-          
           <div class="info-payment">
             <div class="total">
               <div class="label">Tổng tiền</div>
-              <div class="money">300.000</div>
+              <div class="money">
+                {{ invoice.TotalValue + (invoice.Coupon?.ValueDiscount ?? 0) }}đ
+              </div>
             </div>
-            <div class="discount">
+            <!-- <div class="discount">
               <div class="label">Chiết khấu</div>
               <div class="money">0</div>
-            </div>
+            </div> -->
             <div class="price-ship">
               <div class="label">Phí giao hàng</div>
-              <div class="money">0</div>
+              <div class="money">0đ</div>
             </div>
             <div class="voucher">
               <div class="label">Mã giảm giá</div>
-              <div class="money">0</div>
+              <div
+                class="namePro cursor-pointer"
+                @click="
+                  $router.push({
+                    path:
+                      '/admin/promotions/code/edit/' + invoice.Coupon?.IDCoupon,
+                  })
+                "
+              >
+                {{ invoice.Coupon?.CodeCoupon }}
+              </div>
+              <div class="money">{{ invoice.Coupon?.ValueDiscount ?? 0 }}đ</div>
             </div>
             <div class="total-of-cus">
               <div class="label">Khách phải trả</div>
-              <div class="money">300.000</div>
+              <div class="money">{{ invoice.TotalValue }}đ</div>
             </div>
           </div>
         </div>
@@ -168,21 +164,10 @@
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 
 export default {
+  props: ["invoice"],
   data() {
     return {
-      products: null,
-      selectedProducts: null,
       loading: true,
-      products: [
-        {
-          id: 1000,
-          name: "Kem Nền 20g",
-          number: 10,
-          images: ["abc.png", "bcd.png"],
-          listprice: 80000,
-          salePrice: 75000,
-        },
-      ],
     };
   },
   created() {},
@@ -194,7 +179,7 @@ export default {
   },
   methods: {
     formatCurrency(value) {
-      return value.toLocaleString( {
+      return value.toLocaleString({
         style: "currency",
         currency: "VND",
       });
@@ -204,114 +189,109 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.namePro:hover{
+.namePro {
   text-decoration: underline;
-  color:var(--text-admin-color);
+  color: var(--text-admin-color);
 }
 .dialog {
   position: fixed;
-  top:0;
-  right:0;
-  left:0;
-  bottom:0;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   z-index: 10;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   visibility: hidden;
-  
+
   .overlay-close {
     position: absolute;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
   }
 }
 .dialog:target {
   visibility: visible;
 }
 .dialog-stock {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
 
-display:flex;
-flex-direction: column;
-width: 80%;
-  
   position: relative;
- 
+
   background-color: #fff;
- border-radius: 5px;
-  display:block;
-.dialog-header {
-  border-bottom: 1px solid #D3D5D7;
- // padding-bottom: 20px;
-//padding-top: 20px;
-  //margin-left: 10px;
-h4 {
-  margin-left:30px;
-  font-weight: 500;
-  line-height: 20px;
-}
-  .btn-close {
-    position:absolute;
-    top:5px;
-    right:20px;
-    text-decoration: none;
-    color:#607d8b;
+  border-radius: 5px;
+  display: block;
+  .dialog-header {
+    border-bottom: 1px solid #d3d5d7;
+    // padding-bottom: 20px;
+    //padding-top: 20px;
+    //margin-left: 10px;
+    h4 {
+      margin-left: 30px;
+      font-weight: 500;
+      line-height: 20px;
+    }
+    .btn-close {
+      position: absolute;
+      top: 5px;
+      right: 20px;
+      text-decoration: none;
+      color: #607d8b;
+    }
   }
-}
-.dialog-body {
-  margin:40px;
-  text-align: center;
-  border-collapse: collapse;
-  border-left: #d9d9d9;
-  border-bottom: #d9d9d9;
-  box-shadow: rgb(232 234 235) 1px 0px;
-  line-height: 20px;
+  .dialog-body {
+    margin: 40px;
+    text-align: center;
+    border-collapse: collapse;
+    border-left: #d9d9d9;
+    border-bottom: #d9d9d9;
+    box-shadow: rgb(232 234 235) 1px 0px;
+    line-height: 20px;
 
-  th {
-
-    background-color: #F4F6F8;
-    border-right: 1px solid #d9d9d9;
-    border-left: 1px solid #d9d9d9;
-    border-top: 1px solid #e6e6e6;
-    font-size:16px;
-    font-weight: 500;
-    height:50px;
+    th {
+      background-color: #f4f6f8;
+      border-right: 1px solid #d9d9d9;
+      border-left: 1px solid #d9d9d9;
+      border-top: 1px solid #e6e6e6;
+      font-size: 16px;
+      font-weight: 500;
+      height: 50px;
+    }
+    td {
+      border: 1px solid#d9d9d9;
+      font-size: 14px;
+      font-weight: 400;
+      height: 50px;
+    }
   }
-  td {
-  
-    border: 1px solid#d9d9d9;
-    font-size:14px;
-    font-weight: 400;
-    height: 50px;
-  }
-
-}
 }
 .overlay {
-  background-color: rgba(0,0,0,0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
-.header{
-  display:flex;
+.header {
+  display: flex;
   flex-direction: row;
   .m-0 {
-    font-size:18px;
+    font-size: 18px;
     font-weight: 500;
-    color: #0088FF;
-    cursor:pointer;
+    color: #0088ff;
+    cursor: pointer;
     width: 85%;
   }
   .check-stock {
     text-decoration: none;
     font-size: 14px;
-    color: #0088FF;
-    cursor:pointer;
+    color: #0088ff;
+    cursor: pointer;
     padding-top: 5px;
   }
-  .check-stock:hover{
+  .check-stock:hover {
     font-weight: 700;
   }
-
 }
 .footer {
   width: 100%;
@@ -348,8 +328,6 @@ h4 {
     }
   }
 }
-
-
 
 ::v-deep(.p-progressbar) {
   height: 0.5rem;

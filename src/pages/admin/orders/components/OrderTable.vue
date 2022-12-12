@@ -55,8 +55,7 @@
           <p
             @click="
               $router.push({
-                path: '/admin/orderdetails',
-                query: { sku: data.IDInvoice },
+                path: '/admin/orderdetails/' + data.IDInvoice,
               })
             "
             class="idod cursor-pointer"

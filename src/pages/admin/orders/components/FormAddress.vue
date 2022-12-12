@@ -5,7 +5,6 @@
       <a href="#" class="overlay-close"></a>
       <div class="modal">
         <div class="modal-content">
-          
           <div class="modal-title">
             <slot name="title"></slot>
             <!-- <div class="m-head">
@@ -131,8 +130,8 @@
 export default {
   data() {
     return {
-      modal2:false,
-      position:"center",
+      modal2: false,
+      position: "center",
       isHidden: false,
       messages: [],
       fullName: null,
@@ -226,10 +225,8 @@ export default {
         cursor: pointer;
         transition: color 0.3s;
       }
-      
     }
 
-    
     .modal-context {
       width: 100%;
       display: block;

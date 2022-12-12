@@ -17,12 +17,27 @@
       </div>
       <div class="nameinf">
         <span class="p-fluid">
-          <InputText
-            id="lastname"
-            type="text"
-            v-model="receiverInfo.LastName"
-            placeholder="Họ"
-          />
+          <div class="field">
+            <InputText
+              id="lastname"
+              type="text"
+              v-model="receiverInfo.LastName"
+              placeholder="Họ"
+              aria-describedby="lastname-help"
+              :class="{
+                'p-invalid':
+                  receiverInfo.LastName == null || receiverInfo.LastName == '',
+              }"
+            />
+            <small
+              id="lastname-help"
+              class="p-error"
+              v-if="
+                receiverInfo.LastName == null || receiverInfo.LastName == ''
+              "
+              >Không được để trống</small
+            >
+          </div>
         </span>
       </div>
     </div>

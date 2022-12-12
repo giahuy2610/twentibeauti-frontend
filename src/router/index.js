@@ -222,7 +222,7 @@ const routes = [
       },
       {
         name: "admin order details",
-        path: "orderdetails",
+        path: "orderdetails/:id",
         component: OrderDetails,
       },
       {
