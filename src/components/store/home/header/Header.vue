@@ -46,7 +46,7 @@
             />
             <i
               class="pi pi-search"
-              @click="$router.push({ path: '/search/'+value2 })"
+              @click="$router.push({ path: '/search/' + value2 })"
             />
           </span>
         </div>
@@ -204,7 +204,7 @@ export default {
       visibleAccountSubmenu: false,
       visibleBarSubmenu: false,
       visibleLogin: false,
-      value2: ''
+      value2: "",
     };
   },
   components: {

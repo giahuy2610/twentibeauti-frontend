@@ -15,8 +15,8 @@ export const useCheckoutStorePinia = defineStore("checkoutStorePinia", {
       Email: null,
       MethodPay: null,
       MethodTransfer: null,
-      IsPrintInvoice: null,
-      IsPaid: null,
+      IsPrintInvoice: 1,
+      IsPaid: 1,
     },
     couponSelected: {
       // IDCoupon: 1,
@@ -81,20 +81,25 @@ export const useCheckoutStorePinia = defineStore("checkoutStorePinia", {
       }
       //the base invoice
       var newInvoice = this.receiverInfo;
+      //add idcus
+      newInvoice.IDCus = useCartStorePinia().user.IDCus;
       //list of products info(idproduct,quantity) in this invoice
       newInvoice.InvoiceDetail = useCartStorePinia().cartItems.map(
         (product) => {
           return { IDProduct: product.IDProduct, Quantity: product.Quantity };
         }
       );
-      newInvoice.CodeCoupon = this.couponSelected.CodeCoupon;
+      newInvoice.CodeCoupon = this.couponSelected.CodeCoupon ?? null;
       console.log(newInvoice);
       await axios
         .post(`/invoice/create`, newInvoice)
         .then((response) => {
-          if (response.status == true) {
-            console.log(111111111111111111111111111);
-          } else console.log(0);
+          if (response.status == 200) {
+            Router.push({
+              name: "order details",
+              params: { id: response.data.IDInvoice },
+            });
+          } else console.log(response);
         })
         .catch(function (error) {
           console.error(error);

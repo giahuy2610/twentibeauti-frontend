@@ -1,5 +1,6 @@
 import axios from "axios";
 import { defineStore } from "pinia";
+import Router from "@/router/index.js";
 
 export const useProductStorePinia = defineStore("productStorePinia", {
   state: () => ({
@@ -26,7 +27,7 @@ export const useProductStorePinia = defineStore("productStorePinia", {
       await axios
         .post("/product/create", this.productInfo)
         .then((response) => {
-          return response.data;
+          if (response.status == 200) Router.push({ name: "admin products" });
         })
         .catch(function (error) {
           console.error(error);
@@ -39,7 +40,7 @@ export const useProductStorePinia = defineStore("productStorePinia", {
         .get("/product/show/" + IDProduct)
         .then((response) => {
           this.productInfo = response.data;
-          console.log(response.data)
+          console.log(response.data);
         })
         .catch(function (error) {
           console.error(error);
@@ -50,6 +51,7 @@ export const useProductStorePinia = defineStore("productStorePinia", {
         .post("/product/update", this.productInfo)
         .then((response) => {
           console.log(response.data);
+          if (response.status == 200) Router.push({ name: "admin products" });
         })
         .catch(function (error) {
           console.error(error);

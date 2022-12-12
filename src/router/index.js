@@ -158,7 +158,7 @@ const routes = [
       },
       //product handling
       {
-        name: "products",
+        name: "admin products",
         path: "products",
         component: Products,
       },
@@ -180,16 +180,16 @@ const routes = [
         children: [
           {
             path: "",
-            redirect: { path: "promotions/code" },
+            redirect: { path: "promotions/code/" },
           },
           {
             name: "code promotion",
-            path: "code",
+            path: "code/",
             component: CodePromotion,
           },
           {
             name: "event promotion",
-            path: "event",
+            path: "event/",
             component: EventPromotion,
           },
         ],
@@ -202,6 +202,16 @@ const routes = [
       {
         name: "event promotion create",
         path: "promotions/event/create",
+        component: EventPromotionCreate,
+      },
+      {
+        name: "code promotion edit",
+        path: "promotions/code/edit/:id",
+        component: CodePromotionCreate,
+      },
+      {
+        name: "event promotion edit",
+        path: "promotions/event/edit/:id",
         component: EventPromotionCreate,
       },
       //orders handling

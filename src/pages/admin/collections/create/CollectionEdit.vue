@@ -70,7 +70,7 @@
             <template #title> Ảnh bìa </template>
             <template #content>
               <div>
-                {{ getCollectionItems.WallPaperPath }}
+                <!-- {{ getCollectionItems.WallPaperPath }} -->
                 <AddFileVue @geturl="wallimg"> </AddFileVue>
               </div>
             </template>

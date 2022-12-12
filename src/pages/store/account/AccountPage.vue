@@ -4,7 +4,7 @@
       <div class="left-column">
         <div class="header">
           <ul class="breadcrumb">
-            <li><a href="/">Trang chủ</a></li>
+            <li><router-link to="/">Trang chủ</router-link></li>
             <li>Tài khoản</li>
           </ul>
         </div>

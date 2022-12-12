@@ -53,21 +53,20 @@
               <p
                 @click="
                   $router.push({
-                    path: '/admin/collections/create',
-                    query: { id: data.id },
+                    path: '/admin/promotions/code/edit/' + data.IDCoupon,
                   })
                 "
                 class="cursor-pointer"
                 style="color: var(--primary-color)"
               >
-                {{ data.idCoupon }}
+                {{ data.IDCoupon }}
               </p>
             </template>
           </Column>
 
-          <Column field="name" header="Tên" sortable style="min-width: 13rem">
+          <Column field="name" header="Code" sortable style="min-width: 13rem">
             <template #body="{ data }">
-              <span>{{ data.name }}</span>
+              <span>{{ data.CodeCoupon }}</span>
             </template>
           </Column>
 
@@ -79,7 +78,7 @@
             style="min-width: 10rem"
           >
             <template #body="{ data }">
-              {{ data.startOn }}
+              {{ data.StartOn }}
             </template>
             <template #filter="{ filterModel }">
               <Calendar
@@ -98,7 +97,7 @@
             style="min-width: 10rem"
           >
             <template #body="{ data }">
-              {{ data.endOn }}
+              {{ data.EndOn }}
             </template>
             <template #filter="{ filterModel }">
               <Calendar
@@ -173,6 +172,15 @@ export default {
       selectedCoupons: [],
     };
   },
+  async mounted() {
+    await this.axios
+      .get("/coupon/index")
+      .then((response) => {
+        this.couponList = response.data;
+      })
+      .catch((e) => console.error(e));
+    this.loading = false;
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -185,17 +193,3 @@ export default {
   min-height: 300px;
 }
 </style>
-
-<!-- couponList: [
-{
-  idCoupon,
-  valueDiscount,
-  startOn,
-  endOn,
-  description,
-  isDeleted,
-  minInvoiceValue,
-  codeCoupon,
-  quantity,
-},
-], -->

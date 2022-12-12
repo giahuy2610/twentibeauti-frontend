@@ -6,16 +6,16 @@
     <div class="content">
       <div class="content__top">
         <h5 class="font-light title-content" @click="$router.push({ path: '/'})">Trang chủ</h5>
-        <h2 class="uppercase">{{ title }}</h2>
+        <h2 class="uppercase">{{ getCollectionItems.NameCollection }}</h2>
       </div>
       <div class="content__main">
         <div class="sider">
           <CollectionFilterSider></CollectionFilterSider>
         </div>
-
+        
         <div class="products-wrapper">
           <div class="products-wrapper__top flex align-items-center">
-            <p>{{ countProductsInCollection }} Kết quả</p>
+            <p>{{  getCollectionItems.Products.length }} Kết quả</p>
             <p class="filter-chooser" @click="isFilterChose = !isFilterChose">
               <i class="pi pi-filter-fill"></i>
               <span

@@ -14,7 +14,7 @@
         <Card>
           <template #content>
             <DataTable
-              :value="adsSubscribers"
+              :value="promotionRegisters"
               :paginator="true"
               class="p-datatable-customers"
               :rows="10"
@@ -69,7 +69,7 @@
                 style="min-width: 14rem"
               >
                 <template #body="{ data }">
-                  {{ data.email }}
+                  {{ data.Email }}
                 </template>
                 <template #filter="{ filterModel }">
                   <InputText
@@ -93,7 +93,7 @@
                       data.cusId !== ''
                         ? $router.push({
                             path: '/admin/customerdetails',
-                            query: { sku: data.cusId },
+                            query: { sku: data.IDCus },
                           })
                         : false
                     "
@@ -101,16 +101,15 @@
                     class="cursor-pointer"
                   >
                     {{
-                      data.cusId !== "" ? data.cusId : "Chưa phải khách hàng"
+                      data.IDCus !== "" ? data.IDCus : "Chưa phải khách hàng"
                     }}
                   </p>
                 </template>
-                <template #filter="{ filterModel }"> </template>
               </Column>
 
               <Column header="Khả dụng" sortable style="min-width: 10rem">
                 <template #body="{ data }">
-                  {{ data.isUnsubscribed ? "Đang đăng ký" : "Đã hủy" }}
+                  {{ !data.IsDeleted ? "Đang đăng ký" : "Đã hủy" }}
                 </template>
               </Column>
               <Column
@@ -170,38 +169,27 @@ export default {
         verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
-      adsSubscribers: [
-        {
-          email: "20520556@gm.uit.edu.vn",
-          cusId: "112",
-          isUnsubscribed: false,
-        },
-        {
-          email: "20520555@gm.uit.edu.vn",
-          cusId: "112",
-          isUnsubscribed: false,
-        },
-        {
-          email: "20520554@gm.uit.edu.vn",
-          cusId: "",
-          isUnsubscribed: true,
-        },
-      ],
+      promotionRegisters: [],
     };
   },
   created() {},
-  mounted() {
+  async mounted() {
+    await this.axios
+      .get("/promotion/index")
+      .then((response) => {
+        this.promotionRegisters = response.data;
+      })
+      .catch((e) => console.error(e));
     this.loading = false;
   },
 };
 </script>
 
 <style lang="scss" scoped>
-
 .ads-wrapper {
-    display: flex;
-    gap: 1rem;
-    flex-direction: column;
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
 }
 
 .hover-primary-color {

@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
-
+import axios from "axios";
+import Router from "@/router/index.js";
 export const usePromotionStorePinia = defineStore("promotionStorePinia", {
   state: () => ({
     promotions: [
@@ -16,44 +17,18 @@ export const usePromotionStorePinia = defineStore("promotionStorePinia", {
         _numpromo: 1, // số  lượng promo (>=1)
         _isRestrict: true, // giới hạn khách hàng sử  dụng mã một lần
       },
-      {
-        _promoCode: "GFAWFP93FKA",
-        _withCampaignPromo: true,
-        _promoType: "P", // 1 : Theo phần trăm , 0: Theo số tiền
-        _retailValue: 30, // nếu promoType : 1 thì đơn vị là %, ngược lại đơn vị là đ
-        _maxretailValue: 10, // đ, chỉ tính nếu byPercent true
-        _appliedMode: 1, //  1 : all, 2: collection, 3: product
-        _appliedProduct: true, // chỉ tính nếu  byPercent true và appliedMode khác 1, nếu true: áp dụng giảm tiền cả đơn, nếu false giảm từng sản phẩm
-        _condition: 1, // 1:none, 2:Tổng giá trị đơn tối thiểu 3:Tổng giá trị sản phẩm được khuyến mãi tối thiểu, 4:Tổng số lượng sản phẩm được khuyến mãi tối thiếu
-        _customer: 1, // 1:all 2:type customer
-        _numpromo: 1, // số  lượng promo (>=1)
-        _isRestrict: true, // giới hạn khách hàng sử  dụng mã một lần
-      },
-      {
-        _promoCode: "B2NKCGQH0WA7",
-        _withCampaignPromo: true,
-        _promoType: "P", // 1 : Theo phần trăm , 0: Theo số tiền
-        _retailValue: 30, // nếu promoType : P thì đơn vị là %, ngược lại đơn vị là đ
-        _maxretailValue: 10, // đ, chỉ tính nếu byPercent true
-        _appliedMode: "B", //  A : all, B: collection, C: product
-        _appliedProduct: false, // chỉ tính nếu  promoType :M và appliedMode khác 1, nếu true: áp dụng giảm tiền cả đơn, nếu false giảm từng sản phẩm
-        _condition: "0", // 0:none, 1:Tổng giá trị đơn tối thiểu 2:Tổng giá trị sản phẩm được khuyến mãi tối thiểu, 3:Tổng số lượng sản phẩm được khuyến mãi tối thiếu
-        _conditionValue1: null,
-        _conditionValue2: null,
-        _conditionValue3: null,
-        _customerType: "A", // A:all T:type customer
-        _isNumRestrict: true,
-        _numpromo: 1, // số  lượng promo (>=1)
-        _isRestrict: true, // giới hạn khách hàng sử  dụng mã một lần
-        _startDate: null,
-        _startTime: null,
-        _endDate: null,
-        _endTime: null,
-        _product: [],
-        _collection: [],
-        _customer: [],
-      },
     ],
+    coupon: {
+      // IDCoupon: 1,
+      ValueDiscount: 0,
+      StartOn: "",
+      EndOn: "",
+      Description: "",
+      MinInvoiceValue: 0,
+      CodeCoupon: "",
+      Quantity: 999999,
+      IsMutualEvent: 0,
+    },
   }),
   getters: {
     getPromoItems(state) {
@@ -79,5 +54,31 @@ export const usePromotionStorePinia = defineStore("promotionStorePinia", {
     //   });
     // }
     //return state.promotions[state.promotions.length-1].promoCode;
+  },
+  actions: {
+    async createCoupon() {
+      console.log(this.coupon);
+      await axios
+        .post(`/coupon/create`, this.coupon)
+        .then((response) => {
+          console.log(response.data);
+          if (response.status == 200) {
+            Router.push({ name: "code promotion" });
+          }
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
+    async getCoupon($IDCoupon) {
+      await axios
+        .get(`/coupon/show/` + $IDCoupon)
+        .then((response) => {
+          this.coupon = response.data;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
   },
 });

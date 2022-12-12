@@ -17,7 +17,7 @@ export default {};
   
   header {
     position: fixed;
-    z-index: 10000000000000000000;
+    z-index: 1000;
     top: 10px;
     right: 0;
     width: calc(100% - 220px);

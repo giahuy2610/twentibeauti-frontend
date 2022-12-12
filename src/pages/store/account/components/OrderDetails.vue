@@ -19,8 +19,8 @@
     </FormOrderAgain>
     <div class="header-bread">
       <ul class="breadcrumb">
-        <li><a href="/">Trang chủ</a></li>
-        <li><a href="/account/orders">Tài khoản</a></li>
+        <li><router-link to="/">Trang chủ</router-link></li>
+        <li><router-link to="/account/orders">Tài khoản</router-link></li>
         <li>Đơn hàng</li>
       </ul>
     </div>
@@ -96,7 +96,7 @@
               <div class="number">x{{ item.Quantity }}</div>
             </div>
           </div>
-          <div class="price">
+          <div class="price ml-1">
             {{ Intl.NumberFormat().format(item.RetailPrice) }}đ
           </div>
         </div>
@@ -106,7 +106,7 @@
             <div class="money">
               {{
                 Intl.NumberFormat().format(
-                  invoiceData.TotalValue + invoiceData.Coupon.ValueDiscount
+                  invoiceData.TotalValue + (invoiceData.Coupon?.ValueDiscount ?? 0)
                 )
               }}đ
             </div>
@@ -115,7 +115,7 @@
             <div class="label">Giảm giá</div>
             <div class="money">
               {{
-                Intl.NumberFormat().format(invoiceData.Coupon.ValueDiscount)
+                Intl.NumberFormat().format(invoiceData.Coupon?.ValueDiscount ?? 0)
               }}đ
             </div>
           </div>
@@ -252,7 +252,7 @@ export default {
   },
   async mounted() {
     await this.axios
-      .get("/invoice/show/1")
+      .get("/invoice/show/" + this.$route.params.id)
       .then((response) => {
         this.invoiceData = response.data;
         console.log(this.invoiceData);

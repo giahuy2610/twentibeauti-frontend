@@ -46,7 +46,11 @@
 
         <div class="order">
           <span class="p-fluid">
-            <Button label="Đặt hàng" class="p-button-rounded" @click="createInvoice()"/>
+            <Button
+              label="Đặt hàng"
+              class="p-button-rounded"
+              @click="createInvoice()"
+            />
           </span>
         </div>
         <div class="footer">
@@ -67,7 +71,13 @@
                 placeholder="Nhập mã giảm giá (nếu có)"
                 v-model="couponCode"
               />
-              <Button label="Áp dụng" @click="getCoupon(couponCode);couponCode = ''" />
+              <Button
+                label="Áp dụng"
+                @click="
+                  getCoupon(couponCode);
+                  couponCode = '';
+                "
+              />
             </div>
           </div>
         </div>
@@ -95,7 +105,7 @@ import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapWritableState, mapActions } from "pinia";
 export default {
   methods: {
-    ...mapActions(useCheckoutStorePinia, ["getCoupon","createInvoice"]),
+    ...mapActions(useCheckoutStorePinia, ["getCoupon", "createInvoice"]),
     ...mapActions(useCartStorePinia, ["total"]),
   },
   components: {

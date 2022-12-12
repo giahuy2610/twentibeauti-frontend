@@ -1,9 +1,9 @@
-<template >
-  <div class="order-table-wrapper  ">
+<template>
+  <div class="order-table-wrapper">
     <DataTable
       :value="orders"
       :paginator="true"
-      class="p-datatable-orders "
+      class="p-datatable-orders"
       :rows="10"
       dataKey="id"
       :rowHover="true"
@@ -24,8 +24,8 @@
       ]"
       responsiveLayout="scroll"
     >
-    <template #header>
-        <div class="flex justify-content-between align-items-center ">
+      <template #header>
+        <div class="flex justify-content-between align-items-center">
           <h5 class="m-0">Đơn hàng</h5>
           <span v-show="selectedStatus.length > 0">
             Chọn thao tác
@@ -50,36 +50,39 @@
       <template #loading> Loading customers data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 2rem"></Column>
 
-      <Column
-        field="id"
-        header="Mã đơn hàng"
-        style="min-width: 3rem"
-      >
+      <Column field="id" header="Mã đơn hàng" style="min-width: 3rem">
         <template #body="{ data }">
-          <p 
+          <p
             @click="
               $router.push({
                 path: '/admin/orderdetails',
-                query: { sku: data.id },
+                query: { sku: data.IDInvoice },
               })
             "
-            class="idod cursor-pointer "
-            style="color: var(--text-admin-color);"
+            class="idod cursor-pointer"
+            style="color: var(--text-admin-color)"
           >
-            {{ data.id }}
+            {{ data.IDInvoice }}
           </p>
         </template>
       </Column>
-      <Column
-        field="nameCus"
-        header="Tên khách hàng"
-        style="min-width: 6rem"
-      >
-        <template #body="{ data }">         
-            {{ data.nameCus }}
+      <Column field="nameCus" header="Khách hàng" style="min-width: 6rem">
+        <template #body="{ data }">
+          <p
+            @click="
+              $router.push({
+                path: '/admin/orderdetails',
+                query: { sku: data.IDCus },
+              })
+            "
+            class="idod cursor-pointer"
+            style="color: var(--text-admin-color)"
+          >
+            {{ data.IDCus }}
+          </p>
         </template>
       </Column>
-      
+
       <Column
         field="date"
         header="Ngày tạo"
@@ -88,7 +91,7 @@
         style="min-width: 6rem"
       >
         <template #body="{ data }">
-          {{ data.createdOn }}
+          {{ data.CreatedOn }}
         </template>
       </Column>
       <Column
@@ -99,7 +102,7 @@
         style="min-width: 6rem"
       >
         <template #body="{ data }">
-          {{ formatCurrency(data.total) }}
+          {{ formatCurrency(data.TotalValue) }}
         </template>
       </Column>
       <Column
@@ -109,9 +112,7 @@
         style="min-width: 6rem"
       >
         <template #body="{ data }">
-          <span :class="'order-badge status-' + data.status">{{
-            data.status
-          }}</span>
+          <span>{{ data.IDTracking }}</span>
         </template>
         <template #filter="{ filterModel }">
           <Dropdown
@@ -135,13 +136,13 @@
         </template>
       </Column>
 
-      <Column
-      header="Hủy đơn hàng"
-      style="min-width: 6rem"
-      >
+      <Column header="Hủy đơn hàng" style="min-width: 6rem">
         <template #body>
-          <Button type="button"  icon="pi pi-times"
-              class="p-button-rounded p-button-danger p-button-text"></Button>
+          <Button
+            type="button"
+            icon="pi pi-times"
+            class="p-button-rounded p-button-danger p-button-text"
+          ></Button>
         </template>
       </Column>
     </DataTable>
@@ -195,35 +196,23 @@ export default {
       ],
       selectedTracking: null,
       statuses: [
-      { name: "Đơn hàng đang được chuẩn bị", code: "WT" },
+        { name: "Đơn hàng đang được chuẩn bị", code: "WT" },
         { name: "Đang giao hàng", code: "SHIPPING" },
         { name: "Đã giao hàng", code: "SHIPPED" },
         { name: "Giao hàng không thành công", code: "UNS" },
         { name: "Đơn hàng bị hủy", code: "CANC" },
       ],
-      orders: [
-        {
-          id: 1,
-          nameCus: "Dịu Ái",
-          createdOn: "2015-09-13",
-          status: "Đang giao hàng",
-          total: 80000,
-        },
-        {
-          id: 2,
-          nameCus: "Dịu Ái",
-          createdOn: "2015-09-13",
-          status: "Đang giao hàng",
-          total: 80000,
-        },
-      ],
+      orders: [],
     };
   },
   created() {},
-  mounted() {
-    // this.products.forEach(
-    //   (products) => (products.createdOn = new Date(products.createdOn))
-    // );
+  async mounted() {
+    await this.axios
+      .get("/invoice/show")
+      .then((response) => {
+        this.orders = response.data;
+      })
+      .catch((e) => console.error(e));
     this.loading = false;
   },
   methods: {
@@ -235,7 +224,7 @@ export default {
       });
     },
     formatCurrency(value) {
-      return value.toLocaleString( {
+      return value.toLocaleString({
         style: "currency",
         currency: "VND",
       });
@@ -245,8 +234,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
-
 ::v-deep(.p-paginator) {
   .p-paginator-current {
   }

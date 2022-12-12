@@ -1,18 +1,20 @@
 <template lang="">
   <div class="divider-horizontal"></div>
   <div class="flex-align" id="product-review">
-    <LeftSection 
-    :reviews="this.reviews"
-    @popupmsg="() => TogglePopup('buttonTrigger')"
-    :TogglePopup="this.TogglePopup"
-    :buttonTrigger="this.popupTriggers.buttonTrigger">
+    <LeftSection
+      :reviews="this.reviews"
+      @popupmsg="() => TogglePopup('buttonTrigger')"
+      :TogglePopup="this.TogglePopup"
+      :buttonTrigger="this.popupTriggers.buttonTrigger"
+    >
     </LeftSection>
     <RightSection :reviews="this.reviews"></RightSection>
   </div>
   <PopupReview
-      v-if="popupTriggers.buttonTrigger"
-      :CancelPopup="() => TogglePopup('buttonTrigger')">
-    </PopupReview>
+    v-if="popupTriggers.buttonTrigger"
+    :CancelPopup="() => TogglePopup('buttonTrigger')"
+  >
+  </PopupReview>
 </template>
 
 <script>

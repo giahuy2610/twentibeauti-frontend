@@ -9,6 +9,16 @@
             class="p-button-outlined p-button-danger"
             @click="getCurrentColor"
           />
+          <Button
+            label="Tạo mã khuyến mãi"
+            class="p-button p-button-info ml-3"
+            @click="$router.push({ name: 'code promotion create' })"
+          />
+          <Button
+            label="Tạo chương trình khuyến mãi"
+            class="p-button p-button-info ml-3"
+            @click="$router.push({ name: 'event promotion create' })"
+          />
         </div>
       </div>
     </template>

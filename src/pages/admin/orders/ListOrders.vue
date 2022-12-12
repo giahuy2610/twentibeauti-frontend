@@ -10,81 +10,79 @@
         </div>
       </template>
       <template v-slot:main>
-        <div class="main-wrapper" style="margin-bottom:20px">
+        <div class="main-wrapper" style="margin-bottom: 20px">
           <div class="main-top">
-            <Card >
-            <template #title>
-              <div class="header">
-                <div class="content-header">Đơn hàng cần xử lý</div>
-                <div class="filter-time">
-                  <SplitButton
-                    label="Thời gian "
-                    :model="items"
-                    class="p-button-text p-button-info mb-2"
-                  ></SplitButton>
+            <Card>
+              <template #title>
+                <div class="header">
+                  <div class="content-header">Đơn hàng cần xử lý</div>
+                  <div class="filter-time">
+                    <SplitButton
+                      label="Thời gian "
+                      :model="items"
+                      class="p-button-text p-button-info mb-2"
+                    ></SplitButton>
+                  </div>
                 </div>
-              </div>
-            </template>
+              </template>
 
-            <template #content>
-              <div class="tracking-status">
-                <div class="status-wait-browsing">
-                  <div class="content-status">
-                    <div class="content">Chờ xác nhận</div>
-                    <div class="count">0</div>
+              <template #content>
+                <div class="tracking-status">
+                  <div class="status-wait-browsing">
+                    <div class="content-status">
+                      <div class="content">Chờ xác nhận</div>
+                      <div class="count">0</div>
+                    </div>
+                    <div class="total">0</div>
                   </div>
-                  <div class="total">0</div>
-                </div>
-                <div class="status-setup">
-                  <div class="content-status">
-                    <div class="content">Đang chuẩn bị</div>
-                    <div class="count">0</div>
+                  <div class="status-setup">
+                    <div class="content-status">
+                      <div class="content">Đang chuẩn bị</div>
+                      <div class="count">0</div>
+                    </div>
+                    <div class="total">0</div>
                   </div>
-                  <div class="total">0</div>
-                </div>
-                <div class="status-ordering">
-                  <div class="content-status">
-                    <div class="content">Đang giao hàng</div>
-                    <div class="count">4</div>
+                  <div class="status-ordering">
+                    <div class="content-status">
+                      <div class="content">Đang giao hàng</div>
+                      <div class="count">4</div>
+                    </div>
+                    <div class="total">828,000</div>
                   </div>
-                  <div class="total">828,000</div>
-                </div>
-                <div class="status-ordered">
-                  <div class="content-status">
-                    <div class="content">Đã giao hàng</div>
-                    <div class="count">0</div>
+                  <div class="status-ordered">
+                    <div class="content-status">
+                      <div class="content">Đã giao hàng</div>
+                      <div class="count">0</div>
+                    </div>
+                    <div class="total">0</div>
                   </div>
-                  <div class="total">0</div>
-                </div>
-                <div class="status-unsuccess">
-                  <div class="content-status">
-                    <div class="content">Không thành công</div>
-                    <div class="count">0</div>
+                  <div class="status-unsuccess">
+                    <div class="content-status">
+                      <div class="content">Không thành công</div>
+                      <div class="count">0</div>
+                    </div>
+                    <div class="total">0</div>
                   </div>
-                  <div class="total">0</div>
-                </div>
-                <div class="status-cancel">
-                  <div class="content-status">
-                    <div class="content">Bị hủy</div>
-                    <div class="count">0</div>
+                  <div class="status-cancel">
+                    <div class="content-status">
+                      <div class="content">Bị hủy</div>
+                      <div class="count">0</div>
+                    </div>
+                    <div class="total">0</div>
                   </div>
-                  <div class="total">0</div>
                 </div>
-              </div>
-            </template>
-          </Card>
+              </template>
+            </Card>
           </div>
-          <div class="main-bot ">
-            <Card style="margin-top:20px">
-            <template #title></template>
-            <template #content><OrderTable></OrderTable></template>
-          </Card>
+          <div class="main-bot">
+            <Card style="margin-top: 20px">
+              <template #title></template>
+              <template #content><OrderTable></OrderTable></template>
+            </Card>
           </div>
-         
         </div>
       </template>
     </AdminBlankPage>
-
   </div>
 </template>
 <script>
@@ -96,7 +94,6 @@ export default {
     AdminBlankPage,
     ProductTable,
     OrderTable,
-
   },
   data() {
     return {
@@ -140,6 +137,12 @@ export default {
       ],
     };
   },
+  // async mounted() {
+  //   await this.axios
+  //     .get('/invoice/show')
+  //     .then((response) => {})
+  //     .catch((e) => console.error(e));
+  // },
 };
 </script>
 <style lang="scss" scoped>
@@ -150,7 +153,7 @@ export default {
   align-items: center;
 }
 .main-wrapper {
- // padding-bottom: 50px;
+  // padding-bottom: 50px;
   .header {
     display: flex;
     flex-direction: row;
@@ -217,7 +220,6 @@ export default {
     .status-unsuccess:hover,
     .status-cancel:hover {
       background-color: #e6f5ff;
-
     }
   }
 }

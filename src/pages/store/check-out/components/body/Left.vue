@@ -32,7 +32,8 @@
 import infcusVue from "./left/Infcus.vue";
 import infpayVue from "./left/Infpay.vue";
 import inftransport from "./left/InfTransport.vue";
-
+import { useCheckoutStorePinia } from "@/stores/store/checkout.js";
+import { mapWritableState, mapActions } from "pinia";
 export default {
   components: {
     infcusVue,
@@ -49,6 +50,11 @@ export default {
         { label: "Thông tin xuất hóa đơn", value: false },
       ],
     };
+  },
+  computed: {
+    ...mapWritableState(useCheckoutStorePinia, {
+      receiverInfo: "receiverInfo",
+    }),
   },
 };
 </script>

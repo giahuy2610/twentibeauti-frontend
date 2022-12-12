@@ -22,6 +22,7 @@
           <Button
             label="Đặt hàng"
             class="p-button-rounded"
+            :disabled="Intl.NumberFormat().format(total()) == 0"
             @click="$router.push('/checkout')"
           />
         </span>

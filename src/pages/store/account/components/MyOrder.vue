@@ -45,7 +45,7 @@
               @click="
                 $router.push({
                   name: 'order details',
-                  params: { id: 1 },
+                  params: { id: item.IDInvoice },
                 })
               "
             >

@@ -4,7 +4,7 @@
       <img src="@/assets/flashsalelogo.png" alt="Flash Sale 24H" />
 
       <div v-if="timeLeft === 0" class="time-out-msg">
-        Flash Sale đã kết thúc*6
+        Flash Sale đã kết thúc
       </div>
 
       <div v-else class="count-down">
@@ -119,7 +119,8 @@ export default {
     await this.axios
       .get("/collection/show/" + this.collectionFlashSaleID)
       .then((response) => {
-        this.timeInSeconds = new Date(response.data.EndOn) - new Date();
+        this.timeInSeconds =
+          (new Date(response.data.EndOn) - new Date()) / 1000;
         this.productList = response.data.Products;
       })
       .catch(function (error) {

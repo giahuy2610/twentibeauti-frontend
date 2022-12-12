@@ -69,6 +69,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           tab.products = response.data.Products;
+          tab.products.length = Math.min(tab.products.length, 8)
           tab.path = "/collection/" + tab.idCollection;
         })
         .catch(function (error) {

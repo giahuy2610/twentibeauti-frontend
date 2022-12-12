@@ -28,10 +28,10 @@ export default {
       array: [
         {
           label: "Giao hàng tiêu chuẩn (3 - 6 ngày) (Giao giờ hành chính)",
-          id: "idTransport1",
+          id: "1",
         },
-        { label: "Giao hàng trong 24h", id: "idTransport2" },
-        { label: "[NOW] Giao hàng nhanh trong 24h ", id: "idTransport3" },
+        { label: "Giao hàng trong 24h", id: "2" },
+        { label: "[NOW] Giao hàng nhanh trong 24h ", id: "3" },
       ],
     };
   },

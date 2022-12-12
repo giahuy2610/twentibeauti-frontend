@@ -11,7 +11,7 @@
             class="p-button-outlined p-button-danger"
             disabled="disabled"
           />
-          <Button label="Lưu" class="p-button-info" disabled="disabled" />
+          <Button label="Lưu" class="p-button-info" @click="createCoupon" />
         </div>
       </div>
     </template>
@@ -25,10 +25,22 @@
 <script>
 import AdminBlankPage from "@/pages/admin/AdminBlankPage.vue";
 import MainContent from "@/pages/admin/promotions/codepromotioncreate/MainContent.vue";
+import { usePromotionStorePinia } from "@/stores/admin/promotion.js";
+import { mapActions } from "pinia";
 export default {
   components: {
     AdminBlankPage,
     MainContent,
+  },
+  methods: {
+    ...mapActions(usePromotionStorePinia, {
+      createCoupon: "createCoupon",
+      getCoupon: "getCoupon",
+    }),
+  },
+  async mounted() {
+    if (this.$route.path.split("/")[4] == "edit")
+      await this.getCoupon(this.$route.params.id);
   },
 };
 </script>

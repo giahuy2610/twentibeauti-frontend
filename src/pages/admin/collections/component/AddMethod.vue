@@ -20,7 +20,7 @@
           v-model="method"
           v-on:click="active = !active"
         />
-        <div for="methodAuto">Thêm sản phẩm tự động</div>
+        <label for="methodAuto"> Thêm sản phẩm tự động</label>
       </div>
       <Card v-show="active">
         <template #content>

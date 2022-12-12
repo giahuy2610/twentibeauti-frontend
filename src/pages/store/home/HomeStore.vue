@@ -33,9 +33,9 @@ export default {
   },
   data() {
     return {
-      adsList: []
-    }
-  }
+      adsList: [],
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>

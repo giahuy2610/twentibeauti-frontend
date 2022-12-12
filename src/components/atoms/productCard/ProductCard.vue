@@ -29,12 +29,15 @@
       <div class="product-card__detail__price-row">
         <h4>{{ Intl.NumberFormat().format(info["RetailPrice"]) }}đ</h4>
         <p
-          v-if="info[retailPrice] !== listPrice"
+          v-if="info['RetailPrice'] != info['ListPrice']"
           style="text-decoration: line-through; margin: 0 20px 0 10px"
         >
           {{ Intl.NumberFormat().format(info["ListPrice"]) }}đ
         </p>
-        <div v-if="info[retailPrice] !== listPrice" class="discount-tag">
+        <div
+          v-if="info['RetailPrice'] != info['ListPrice']"
+          class="discount-tag"
+        >
           {{ -calcDiscount }}%
         </div>
       </div>
@@ -83,7 +86,9 @@ export default {
 
   computed: {
     calcDiscount() {
-      return parseInt((1 - this.retailPrice / this.listPrice) * 100);
+      return parseInt(
+        (1 - this.info["RetailPrice"] / this.info["ListPrice"]) * 100
+      );
     },
   },
   methods: {},

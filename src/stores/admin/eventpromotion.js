@@ -1,30 +1,51 @@
-import { defineStore } from 'pinia'
-
-export const useEventStorePinia = defineStore('eventStorePinia', {
+import { defineStore } from "pinia";
+import axios from "axios";
+import Router from "@/router/index.js";
+export const useEventStorePinia = defineStore("eventStorePinia", {
   state: () => ({
-    eventPromotions : [
-  {
-    _nameEvent : "",
-    _promoType : "P", // P : Theo phần trăm , M: Theo số tiền, S: đồng giá
-    _retailValue : 30, // nếu promoType : P thì đơn vị là %, M đơn vị là đ, S: đ
-    _appliedMode : "B", //  A : all, B: collection, C: product
-    _condition :  '0', // 0:none, 1:Tổng giá trị đơn tối thiểu 2:Tổng giá trị sản phẩm được khuyến mãi tối thiểu
-    _conditionValue1 : null,
-    _conditionValue2 : null,
-    _startDate : null,
-    _startTime : null,
-    _endDate: null,
-    _endTime: null, 
-    _product : [],
-    _collection : [],
-},
-]
+    // eventPromotions: [
+    //   {
+    //     _nameEvent: "",
+    //     _promoType: "P", // P : Theo phần trăm , M: Theo số tiền, S: đồng giá
+    //     _retailValue: 30, // nếu promoType : P thì đơn vị là %, M đơn vị là đ, S: đ
+    //     _appliedMode: "B", //  A : all, B: collection, C: product
+    //     _condition: "0", // 0:none, 1:Tổng giá trị đơn tối thiểu 2:Tổng giá trị sản phẩm được khuyến mãi tối thiểu
+    //     _conditionValue1: null,
+    //     _conditionValue2: null,
+    //     _startDate: null,
+    //     _startTime: null,
+    //     _endDate: null,
+    //     _endTime: null,
+    //     _product: [],
+    //     _collection: [],
+    //   },
+    // ],
+    eventPromotion: {
+      IDEvent: 1,
+      NameEvent: "",
+      ValueDiscount: 50000,
+      UnitsDiscount: 1,
+      IsDeleted: 0,
+      CreatedOn: "2022-11-22 15:57:01",
+      StartOn: "2022-11-22 09:56:26",
+      EndOn: "2022-11-30 15:56:26",
+      Products: [
+        {
+          IDRetailPrice: 1,
+          IDProduct: 1,
+          Price: 40000,
+          IDEvent: 1,
+          CreatedOn: "2022-11-22 15:57:55",
+          StartOn: "2022-11-22 09:57:38",
+          EndOn: "2022-11-30 15:57:38",
+        },
+      ],
+    },
   }),
   getters: {
-    getEventPromoItem(state){
-      return state.eventPromotions[state.eventPromotions.length-1];
-    },
-
+    // getEventPromoItem(state) {
+    //   return state.eventPromotions[state.eventPromotions.length - 1];
+    // },
     // promoCode(state) {
     //   return computed({
     //     get() {
@@ -38,10 +59,25 @@ export const useEventStorePinia = defineStore('eventStorePinia', {
     //   });
     // }
     //return state.promotions[state.promotions.length-1].promoCode;
-    
-
   },
   actions: {
-    
+    async createEvent() {
+      console.log(this.eventPromotion)
+      await axios
+        .post("/event/create", this.eventPromotion)
+        .then((response) => {
+          console.log(response.data);
+          if (response.status == 200) Router.push({ name: "event promotion" });
+        })
+        .catch((e) => console.error(e));
+    },
+    async getEvent($IDEvent) {
+      await axios
+        .get("/event/show/"+$IDEvent)
+        .then((response) => {
+          this.eventPromotion = response.data;
+        })
+        .catch((e) => console.error(e));
+    }
   },
-})
+});
