@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { useInfoAccountStorePinia } from "@/stores/store/infoAccount.js";
+import { useCartStorePinia  } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 import MyOrder from "./MyOrder.vue";
 export default {
@@ -36,7 +36,7 @@ export default {
     MyOrder,
   },
   computed: {
-    ...mapState(useInfoAccountStorePinia, ["infoCus"]),
+    ...mapState(useCartStorePinia , ["user"]),
   },
   data() {
     return {
@@ -56,7 +56,7 @@ export default {
   },
   async mounted() {
     await this.axios
-      .get("/invoice/customer/1")
+      .get("/invoice/customer/" + this.user.IDCus)
       .then((response) => {
         this.orders = response.data;
         this.ordersDisplay = response.data;

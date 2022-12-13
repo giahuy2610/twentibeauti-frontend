@@ -14,7 +14,13 @@
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="['name']"
+      :globalFilterFields="[
+        'IDProduct',
+        'NameProduct',
+        'ListPrice',
+        'RetailPrice',
+        'Brand.NameBrand',
+      ]"
       responsiveLayout="scroll"
       @rowSelect="onRowSelect"
       selectionMode="single"
@@ -45,7 +51,7 @@
       <template #empty> Không có sản phẩm </template>
       <template #loading> Đang lấy dữ liệu. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column field="details" header="SKU" style="min-width: 10rem">
+      <Column field="IDProduct" sortable header="SKU" style="min-width: 10rem">
         <template #body="{ data }">
           <p
             @click="
@@ -59,7 +65,12 @@
           </p>
         </template>
       </Column>
-      <Column field="name" header="Tên" sortable style="min-width: 14rem">
+      <Column
+        field="NameProduct"
+        header="Tên"
+        sortable
+        style="min-width: 14rem"
+      >
         <template #body="{ data }">
           {{ data.NameProduct }}
         </template>
@@ -73,7 +84,7 @@
         </template>
       </Column>
       <Column
-        field="brand.name"
+        field="Brand.NameBrand"
         header="Hãng"
         sortable
         filterMatchMode="contains"
@@ -92,42 +103,7 @@
         </template>
       </Column>
       <Column
-        header="Danh mục"
-        sortable
-        filterField="representative"
-        sortField="representative.name"
-        :showFilterMatchModes="false"
-        :filterMenuStyle="{ width: '14rem' }"
-        style="min-width: 14rem"
-      >
-        <template #body="{ data }">
-          {{ data.Brand["NameBrand"] }}
-        </template>
-        <template #filter="{ filterModel }">
-          <div class="mb-3 font-bold">Agent Picker</div>
-          <MultiSelect
-            v-model="filterModel.value"
-            :options="representatives"
-            optionLabel="name"
-            placeholder="Any"
-            class="p-column-filter"
-          >
-            <template #option="slotProps">
-              <div class="p-multiselect-representative-option">
-                <img
-                  :alt="slotProps.option.name"
-                  src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-                  width="32"
-                  style="vertical-align: middle"
-                />
-                <span class="image-text">{{ slotProps.option.name }}</span>
-              </div>
-            </template>
-          </MultiSelect>
-        </template>
-      </Column>
-      <Column
-        field="date"
+        field="CreatedOn"
         header="Ngày tạo"
         sortable
         dataType="date"
@@ -145,7 +121,7 @@
         </template>
       </Column>
       <Column
-        field="listPrice"
+        field="ListPrice"
         header="Giá gốc"
         sortable
         dataType="numeric"
@@ -164,7 +140,7 @@
         </template>
       </Column>
       <Column
-        field="balance"
+        field="RetailPrice"
         header="Giá bán lẻ"
         sortable
         dataType="numeric"
@@ -183,7 +159,7 @@
         </template>
       </Column>
       <Column
-        field="status"
+        field="IsDeleted"
         header="Tình trạng"
         sortable
         :filterMenuStyle="{ width: '14rem' }"
@@ -216,13 +192,14 @@
         </template>
       </Column>
       <Column
-        field="stock"
+        field="Stock"
         header="Tồn kho"
         sortable
         :showFilterMatchModes="false"
         style="min-width: 10rem"
       >
         <template #body="{ data }">
+          {{data.Stock}}
           <ProgressBar :value="data.Stock" :showValue="false" />
         </template>
         <template #filter="{ filterModel }">

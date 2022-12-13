@@ -1,22 +1,13 @@
 <template>
   <Toast />
   <ConfirmDialog></ConfirmDialog>
-  <ConfirmDialog group="templating">
-    <template #message="slotProps">
-      <div class="flex p-4">
-        <i :class="slotProps.message.icon" style="font-size: 1.5rem"></i>
-        <p class="pl-2">{{ slotProps.message.message }}</p>
-      </div>
-    </template>
-  </ConfirmDialog>
-  <ConfirmDialog group="positionDialog"></ConfirmDialog>
   <div class="product-table-wrapper">
     <DataTable
       :value="list"
       :paginator="true"
       class="p-datatable-customers"
       :rows="10"
-      dataKey="id"
+      dataKey="IDCollection"
       :rowHover="true"
       :filters="filters"
       filterDisplay="menu"
@@ -24,7 +15,13 @@
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="['name', 'id']"
+      :globalFilterFields="[
+        'IDCollection',
+        'NameCollection',
+        'CreatedOn',
+        'StartOn',
+        'EndOn',
+      ]"
       responsiveLayout="scroll"
       v-model:selection="selectedCategories"
     >
@@ -44,7 +41,12 @@
       <template #loading> Loading collections data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
 
-      <Column header="Mã danh mục" sortable style="min-width: 9rem" field="id">
+      <Column
+        field="IDCollection"
+        header="Mã danh mục"
+        sortable
+        style="min-width: 9rem"
+      >
         <template #body="{ data }">
           <p
             @click="
@@ -61,7 +63,7 @@
       </Column>
 
       <Column
-        field="name"
+        field="NameCollection"
         header="Tên danh mục"
         sortable
         filterField="representative"
@@ -74,7 +76,7 @@
       </Column>
 
       <Column
-        field="date"
+        field="StartOn"
         header="Ngày hiển thị"
         sortable
         dataType="date"
@@ -93,7 +95,7 @@
       </Column>
 
       <Column
-        field="date"
+        field="EndOn"
         header="Ngày kết thúc"
         sortable
         dataType="date"
@@ -112,7 +114,7 @@
       </Column>
 
       <Column
-        field="date"
+        field="CreatedOn"
         header="Ngày tạo"
         sortable
         dataType="date"
@@ -174,33 +176,33 @@ export default {
     return {
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: {
+        NameCollection: {
           operator: FilterOperator.AND,
           constraints: [
             { value: null, matchMode: FilterMatchMode.STARTS_WITH },
           ],
         },
-        "country.name": {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
-        date: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
-        },
-        balance: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        status: {
-          operator: FilterOperator.OR,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+        // "country.name": {
+        //   operator: FilterOperator.AND,
+        //   constraints: [
+        //     { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+        //   ],
+        // },
+        // representative: { value: null, matchMode: FilterMatchMode.IN },
+        // date: {
+        //   operator: FilterOperator.AND,
+        //   constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
+        // },
+        // balance: {
+        //   operator: FilterOperator.AND,
+        //   constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
+        // },
+        // status: {
+        //   operator: FilterOperator.OR,
+        //   constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
+        // },
+        // activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
+        // verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
       list: [],

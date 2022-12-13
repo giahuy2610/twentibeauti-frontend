@@ -97,7 +97,6 @@ export const useCollectionStorePinia = defineStore("collectionStorePinia", {
         });
     },
     async updateCollection(id) {
-      console.log(444444444444444444444);
       console.log(this.getCollectionItems);
       await axios
         .put(`/collection/update/${id}`, this.getCollectionItems)
@@ -114,7 +113,6 @@ export const useCollectionStorePinia = defineStore("collectionStorePinia", {
         });
     },
     async delCollection(id = "") {
-      console.log("1000000000000000000000000000000000000000");
       return await axios
         .delete(`/collection/delete/${id}`)
         .then((response) => {

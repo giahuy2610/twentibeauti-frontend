@@ -106,7 +106,8 @@
             <div class="money">
               {{
                 Intl.NumberFormat().format(
-                  invoiceData.TotalValue + (invoiceData.Coupon?.ValueDiscount ?? 0)
+                  invoiceData.TotalValue +
+                    (invoiceData.Coupon?.ValueDiscount ?? 0)
                 )
               }}đ
             </div>
@@ -115,7 +116,9 @@
             <div class="label">Giảm giá</div>
             <div class="money">
               {{
-                Intl.NumberFormat().format(invoiceData.Coupon?.ValueDiscount ?? 0)
+                Intl.NumberFormat().format(
+                  invoiceData.Coupon?.ValueDiscount ?? 0
+                )
               }}đ
             </div>
           </div>

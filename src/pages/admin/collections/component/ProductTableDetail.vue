@@ -14,7 +14,7 @@
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="['name']"
+      :globalFilterFields="['IDProduct', 'NameProduct', 'Brand.NameBrand']"
       responsiveLayout="scroll"
     >
       <template #header>
@@ -43,7 +43,12 @@
       <template #empty> Không có sản phẩm </template>
       <template #loading> Đang lấy dữ liệu. </template>
       <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
-      <Column filterField="details" header="SKU" style="min-width: 10rem">
+      <Column
+        field="IDProduct"
+        header="SKU"
+        sortable
+        style="min-width: 10rem"
+      >
         <template #body="{ data }">
           <p
             @click="
@@ -58,7 +63,7 @@
         </template>
       </Column>
       <Column
-        filterField="name"
+        field="NameProduct"
         header="Tên"
         sortable
         style="min-width: 14rem"
@@ -75,7 +80,18 @@
           />
         </template>
       </Column>
-
+      <Column
+        field="Brand.NameBrand"
+        header="Hãng"
+        sortable
+        style="min-width: 10rem"
+      >
+        <template #body="{ data }">
+          <p>
+            {{ data.Brand.NameBrand }}
+          </p>
+        </template>
+      </Column>
       <Column
         headerStyle="width: 4rem; text-align: center"
         bodyStyle="text-align: center; overflow: visible"
@@ -97,39 +113,26 @@ export default {
       selectedProducts: [],
       filterModel: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        "name": {
+        IDProduct: {
           operator: FilterOperator.AND,
           constraints: [
             { value: null, matchMode: FilterMatchMode.STARTS_WITH },
           ],
         },
-        // representative: { value: null, matchMode: FilterMatchMode.IN },
-        // date: {
-        //   operator: FilterOperator.AND,
-        //   constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
-        // },
-        // balance: {
-        //   operator: FilterOperator.AND,
-        //   constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        // },
-        // status: {
-        //   operator: FilterOperator.OR,
-        //   constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        // },
-        // activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-        // verified: { value: null, matchMode: FilterMatchMode.EQUALS },
+        NameProduct: {
+          operator: FilterOperator.AND,
+          constraints: [
+            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+          ],
+        },
+        "Brand.NameBrand": {
+          operator: FilterOperator.AND,
+          constraints: [
+            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
+          ],
+        },
       },
       loading: true,
-      representatives: [{ name: "Amy Elsner", image: "amyelsner.png" }],
-      statuses: [
-        "unqualified",
-        "qualified",
-        "new",
-        "negotiation",
-        "renewal",
-        "proposal",
-      ],
-
       optionOnClick: [
         { name: "Sửa", code: "1" },
         { name: "Xóa", code: "2" },

@@ -1,5 +1,7 @@
 <template>
   <div class="order-table-wrapper">
+    <Toast />
+    <ConfirmDialog></ConfirmDialog>
     <DataTable
       :value="orders"
       :paginator="true"
@@ -14,14 +16,7 @@
       paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
       :rowsPerPageOptions="[10, 25, 50]"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-      :globalFilterFields="[
-        'id',
-        'nameCus',
-        'total',
-        'date',
-        'status',
-        'statuses.name',
-      ]"
+      :globalFilterFields="['IDInvoice', 'IDCus']"
       responsiveLayout="scroll"
     >
       <template #header>
@@ -50,7 +45,12 @@
       <template #loading> Loading customers data. Please wait. </template>
       <Column selectionMode="multiple" headerStyle="width: 2rem"></Column>
 
-      <Column field="id" header="Mã đơn hàng" style="min-width: 3rem">
+      <Column
+        field="IDInvoice"
+        header="Mã đơn hàng"
+        style="min-width: 3rem"
+        sortable
+      >
         <template #body="{ data }">
           <p
             @click="
@@ -65,7 +65,12 @@
           </p>
         </template>
       </Column>
-      <Column field="nameCus" header="Khách hàng" style="min-width: 6rem">
+      <Column
+        field="IDCus"
+        header="ID Khách hàng"
+        sortable
+        style="min-width: 6rem"
+      >
         <template #body="{ data }">
           <p
             @click="
@@ -83,7 +88,7 @@
       </Column>
 
       <Column
-        field="date"
+        field="CreatedOn"
         header="Ngày tạo"
         sortable
         dataType="date"
@@ -94,7 +99,7 @@
         </template>
       </Column>
       <Column
-        field="total"
+        field="TotalValue"
         header="Tổng đơn"
         sortable
         dataType="numeric"
@@ -105,7 +110,8 @@
         </template>
       </Column>
       <Column
-        field="status"
+        field="IDTracking"
+        sortable
         header="Tình trạng"
         :filterMenuStyle="{ width: '10rem' }"
         style="min-width: 6rem"
@@ -134,13 +140,55 @@
           </Dropdown>
         </template>
       </Column>
-
+      <Column header="Cập nhật" style="min-width: 6rem">
+        <template #body="{ data }">
+          <Button
+            :label="data.IDTracking"
+            type="button"
+            icon="pi pi-check"
+            class="p-button-outlined p-button-info"
+            @click="
+              this.$confirm.require({
+                message: 'Bạn muốn chuyển trạng thái đơn hàng sang...',
+                header: 'Xác nhận',
+                icon: 'pi pi-exclamation-triangle',
+                accept: nextToTrackingStatusInvoice(data.IDInvoice, 3),
+                reject: () => {
+                  this.$toast.add({
+                    severity: 'error',
+                    summary: 'Rejected',
+                    detail: 'Đã hủy thao tác',
+                    life: 3000,
+                  });
+                },
+              })
+            "
+          ></Button>
+        </template>
+      </Column>
       <Column header="Hủy đơn hàng" style="min-width: 6rem">
-        <template #body>
+        <template #body="{ data }">
           <Button
             type="button"
             icon="pi pi-times"
             class="p-button-rounded p-button-danger p-button-text"
+            @click="
+              this.$confirm.require({
+                message: 'Bạn có chắc chắn muốn xóa không ?',
+                header: 'Delete Confirmation',
+                icon: 'pi pi-info-circle',
+                acceptClass: 'p-button-danger',
+                accept: rejectInvoice(data.IDInvoice),
+                reject: () => {
+                  this.$toast.add({
+                    severity: 'error',
+                    summary: 'Rejected',
+                    detail: 'Đã hủy thao tác xóa',
+                    life: 3000,
+                  });
+                },
+              })
+            "
           ></Button>
         </template>
       </Column>
@@ -204,17 +252,20 @@ export default {
       orders: [],
     };
   },
-  created() {},
   async mounted() {
-    await this.axios
-      .get("/invoice/show")
-      .then((response) => {
-        this.orders = response.data;
-      })
-      .catch((e) => console.error(e));
+    await this.loadData();
     this.loading = false;
   },
   methods: {
+    async loadData() {
+      await this.axios
+        .get("/invoice/show")
+        .then((response) => {
+          this.orders = response.data;
+        })
+        .catch((e) => console.error(e));
+    },
+
     formatDate(value) {
       return value.toLocaleDateString("en-US", {
         day: "2-digit",
@@ -227,6 +278,46 @@ export default {
         style: "currency",
         currency: "VND",
       });
+    },
+    async rejectInvoice(IDInvoice) {
+      await this.axios
+        .put("/invoice/tracking-status", {
+          IDInvoice: IDInvoice,
+          IDTracking: 6,
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.add({
+              severity: "info",
+              summary: "Confirmed",
+              detail: "Hủy đơn thành công",
+              life: 3000,
+            });
+            this.loadData();
+            this.$confirm.close();
+          }
+        })
+        .catch((err) => console.error(err));
+    },
+    async nextToTrackingStatusInvoice(IDInvoice, IDTracking) {
+      await this.axios
+        .put("/invoice/tracking-status", {
+          IDInvoice: IDInvoice,
+          IDTracking: IDTracking,
+        })
+        .then((response) => {
+          if (response.status == 200) {
+            this.$toast.add({
+              severity: "info",
+              summary: "Confirmed",
+              detail: "Cập nhật trạng thái đơn thành công",
+              life: 3000,
+            });
+            this.loadData();
+            this.$confirm.close();
+          }
+        })
+        .catch((err) => console.error(err));
     },
   },
 };
