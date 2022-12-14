@@ -65,7 +65,11 @@
               invoiceData.MethodPay == 1 &&
               invoiceData.IsPaid == 0 &&
               invoiceData.IDTracking == 1
-                ? "Quý khách vui lòng thanh toán 850.000đ khi nhận hàng"
+                ? "Quý khách vui lòng thanh toán " +
+                  invoiceData.TotalValue +
+                  "đ khi nhận hàng"
+                : invoiceData.MethodPay == 2
+                ? "Đã thanh toán"
                 : ""
             }}
           </div>

@@ -11,7 +11,18 @@
             class="p-button-outlined p-button-danger"
             disabled="disabled"
           />
-          <Button label="Lưu" class="p-button-info" @click="createEvent" />
+          <Button
+            v-if="$route.path != '/admin/promotions/event/create'"
+            label="Cập nhật"
+            class="p-button-info"
+            @click="updateEvent"
+          />
+          <Button
+            v-else
+            label="Lưu"
+            class="p-button-info"
+            @click="createEvent"
+          />
         </div>
       </div>
     </template>
@@ -36,6 +47,7 @@ export default {
     ...mapActions(useEventStorePinia, {
       createEvent: "createEvent",
       getEvent: "getEvent",
+      updateEvent: "updateEvent",
     }),
   },
   async mounted() {

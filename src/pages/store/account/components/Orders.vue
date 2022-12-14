@@ -28,7 +28,7 @@
   </div>
 </template>
 <script>
-import { useCartStorePinia  } from "@/stores/store/cart.js";
+import { useCartStorePinia } from "@/stores/store/cart.js";
 import { mapState, mapActions } from "pinia";
 import MyOrder from "./MyOrder.vue";
 export default {
@@ -36,7 +36,7 @@ export default {
     MyOrder,
   },
   computed: {
-    ...mapState(useCartStorePinia , ["user"]),
+    ...mapState(useCartStorePinia, ["user"]),
   },
   data() {
     return {
@@ -60,6 +60,8 @@ export default {
       .then((response) => {
         this.orders = response.data;
         this.ordersDisplay = response.data;
+        console.log(this.orders)
+        console.log(this.ordersDisplay)
       })
       .catch(function (error) {
         console.error(error);

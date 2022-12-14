@@ -49,7 +49,7 @@
       </template>
 
       <template #content>
-        <div
+        <!-- <div
           @click="change"
           v-for="category of categories"
           :key="category.key"
@@ -62,9 +62,9 @@
             v-model="_appliedMode"
           />
           <label :for="category.key">{{ category.name }}</label>
-        </div>
-
-        <div
+        </div> -->
+        <ProductTable></ProductTable>
+        <!-- <div
           class="search"
           v-show="
             _appliedMode == this.categories[2].key ||
@@ -72,7 +72,7 @@
           "
         >
           <EventProductDialog></EventProductDialog>
-        </div>
+        </div> -->
         <!-- <div
           style="margin-top: 10px"
           class="image"
@@ -168,9 +168,10 @@
 import EventProductDialog from "@/pages/admin/promotions/components/EventProductDialog.vue";
 import { useEventStorePinia } from "@/stores/admin/eventpromotion.js";
 import { mapWritableState } from "pinia";
+import ProductTable from "./ProductTable.vue";
 
 export default {
-  components: { EventProductDialog },
+  components: { EventProductDialog, ProductTable },
   data() {
     return {
       checked1: true,

@@ -11,7 +11,18 @@
             class="p-button-outlined p-button-danger"
             disabled="disabled"
           />
-          <Button label="Lưu" class="p-button-info" @click="createCoupon" />
+          <Button
+            v-if="$route.path != '/admin/promotions/code/create'"
+            label="Cập nhật"
+            class="p-button-info"
+            @click="updateCoupon"
+          />
+          <Button
+            v-else
+            label="Lưu"
+            class="p-button-info"
+            @click="createCoupon"
+          />
         </div>
       </div>
     </template>
@@ -36,6 +47,7 @@ export default {
     ...mapActions(usePromotionStorePinia, {
       createCoupon: "createCoupon",
       getCoupon: "getCoupon",
+      updateCoupon: "updateCoupon",
     }),
   },
   async mounted() {

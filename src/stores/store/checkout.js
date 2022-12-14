@@ -72,13 +72,6 @@ export const useCheckoutStorePinia = defineStore("checkoutStorePinia", {
         });
     },
     async createInvoice() {
-      if (this.receiverInfo.MethodPay == 2) {
-        window.location.href =
-          "http://localhost/vnpay_php/vnpay_create_payment.php?order_desc=Thanh+toan+don+hang125&amount=10000000";
-        // Router.pus({
-        //   path: "/",
-        // });
-      }
       //the base invoice
       var newInvoice = this.receiverInfo;
       //add idcus
@@ -93,12 +86,20 @@ export const useCheckoutStorePinia = defineStore("checkoutStorePinia", {
       console.log(newInvoice);
       await axios
         .post(`/invoice/create`, newInvoice)
-        .then((response) => {
+        .then(async (response) => {
           if (response.status == 200) {
-            Router.push({
-              name: "order details",
-              params: { id: response.data.IDInvoice },
-            });
+            if (response.data.MethodPay == 2) {
+              window.location.href =
+                axios.defaults.baseURL +
+                "/test?IDInvoice=" +
+                response.data.IDInvoice +
+                "&TotalValue=" +
+                response.data.TotalValue;
+            } else
+              Router.push({
+                name: "order details",
+                params: { id: response.data.IDInvoice },
+              });
           } else console.log(response);
         })
         .catch(function (error) {

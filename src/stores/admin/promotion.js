@@ -80,5 +80,17 @@ export const usePromotionStorePinia = defineStore("promotionStorePinia", {
           console.error(error);
         });
     },
+    async updateCoupon() {
+      await axios
+        .put(`/coupon/update/`, this.coupon)
+        .then((response) => {
+          if (response.status == 200) {
+            Router.push({ name: "code promotion" });
+          }
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    },
   },
 });

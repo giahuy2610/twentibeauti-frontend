@@ -9,7 +9,7 @@
       <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
       </Skeleton>
       <img
-        src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=0902"
+        :src='"https://api.qrserver.com/v1/create-qr-code/?size=100x100&data="+infoCus.IDCus'
         alt="qr"
         @load="isLoaded = true"
         v-show="isLoaded"

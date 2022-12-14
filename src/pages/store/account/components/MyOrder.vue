@@ -35,7 +35,7 @@
           <div class="status">
             <span class="label">Tình trạng:</span>
             <span class="status-order">{{
-              trackingStatus[item.IDTracking - 1]["label"]
+              trackingStatus[item.IDTracking - 1]
             }}</span>
           </div>
           <div class="btn-details">
@@ -73,26 +73,12 @@ export default {
       totalRecords: 120,
       totalRecords2: 12,
       trackingStatus: [
-        {
-          label: "Đã đặt đơn hàng",
-          to: "/",
-        },
-        {
-          label: "Xác nhận đơn hàng",
-          to: "/confirm",
-        },
-        {
-          label: "Đang chuẩn bị đơn hàng",
-          to: "/prepare",
-        },
-        {
-          label: "Đang vận chuyển",
-          to: "/delivery",
-        },
-        {
-          label: "Giao hàng không thành công",
-          to: "/status",
-        },
+        "Chờ xác nhận",
+        "Đang chuẩn bị đơn",
+        "Đang giao",
+        "Đã giao",
+        "Đã hủy",
+        "Đơn không thành công",
       ],
     };
   },

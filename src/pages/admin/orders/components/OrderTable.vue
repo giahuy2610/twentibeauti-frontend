@@ -117,7 +117,7 @@
         style="min-width: 6rem"
       >
         <template #body="{ data }">
-          <span>{{ data.IDTracking }}</span>
+          <span>{{ statuses[data.IDTracking - 1] }}</span>
         </template>
         <template #filter="{ filterModel }">
           <Dropdown
@@ -143,7 +143,10 @@
       <Column header="Cập nhật" style="min-width: 6rem">
         <template #body="{ data }">
           <Button
-            :label="data.IDTracking"
+            :disabled="data.IDTracking > 3"
+            :label="
+              data.IDTracking != 6 ? statuses[data.IDTracking] : statuses[4]
+            "
             type="button"
             icon="pi pi-check"
             class="p-button-outlined p-button-info"
@@ -152,7 +155,10 @@
                 message: 'Bạn muốn chuyển trạng thái đơn hàng sang...',
                 header: 'Xác nhận',
                 icon: 'pi pi-exclamation-triangle',
-                accept: nextToTrackingStatusInvoice(data.IDInvoice, 3),
+                accept: nextToTrackingStatusInvoice(
+                  data.IDInvoice,
+                  data.IDTracking + 1
+                ),
                 reject: () => {
                   this.$toast.add({
                     severity: 'error',
@@ -169,6 +175,8 @@
       <Column header="Hủy đơn hàng" style="min-width: 6rem">
         <template #body="{ data }">
           <Button
+            v-if="data.IDTracking <= 2"
+            label="Hủy đơn"
             type="button"
             icon="pi pi-times"
             class="p-button-rounded p-button-danger p-button-text"
@@ -184,6 +192,31 @@
                     severity: 'error',
                     summary: 'Rejected',
                     detail: 'Đã hủy thao tác xóa',
+                    life: 3000,
+                  });
+                },
+              })
+            "
+          ></Button>
+          <Button
+            v-if="data.IDTracking == 3"
+            label="
+              Không thành công
+            "
+            type="button"
+            icon="pi pi-check"
+            class="p-button-outlined p-button-danger"
+            @click="
+              this.$confirm.require({
+                message: 'Bạn muốn chuyển trạng thái đơn hàng sang...',
+                header: 'Xác nhận',
+                icon: 'pi pi-exclamation-triangle',
+                accept: nextToTrackingStatusInvoice(data.IDInvoice, 5),
+                reject: () => {
+                  this.$toast.add({
+                    severity: 'error',
+                    summary: 'Rejected',
+                    detail: 'Đã hủy thao tác',
                     life: 3000,
                   });
                 },
@@ -206,32 +239,6 @@ export default {
       selectedStatus: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        nameCus: {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        "statuses.name": {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        date: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
-        },
-        total: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        status: {
-          operator: FilterOperator.OR,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
       tracking: [
@@ -243,11 +250,12 @@ export default {
       ],
       selectedTracking: null,
       statuses: [
-        { name: "Đơn hàng đang được chuẩn bị", code: "WT" },
-        { name: "Đang giao hàng", code: "SHIPPING" },
-        { name: "Đã giao hàng", code: "SHIPPED" },
-        { name: "Giao hàng không thành công", code: "UNS" },
-        { name: "Đơn hàng bị hủy", code: "CANC" },
+        "Chờ xác nhận",
+        "Đang chuẩn bị đơn",
+        "Đang giao",
+        "Đã giao",
+        "Đã hủy",
+        "Đơn không thành công",
       ],
       orders: [],
     };
