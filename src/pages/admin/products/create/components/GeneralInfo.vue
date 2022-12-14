@@ -12,7 +12,22 @@
                 type="text"
                 v-model="productInfo.NameProduct"
                 placeholder="Nhập tên sản phẩm"
+                aria-describedby="namepro-help"
+                :class="{
+                  'p-invalid':
+                    productInfo.NameProduct == null ||
+                    productInfo.NameProduct == '',
+                }"
               />
+              <small
+                id="namepro-help"
+                class="p-error"
+                v-if="
+                  productInfo.NameProduct == null ||
+                  productInfo.NameProduct == ''
+                "
+                >Tên sản phẩm không được để trống</small
+              >
             </span>
           </div>
         </div>
@@ -23,12 +38,29 @@
             <div class="fillinf">
               <div class="nameinf">
                 <span class="p-fluid"
-                  ><InputText
+                  ><InputNumber
                     id="codeprod"
-                    type="text"
+                    mode="decimal"
+                    :useGrouping="false"
                     v-model="productInfo.IDProduct"
                     placeholder="Nhập mã sản phẩm"
+                    aria-describedby="codeprod-help"
+                    :class="{
+                      'p-invalid':
+                        productInfo.IDProduct == null ||
+                        productInfo.IDProduct == '',
+                    }"
                   />
+                  <small
+                    id="codeprod-help"
+                    class="p-error"
+                    v-if="
+                      productInfo.IDProduct == null ||
+                      productInfo.IDProduct == ''
+                    "
+                  >
+                    Mã sản phẩm không được để trống</small
+                  >
                 </span>
               </div>
             </div>
@@ -36,15 +68,44 @@
           <div class="mass">
             <p>Khối lượng</p>
             <div class="fillinf">
-              <InputText id="mass" type="text" v-model="productInfo.Mass" />
+              <InputNumber
+                id="mass"
+                mode="decimal"
+                :useGrouping="false"
+                v-model="productInfo.Mass"
+                aria-describedby="mass-help"
+                :class="{
+                  'p-invalid':
+                    productInfo.Mass == null || productInfo.Mass == '',
+                }"
+              />
+
               <Dropdown
                 v-model="productInfo.UnitsOfMass"
                 :options="massList"
                 optionLabel="name"
                 optionValue="code"
                 :editable="true"
+                aria-describedby="unitofmass-help"
+                :class="{
+                  'p-invalid':
+                    productInfo.UnitsOfMass == null ||
+                    productInfo.UnitsOfMass == '',
+                }"
               />
             </div>
+            <small
+              id="mass-help"
+              class="p-error"
+              v-if="
+                productInfo.Mass == null ||
+                productInfo.Mass == '' ||
+                productInfo.UnitsOfMass == null ||
+                productInfo.UnitsOfMass == ''
+              "
+            >
+              Khối lượng không được để trống</small
+            >
           </div>
         </div>
         <p>Đơn vị tính</p>
@@ -58,7 +119,19 @@
                 optionValue="code"
                 placeholder="Đơn vị tính"
                 :editable="true"
+                aria-describedby="unitlist-help"
+                :class="{
+                  'p-invalid':
+                    productInfo.Units == null || productInfo.Units == '',
+                }"
               />
+              <small
+                id="unitlist-help"
+                class="p-error"
+                v-if="productInfo.Units == null || productInfo.Units == ''"
+              >
+                Đơn vị tính không được để trống</small
+              >
             </span>
           </div>
         </div>

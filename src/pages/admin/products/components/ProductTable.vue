@@ -322,9 +322,9 @@ export default {
       });
     },
     formatCurrency(value) {
-      return value.toLocaleString("en-US", {
+      return value.toLocaleString({
         style: "currency",
-        currency: "USD",
+        currency: "VND",
       });
     },
     onRowSelect(event) {

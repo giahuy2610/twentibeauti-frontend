@@ -12,7 +12,20 @@
             type="text"
             v-model="receiverInfo.FirstName"
             placeholder="Tên"
+            aria-describedby="fisrtname-help"
+            :class="{
+              'p-invalid':
+                receiverInfo.FirstName == null || receiverInfo.FirstName == '',
+            }"
           />
+          <small
+            id="firstname-help"
+            class="p-error"
+            v-if="
+              receiverInfo.FirstName == null || receiverInfo.FirstName == ''
+            "
+            >Tên không được để trống</small
+          >
         </span>
       </div>
       <div class="nameinf">
@@ -35,7 +48,7 @@
               v-if="
                 receiverInfo.LastName == null || receiverInfo.LastName == ''
               "
-              >Không được để trống</small
+              >Họ không được để trống</small
             >
           </div>
         </span>
@@ -49,8 +62,32 @@
             type="text"
             v-model="receiverInfo.Phone"
             placeholder="Số điện thoại"
-            class="p-invalid"
+            aria-describedby="phone-help"
+            :class="{
+              'p-invalid':
+                receiverInfo.Phone == null || receiverInfo.Phone == '' || !receiverInfo.Phone.match(
+                /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+              )
+            }"
           />
+          <small
+            id="phone-help"
+            class="p-error"
+            v-if="receiverInfo.Phone == null || receiverInfo.Phone == ''"
+            >Số điện thoại không được để trống</small
+          >
+          <small
+            id="phone-help"
+            class="p-error"
+            v-if="
+              receiverInfo.Phone != null &&
+              receiverInfo.Phone != '' &&
+              !receiverInfo.Phone?.match(
+                /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+              )
+            "
+            >Số điện thoại không đúng định dạng</small
+          >
         </span>
       </div>
       <div class="nameinf">
@@ -60,7 +97,32 @@
             type="text"
             v-model="receiverInfo.Email"
             placeholder="Email"
+            aria-describedby="email-help"
+            :class="{
+              'p-invalid':
+                receiverInfo.Email == null || receiverInfo.Email == '' || !receiverInfo.Email.match(
+                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+              )
+            }"
           />
+          <small
+            id="email-help"
+            class="p-error"
+            v-if="receiverInfo.Email == null || receiverInfo.Email == ''"
+            >Email không được để trống</small
+          >
+          <small
+            id="email-help"
+            class="p-error"
+            v-if="
+              receiverInfo.Email != null &&
+              receiverInfo.Email != '' &&
+              !receiverInfo.Email?.match(
+                /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+              )
+            "
+            >Email sai định dạng</small
+          >
         </span>
       </div>
     </div>
@@ -81,7 +143,17 @@
             optionValue="code"
             placeholder="Tỉnh/Thành phố"
             :editable="true"
+            aria-describedby="city-help"
+            :class="{
+              'p-invalid': selectedProvince == null || selectedProvince == '',
+            }"
           />
+          <small
+            id="province-help"
+            class="p-error"
+            v-if="selectedProvince == null || selectedProvince == ''"
+            >Tỉnh/thành phố không được để trống</small
+          >
         </span>
       </div>
       <br />
@@ -95,7 +167,17 @@
               optionValue="code"
               placeholder="Quận/huyện"
               :editable="true"
+              aria-describedby="districts-help"
+              :class="{
+                'p-invalid': selectedDistrict == null || selectedDistrict == '',
+              }"
             />
+            <small
+              id="districts-help"
+              class="p-error"
+              v-if="selectedDistrict == null || selectedDistrict == ''"
+              >Quận/Huyện không được để trống</small
+            >
           </span>
         </div>
         <div class="nameinf">
@@ -107,7 +189,17 @@
               optionValue="code"
               placeholder="Phường / xã"
               :editable="true"
+              aria-describedby="ward-help"
+              :class="{
+                'p-invalid': selectedWard == null || selectedWard == '',
+              }"
             />
+            <small
+              id="ward-help"
+              class="p-error"
+              v-if="selectedWard == null || selectedWard == ''"
+              >Phường/Xã không được để trống</small
+            >
           </span>
         </div>
       </div>
@@ -119,7 +211,22 @@
             type="text"
             v-model="receiverInfo.AddressDetail"
             placeholder="Địa chỉ"
+            aria-describedby="address-help"
+            :class="{
+              'p-invalid':
+                receiverInfo.AddressDetail == null ||
+                receiverInfo.AddressDetail == '',
+            }"
           />
+          <small
+            id="address-help"
+            class="p-error"
+            v-if="
+              receiverInfo.AddressDetail == null ||
+              receiverInfo.AddressDetail == ''
+            "
+            >Địa chỉ không được để trống</small
+          >
         </span>
       </div>
       <br />
@@ -147,7 +254,6 @@ export default {
       provinces: [],
       districts: [],
       wards: []
-
         }
   },
   computed: {
@@ -222,14 +328,6 @@ export default {
         });
       });
     },
-    // getAlldata() {
-    //   if (this.$route.fullPath ==  `/checkout`)
-    //      {
-    //     console.log(this.getInfoCus(6));
-    //     // return this.getInfoCollection(this.$route.params.id).save;
-
-    //   }
-    // },
     // ...mapActions(useCheckoutStorePinia, ["increaseTotal","loadDefaultInfo"]),
     ...mapActions(useInfoAccountStorePinia, ["loadDefaultInfoCus"]),
   },

@@ -14,6 +14,11 @@
             placeholder="Chọn loại sản phẩm"
             :editable="true"
             style="width: 100%"
+            aria-describedby="idtype-help"
+            :class="{
+              'p-invalid':
+              type == null || type == '',
+            }"
           />
           <Button
             icon="pi pi-plus"
@@ -21,7 +26,13 @@
             @click="openModalCate"
           ></Button>
         </div>
-
+        <small
+          id="idbrand-help"
+          class="p-error"
+          v-if="type == null || type == ''"
+        >
+          Loại sản phẩm không được để trống</small
+        >
         <Dialog
           header="Thêm loại sản phẩm"
           v-model:visible="displayModalCate"
@@ -57,6 +68,11 @@
             placeholder="Chọn nhãn hiệu"
             :editable="true"
             style="width: 100%"
+            aria-describedby="idbrand-help"
+            :class="{
+              'p-invalid':
+                productInfo.IDBrand == null || productInfo.IDBrand == '',
+            }"
           />
           <Button
             icon="pi pi-plus"
@@ -64,7 +80,13 @@
             @click="openModal"
           ></Button>
         </div>
-
+        <small
+          id="idbrand-help"
+          class="p-error"
+          v-if="productInfo.IDBrand == null || productInfo.IDBrand == ''"
+        >
+          Nhãn hiệu không được để trống</small
+        >
         <Dialog
           header="Thêm nhãn hiệu"
           v-model:visible="displayModal"
@@ -112,6 +134,11 @@
             placeholder="Chọn Tag sản phẩm"
             :editable="true"
             style="width: 100%"
+            aria-describedby="idtag-help"
+            :class="{
+              'p-invalid':
+                productInfo.IDTag == null || productInfo.IDTag == '',
+            }"
           />
           <Button
             icon="pi pi-plus"
@@ -119,6 +146,13 @@
             @click="openShowTags"
           ></Button>
         </div>
+        <small
+          id="idtag-help"
+          class="p-error"
+          v-if="productInfo.IDTag == null || productInfo.IDTag == ''"
+        >
+          Tags không được để trống</small
+        >
         <Dialog
           header="Thêm Tags"
           v-model:visible="displayTags"

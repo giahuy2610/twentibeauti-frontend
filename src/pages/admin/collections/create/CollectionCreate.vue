@@ -1,4 +1,16 @@
 <template lang="">
+  <Toast />
+  <Toast position="bottom-center" group="bc">
+    <template #message="slotProps">
+      <div class="flex flex-column">
+        <div class="text-center">
+          <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+          <h4>{{ slotProps.message.summary }}</h4>
+          <p>{{ slotProps.message.detail }}</p>
+        </div>
+      </div>
+    </template>
+  </Toast>
   <AdminBlankPage>
     <template v-slot:header>
       <div class="header-wrapper">
@@ -18,19 +30,19 @@
               $router.push({ path: `/collection/${this.$route.params.id}` })
             "
           />
-          <Button label="Lưu" class="p-button-info" @click="backpage()" />
+          <Button label="Lưu" class="p-button-info" @click="save()" />
         </div>
       </div>
     </template>
     <template v-slot:main>
       <div class="main-wrapper flex justify-content-center">
-        <div class="left-content">
+        <div class="left-content" style="width:700px">
           <AddInfor> </AddInfor>
           <ProductTable></ProductTable>
-          <AddMethod></AddMethod>
+          <!-- <AddMethod></AddMethod> -->
         </div>
         <div class="right-content">
-          <Card>
+          <Card >
             <template #title> Trạng thái</template>
             <template #content>
               <div class="p-2">Đặt lịch hiển thị</div>
@@ -40,6 +52,7 @@
                 :showTime="true"
                 :showSeconds="true"
                 selectionMode="range"
+                style="width:100%"
               />
             </template>
           </Card>
@@ -111,7 +124,7 @@
               </div>
             </template>
           </Card>
-          <Card>
+          <!-- <Card>
             <template #title> Gắn lên menu </template>
             <template #content>
               <div class="flex justify-content-between">
@@ -119,7 +132,7 @@
                 <div>Chọn menu</div>
               </div>
             </template>
-          </Card>
+          </Card> -->
         </div>
       </div>
     </template>
@@ -135,7 +148,6 @@ import { useCollectionStorePinia } from "@/stores/admin/collection.js";
 import { mapWritableState, mapActions } from "pinia";
 import AdminCollectionsVue from "../AdminCollections.vue";
 import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
-
 export default {
   components: {
     AdminBlankPage,
@@ -171,13 +183,35 @@ export default {
       } else {
       }
     },
-    backpage: function () {
-      this.insertdata();
-
-      this.reset();
+    save: function () {
+      // this.insertdata();
+      // console.log('44444444444444444');
+      // this.reset();
+      if (this.collectionItems.NameCollection == null ||
+      this.collectionItems.NameCollection == '' 
+      ) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error Message",
+          detail: "Chưa điền đầy đủ thông tin",
+          life: 3000,
+        });
+      } else {
+        this.$toast.add({
+          severity: "success",
+          summary: "Success Message",
+          detail: "Thêm danh mục thành công",
+          life: 3000,
+        });
+        this.insertdata();
+        this.reset();
+      }
     },
     reset() {
-      this.$router.push({ path: "/admin/collections" });
+      //this.$router.push({ path: "/admin/collections" });
+      Router.push({
+              name: "admin collections",
+            });
     },
     logoimg(n) {
       console.log(n);

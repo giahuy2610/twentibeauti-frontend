@@ -10,12 +10,25 @@
           <div class="orderinf">
             <p>Tồn kho ban đầu</p>
             <span class="p-fluid">
-              <InputText
+              <InputNumber
                 id="inventory"
-                type="text"
+                mode="decimal"
+                :useGrouping="false"
                 v-model="productInfo.Stock"
                 placeholder="0"
+                aria-describedby="inventory-help"
+                :class="{
+                  'p-invalid':
+                    productInfo.Stock == null || productInfo.Stock == '',
+                }"
               />
+              <small
+                id="inventory-help"
+                class="p-error"
+                v-if="productInfo.Stock == null || productInfo.Stock == ''"
+              >
+                Tồn kho ban đầu không được để trống</small
+              >
             </span>
           </div>
           <div class="orderinf">

@@ -99,7 +99,10 @@ export const useCheckoutStorePinia = defineStore("checkoutStorePinia", {
               name: "order details",
               params: { id: response.data.IDInvoice },
             });
-          } else console.log(response);
+          } else{
+            console.log(response);
+
+          } 
         })
         .catch(function (error) {
           console.error(error);

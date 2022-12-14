@@ -12,7 +12,19 @@
             @input="change"
             placeholder="Ví dụ: Chương trình khuyến mãi tháng 4"
             v-model="eventPromotion.NameEvent"
+            aria-describedby="promocode-help"
+            :class="{
+              'p-invalid':
+              eventPromotion.NameEvent== null || eventPromotion.NameEvent == '',
+            }"
           />
+          <small
+          id="idbrand-help"
+          class="p-error"
+          v-if="eventPromotion.NameEvent == null || eventPromotion.NameEvent == ''"
+        >
+          Tên chương trình khuyến mãi không được để trống</small
+        >
         </span>
       </template>
     </Card>

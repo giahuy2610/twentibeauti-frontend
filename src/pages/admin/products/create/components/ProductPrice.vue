@@ -7,12 +7,27 @@
           <div class="priceinf">
             <p>Giá bán lẻ</p>
             <span class="p-fluid">
-              <InputText
+              <InputNumber
                 id="listprice"
                 type="text"
                 v-model="productInfo.ListPrice"
                 placeholder="0"
+                aria-describedby="listprice-help"
+                :class="{
+                  'p-invalid':
+                    productInfo.ListPrice == null ||
+                    productInfo.ListPrice == '',
+                }"
               />
+              <small
+                id="listprice-help"
+                class="p-error"
+                v-if="
+                  productInfo.ListPrice == null || productInfo.ListPrice == ''
+                "
+              >
+                Giá bán lẻ không được để trống</small
+              >
             </span>
           </div>
           <div class="priceinf">
