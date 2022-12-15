@@ -37,11 +37,16 @@
 import AdminBlankPage from "@/pages/admin/AdminBlankPage.vue";
 import MainContent from "@/pages/admin/promotions/eventpromotioncreate/MainContent.vue";
 import { useEventStorePinia } from "@/stores/admin/eventpromotion.js";
-import { mapActions } from "pinia";
+import { mapActions,mapWritableState } from "pinia";
 export default {
   components: {
     AdminBlankPage,
     MainContent,
+  },
+  computed: {
+    ...mapWritableState(useEventStorePinia, {
+      eventPromotion: "eventPromotion",
+    }),
   },
   methods: {
     ...mapActions(useEventStorePinia, {
@@ -49,6 +54,27 @@ export default {
       getEvent: "getEvent",
       updateEvent: "updateEvent",
     }),
+    save: function() {
+      if(
+        this.eventPromotion.NameEvent== null || this.eventPromotion.NameEvent == '' ||
+        this.eventPromotion.ValueDiscount == null || this.eventPromotion.ValueDiscount == ''
+      ) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error Message",
+          detail: "Chưa điền đầy đủ thông tin",
+          life: 3000,
+        });
+      } else {
+        this.$toast.add({
+          severity: "success",
+          summary: "Success Message",
+          detail: "Thêm chương trình khuyến mãi thành công",
+          life: 3000,
+        });
+        this.createEvent();
+      }
+    },
   },
   async mounted() {
     if (this.$route.path.split("/")[4] == "edit")

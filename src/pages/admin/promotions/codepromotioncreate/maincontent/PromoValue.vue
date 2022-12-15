@@ -18,7 +18,19 @@
               locale="de-DE"
               :min="0"
               :max="1000000000"
+              aria-describedby="minmax-help"
+              :class="{
+                'p-invalid':
+                  coupon.ValueDiscount == null || coupon.ValueDiscount == '',
+              }"
             />
+            <small
+              id="codeprod-help"
+              class="p-error"
+              v-if="coupon.ValueDiscount == null || coupon.ValueDiscount == ''"
+            >
+              Giá trị khuyến mãi không được để trống</small
+            >
             <!-- <InputNumber
               @input="change"
               v-show="coupon._promoType == 'P'"
@@ -57,7 +69,7 @@
       </template>
       <template #content>
         <div
-          v-for="(category,index) of categories"
+          v-for="(category, index) of categories"
           :key="category.key"
           class="field-radiobutton"
         >
@@ -84,8 +96,7 @@
           style="margin-top: 10px"
           class="image"
           v-if="
-            collection.length > 0 &&
-            _appliedMode === this.categories[1].key
+            collection.length > 0 && _appliedMode === this.categories[1].key
           "
         >
           <div
@@ -207,7 +218,7 @@ export default {
       ],
       checked: true,
       collection: [],
-      _appliedMode: 'A'
+      _appliedMode: "A",
     };
   },
   computed: {

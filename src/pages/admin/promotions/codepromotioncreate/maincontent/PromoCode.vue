@@ -15,7 +15,18 @@
             v-model="coupon.CodeCoupon"
             @input="change"
             placeholder="Ví dụ: COUPON10%"
+            aria-describedby="promocode-help"
+            :class="{
+              'p-invalid': coupon.CodeCoupon == null || coupon.CodeCoupon == '',
+            }"
           />
+          <small
+            id="codeprod-help"
+            class="p-error"
+            v-if="coupon.CodeCoupon == null || coupon.CodeCoupon == ''"
+          >
+            Mã khuyến mãi không được để trống</small
+          >
         </span>
         <p>Khách hàng sẽ nhập mã khuyến mãi này ở màn hình thanh toán.</p>
       </template>
@@ -23,6 +34,13 @@
     <Card class="mt-4">
       <template #title>
         <span class="title">Mô tả</span>
+        <small
+          id="codeprod-help"
+          class="p-error"
+          v-if="coupon.Description == null || coupon.Description == ''"
+        >
+          Mô tả không được để trống</small
+        >
       </template>
       <template #content>
         <span class="p-fluid">
@@ -32,6 +50,11 @@
             v-model="coupon.Description"
             @input="change"
             placeholder="Ví dụ: Mừng ngày..."
+            aria-describedby="promocode-help"
+            :class="{
+              'p-invalid':
+                coupon.Description == null || coupon.Description == '',
+            }"
           />
         </span>
         <Checkbox

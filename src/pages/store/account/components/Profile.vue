@@ -1,4 +1,16 @@
 <template lang="">
+  <Toast />
+  <Toast position="bottom-center" group="bc">
+    <template #message="slotProps">
+      <div class="flex flex-column">
+        <div class="text-center">
+          <i class="pi pi-exclamation-triangle" style="font-size: 3rem"></i>
+          <h4>{{ slotProps.message.summary }}</h4>
+          <p>{{ slotProps.message.detail }}</p>
+        </div>
+      </div>
+    </template>
+  </Toast>
   <div class="right-column">
     <div class="info">
       <div class="header">Tài khoản</div>
@@ -12,7 +24,18 @@
               @complete="searchFName($event)"
               optionLabel="text"
               placeholder="Nhập Tên"
+              aria-describedby="fisrtname-help"
+              :class="{
+                'p-invalid':
+                  getInfoCus.FirstName == null || getInfoCus.FirstName == '',
+              }"
             />
+            <small
+              id="firstname-help"
+              class="p-error"
+              v-if="getInfoCus.FirstName == null || getInfoCus.FirstName == ''"
+              >Tên không được để trống</small
+            >
           </span>
         </div>
         <div class="lastname">
@@ -24,7 +47,18 @@
               @complete="searchLName($event)"
               optionLabel="text"
               placeholder="Nhập Họ"
+              aria-describedby="lastname-help"
+              :class="{
+                'p-invalid':
+                  getInfoCus.LastName == null || getInfoCus.LastName == '',
+              }"
             />
+            <small
+              id="lastname-help"
+              class="p-error"
+              v-if="getInfoCus.LastName == null || getInfoCus.LastName == ''"
+              >Họ không được để trống</small
+            >
           </span>
         </div>
       </div>
@@ -38,7 +72,31 @@
               @complete="searchEmail($event)"
               optionLabel="mail"
               placeholder="Nhập Email"
+              aria-describedby="email-help"
+              :class="{
+                'p-invalid': getInfoCus.Email == null || getInfoCus.Email == '' || !getInfoCus.Email.match(
+                  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                )
+              }"
             />
+            <small
+              id="email-help"
+              class="p-error"
+              v-if="getInfoCus.Email == null || getInfoCus.Email == ''"
+              >Email không được để trống</small
+            >
+            <small
+              id="email-help"
+              class="p-error"
+              v-if="
+                getInfoCus.Email != null &&
+                getInfoCus.Email != '' &&
+                !getInfoCus.Email?.match(
+                  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                )
+              "
+              >Email sai định dạng</small
+            >
           </span>
         </div>
         <div class="phone">
@@ -50,12 +108,39 @@
               @complete="searchPhone($event)"
               optionLabel="phone"
               placeholder="Nhập Số Điện Thoại"
+              aria-describedby="phone-help"
+              :class="{
+                'p-invalid': getInfoCus.Phone == null || getInfoCus.Phone == '' || !getInfoCus.Phone.match(
+                  /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+                )
+              }"
             />
+            <small
+              id="phone-help"
+              class="p-error"
+              v-if="getInfoCus.Phone == null || getInfoCus.Phone == ''"
+              >Số điện thoại không được để trống</small
+            >
+            <small
+              id="phone-help"
+              class="p-error"
+              v-if="
+                getInfoCus.Phone != null &&
+                getInfoCus.Phone != '' &&
+                !getInfoCus.Phone?.match(
+                  /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+                )
+              "
+              >Số điện thoại không đúng định dạng</small
+            >
           </span>
         </div>
       </div>
-      <div class="button flex justify-content-center">
+      <!-- <div class="button flex justify-content-center">
         <button type="button" @click="updatedInfoCus">Lưu</button>
+      </div> -->
+      <div class="button flex justify-content-center">
+        <button type="button" @click="save()">Lưu</button>
       </div>
     </div>
   </div>
@@ -83,8 +168,49 @@ export default {
       "loadDefaultInfoCus",
       "updatedInfoCus",
     ]),
+    save() {
+      if (
+        this.getInfoCus.LastName == null ||
+        this.getInfoCus.LastName == "" ||
+        this.getInfoCus.FirstName == null ||
+        this.getInfoCus.FirstName == "" ||
+        this.getInfoCus.Phone == null ||
+        this.getInfoCus.Phone == "" ||
+        this.getInfoCus.Email == null ||
+        this.getInfoCus.Email == ""
+      ) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error Message",
+          detail: "Chưa điền đầy đủ thông tin",
+          life: 3000,
+        });
+      }
+      else if (
+        !this.getInfoCus.Email?.match(
+                  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+                ) || !this.getInfoCus.Phone?.match(
+          /^(0?)(3[2-9]|5[6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])[0-9]{7}$/
+        )
+      ) {
+        this.$toast.add({
+          severity: "error",
+          summary: "Error Message",
+          detail: "Sai định dạng",
+          life: 3000,
+        });
+      } 
+      else {
+        this.updatedInfoCus();
+        this.$toast.add({
+          severity: "success",
+          summary: "Success Message",
+          detail: "Cập nhật thông tin thành công",
+          life: 3000,
+        });
+      }
+    },
   },
-
 };
 </script>
 <style lang="scss" scoped>

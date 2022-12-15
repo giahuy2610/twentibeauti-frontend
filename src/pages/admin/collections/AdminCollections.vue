@@ -33,6 +33,7 @@ import CollectionTable from "../collections/component/CollectionTable.vue";
 import { useCollectionStorePinia } from "@/stores/store/collection";
 import { mapState, mapActions } from "pinia";
 export default {
+  name: "admin collections",
   components: {
     AdminBlankPage,
     CollectionTable,

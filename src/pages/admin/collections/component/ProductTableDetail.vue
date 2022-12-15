@@ -19,7 +19,7 @@
     >
       <template #header>
         <div class="flex justify-content-between align-items-center">
-          <h5 class="m-0">Sản phẩm</h5>
+          <div class="m-0" style="font-size:20px; font-weight:600;">Sản phẩm</div>
           <span v-show="selectedProducts.length > 0">
             Chọn thao tác
             <Dropdown

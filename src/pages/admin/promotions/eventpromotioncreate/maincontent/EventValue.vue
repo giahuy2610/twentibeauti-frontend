@@ -18,6 +18,12 @@
               locale="de-DE"
               :min="0"
               :max="1000000000"
+              aria-describedby="promocode-help"
+              :class="{
+                'p-invalid':
+                  eventPromotion.ValueDiscount == null ||
+                  eventPromotion.ValueDiscount == '',
+              }"
             />
             <InputNumber
               v-show="eventPromotion.UnitsDiscount == 2"
@@ -27,6 +33,12 @@
               suffix="%"
               :min="0"
               :max="100"
+              aria-describedby="promocode-help"
+              :class="{
+                'p-invalid':
+                  eventPromotion.ValueDiscount == null ||
+                  eventPromotion.ValueDiscount == '',
+              }"
             />
             <InputNumber
               v-show="eventPromotion.UnitsDiscount == 3"
@@ -38,7 +50,20 @@
               locale="de-DE"
               :min="0"
               :max="1000000000"
+              aria-describedby="promocode-help"
+              :class="{
+                'p-invalid':
+                  eventPromotion.ValueDiscount == null ||
+                  eventPromotion.ValueDiscount == '',
+              }"
             />
+            <small
+          id="idbrand-help"
+          class="p-error"
+          v-if="eventPromotion.ValueDiscount == null || eventPromotion.ValueDiscount == ''"
+        >
+          Giá trị khuyến mãi không được để trống</small
+        >
           </div>
         </div>
       </template>
