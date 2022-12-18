@@ -8,13 +8,14 @@
         <Card>
           <template #title> Soạn thảo </template>
           <template #content>
-            <Editor v-model="value1" editorStyle="height: 320px" />
+            <Editor v-model="contentEmailHTML" editorStyle="height: 320px" />
           </template>
         </Card>
         <Card>
           <template #content>
+            <Toast position="bottom-right" group="br" />
             <DataTable
-              :value="promotionRegisters"
+              v-model:value="promotionRegisters"
               :paginator="true"
               class="p-datatable-customers"
               :rows="10"
@@ -27,8 +28,9 @@
               paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
               :rowsPerPageOptions="[10, 25, 50]"
               currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-              :globalFilterFields="['email', 'cusId']"
+              :globalFilterFields="['Email', 'IDCus']"
               responsiveLayout="scroll"
+              selectionMode="single"
             >
               <template #header>
                 <div class="flex justify-content-between align-items-center">
@@ -45,6 +47,23 @@
                     <Button
                       label="Gửi"
                       class="p-button-outlined p-button-success"
+                      @click="
+                        axios
+                          .post('promotion/send', {
+                            Content: contentEmailHTML,
+                            Customers: selectedEmail,
+                          })
+                          .then((response) => {
+                            if (response.status == 200) {
+                              this.$toast.add({
+                                severity: 'success',
+                                summary: 'Thành công',
+                                detail: 'Gửi thành công',
+                                life: 3000,
+                              });
+                            }
+                          })
+                      "
                     />
                   </div>
                   <span class="p-input-icon-left">
@@ -63,7 +82,7 @@
                 headerStyle="width: 3rem"
               ></Column>
               <Column
-                field="email"
+                field="Email"
                 header="Email"
                 sortable
                 style="min-width: 14rem"
@@ -81,7 +100,7 @@
                 </template>
               </Column>
               <Column
-                field="cusId"
+                field="IDCus"
                 header="Tài khoản khách hàng"
                 sortable
                 filterMatchMode="contains"
@@ -140,39 +159,12 @@ export default {
       selectedEmail: [],
       filters: {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-        name: {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        "country.name": {
-          operator: FilterOperator.AND,
-          constraints: [
-            { value: null, matchMode: FilterMatchMode.STARTS_WITH },
-          ],
-        },
-        representative: { value: null, matchMode: FilterMatchMode.IN },
-        date: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }],
-        },
-        balance: {
-          operator: FilterOperator.AND,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        status: {
-          operator: FilterOperator.OR,
-          constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }],
-        },
-        activity: { value: null, matchMode: FilterMatchMode.BETWEEN },
-        verified: { value: null, matchMode: FilterMatchMode.EQUALS },
       },
       loading: true,
       promotionRegisters: [],
+      contentEmailHTML: "",
     };
   },
-  created() {},
   async mounted() {
     await this.axios
       .get("/promotion/index")
