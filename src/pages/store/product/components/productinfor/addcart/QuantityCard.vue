@@ -1,20 +1,36 @@
 <template lang="">
-    <div class="quantity flex-row">
-        <button type="button" class="minus">
-            <span class="minus-outline">
-                <i class="pi pi-minus"></i>
-            </span>
-        </button>
-        <div class="quantity-text"><p>1</p></div>
-        <button type="button" class="plus">
-            <span class="plus-outline">
-                <i class="pi pi-plus"></i>
-            </span>
-        </button>
-    </div>
+  <div class="quantity flex-row">
+    <button type="button" class="minus">
+      <span class="minus-outline">
+        <i class="pi pi-minus" @click="numberOfProduct--"></i>
+      </span>
+    </button>
+    <div class="quantity-text">{{ numberOfProduct }}</div>
+    <button type="button" class="plus">
+      <span class="plus-outline">
+        <i class="pi pi-plus" @click="numberOfProduct++"></i>
+      </span>
+    </button>
+  </div>
 </template>
 <script>
-export default {};
+import { useCartStorePinia } from "@/stores/store/cart.js";
+import { mapActions, mapWritableState } from "pinia";
+export default {
+  methods: {
+    ...mapActions(useCartStorePinia, {
+      increaseQuantity: "increaseQuantity",
+    }),
+  },
+  computed: {
+    ...mapWritableState(useCartStorePinia, {
+      numberOfProduct: "numberOfProduct",
+    }),
+  },
+  mounted() {
+    this.numberOfProduct = 1;
+  },
+};
 </script>
 <style lang="scss" scoped>
 .flex-row {

@@ -1,6 +1,12 @@
 <template lang="">
   <Wrapper>
-    <div class="myorder" v-for="(item, index) in orders">
+    <div
+      class="myorder"
+      v-for="(item, index) in orders.slice(
+        paginator['first'],
+        paginator['first'] + 5
+      )"
+    >
       <div class="myorder-top">
         <div class="list-items">
           <ul class="list">
@@ -56,7 +62,11 @@
       </div>
     </div>
     <div class="paginator">
-      <Paginator :rows="10" :totalRecords="totalRecords"></Paginator>
+      <Paginator
+        :rows="5"
+        :totalRecords="orders.length"
+        @page="paginator = $event"
+      ></Paginator>
     </div>
   </Wrapper>
 </template>
@@ -69,9 +79,6 @@ export default {
   props: ["orders"],
   data() {
     return {
-      first: 0,
-      totalRecords: 120,
-      totalRecords2: 12,
       trackingStatus: [
         "Chờ xác nhận",
         "Đang chuẩn bị đơn",
@@ -80,8 +87,9 @@ export default {
         "Đã hủy",
         "Đơn không thành công",
       ],
+      paginator: { "page": 0, "first": 0, "rows": 10, "pageCount": 7 },
     };
-  },
+  }
 };
 </script>
 <style lang="scss" scoped>

@@ -11,7 +11,8 @@
             <Editor v-model="contentEmailHTML" editorStyle="height: 320px" />
           </template>
         </Card>
-        <Card>
+        <Card
+          >
           <template #content>
             <Toast position="bottom-right" group="br" />
             <DataTable
@@ -53,16 +54,15 @@
                             Content: contentEmailHTML,
                             Customers: selectedEmail,
                           })
-                          .then((response) => {
-                            if (response.status == 200) {
-                              this.$toast.add({
-                                severity: 'success',
-                                summary: 'Thành công',
-                                detail: 'Gửi thành công',
-                                life: 3000,
-                              });
-                            }
-                          })
+                          .then((response) => {});
+                        this.$toast.add({
+                          severity: 'success',
+                          summary: 'Thành công',
+                          detail: 'Gửi thành công',
+                          life: 3000,
+                        });
+                        contentEmailHTML = '';
+                        selectedEmail = [];
                       "
                     />
                   </div>

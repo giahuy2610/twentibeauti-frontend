@@ -50,7 +50,7 @@
       </div>
       <div
         class="button-more"
-        @click="$router.push({ path: '/collections/flash-sale' })"
+        @click="$router.push({ path: '/collection/' + collectionFlashSaleID })"
       >
         Xem tất cả
       </div>

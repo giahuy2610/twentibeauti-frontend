@@ -3,16 +3,14 @@
     <div class="confirm-add">
       <button type="button" class="btn-confirm flex-row nowrap">
         <span class="icon-shopping-bag"></span>
-        <span
-          class="ml-2 font-bold"
-          @click="increaseQuantity($route.params.productid)"
+        <span class="ml-2 font-bold" @click="addProducts()"
           >Thêm vào giỏ hàng</span
         >
       </button>
     </div>
     <div class="buy">
       <button type="button" class="btn-buy flex-row nowrap">
-        <span class="">MUA NGAY</span>
+        <span @click="buyNow()">MUA NGAY</span>
       </button>
     </div>
     <div class="add-favourite">
@@ -26,13 +24,31 @@
 
 <script>
 import { useCartStorePinia } from "@/stores/store/cart.js";
-import { mapActions } from "pinia";
+import { mapActions, mapWritableState } from "pinia";
 export default {
   methods: {
     ...mapActions(useCartStorePinia, {
       increaseQuantity: "increaseQuantity",
       decreaseQuantity: "decreaseQuantity",
       removeItem: "removeItem",
+      removeAll: "removeAll",
+    }),
+    addProducts() {
+      for (var i = 0; i < this.numberOfProduct; i++) {
+        this.increaseQuantity(this.$route.params.productid);
+      }
+      this.visibleCart = true;
+    },
+    buyNow() {
+      this.removeAll();
+      this.increaseQuantity(this.$route.params.productid);
+      this.$router.push({ name: "checkout" });
+    },
+  },
+  computed: {
+    ...mapWritableState(useCartStorePinia, {
+      numberOfProduct: "numberOfProduct",
+      visibleCart: "visibleCart",
     }),
   },
 };

@@ -13,10 +13,10 @@
       />
       <div class="pag">
         <div
-          v-for="index in adsList"
+          v-for="(itemt, index) in adsList"
           class="circle-pag"
-          :style="[index === currentPage ? ' background-color:white ' : '']"
-          @click="scrollTo(index)"
+          :style="[index + 1 === currentPage ? ' background-color:white ' : '']"
+          @click="scrollTo(index + 1)"
         ></div>
       </div>
 
@@ -31,16 +31,11 @@
   </div>
 </template>
 <script>
-import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
-
 export default {
-  components: {
-    ProductCard,
-  },
   data() {
     return {
       adsList: [],
-      currentPage: 1,
+      currentPage: 1, //start with 1
       count: 0,
       autoScrollLeft: null,
     };
@@ -50,7 +45,8 @@ export default {
       if (this.currentPage != this.adsList.length) {
         this.currentPage++;
         console.log(this.currentPage);
-        this.$refs.wrapper.scrollLeft = window.innerWidth * this.currentPage;
+        this.$refs.wrapper.scrollLeft =
+          window.innerWidth * (this.currentPage - 1);
       } else {
         this.currentPage = 1;
         this.$refs.wrapper.scrollLeft = 0;

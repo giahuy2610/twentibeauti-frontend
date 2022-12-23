@@ -2,7 +2,7 @@
   <div class="product-bottom">
     <div class="image-bottom">
       <div class="product-thumbnail">
-        <img :src="!productImage ?? productImage['Path']" alt="product-thumbnail" />
+        <img :src="productImage?.Path" alt="product-thumbnail" />
       </div>
     </div>
     <div class="infor-bottom">

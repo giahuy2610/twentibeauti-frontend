@@ -1,10 +1,50 @@
 <template lang="">
   <div class="wrapper">
+    <!-- <p
+      @click="
+        axios.post(
+          'https://api.fpt.ai/hmi/asr/general',
+          '@/assets/record.mp3',
+          {
+            headers: {
+              'api-key': 'P4XZXQHPpluGm2KQWMs7093MHEUwaY1J',
+            },
+          }
+        )
+      "
+    >
+    bibi
+    </p> -->
     <div class="content">
       <slot></slot>
     </div>
   </div>
 </template>
+
+<script>
+import { useCartStorePinia } from "@/stores/store/cart.js";
+import { mapActions, mapWritableState } from "pinia";
+export default {
+  mounted() {
+    if (this.user != null) this.getCartItem();
+  },
+  watch: {
+    $route(to, from) {
+      if (this.user != null) this.getCartItem();
+    },
+  },
+  methods: {
+    ...mapActions(useCartStorePinia, {
+      getCartItem: "getCartItem",
+    }),
+  },
+  computed: {
+    ...mapWritableState(useCartStorePinia, {
+      user: "user",
+    }),
+  },
+};
+</script>
 
 <style lang="scss" scoped>
 @import "@/scss/mixin";

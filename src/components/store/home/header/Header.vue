@@ -200,7 +200,6 @@ export default {
   data() {
     return {
       visibleSidebarMobile: false,
-      visibleCart: false,
       visibleAccountSubmenu: false,
       visibleBarSubmenu: false,
       visibleLogin: false,
@@ -219,6 +218,7 @@ export default {
       getCartItemsNumber: "getCartItemsNumber",
       getUser: "user",
       total: "total",
+      visibleCart: "visibleCart"
     }),
   },
   directives: {},

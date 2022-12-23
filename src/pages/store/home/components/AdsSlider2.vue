@@ -26,20 +26,31 @@
           <div class="slick-slider">
             <div class="slick-list">
               <div class="slide-track">
-                <div class="img-div" ref="ads" v-for="(item, index) in arrThumbnailScr">
-                <img
-                  @click="$router.push({ path: '/collection/' }),(isClick = !isClick)"
-                  :src="item"
-                  alt="sale thumbnail"
-                  :clas="{ shadow2: selectedItem == index }"
-                />
-              </div>
+                <div
+                  class="img-div"
+                  ref="ads"
+                  v-for="(item, index) in arrThumbnailScr"
+                >
+                  <img
+                    @click="
+                      $router.push({ path: '/collection/' }),
+                        (isClick = !isClick)
+                    "
+                    :src="item"
+                    alt="sale thumbnail"
+                    :clas="{ shadow2: selectedItem == index }"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button v-show="btnRight" @click="scrollRight()" class="pag__btn btn__down">
+      <button
+        v-show="btnRight"
+        @click="scrollRight()"
+        class="pag__btn btn__down"
+      >
         <span class="icon-chevron-thin-right"></span>
       </button>
     </div>
@@ -87,22 +98,26 @@ export default {
 @import url("@/assets/icomoon/style.css");
 @import "@/scss/mixin";
 
-
-
 .wrapper {
-  
   margin-top: 30px;
   display: flex;
   box-sizing: border-box;
   justify-content: space-between;
 
   img {
-    max-width: 33%;
-    
+    width: 100%;
+    max-width: 32.5%;
     background-size: contain;
     object-fit: contain;
     border-radius: 10px;
     flex: 1;
+    cursor: pointer;
+  }
+
+  &__desktop {
+    width: 100%;
+    display: flex;
+    gap: 1rem;
   }
 
   &__mobile {
@@ -113,9 +128,9 @@ export default {
       &__btn {
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        width: 48px;
-        height: 48px;
+        transform: translateY(-25%);
+        width: 36px;
+        height: 36px;
         background: rgb(255, 255, 255);
         box-shadow: rgb(184 193 202) 0px 0px 10px;
         border: none;
@@ -144,7 +159,6 @@ export default {
     .scroll-wrapper {
       position: relative;
       left: 0;
-      margin-top: 10px;
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -217,7 +231,7 @@ export default {
 }
 @include mini-tablet {
   .wrapper {
-    img{
+    img {
       width: 33%;
     }
 
@@ -228,7 +242,7 @@ export default {
 }
 @include tablet {
   .wrapper {
-    img{
+    img {
       width: 33%;
     }
 
@@ -240,6 +254,7 @@ export default {
 @include desktop {
   .wrapper {
     max-width: 100%;
+
     &__mobile {
       display: none;
     }
