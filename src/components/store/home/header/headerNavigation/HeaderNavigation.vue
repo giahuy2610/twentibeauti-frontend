@@ -118,12 +118,13 @@ li ul {
 }
 ul li a {
   display: block;
-  padding: 11px 30px;
+  padding: 11px 38px;
   text-decoration: none;
   white-space: nowrap;
   color: #333;
   font-size: 18px;
   cursor: pointer;
+  
   @include mini-tablet {
     padding: 11px 10px;
     font-size: 16px;
@@ -154,10 +155,12 @@ li:hover li a:hover {
 }
 .main-navigation li ul li {
   border-top: 0;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
 }
 ul ul ul {
   left: 100%;
   top: 0;
+  box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.1);
 }
 ul:before,
 ul:after {
