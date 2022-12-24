@@ -1,9 +1,9 @@
 <template lang="">
   <div class="brands-slider">
     <div class="brands-slider__thumbnail" v-for="(item, index) in brands">
-      <a :href="item.brandPath"
+      <router-link :to="item.brandPath"
         ><img :src="item.brandImg" :alt="item.brandName"
-      /></a>
+      /></router-link>
     </div>
   </div>
   <div class="wrapper">
@@ -16,16 +16,25 @@
           <div class="slick-slider">
             <div class="slick-list">
               <div class="slide-track">
-                <div ref="imgs" class="brands-slider__thumbnail" v-for="(item, index) in brands">
+                <div
+                  ref="imgs"
+                  class="brands-slider__thumbnail"
+                  v-for="(item, index) in brands"
+                >
                   <a :href="item.brandPath">
-                    <img :src="item.brandImg" :alt="item.brandName"/></a>
+                    <img :src="item.brandImg" :alt="item.brandName"
+                  /></a>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <button v-show="btnRight" @click="scrollRight()" class="pag__btn btn__down">
+      <button
+        v-show="btnRight"
+        @click="scrollRight()"
+        class="pag__btn btn__down"
+      >
         <span class="icon-chevron-thin-right"></span>
       </button>
     </div>
@@ -36,11 +45,11 @@ export default {
   methods: {
     scrollLeft() {
       console.log(this.$refs.slide.scrollLeft, this.$refs.imgs[0].offsetWidth);
-      this.$refs.slide.scrollLeft -= this.$refs.imgs[0].offsetWidth
+      this.$refs.slide.scrollLeft -= this.$refs.imgs[0].offsetWidth;
     },
     scrollRight() {
       console.log(this.$refs.slide.scrollLeft, this.$refs.imgs[0].offsetWidth);
-      this.$refs.slide.scrollLeft +=  this.$refs.imgs[0].offsetWidth;      
+      this.$refs.slide.scrollLeft += this.$refs.imgs[0].offsetWidth;
     },
   },
   data() {
@@ -49,32 +58,32 @@ export default {
         {
           brandName: "a",
           brandImg:
-            "https://image.hsv-tech.io/1920x0/tfs/common/0b50116e-158f-4aa7-95a7-910804ad9772.webp",
-          brandPath: "/collections/a",
+            "https://image.hsv-tech.io/600x0/tfs/common/6c1a7210-1608-436e-aa42-ba1507de8d62.webp",
+          brandPath: "/collection/1",
         },
         {
           brandName: "a",
           brandImg:
-            "https://image.hsv-tech.io/1920x0/tfs/common/0b50116e-158f-4aa7-95a7-910804ad9772.webp",
-          brandPath: "/collections/a",
+            "https://image.hsv-tech.io/1000x0/tfs/common/8075cb51-f2bf-422e-9585-967bd0cd51f3.webp",
+          brandPath: "/collection/1",
         },
         {
           brandName: "a",
           brandImg:
-            "https://image.hsv-tech.io/1920x0/tfs/common/0b50116e-158f-4aa7-95a7-910804ad9772.webp",
-          brandPath: "/collections/a",
+            "https://image.hsv-tech.io/1000x0/tfs/common/660f0f2e-4cd7-4380-9857-795d293cdd79.webp",
+          brandPath: "/collection/1",
         },
         {
           brandName: "a",
           brandImg:
-            "https://image.hsv-tech.io/1920x0/tfs/common/0b50116e-158f-4aa7-95a7-910804ad9772.webp",
-          brandPath: "/collections/a",
+            "https://image.hsv-tech.io/1000x0/tfs/common/7e9ac401-f750-496c-beca-b7ca75694379.webp",
+          brandPath: "/collection/1",
         },
         {
           brandName: "a",
           brandImg:
-            "https://image.hsv-tech.io/1920x0/tfs/common/0b50116e-158f-4aa7-95a7-910804ad9772.webp",
-          brandPath: "/collections/a",
+            "https://image.hsv-tech.io/400x0/tfs/common/ad51e07e-e764-4771-805f-4dc352e4d671.webp",
+          brandPath: "/collection/1",
         },
       ],
     };
@@ -86,6 +95,7 @@ export default {
 @import "@/scss/mixin";
 
 .brands-slider {
+  margin-bottom: 1rem;
   display: flex;
   gap: 10px;
 
@@ -111,16 +121,15 @@ export default {
   box-sizing: border-box;
   justify-content: space-between;
 
-    &:hover {
-      transform: translate3d(0px, -5px, 0px);
-      box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
-      transition: all 0.3s ease 0s;
-      cursor: pointer;
-    }
-    &:nth-child(2n) {
-      margin: 0 10px;
-    }
-  
+  &:hover {
+    transform: translate3d(0px, -5px, 0px);
+    box-shadow: rgb(0 0 0 / 15%) 0px 2px 15px;
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+  }
+  &:nth-child(2n) {
+    margin: 0 10px;
+  }
 
   &__mobile {
     position: relative;
@@ -128,7 +137,7 @@ export default {
 
     .pag {
       &__btn {
-        display:inline !important;
+        display: inline !important;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -208,30 +217,28 @@ export default {
     .brands-slider {
       display: none;
     }
-    
   }
 }
 @include desktop {
-  .wrapper{
+  .wrapper {
     display: none;
   }
 }
 @include mini-tablet {
   .wrapper {
     width: 250%;
-    .slide-track{
+    .slide-track {
       width: 3200px;
     }
     .brands-slider {
       display: none;
     }
-    
   }
 }
 @include tablet {
   .wrapper {
     width: 250%;
-    .slide-track{
+    .slide-track {
       width: 3200px;
     }
 

@@ -119,8 +119,8 @@ export default {
       }
     },
   },
-  mounted() {
-    this.axios
+  async mounted() {
+    await this.axios
       .get("/product/show/" + this.$route.params.productid)
       .then((response) => {
         this.productName = response.data.NameProduct;

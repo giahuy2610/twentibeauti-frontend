@@ -6,7 +6,7 @@
     <div class="content">
       <div class="content__top">
         <h5 class="font-light title-content" @click="$router.push({ path: '/'})">Trang chủ</h5>
-        <h2 class="uppercase">{{ getCollectionItems.NameCollection }}</h2>
+        <h2 class="uppercase">{{ collectionItemsDisplay.NameCollection }}</h2>
       </div>
       <div class="content__main">
         <div class="sider">
@@ -15,7 +15,7 @@
         
         <div class="products-wrapper">
           <div class="products-wrapper__top flex align-items-center">
-            <p>{{  getCollectionItems.Products.length }} Kết quả</p>
+            <p>{{  collectionItemsDisplay.Products.length }} Kết quả</p>
             <p class="filter-chooser" @click="isFilterChose = !isFilterChose">
               <i class="pi pi-filter-fill"></i>
               <span
@@ -28,7 +28,7 @@
             </p>
           </div>
           <div class="products-wrapper__content">
-            <div class="item" v-for="(item, index) in getCollectionItems.Products">
+            <div class="item" v-for="(item, index) in collectionItemsDisplay.Products">
               <ProductCard :info="item"></ProductCard>
             </div>
           </div>
@@ -58,7 +58,8 @@ export default {
   },
   computed: {
     ...mapWritableState(useCollectionStorePinia, {
-      getCollectionItems: "getCollectionItems",
+      collectionItems: "collectionItems",
+      collectionItemsDisplay: "collectionItemsDisplay"
     }),
   },
   methods: {
@@ -76,6 +77,23 @@ export default {
       isFilterChose: false
     };
   },
+  watch: {
+    filtered(newValue, oldValue) {
+      if (newValue == 0) {
+        console.log(this.collectionItemsDisplay.Products.sort((a,b) => a.RetailPrice > b.RetailPrice ? 1 : -1));
+      }
+      else if (newValue == 1) {
+        console.log(this.collectionItemsDisplay.Products.sort((a,b) => a.RetailPrice < b.RetailPrice ? 1 : -1));
+      }
+      else if (newValue == 2) {
+        console.log(this.collectionItemsDisplay.Products.sort((a,b) => (a.ListPrice - a.RetailPrice) > (b.ListPrice - b.RetailPrice) ? 1 : -1));
+
+      }
+      else {
+        console.log(this.collectionItemsDisplay.Products.sort((a,b) => a.Stock > b.Stock ? 1 : -1));
+      }
+    }
+  }
 };
 </script>
 <style lang="scss" scoped>

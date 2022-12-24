@@ -37,6 +37,7 @@ export default {
       for (var i = 0; i < this.numberOfProduct; i++) {
         this.increaseQuantity(this.$route.params.productid);
       }
+      this.numberOfProduct = 1;
       this.visibleCart = true;
     },
     buyNow() {

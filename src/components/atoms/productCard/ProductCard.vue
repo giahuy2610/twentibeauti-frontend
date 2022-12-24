@@ -108,7 +108,12 @@ export default {
   font-size: smaller;
   cursor: pointer;
 
+  &__img {
+    width: inherit;
+  }
+
   &__img img {
+    
     max-width: 100%;
     height: 200px;
     object-fit: cover;

@@ -15,6 +15,17 @@ export const useCollectionStorePinia = defineStore({
       CoverImagePath: null,
       Products: [],
     },
+    collectionItemsDisplay: {
+      IDCollection: null,
+      NameCollection: undefined,
+      Description: null,
+      LogoImagePath: {},
+      WallPaperPath: null,
+      StartOn: null,
+      EndOn: null,
+      CoverImagePath: null,
+      Products: [],
+    },
   }),
   getters: {
     getCollectionItems(state) {
@@ -34,11 +45,12 @@ export const useCollectionStorePinia = defineStore({
           this.collectionItems.WallPaperPath = response.data.WallPaperPath;
           this.collectionItems.LogoImagePath = response.data.LogoImagePath;
           this.collectionItems.Products = response.data.Products;
+          this.collectionItemsDisplay.Products = response.data.Products;
           return response.data;
         })
         .catch(function (error) {
           console.error(error);
         });
     },
-  }
+  },
 });

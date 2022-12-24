@@ -91,7 +91,10 @@
 
           <div class="nameproduct">
             <div class="name">
-              <router-link role="presentation" to="/product">
+              <router-link
+                role="presentation"
+                :to="'/product/' + item.IDProduct"
+              >
                 {{ item.NameProduct }}
               </router-link>
             </div>
