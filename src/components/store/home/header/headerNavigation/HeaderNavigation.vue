@@ -11,83 +11,38 @@
       </ul>
     </li>
     <li>
-      <a href="#">Sản phẩm mới</a>
+      <a>Sản phẩm mới</a>
     </li>
     <li>
-      <a href="#">Trang điểm</a>
+      <a  @click="$router.push('/collection/78')">Trang điểm</a>
       <ul>
-        <li>
-          <a href="#">Trang điểm mắt</a>
-          <ul>
-            <li><a href="">Phấn mắt</a></li>
-            <li><a href="">Kẻ viền mắt</a></li>
-            <li><a href="">Kẻ chân mày</a></li>
-            <li><a href="">Mascara</a></li>
-          </ul>
+        <li  @click="$router.push('/collection/71')">
+          <a>Trang điểm mắt</a>
         </li>
-        <li>
-          <a href="#">Trang điểm môi</a>
-          <ul>
-            <li><a href="#">Son lì</a></li>
-            <li><a href="#">Son dưỡng môi</a></li>
-            <li><a href="#">Son môi</a></li>
-            <li><a href="">Son bóng</a></li>
-          </ul>
+        <li  @click="$router.push('/collection/72')">
+          <a>Trang điểm môi</a>
         </li>
-        <li>
-          <a href="#">Trang điểm mặt</a>
-          <ul>
-            <li><a href="#">Kem nền</a></li>
-            <li><a href="#">Tạo khối</a></li>
-            <li><a href="">Phấn phủ</a></li>
-            <li><a href="">Phấn nước cushion</a></li>
-            <li><a href="">Phấn má hồng</a></li>
-            <li><a href="">Che khuyến điểm</a></li>
-          </ul>
+        <li  @click="$router.push('/collection/73')">
+          <a>Trang điểm mặt</a>
         </li>
       </ul>
     </li>
-    <li>
-      <a href="#">Dưỡng da</a>
+    <li  @click="$router.push('/collection/79')">
+      <a>Dưỡng da</a>
       <ul>
-        <li>
-          <a href="#">Dưỡng da mặt</a>
-          <ul>
-            <li><a href="">Kem dưỡng</a></li>
-            <li><a href="">Tinh chất dưỡng da</a></li>
-            <li><a href="">Sữa dưỡng</a></li>
-            <li><a href="">Xịt khoáng</a></li>
-            <li><a href="">Nước cân bằng</a></li>
-          </ul>
+        <li  @click="$router.push('/collection/74')">
+          <a>Dưỡng da mặt</a>
         </li>
-        <li>
-          <a href="#">Làm sạch</a>
-          <ul>
-            <li><a href="#">Sữa rửa mặt</a></li>
-            <li><a href="#">Tẩy trang</a></li>
-            <li><a href="#">Tẩy tế bào chết</a></li>
-            <li><a href="">Tẩy tế bào chết môi</a></li>
-          </ul>
+        <li  @click="$router.push('/collection/75')">
+          <a>Làm sạch</a>
         </li>
-        <li>
-          <a href="#">Mặt nạ</a>
-          <ul>
-            <li><a href="">Mặt nạ dưỡng</a></li>
-          </ul>
+        <li  @click="$router.push('/collection/76')">
+          <a>Mặt nạ</a>
         </li>
       </ul>
     </li>
-    <li>
-      <a href="#">Chăm sóc cơ thể</a>
-      <ul>
-        <li><a href="#">Chăm sóc body</a></li>
-        <li>
-          <a href="#">Chăm sóc tóc</a>
-        </li>
-        <li>
-          <a href="#">Chăm sóc tay/chân</a>
-        </li>
-      </ul>
+    <li  @click="$router.push('/collection/80')">
+      <a>Chăm sóc cơ thể</a>
     </li>
     <li @click="$router.push('/promotions')"><a>Nhận mã ưu đãi</a></li>
   </ul>
