@@ -47,8 +47,8 @@
             <i
               class="pi pi-search"
               @click="
+                $router.push({ path: '/search/' + value2 });
                 value2 = '';
-                router.push({ path: '/search/' + value2 });
               "
             />
           </span>
