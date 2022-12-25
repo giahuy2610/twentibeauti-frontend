@@ -46,7 +46,10 @@
             />
             <i
               class="pi pi-search"
-              @click="$router.push({ path: '/search/' + value2 })"
+              @click="
+                value2 = '';
+                router.push({ path: '/search/' + value2 });
+              "
             />
           </span>
         </div>
@@ -85,13 +88,16 @@
             "
           >
             <div class="bar-submenu shadow-2" v-show="visibleAccountSubmenu">
-              <div class="bar-submenu-item" @click="$router.push('/account')">
+              <div
+                class="bar-submenu-item"
+                @click="$router.push({ name: 'account' })"
+              >
                 <i class="pi pi-id-card"></i>
                 Thông tin tài khoản
               </div>
               <div
                 class="bar-submenu-item"
-                @click="$router.push('/account/orders')"
+                @click="$router.push({ name: 'history orders' })"
               >
                 <i class="pi pi-list"></i>
                 Lịch sử đặt hàng
@@ -218,7 +224,7 @@ export default {
       getCartItemsNumber: "getCartItemsNumber",
       getUser: "user",
       total: "total",
-      visibleCart: "visibleCart"
+      visibleCart: "visibleCart",
     }),
   },
   directives: {},

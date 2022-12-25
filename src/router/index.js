@@ -111,6 +111,7 @@ const routes = [
           {
             path: "profile",
             component: AccountProfile,
+            name: "history orders"
           },
           {
             path: "orders",

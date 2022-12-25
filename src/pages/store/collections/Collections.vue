@@ -95,6 +95,9 @@ export default {
       else {
         console.log(this.collectionItemsDisplay.Products.sort((a,b) => a.Stock > b.Stock ? 1 : -1));
       }
+    },
+    '$route' (to, from) {
+      this.getInfoCollection(this.$route.params.id)
     }
   }
 };

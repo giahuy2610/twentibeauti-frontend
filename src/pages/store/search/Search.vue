@@ -66,6 +66,17 @@
         products: []
       };
     },
+    watch: {    
+      '$route' (to, from) {
+      console.log(to);
+      this.axios.get('/product/search/'+this.$route.params.key).then((response) => {
+          this.products = response.data;
+          console.log(this.products);
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }}
   };
   </script>
   <style lang="scss" scoped>

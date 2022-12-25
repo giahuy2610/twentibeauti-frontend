@@ -23,7 +23,7 @@ export default {
     toastSuccess() {
       console.log("Success!");
       this.$toast.add({
-        severity: "info",
+        severity: "success",
         summary: "Success",
         detail: "File Uploaded",
         life: 3000,
