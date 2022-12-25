@@ -6,8 +6,8 @@
         :class="
           statusNum != 6
             ? {
-                complete: index + 1 < statusNum,
-                active: index + 1 === statusNum,
+                complete: index - 1 < statusNum,
+                active: index == statusNum,
               }
             : {
                 complete: index < 1,

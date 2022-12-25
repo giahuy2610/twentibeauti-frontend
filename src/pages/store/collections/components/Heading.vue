@@ -1,6 +1,6 @@
 <template lang="">
   <div class="heading-wrapper">
-    <div class="wallpaper-wrapper"  >
+    <div class="wallpaper-wrapper" v-if="collectionItems.WallPaperPath != null">
       <Skeleton
         shape="rectangle"
         width="100%"
@@ -9,7 +9,6 @@
       >
       </Skeleton>
       <img
-      @geturl="wallimg"
         :src="getCollectionItems.WallPaperPath"
         alt=""
         style="width: 100%; object-fit: fill; border-radius: 10px"
@@ -17,10 +16,9 @@
         v-show="isLoaded"
       />
     </div>
-    <div class="logo-wrapper">
-      <div class="logo-img" @geturl="logoimg">
-        <Skeleton shape="square" 
-        size="100%" v-show="!isLoadedLogo"  > </Skeleton>
+    <div class="logo-wrapper" v-if="collectionItems.LogoImagePath != null">
+      <div class="logo-img">
+        <Skeleton shape="square" size="100%" v-show="!isLoadedLogo"> </Skeleton>
         <img
           class="shadow-2"
           :src="getCollectionItems.LogoImagePath"
@@ -31,13 +29,14 @@
         />
       </div>
       <div class="brand-info">
-        <h2 class="uppercase">{{getCollectionItems.NameCollection}}</h2>
-        <p></p>
+        <h2 class="uppercase">{{ getCollectionItems.NameCollection }}</h2>
       </div>
     </div>
     <div class="description-wrapper" v-if="collectionItems.Description != null">
       <div class="description-content">
-        <DescriptionVue :descriptions="collectionItems.Description"></DescriptionVue>
+        <DescriptionVue
+          :descriptions="collectionItems.Description"
+        ></DescriptionVue>
       </div>
     </div>
     <div class="ads-slider">
@@ -68,8 +67,7 @@ export default {
     }),
   },
   methods: {
-    ...mapActions(useCollectionStorePinia,["getInfoCollection"],
-    ),
+    ...mapActions(useCollectionStorePinia, ["getInfoCollection"]),
   },
   data() {
     return {

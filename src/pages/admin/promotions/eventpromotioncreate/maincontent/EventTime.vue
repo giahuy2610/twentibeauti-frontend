@@ -17,7 +17,7 @@
 <script>
 import { useEventStorePinia } from "@/stores/admin/eventpromotion.js";
 import { mapState, mapWritableState, mapActions } from "pinia";
-import moment from "moment";
+import { format } from "https://cdn.skypack.dev/date-fns@2.29.3";
 
 export default {
   computed: {
@@ -32,10 +32,24 @@ export default {
       rangeAvailableDate: [],
     };
   },
-  // created() {
-  //   this.getEventPromoItem._startDate = moment().format("L");
-  //   // this.getEventPromoItem._startTime = moment().format('LT');
-  // },
+  watch: {
+    rangeAvailableDate(newValue, oldValue) {
+      this.eventPromotion.StartOn = format(
+        new Date(newValue[0]),
+        "yyyy-MM-dd HH:mm:ss"
+      ).toString();
+      this.eventPromotion.EndOn = format(
+        new Date(newValue[1]),
+        "yyyy-MM-dd HH:mm:ss"
+      ).toString();
+    },
+  },
+  async mounted() {
+    this.rangeAvailableDate = [
+      new Date(this.eventPromotion.StartOn),
+      new Date(this.eventPromotion.EndOn),
+    ];
+  },
 };
 </script>
 <style lang="scss" scoped>

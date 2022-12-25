@@ -45,19 +45,19 @@ export default {
           category: "Chăm sóc cơ thể",
           path: "",
           products: [],
-          idCollection: 1,
+          idCollection: 80,
         },
         {
           category: "Trang điểm",
           path: "",
           products: [],
-          idCollection: 2,
+          idCollection: 73,
         },
         {
           category: "Dưỡng da",
           path: "",
           products: [],
-          idCollection: 3,
+          idCollection: 74,
         },
       ],
     };
@@ -69,7 +69,7 @@ export default {
         .then((response) => {
           console.log(response.data);
           tab.products = response.data.Products;
-          tab.products.length = Math.min(tab.products.length, 8)
+          tab.products.length = Math.min(tab.products.length, 8);
           tab.path = "/collection/" + tab.idCollection;
         })
         .catch(function (error) {

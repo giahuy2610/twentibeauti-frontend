@@ -4,7 +4,7 @@
       <!-- <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
       </Skeleton> -->
       <img
-        @click="$router.push({ path: '/collection/' })"
+        @click="$router.push({ path: '/collection/1' })"
         v-for="(item, index) in arrThumbnailScr"
         :src="item"
         alt="sale thumbnail"

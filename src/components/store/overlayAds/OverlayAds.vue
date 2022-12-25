@@ -1,18 +1,25 @@
 <template lang="">
-  <div class="wrapper" :style='[isHidden ? "display: none":""]'>
+  <div class="wrapper" :style="[isHidden ? 'display: none' : '']">
     <div class="ads">
-      <img src="@/assets/overlayAds1.png" alt="sale" />
-      <i class="pi pi-times-circle btn-close" @click="isHidden=true"></i>
+      <img
+        src="https://theme.hstatic.net/200000135107/1000950591/14/popup_bg_medium.png?v=331"
+        alt="sale"
+        @click="
+          isHidden = true;
+          $router.push({ path: '/collection/1' });
+        "
+      />
+      <i class="pi pi-times-circle btn-close" @click="isHidden = true"></i>
     </div>
   </div>
 </template>
 <script>
 export default {
-    data() {
-        return {
-            isHidden: false,
-        }
-    }
+  data() {
+    return {
+      isHidden: false,
+    };
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -33,8 +40,9 @@ export default {
     position: relative;
 
     img {
-      height: 70vh;
+      height: 50vh;
       width: auto;
+      cursor: pointer;
     }
 
     .btn-close {

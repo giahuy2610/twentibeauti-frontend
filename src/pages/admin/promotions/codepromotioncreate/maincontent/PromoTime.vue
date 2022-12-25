@@ -44,6 +44,12 @@ export default {
       ).toString();
     },
   },
+  async mounted() {
+    this.rangeAvailableDate = [
+      new Date(this.coupon.StartOn),
+      new Date(this.coupon.EndOn),
+    ];
+  },
 };
 </script>
 <style lang="scss" scoped>

@@ -6,11 +6,11 @@
     <div class="content">
       <div class="content__top">
         <h5 class="font-light title-content" @click="$router.push({ path: '/'})">Trang chủ</h5>
-        <h2 class="uppercase">{{ collectionItemsDisplay.NameCollection }}</h2>
+        <h2 class="uppercase">{{ collectionItems.NameCollection }}</h2>
       </div>
       <div class="content__main">
         <div class="sider">
-          <CollectionFilterSider></CollectionFilterSider>
+          <CollectionFilterSider :title="collectionItems?.NameCollection"></CollectionFilterSider>
         </div>
         
         <div class="products-wrapper">
@@ -33,7 +33,7 @@
             </div>
           </div>
           <div class="products-wrapper__bottom">
-            <ButtonPrimary message="Xem thêm"></ButtonPrimary>
+            <ButtonPrimary message="Xem thêm" @click="moreProducts()" v-if="collectionItemsDisplay?.length < collectionItemsDisplay?.length"></ButtonPrimary>
           </div>
         </div>
       </div>
@@ -65,6 +65,9 @@ export default {
   methods: {
     ...mapActions(useCollectionStorePinia,["getInfoCollection"],
     ),
+    moreProducts() {
+
+    }
   },
   async mounted() {
     await this.getInfoCollection(this.$route.params.id)
