@@ -7,7 +7,7 @@
         <p>Loại sản phẩm</p>
         <div class="flex">
           <Dropdown
-            v-model="type"
+            v-model="this.productInfo.IDType"
             :options="listOfType"
             optionLabel="NameTypeProduct"
             optionValue="IDType"
@@ -17,7 +17,8 @@
             aria-describedby="idtype-help"
             :class="{
               'p-invalid':
-              type == null || type == '',
+                this.productInfo.IDType == null ||
+                this.productInfo.IDType == '',
             }"
           />
           <Button
@@ -29,7 +30,9 @@
         <small
           id="idbrand-help"
           class="p-error"
-          v-if="type == null || type == ''"
+          v-if="
+            this.productInfo.IDType == null || this.productInfo.IDType == ''
+          "
         >
           Loại sản phẩm không được để trống</small
         >
@@ -136,8 +139,7 @@
             style="width: 100%"
             aria-describedby="idtag-help"
             :class="{
-              'p-invalid':
-                productInfo.IDTag == null || productInfo.IDTag == '',
+              'p-invalid': productInfo.IDTag == null || productInfo.IDTag == '',
             }"
           />
           <Button
@@ -198,7 +200,6 @@ export default {
       listOfBrand: [],
       listOfTag: [],
       listOfType: [],
-      type: null,
     };
   },
   methods: {
@@ -259,6 +260,9 @@ export default {
     ...mapWritableState(useProductStorePinia, {
       productInfo: "productInfo",
     }),
+    type() {
+      return this.productInfo.IDType;
+    },
   },
   watch: {
     nameBrand: {

@@ -9,7 +9,7 @@
           <template #content>
             <Chip
               v-for="(item, index) in productInfo.Images"
-              :label="item"
+              :label="item.length > 20 ? item.substring(0, 17) + '...' : item"
               :image="item"
               class="custom-chip mb-2"
               removable
