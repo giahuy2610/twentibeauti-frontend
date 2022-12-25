@@ -5,10 +5,9 @@
       <a href="#">Thương hiệu</a>
       <ul>
         <li @click="$router.push('/collection/1')"><a>THE FACE SHOP</a></li>
-        <li><a href="">CNP</a></li>
-        <li><a href="">BELIF</a></li>
-        <li><a href="">YEHWADAM</a></li>
-        <li><a href="">AHC</a></li>
+        <li @click="$r69outer.push('/collection/65')" ><a href="">CNP</a></li>
+        <li @click="$router.push('/collection/69')"><a href="">BELIF</a></li>
+        <li @click="$router.push('/collection/70')"><a href="">YEHWADAM</a></li>
       </ul>
     </li>
     <li>
