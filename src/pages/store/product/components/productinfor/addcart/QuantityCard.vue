@@ -1,8 +1,14 @@
 <template lang="">
   <div class="quantity flex-row">
-    <button type="button" class="minus">
+    <button
+      type="button"
+      class="minus"
+    >
       <span class="minus-outline">
-        <i class="pi pi-minus" @click="numberOfProduct--"></i>
+        <i
+          class="pi pi-minus"
+          @click="numberOfProduct > 1 ? numberOfProduct-- : 1"
+        ></i>
       </span>
     </button>
     <div class="quantity-text">{{ numberOfProduct }}</div>

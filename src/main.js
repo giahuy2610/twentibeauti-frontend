@@ -171,5 +171,5 @@ app.use(ConfirmationService);
 app.use(DialogService);
 app.directive("badge", BadgeDirective);
 
-axios.defaults.baseURL = "http://localhost:8000/api";
+axios.defaults.baseURL = "https://localhost:7084/api";
 app.mount("#app");
