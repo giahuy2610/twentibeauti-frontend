@@ -1,8 +1,8 @@
 <template>
-  <OverlayAds
+  <!-- <OverlayAds
     class="overlay-ads"
     v-if="$route.path.slice(1, 6) != 'admin'"
-  ></OverlayAds>
+  ></OverlayAds> -->
   <router-view></router-view>
   <vue-progress-bar></vue-progress-bar>
 </template>

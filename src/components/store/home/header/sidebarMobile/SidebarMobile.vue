@@ -231,7 +231,6 @@ $sidebar-footer-height: 64px;
   color: $text-color;
   overflow-x: hidden !important;
   position: relative;
-
   height: 100vh;
   .image-wrapper {
     overflow: hidden;
@@ -259,6 +258,7 @@ $sidebar-footer-height: 64px;
     flex-direction: column;
     position: relative;
     z-index: 2;
+
     .sidebar-header {
       height: $sidebar-header-height;
       min-height: $sidebar-header-height;

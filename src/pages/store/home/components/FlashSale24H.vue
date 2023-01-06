@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="flash-sale">
+  <div class="flash-sale" v-if="collectionFlashSaleID.length > 0">
     <div class="flash-sale__top">
       <img src="@/assets/flashsalelogo.png" alt="Flash Sale 24H" />
 

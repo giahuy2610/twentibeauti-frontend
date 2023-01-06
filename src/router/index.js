@@ -111,7 +111,7 @@ const routes = [
           {
             path: "profile",
             component: AccountProfile,
-            name: "history orders"
+            name: "history orders",
           },
           {
             path: "orders",
@@ -137,6 +137,11 @@ const routes = [
         meta: {
           requiresStoreAuth: true,
         },
+      },
+      {
+        name: "not found",
+        path: "/error",
+        component: NotFound,
       },
       {
         name: "product",

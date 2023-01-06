@@ -1,5 +1,6 @@
 <template lang="">
-  <Wrapper>
+  <Loading v-if="loading"></Loading>
+  <Wrapper v-else>
     <div class="heading">
       <Heading></Heading>
     </div>
@@ -46,6 +47,7 @@ import CollectionFilterSider from "@/components/atoms/collectionFilterSider/Coll
 import ProductCard from "@/components/atoms/productCard/ProductCard.vue";
 import ButtonPrimary from "@/components/atoms/buttonPrimary/ButtonPrimary.vue";
 import Heading from "./components/Heading.vue";
+import Loading from "@/components/atoms/loadingScreen/Loading.vue";
 import { useCollectionStorePinia } from "@/stores/store/collection.js";
 import { mapWritableState, mapActions } from "pinia";
 export default {
@@ -55,6 +57,7 @@ export default {
     ProductCard,
     ButtonPrimary,
     Heading,
+    Loading
   },
   computed: {
     ...mapWritableState(useCollectionStorePinia, {
@@ -70,14 +73,16 @@ export default {
     }
   },
   async mounted() {
-    await this.getInfoCollection(this.$route.params.id)
+    await this.getInfoCollection(this.$route.params.id);
+    this.loading = false;
   },
   data() {
     return {
       countProductsInCollection: 2,
       filterChooser: ["Giá tăng dần", "Giá giảm dần", "% giảm", "Mua nhiều"],
       filtered: 2, //default: % giảm
-      isFilterChose: false
+      isFilterChose: false,
+      loading: true
     };
   },
   watch: {

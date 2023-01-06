@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="over">
+  <div class="over" v-if="adsList.length > 0">
     <div class="scroll-wrapper" ref="wrapper">
       <Button
         @click="scrollRight"

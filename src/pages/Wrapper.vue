@@ -1,20 +1,5 @@
 <template lang="">
   <div class="wrapper">
-    <!-- <p
-      @click="
-        axios.post(
-          'https://api.fpt.ai/hmi/asr/general',
-          '@/assets/record.mp3',
-          {
-            headers: {
-              'api-key': 'P4XZXQHPpluGm2KQWMs7093MHEUwaY1J',
-            },
-          }
-        )
-      "
-    >
-    bibi
-    </p> -->
     <div class="content">
       <slot></slot>
     </div>

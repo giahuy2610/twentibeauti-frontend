@@ -1,6 +1,7 @@
 import axios from "axios";
 import { defineStore } from "pinia";
-import { isProxy, toRaw } from "vue";
+import Router from "@/router/index.js";
+
 export const useCollectionStorePinia = defineStore({
   id: "collectionStorePinia",
   state: () => ({
@@ -50,6 +51,9 @@ export const useCollectionStorePinia = defineStore({
         })
         .catch(function (error) {
           console.error(error);
+          Router.push({
+            name: "not found",
+          });
         });
     },
   },

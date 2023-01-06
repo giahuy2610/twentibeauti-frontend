@@ -1,5 +1,5 @@
 <template lang="">
-  <div class="wrapper">
+  <div class="wrapper" v-if="arrThumbnailScr.length > 0">
     <div class="wrapper__desktop">
       <!-- <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
       </Skeleton> -->
