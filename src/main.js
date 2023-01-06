@@ -72,7 +72,8 @@ import Chip from "primevue/chip";
 import InlineMessage from "primevue/inlinemessage";
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-
+import AOS from "aos";
+import "aos/dist/aos.css";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -106,6 +107,8 @@ const options = {
 };
 
 const app = createApp(App);
+
+app.use(AOS.init());
 const pinia = createPinia();
 pinia.use(piniaPluginPersistedstate);
 app.use(pinia);

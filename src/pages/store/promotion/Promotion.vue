@@ -1,5 +1,6 @@
 <template lang="">
-  <Wrapper>
+  <Loading v-if="loading" />
+  <Wrapper v-else>
     <div class="content">
       <div
         class="item"
@@ -20,14 +21,19 @@
 <script>
 import CouponCard from "./CouponCard.vue";
 import Wrapper from "../../Wrapper.vue";
+import Loading from "@/components/atoms/loadingScreen/Loading.vue";
+
+
 export default {
   components: {
     CouponCard,
     Wrapper,
+    Loading
   },
   data() {
     return {
       couponList: [],
+      loading: true
     };
   },
   async mounted() {
@@ -40,6 +46,7 @@ export default {
       .catch(function (error) {
         console.error(error);
       });
+    this.loading = false;
   },
 };
 </script>

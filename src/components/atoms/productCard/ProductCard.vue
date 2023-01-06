@@ -7,6 +7,7 @@
       })
     "
     class="product-card"
+    data-aos="zoom-in"
   >
     <div class="product-card__img">
       <img

@@ -1,5 +1,6 @@
 <template lang="">
-  <div class="home__wrapper">
+  <Loading v-if="loading" />
+  <div class="home__wrapper" v-else>
     <Wrapper>
       <div class="home__wrapper__content"></div>
       <ProductInfor
@@ -55,7 +56,7 @@ import RatingDetail from "@/pages/store/product/components/RatingDetail.vue";
 import RelevantProduct from "@/pages/store/product/components/RelevantProduct.vue";
 import ProductInfor from "@/pages/store/product/components/ProductInfor.vue";
 import BottomNavigation from "@/pages/store/product/components/BottomNavigation.vue";
-
+import Loading from "@/components/atoms/loadingScreen/Loading.vue";
 import Wrapper from "../../Wrapper.vue";
 import axios from "axios";
 import { isProxy, toRaw } from "vue";
@@ -69,6 +70,7 @@ export default {
     RelevantProduct,
     BottomNavigation,
     Wrapper,
+    Loading,
   },
   data() {
     return {
@@ -86,6 +88,7 @@ export default {
       illustProducts: [],
       reviews: [],
       relevantProducts: [],
+      loading: true,
     };
   },
   beforeDestroy() {
@@ -136,7 +139,10 @@ export default {
       })
       .catch((error) => {
         console.log(error);
+        this.$route.push({name: 'not found'})
       });
+
+      this.loading = false;
 
     this.$nextTick(() => {
       window.addEventListener("scroll", this.onScroll);
