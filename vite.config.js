@@ -10,5 +10,5 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
-  base: "/twentibeauti-frontend/", // Thay tên repository của các bạn vào đây nhé
+  base: "/", // Thay tên repository của các bạn vào đây nhé
 });
