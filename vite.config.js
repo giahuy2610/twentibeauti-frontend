@@ -10,4 +10,7 @@ export default defineConfig({
     },
   },
   plugins: [vue()],
+  base: process.env.NODE_ENV === 'production'
+  ? '/twentibeauti-frontend/' // Thay tên repository của các bạn vào đây nhé
+  : '/',
 });
