@@ -12,7 +12,7 @@
                         <Skeleton shape="square" size="100px" class="mr-2" v-show="!isLoaded">
                         </Skeleton>
                         <img
-                          src=" https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=Example"
+                          src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=Example"
                           alt="qr"
                           @load="isLoaded = true"
                           v-show="isLoaded"
