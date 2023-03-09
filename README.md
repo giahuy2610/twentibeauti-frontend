@@ -10,8 +10,8 @@ Thank to https://thefaceshop.com.vn & https://www.sapo.vn for your supports.
 4. Unlimited image storage API: Imgur
 5. The best Vuejs UI lib: PrimeVue (highly recommended)
 
-Read Vietnamse document here: 
-Video demo:
+Read Vietnamse document here: https://drive.google.com/file/d/169Z_OKW2Qs5LQ74awWjNjze965yoge6O/view?usp=share_link <br>
+Video demo: https://drive.google.com/file/d/19N2gggMh28RkoaXWUphB6oy9peVdfWuc/view?usp=share_link
 
 ## How to run
 Setup database: 
